@@ -36,7 +36,10 @@ const BuyWaifus = ({ show, close }) => {
     <StyledBuyWaifus>
       <Popup
         show={show}
-        close={close}
+        close={() => {
+          setAmount("");
+          close();
+        }}
         content={
           <BoxContent>
             <Header>Select Amount to Buy</Header>
