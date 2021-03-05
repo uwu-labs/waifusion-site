@@ -17,14 +17,20 @@ const StyledPopup = styled.div`
   align-items: center;
 `;
 
-const Popup = ({ show, content }) => {
+const Popup = ({ show, content, close }) => {
   if (!show) return null;
 
   return (
     <StyledPopup>
       <Box className="waifu-card-box">
         <BoxUpper>
-          <img src={WaifuPinkBar} className="waifu-card-box-pinkbar" />
+          <img
+            src={WaifuPinkBar}
+            className="waifu-card-box-pinkbar"
+            onClick={() => {
+              if (close) close();
+            }}
+          />
           {content}
         </BoxUpper>
       </Box>
