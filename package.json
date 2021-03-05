@@ -9,6 +9,7 @@
     "hardhat": "^2.1.1"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "solc": "^0.8.2"
   }
 }

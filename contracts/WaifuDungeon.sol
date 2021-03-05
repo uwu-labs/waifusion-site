@@ -6,10 +6,11 @@ import "./IWaifusion.sol";
 import "./token/SafeERC20.sol";
 import "./utils/Ownable.sol";
 
-contract WaifuMaidCafe is Ownable {
+contract WaifuDungeon is Ownable {
     address public constant BURN_ADDR = 0x0000000000000000000000000000000000080085;
     address public constant WET_TOKEN = 0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2;
     address public constant WAIFUSION = 0x2216d47494E516d8206B70FCa8585820eD3C4946;
+    uint256 constant MAX_NFT_SUPPLY = 16384;
     uint256 public constant MAX_SWAP = 3;
 
     uint256 public buyCost = 0.7 ether;
@@ -32,16 +33,19 @@ contract WaifuMaidCafe is Ownable {
 
     function commitBuyWaifus(uint256 num) external payable {
         require(msg.value >= num * buyCost, "not enough ether to buy");
+        uint256 maxWaifusToMint = _maxWaifus();
+        require(num < maxWaifusToMint, "too many waifus for you");
         _commitRandomWaifus(num);
     }
 
     function commitSwapWaifus(uint256[] calldata _ids) external {
         uint256 amountToSwap = _ids.length;
-        require(amountToSwap <= MAX_SWAP, "swapping too many");
+        uint256 maxWaifusToMint = _maxWaifus();
+        require(amountToSwap <= (maxWaifusToMint < MAX_SWAP ? maxWaifusToMint : MAX_SWAP), "swapping too many");
         SafeERC20.safeTransferFrom(IERC20(WET_TOKEN), WET_TOKEN, BURN_ADDR, swapCost*amountToSwap);
         for (uint256 i = 0; i < amountToSwap; i++) {    
             // Burn waifu.
-            IERC721(WAIFUSION).safeTransferFrom(address(this), BURN_ADDR, _ids[i]);
+            IERC721(WAIFUSION).transferFrom(address(this), BURN_ADDR, _ids[i]);
         }
         _commitRandomWaifus(amountToSwap);
     }
@@ -49,7 +53,7 @@ contract WaifuMaidCafe is Ownable {
     function revealWaifus() external returns (uint256[] memory) {
         uint256[] memory randomIDs = _revealRandomWaifus();
         for (uint256 i = 0; i < randomIDs.length; i++) { 
-            IERC721(WAIFUSION).safeTransferFrom(address(this), msg.sender, randomIDs[i]);
+            IERC721(WAIFUSION).transferFrom(address(this), msg.sender, randomIDs[i]);
         }
         return randomIDs;
     }
@@ -61,8 +65,7 @@ contract WaifuMaidCafe is Ownable {
     }
 
     function funnelMaxWaifus() external onlyOwner() {
-        uint256 remainingWaifus = IWaifusion(WAIFUSION).MAX_NFT_SUPPLY() - IWaifusion(WAIFUSION).totalSupply();
-        uint256 waifusToMint = remainingWaifus < 20 ? remainingWaifus : 20;
+        uint256 waifusToMint = _maxWaifus();
         funnelWaifus(waifusToMint);
     }
 
@@ -96,6 +99,12 @@ contract WaifuMaidCafe is Ownable {
 
     // Internal functions.
 
+    function _maxWaifus() internal view returns (uint256) {
+        uint256 remainingWaifus = MAX_NFT_SUPPLY - IWaifusion(WAIFUSION).totalSupply();
+        uint256 waifusToMint = remainingWaifus < 20 ? remainingWaifus : 20;
+        return waifusToMint;
+    }
+
     function _commitRandomWaifus(uint256 num) internal {
         uint256 commitBlock = block.number;
         commits[msg.sender].block = uint64(commitBlock);
@@ -117,7 +126,8 @@ contract WaifuMaidCafe is Ownable {
         uint256 _waifusInMaidCafe = waifusInMaidCafe();
         uint256 randomIndex = uint256(keccak256(abi.encodePacked(revealHash))) % _waifusInMaidCafe;
         for (uint256 i = 0; i < commit.amount; i++) {
-            randomIDs[i] = randomIndex++;
+            randomIDs[i] = randomIndex;
+            randomIndex = (randomIndex + 1) % _waifusInMaidCafe;
         }
         return randomIDs;
     }
