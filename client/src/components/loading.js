@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
 import { Box, Button } from "rimble-ui";
+import WaifuPinkBar from "../images/waifucard_pink_bar.png";
+import PendingButton from "../app/templates/PendingButton";
+// import burning from "../assets/burning.gif";
 
 const StyledLoading = styled.div`
   position: fixed;
@@ -10,31 +13,58 @@ const StyledLoading = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const Loading = () => {
+const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Image = styled.img`
+  width: 80%;
+`;
+
+const Loading = ({ type }) => {
+  const [loading, setLoading] = useState(true);
+
   return (
     <StyledLoading>
       <Box className="waifu-card-box">
         <BoxUpper>
           <img src={WaifuPinkBar} className="waifu-card-box-pinkbar" />
           <BoxContent>
-            <Header>Buy Waifus</Header>
+            <Header>
+              {type === "buying" ? "Buying Waifus" : "Burning Waifus"}
+            </Header>
             <Content>
-              Buy a new Waifu from the Maid Cafe for 0.7 ETH. You will recieve a
-              random Waifu from the Cafe.
+              {type === "buying" ? (
+                <Image
+                  src={
+                    "https://media1.tenor.com/images/40cdfd153b02a70564d7e8604186b48d/tenor.gif"
+                  }
+                  alt="waifu burning gif"
+                />
+              ) : (
+                <Image
+                  src={
+                    "https://66.media.tumblr.com/311eed36611a97770bbd34ed7ddf7c51/tumblr_mzlz15oTCC1smhnwfo1_500.gif"
+                  }
+                  alt="waifu burning gif"
+                />
+              )}
             </Content>
             <ButtonContainer>
-              <Button.Outline
-                className="waifu-card-buttons"
-                onClick={() => console.log("meow")}
-              >
-                <span className="waifu-button-learnmore">Buy WAIFU</span>
-              </Button.Outline>
+              <PendingButton
+                isPending={loading}
+                clickEvent={() => console.log("meow")}
+                text="Reveal Waifus"
+              />
             </ButtonContainer>
           </BoxContent>
         </BoxUpper>
@@ -42,3 +72,5 @@ const Loading = () => {
     </StyledLoading>
   );
 };
+
+export default Loading;
