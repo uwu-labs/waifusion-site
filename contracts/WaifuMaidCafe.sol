@@ -26,6 +26,9 @@ contract WaifuMaidCafe is Ownable {
     constructor() Ownable() {
         IERC20(WET_TOKEN).approve(WAIFUSION, 2**256 - 1);
     }
+    
+    receive() external payable {
+    }
 
     function commitBuyWaifus(uint256 num) external payable {
         require(msg.value >= num * buyCost, "not enough ether to buy");
@@ -39,8 +42,8 @@ contract WaifuMaidCafe is Ownable {
         for (uint256 i = 0; i < amountToSwap; i++) {    
             // Burn waifu.
             IERC721(WAIFUSION).safeTransferFrom(address(this), BURN_ADDR, _ids[i]);
-            _commitRandomWaifus(amountToSwap);
         }
+        _commitRandomWaifus(amountToSwap);
     }
 
     function revealWaifus() external returns (uint256[] memory) {
@@ -71,6 +74,10 @@ contract WaifuMaidCafe is Ownable {
     function withdraw() external onlyOwner() {
         uint256 balance = address(this).balance;
         payable(_msgSender()).transfer(balance);
+    }
+
+    function setWaifusionOwner(address newOwner) external onlyOwner() {
+        IWaifusion(WAIFUSION).transferOwnership(newOwner);
     }
 
     function setBuyCost(uint256 newBuyCost) external onlyOwner() {
