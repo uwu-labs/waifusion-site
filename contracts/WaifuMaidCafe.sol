@@ -28,7 +28,7 @@ contract WaifuMaidCafe is Ownable {
     }
 
     function commitBuyWaifus(uint256 num) external payable {
-        require(msg.value == num * buyCost, "not enough ether to buy");
+        require(msg.value >= num * buyCost, "not enough ether to buy");
         _commitRandomWaifus(num);
     }
 
