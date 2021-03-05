@@ -33,7 +33,7 @@ contract WaifuMaidCafe is Ownable {
 
     function commitSwapWaifus(uint256[] calldata _ids) external {
         uint256 amountToSwap = _ids.length;
-        require(amountToSwap < MAX_SWAP, "swapping too many");
+        require(amountToSwap <= MAX_SWAP, "swapping too many");
         SafeERC20.safeTransferFrom(IERC20(WET_TOKEN), WET_TOKEN, BURN_ADDR, swapCost*amountToSwap);
         for (uint256 i = 0; i < amountToSwap; i++) {    
             // Burn waifu.
