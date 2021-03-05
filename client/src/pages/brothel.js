@@ -1,23 +1,11 @@
 import React from "react";
-import {
-  Input,
-  Blockie,
-  Card,
-  Flex,
-  Heading,
-  Button,
-  Text,
-  Box,
-  Select,
-  Field,
-  Modal,
-  width,
-} from "rimble-ui";
+import { Box } from "rimble-ui";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import OverviewGreenBar from "../images/overview_green_bar.png";
-import { GLOBALS } from "../app/utils/globals.js";
+import WaifuPinkBar from "../images/waifucard_pink_bar.png";
+// import { GLOBALS } from "../app/utils/globals.js";
 import styled from "styled-components";
 
 const PageContainer = styled.div`
@@ -30,12 +18,22 @@ const PageContainer = styled.div`
 const PurchaseOptionsContainer = styled.div`
   width: 100%;
   display: flex;
-  margin-top: 30px;
+  margin-top: 60px;
   max-width: 1435px;
+  justify-content: space-evenly;
+`;
 
-  & > div {
-    margin: 0 20px;
-  }
+const Header = styled.h3`
+  color: red;
+  width: 100%;
+  text-align: center;
+  color: rgba(252.00000017881393, 116.00000068545341, 198.00000339746475, 1);
+  padding-top: 10px;
+  font-family: VT323;
+  font-size: 42px;
+  letter-spacing: 0;
+  line-height: undefined;
+  font-weight: normal;
 `;
 
 const ProvenancePage = () => (
@@ -65,25 +63,25 @@ const ProvenancePage = () => (
       <PurchaseOptionsContainer>
         <Box className="waifu-card-box">
           <div className="box-upper">
-            <img src={OverviewGreenBar} className="waifu-card-box-greenbar" />
+            <img src={WaifuPinkBar} className="waifu-card-box-pinkbar" />
             <Box
               className="waifu-card-box-presale-sub"
               color="white"
               style={{ maxWidth: 1000, marginBottom: 1 }}
             >
-              meow
+              <Header>Buy Waifus</Header>
             </Box>
           </div>
         </Box>
         <Box className="waifu-card-box">
           <div className="box-upper">
-            <img src={OverviewGreenBar} className="waifu-card-box-greenbar" />
+            <img src={WaifuPinkBar} className="waifu-card-box-pinkbar" />
             <Box
               className="waifu-card-box-presale-sub"
               color="white"
               style={{ maxWidth: 1000, marginBottom: 1 }}
             >
-              meow
+              <Header>Burn Waifus</Header>
             </Box>
           </div>
         </Box>
