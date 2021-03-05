@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "./token/IERC721.sol";
@@ -7,7 +8,7 @@ import "./utils/Ownable.sol";
 contract WaifuBrothel is Ownable {
     address public constant BURN_ADDR = 0x0000000000000000000000000000000000080085;
     address public constant WET_TOKEN = 0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2;
-    IERC721 public constant WAIFUSION = IERC721(0x2216d47494e516d8206b70fca8585820ed3c4946);
+    IERC721 public constant WAIFUSION = IERC721(0x2216d47494E516d8206B70FCa8585820eD3C4946);
     uint256 public constant MAX_SWAP = 3;
 
     uint256 public buyCost = 0.7 ether;
@@ -20,14 +21,11 @@ contract WaifuBrothel is Ownable {
     }
     
     mapping (address => Commit) public commits;
-  
-    event CommitHash(address sender, bytes32 dataHash, uint64 block);
-    event RevealHash(address sender, bytes32 revealHash, uint8 random);
 
     constructor() Ownable() {
     }
 
-    function commitBuyWaifus(uint256 num) external {
+    function commitBuyWaifus(uint256 num) external payable {
         require(msg.value == num * buyCost, "not enough ether");
         _commitRandomWaifus(num);
     }
@@ -48,6 +46,7 @@ contract WaifuBrothel is Ownable {
         for (uint256 i = 0; i < randomIDs.length; i++) { 
             WAIFUSION.safeTransferFrom(address(this), msg.sender, randomIDs[i]);
         }
+        return randomIDs;
     }
 
     function withdraw() external onlyOwner() {
@@ -85,11 +84,10 @@ contract WaifuBrothel is Ownable {
         bytes32 revealHash = blockhash(commit.block + 1);
 
         uint256[] memory randomIDs = new uint256[](commit.amount); 
-        uint256 waifusInBrothel = waifusInBrothel();
-        uint256 randomIndex = uint256(keccak256(abi.encodePacked(revealHash))) % waifusInBrothel;
+        uint256 _waifusInBrothel = waifusInBrothel();
+        uint256 randomIndex = uint256(keccak256(abi.encodePacked(revealHash))) % _waifusInBrothel;
         for (uint256 i = 0; i < commit.amount; i++) {
-            randomIDs[i] = randomIndex % waifusInBrothel;
-            randomIndex++;
+            randomIDs[i] = randomIndex++;
         }
         return randomIDs;
     }
