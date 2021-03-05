@@ -40,7 +40,7 @@ module.exports = {
         link: "/provenance",
       },
       {
-        name: "BROTHEL",
+        name: "MAID CAFE",
         link: "/brothel",
       },
     ],
