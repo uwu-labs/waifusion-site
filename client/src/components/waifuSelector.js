@@ -56,12 +56,22 @@ const AddButton = styled.button`
   margin-left: 20px;
 `;
 
+const Cost = styled.p`
+  width: 100%;
+  text-align: center !important;
+  font-family: VT323 !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 32px !important;
+  line-height: 42px !important;
+  margin-top: 60px;
+`;
+
 const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
 `;
 
 const WaifuSelector = ({ show, close }) => {
@@ -109,6 +119,9 @@ const WaifuSelector = ({ show, close }) => {
                 ></AddInput>
                 <AddButton onClick={() => AddWaifu()}>+</AddButton>
               </AddContainer>
+            )}
+            {waifus.length >= 1 && (
+              <Cost>{`Cost: ${waifus.length * 5490} WET`}</Cost>
             )}
             {waifus.length >= 1 && (
               <ButtonContainer>
