@@ -8,6 +8,7 @@ import WaifuPinkBar from "../images/waifucard_pink_bar.png";
 // import { GLOBALS } from "../app/utils/globals.js";
 import styled from "styled-components";
 import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
+import Loading from "../components/loading";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -98,6 +99,7 @@ const MaidCafePage = () => (
         </Box>
       </PurchaseOptionsContainer>
     </PageContainer>
+    <Loading type={"buying"} />
   </Layout>
 );
 
