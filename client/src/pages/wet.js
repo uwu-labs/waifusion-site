@@ -12,9 +12,9 @@ import '../components/home.css';
 import OverviewGreenBar from '../images/overview_green_bar.png';
 import WetPinkBar from '../images/wet_pink_bar.png';
 
-const SecondPage = () => (
+const WETTokenPage = () => (
   <Layout>
-    <SEO title="Page two" />
+    <SEO title="WET Token" />
     <Box className="waifu-card-box overview-card-box" >
     <div className="box-upper">
         <img src={OverviewGreenBar} className="waifu-card-box-greenbar"/>
@@ -78,4 +78,4 @@ const SecondPage = () => (
   </Layout>
 );
 
-export default SecondPage;
+export default WETTokenPage;

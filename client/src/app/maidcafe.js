@@ -18,7 +18,7 @@ import Wallet from "./wallets";
 import { RootStoreContext } from "./stores/root.store";
 
 // Main Route
-const Provenance = (props) => {
+const MaidCafe = (props) => {
   const rootStore = useContext(RootStoreContext);
   const { walletStore } = rootStore;
 
@@ -35,4 +35,4 @@ const Provenance = (props) => {
   );
 };
 
-export default Provenance;
+export default MaidCafe;

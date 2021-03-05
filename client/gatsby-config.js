@@ -41,7 +41,7 @@ module.exports = {
       },
       {
         name: "MAID CAFE",
-        link: "/brothel",
+        link: "/maidcafe",
       },
     ],
   },

@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { navigate, Link } from 'gatsby';
 import { Input, Blockie, Flex,EthAddress, Button, Text, Box, Select, Field } from 'rimble-ui';
 import {observer} from 'mobx-react-lite';
+import { Helmet } from 'react-helmet'
 
 
 // Data Store
@@ -38,6 +39,9 @@ const Gallery = observer((props) => {
     return (
         <>  
             {/*Need to add key to box when do full gallery */} 
+            <Helmet>
+          <title>Gallery</title>
+        </Helmet>
         <Box className="waifu-card-box waifu-pic-box waifu-pic-box-container waifu-card wallet-waifu-card" >
         {/*<Link to={"/app/detail/" + props.galleryId}>*/}
             <div className="box-upper">

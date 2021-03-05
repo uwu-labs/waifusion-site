@@ -86,7 +86,7 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-const ProvenancePage = () => (
+const MaidCafePage = () => (
   <Layout>
     <SEO title="Maid Cafe" />
     <PageContainer>
@@ -156,4 +156,4 @@ const ProvenancePage = () => (
   </Layout>
 );
 
-export default ProvenancePage;
+export default MaidCafePage;

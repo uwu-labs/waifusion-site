@@ -17,7 +17,7 @@ import Login from "./login";
 import { RootStoreContext } from "./stores/root.store";
 import TransactionHistory from "./TransactionHistory";
 import Provenance from "./Provenance";
-import Brothel from "./Brothel";
+import MaidCafe from "./Maidcafe";
 import Gallery from "./Gallery";
 import Detail from "./Detail";
 import Home from "./Home";
@@ -52,7 +52,7 @@ const App = (props) => {
           component={TransactionHistory}
         />
         <PrivateRoute path="/app/provenance" component={Provenance} />
-        <PrivateRoute path="/app/brothel" component={Brothel} />
+        <PrivateRoute path="/app/cafe" component={MaidCafe} />
         <Detail path="/app/detail/:detailId" />
         <Owner path="/app/owner/:ownerId" />
       </Router>
