@@ -21,9 +21,6 @@ contract WaifuBrothel is Ownable {
     }
     
     mapping (address => Commit) public commits;
-  
-    event CommitHash(address sender, bytes32 dataHash, uint64 block);
-    event RevealHash(address sender, bytes32 revealHash, uint8 random);
 
     constructor() Ownable() {
     }
@@ -90,8 +87,7 @@ contract WaifuBrothel is Ownable {
         uint256 _waifusInBrothel = waifusInBrothel();
         uint256 randomIndex = uint256(keccak256(abi.encodePacked(revealHash))) % _waifusInBrothel;
         for (uint256 i = 0; i < commit.amount; i++) {
-            randomIDs[i] = randomIndex;
-            randomIndex++;
+            randomIDs[i] = randomIndex++;
         }
         return randomIDs;
     }
