@@ -76,14 +76,14 @@ const ButtonContainer = styled.div`
 
 const WaifuSelector = ({ show, close }) => {
   const [waifus, setWaifus] = useState([]);
-  const [waifuName, setWaifuName] = useState("");
+  const [waifuId, setWaifuId] = useState("");
 
   const AddWaifu = () => {
-    if (waifuName === "") {
-      alert("Must enter a name");
+    if (waifuId === "") {
+      alert("Must enter an ID");
       return;
     }
-    const matching = waifus.filter((waifu) => waifu.name === waifuName);
+    const matching = waifus.filter((waifu) => waifu.id === waifuId);
     if (matching.length > 0) {
       alert("Waifu already added");
       return;
@@ -91,9 +91,9 @@ const WaifuSelector = ({ show, close }) => {
 
     //TODO: find the id and save it
     const newWaifus = [...waifus];
-    newWaifus.push({ name: waifuName, id: "123123" });
+    newWaifus.push({ id: waifuId });
     setWaifus(newWaifus);
-    setWaifuName("");
+    setWaifuId("");
   };
 
   if (!show) return null;
@@ -107,15 +107,15 @@ const WaifuSelector = ({ show, close }) => {
             <Header>Add Waifus to Burn</Header>
             <SelectedWaifus>
               {waifus.map((waifu) => (
-                <SelectedWaifu>{waifu.name}</SelectedWaifu>
+                <SelectedWaifu>{waifu.id}</SelectedWaifu>
               ))}
             </SelectedWaifus>
             {waifus.length < 3 && (
               <AddContainer>
                 <AddInput
-                  value={waifuName}
-                  placeholder="Waifu name"
-                  onChange={(event) => setWaifuName(event.target.value)}
+                  value={waifuId}
+                  placeholder="Waifu ID"
+                  onChange={(event) => setWaifuId(event.target.value)}
                 ></AddInput>
                 <AddButton onClick={() => AddWaifu()}>+</AddButton>
               </AddContainer>
@@ -139,7 +139,7 @@ const WaifuSelector = ({ show, close }) => {
         }
         close={() => {
           setWaifus([]);
-          setWaifuName("");
+          setWaifuId("");
           close();
         }}
       />
