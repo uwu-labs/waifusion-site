@@ -8,7 +8,7 @@ It is still in active development, with a plan to release circa 8th March.
 
 ## Local Development Setup
 
-To run the front end locally you can use these commands:
-`cd client`
-`npm i`
+To run the front end locally you can use these commands:  
+`cd client`  
+`npm i`  
 `npm start`
