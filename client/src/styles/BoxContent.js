@@ -28,6 +28,7 @@ export const BoxContent = styled.div`
   margin-left: 2px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   color: #fff;
   max-width: 1435px;
 `;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Popup from "./popup";
 import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
 import { Box, Button } from "rimble-ui";
+import Loading from "./loading";
 
 const StyledWaifuSelector = styled.div``;
 
@@ -77,6 +78,7 @@ const ButtonContainer = styled.div`
 const WaifuSelector = ({ show, close }) => {
   const [waifus, setWaifus] = useState([]);
   const [waifuId, setWaifuId] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const AddWaifu = () => {
     if (waifuId === "") {
@@ -143,6 +145,7 @@ const WaifuSelector = ({ show, close }) => {
           close();
         }}
       />
+      <Loading type={"burning"} show={loading} />
     </StyledWaifuSelector>
   );
 };

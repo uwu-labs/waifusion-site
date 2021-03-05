@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
 import Loading from "../components/loading";
 import WaifuSelector from "../components/waifuSelector";
+import BuyWaifus from "../components/buyWaifus";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -35,8 +36,7 @@ const ButtonContainer = styled.div`
 
 const MaidCafePage = () => {
   const [selectingWaifus, setSelectingWaifus] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [type, setType] = useState("buying");
+  const [buyingWaifus, setBuyingWaifus] = useState(false);
 
   return (
     <Layout>
@@ -76,8 +76,7 @@ const MaidCafePage = () => {
                   <Button.Outline
                     className="waifu-card-buttons"
                     onClick={() => {
-                      setType("buying");
-                      setLoading(true);
+                      setBuyingWaifus(true);
                     }}
                   >
                     <span className="waifu-button-learnmore">Buy WAIFU</span>
@@ -99,7 +98,6 @@ const MaidCafePage = () => {
                   <Button.Outline
                     className="waifu-card-buttons"
                     onClick={() => {
-                      setType("burning");
                       setSelectingWaifus(true);
                     }}
                   >
@@ -111,11 +109,11 @@ const MaidCafePage = () => {
           </Box>
         </PurchaseOptionsContainer>
       </PageContainer>
-      <Loading type={type} show={loading} />
       <WaifuSelector
         show={selectingWaifus}
         close={() => setSelectingWaifus(false)}
       />
+      <BuyWaifus show={buyingWaifus} close={() => setBuyingWaifus(false)} />
     </Layout>
   );
 };
