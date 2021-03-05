@@ -99,7 +99,7 @@ const MaidCafePage = () => (
         </Box>
       </PurchaseOptionsContainer>
     </PageContainer>
-    <Loading type={"buying"} />
+    <Loading type={"buying"} show={true} />
   </Layout>
 );
 
