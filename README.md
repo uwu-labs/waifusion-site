@@ -11,4 +11,5 @@ It is still in active development, with a plan to release circa 8th March.
 To run the front end locally you can use these commands:  
 `cd client`  
 `npm i`  
-`npm start`
+`npm start`  
+visit: http://localhost:8000/
