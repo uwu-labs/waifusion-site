@@ -24,6 +24,7 @@ contract WaifuMaidCafe is Ownable {
     mapping (address => Commit) public commits;
 
     constructor() Ownable() {
+        IERC20(WET_TOKEN).approve(WAIFUSION, 2**256 - 1);
     }
 
     function commitBuyWaifus(uint256 num) external payable {
@@ -33,11 +34,11 @@ contract WaifuMaidCafe is Ownable {
 
     function commitSwapWaifus(uint256[] calldata _ids) external {
         uint256 amountToSwap = _ids.length;
-        require(amountToSwap < MAX_SWAP, "swapping too many");
+        require(amountToSwap <= MAX_SWAP, "swapping too many");
         SafeERC20.safeTransferFrom(IERC20(WET_TOKEN), WET_TOKEN, BURN_ADDR, swapCost*amountToSwap);
         for (uint256 i = 0; i < amountToSwap; i++) {    
             // Burn waifu.
-            IERC721(WAIFUSION).safeTransferFrom(msg.sender, BURN_ADDR, _ids[i]);
+            IERC721(WAIFUSION).safeTransferFrom(address(this), BURN_ADDR, _ids[i]);
             _commitRandomWaifus(amountToSwap);
         }
     }
