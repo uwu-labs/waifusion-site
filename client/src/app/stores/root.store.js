@@ -2,7 +2,6 @@ import { createContext } from 'react';
 import { create } from "mobx-persist";
 
 import WalletStore from './wallet.store';
-import HomeStore from './home.store';
 import WETStore from './wet.store';
 import TransactionStore from './transactions.store';
 import DetailStore from './detail.store';
@@ -14,7 +13,6 @@ import autoSave from '../utils/autoSave';
 class RootStore {
     //makeAutoObservable(this);
     walletStore = new WalletStore(this);
-    homeStore = new HomeStore(this);
     WETStore = new WETStore(this);
     transactionStore = new TransactionStore(this);
     detailStore = new DetailStore(this);
@@ -24,7 +22,6 @@ class RootStore {
 
 decorate(RootStore, {
     walletStore: observable, 
-    homeStore: observable, 
     WETStore: observable,
     transactionStore: observable, 
     detailStore: observable,
