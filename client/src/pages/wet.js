@@ -37,7 +37,7 @@ const WETTokenPage = () => (
                 If you own a Waifu, you can claim the WETs that are constantly being produced by them being in your harem.
                  Each Waifu will drip around 3,660 WETs per year. 
                  <br/>
-                 To change the name of any Waifu, you need to send 1,830 WETs (about ½ years of Waif emission) to the Waifusion contract and boil them.
+                 To change the name of any Waifu, you need to send 1,830 WETs (about ½ years of Waifu emission) to the Waifusion contract and boil them.
                  <br/>
                  To burn a Waifu you need to send a Waifu and 5,490 WETs to the Waifusion contract and boil them.
                   </div>
@@ -57,9 +57,7 @@ const WETTokenPage = () => (
                  Each year, approximately 3,660 WETs will drip off each Waifu. After 10 years, the emission of new WETs comes to a halt. From then on, WETs can only be boiled until no Waifus are WET anymore (Ben Shapiro is a prophet) and the names of the Waifus cannot be altered. The harem is then considered complete.
                  <br/><br/> Number of WETs emitted per year per Waifu: around 3,660
                   <br/>Number of WETs required for one name change: 1,830
-                  <br/>Number of WETs required to swap a Waifu: 5,490
-
-                 
+                  <br/>Number of WETs required to burn and re-roll Waifu: 5,490
                   </div>
                   <br/>
                   <br/>
