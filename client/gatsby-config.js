@@ -40,8 +40,8 @@ module.exports = {
         link: "/provenance",
       },
       {
-        name: "MAID CAFE",
-        link: "/maidcafe",
+        name: "DUNGEON",
+        link: "/dungeon",
       },
     ],
   },
