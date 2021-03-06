@@ -36,7 +36,6 @@ const Loading = ({ show, type, complete }) => {
       .on("receipt", (receipt) => {
         setLoading(false);
         setRevealed(true);
-        alert("Waifus received");
       })
       .on("error", (err) => {
         alert("Error: " + err.message);
