@@ -12,6 +12,7 @@ contract WaifuDungeon is Ownable {
     address public constant WAIFUSION = 0x2216d47494E516d8206B70FCa8585820eD3C4946;
     uint256 constant MAX_NFT_SUPPLY = 16384;
     uint256 public constant MAX_SWAP = 3;
+    bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
 
     uint256 public buyCost = 0.1 ether;
     uint256 public swapCost = 5490 ether;
@@ -31,6 +32,13 @@ contract WaifuDungeon is Ownable {
     receive() external payable {
     }
 
+    function onERC721Received(address operator, address from, uint256 tokenId, bytes calldata data) external returns (bytes4) {
+        if (from == WAIFUSION) {
+            return _ERC721_RECEIVED;
+        }
+        return bytes4(0);
+    }
+    
     function commitBuyWaifus(uint256 num) external payable {
         require(msg.value >= num * buyCost, "not enough ether to buy");
         uint256 maxWaifusToMint = _maxWaifus();
