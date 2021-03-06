@@ -51,24 +51,24 @@ const DungeonPage = () => {
 
 useEffect(()  => {
     async function getDungeonPreview(){
-    var _waifuDisplay = []
+    var _waifyDisplay = []
     var maxDisplayWaifuCount = 5;
 
     setWaifusInDungeon(await balanceOf(GLOBALS.DUNGEON_CONTRACT_ADDRESS));
+    console.log(waifusInDungeon);
     for(var i = 0; i< maxDisplayWaifuCount && i < waifusInDungeon; i++){
-
       var currentDisplayWaifuDungeonIndex = Math.floor(Math.random() * (waifusInDungeon));
       var currentDisplayWaifuTokenId = await tokenOfOwnerByIndex(currentDisplayWaifuDungeonIndex, GLOBALS.DUNGEON_CONTRACT_ADDRESS);
-      var currentDisplayWaifuHTML = <img className="dungeon-waifu-card-image" src={GLOBALS.GALLERY_VIEWABLE_URL +"/" + revealedWaifuIndex(currentDisplayWaifuTokenId) +'.png'}/>;
-      console.log(currentDisplayWaifuTokenId);
-      if(_waifuDisplay.includes(currentDisplayWaifuHTML)){
+      var currentDisplayWaifuHTML = <img key={"waifu-peek-"+currentDisplayWaifuTokenId} className="dungeon-waifu-card-image" src={GLOBALS.GALLERY_VIEWABLE_URL +"/" + revealedWaifuIndex(currentDisplayWaifuTokenId) +'.png'}/>;
+      console.log(currentDisplayWaifuHTML);
+      if(_waifyDisplay.find(elem => elem.key == currentDisplayWaifuHTML.key)){
         i--;
       }
       else{
-        _waifuDisplay.push(currentDisplayWaifuHTML);
+        _waifyDisplay.push(currentDisplayWaifuHTML);
       }
     }
-    return _waifuDisplay;
+    return _waifyDisplay;
   }
   getDungeonPreview().then((value) =>{
     console.log(value);
@@ -93,7 +93,7 @@ useEffect(()  => {
               style={{ maxWidth: 1424, marginBottom: 1, innerHeight: 100 }}
             >
               <center className="waifu-card-box-center">
-                <div class="waifu-card-header-text">The Dungeon</div>
+                <div className="waifu-card-header-text">The Dungeon</div>
                 <div className="waifu-card-text waifu-about-text">
                   Many of your beloved waifus are enslaved in the Dungeon!
                   Be a hero and save your beloved by buying her freedom, or be the
