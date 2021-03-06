@@ -37,7 +37,7 @@ const BuyWaifus = ({ show, close }) => {
 
   const validatePurchase = async () => {
     if (amount > 20) {
-      alert("mas of 20 allowed");
+      alert("Maximum of 20 allowed");
       return false;
     }
     if (amount <= 0) {
@@ -50,12 +50,13 @@ const BuyWaifus = ({ show, close }) => {
     dungeonContract.methods
       .commitBuyWaifus(amount)
       .send({
-        value: new BN(web3.utils.toWei(0.7)).mul(new BN(amount)),
+        value: new BN(web3.utils.toWei("0.7")).mul(new BN(amount)),
         gas: estimatedGas,
       })
       .on("transactionHash", (hash) => {
         console.log("TransactionHash Call");
         console.log(hash);
+        setLoading(true);
         // transactionStore.addPendingTransaction({
         //   txHash: hash,
         //   description: `Buy ${homeStore.purchaseQuantity} NFTs `,
@@ -73,13 +74,13 @@ const BuyWaifus = ({ show, close }) => {
         console.log(err);
         // homeStore.validationResults = err.message;
         // homeStore.pendingBuy = false;
-      }); // If a out of gas error, the second parameter is the receipt.
+      });
   };
 
   return (
     <StyledBuyWaifus>
       <Popup
-        show={show}
+        show={show && !loading}
         close={() => {
           setAmount("");
           close();
@@ -106,7 +107,7 @@ const BuyWaifus = ({ show, close }) => {
           </BoxContent>
         }
       />
-      <Loading type={"buying"} show={loading} />
+      <Loading type={"buying"} show={show && loading} />
     </StyledBuyWaifus>
   );
 };
