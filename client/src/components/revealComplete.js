@@ -21,15 +21,16 @@ const RevealComplete = ({ show, close }) => {
         close={close}
         content={
           <BoxContent>
-            <Header>Select Amount to Buy</Header>
+            <Header>Waifu Revealed!!!</Header>
+
             <ButtonContainer>
               <Button.Outline
                 className="waifu-card-buttons"
                 onClick={() => {
-                  console.log("we");
+                  window.location.href = "/app";
                 }}
               >
-                <span className="waifu-button-learnmore">Buy Waifus</span>
+                <span className="waifu-button-learnmore">View Waifus</span>
               </Button.Outline>
             </ButtonContainer>
           </BoxContent>
