@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from 'react';
 import styled from "styled-components";
 import Popup from "./popup";
 import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
@@ -8,6 +8,8 @@ import { Box, Button } from "rimble-ui";
 import Loading from "./loading";
 import BN from "bn.js";
 import { GLOBALS } from "../app/utils/globals";
+
+import { RootStoreContext } from '../app/stores/root.store';
 
 const StyledWaifuSelector = styled.div``;
 
@@ -83,6 +85,9 @@ const WaifuSelector = ({ show, close }) => {
   const [waifus, setWaifus] = useState([]);
   const [waifuId, setWaifuId] = useState("");
   const [loading, setLoading] = useState(false);
+  
+  const rootStore = useContext(RootStoreContext);
+  const { transactionStore } = rootStore;
 
   const AddWaifu = () => {
     if (waifuId === "") {
@@ -110,21 +115,19 @@ const WaifuSelector = ({ show, close }) => {
     const WaifuIds = waifus.map(w => w.id);
     dungeonContract.methods
       .commitSwapWaifus(WaifuIds)
-      .send({
-        value: new BN(web3.utils.toWei("0.1")),
-        gas: estimatedGas,
+      .send()
+      .on('transactionHash', (hash) => {
+        transactionStore.addPendingTransaction( {
+            txHash: hash,
+            description: `Reroll Waifus: `+ WaifuIds.join(','),
+          } );
       })
-      .on("receipt", (receipt) => {
-        console.log("Receipt call");
-        console.log(receipt);
-        // setCommitComplete(true);
-      })
-      .on("error", (err) => {
-        console.log("Error Call");
-        console.log(err);
-        setLoading(false);
-        alert("Error: " + err.message);
-      });
+          .on('receipt', (receipt) => {
+            alert("Receipt success")
+          })
+          .on('error', (err) => {
+            console.log(err);
+          }); // If a out of gas error, the second parameter is the receipt.
   };
 
   if (!show) return null;
