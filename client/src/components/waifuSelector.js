@@ -120,16 +120,15 @@ const WaifuSelector = ({ show, close }) => {
       .commitSwapWaifus(waifuIds)
       .send()
       .on("transactionHash", (hash) => {
-        transactionStore.addPendingTransaction({
-          txHash: hash,
-          description: `Reroll Waifus: ` + waifuIds.join(","),
-        });
+        setLoading(true);
+        setCommitComplete(false);
       })
       .on("receipt", (receipt) => {
-        alert("Receipt success");
+        setCommitComplete(true);
       })
       .on("error", (err) => {
-        console.log(err);
+        setLoading(false);
+        alert("Error: " + err.message);
       });
   };
 
