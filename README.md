@@ -1,4 +1,4 @@
-# Waifusion Brothel
+# Waifusion Dungeon
 
 Welcome to the repo for the Waifusion Dungion feature.  
 This is a project to extend on the Waifusion NFT platform to add a dungeon contract.  
