@@ -55,19 +55,13 @@ const BuyWaifus = ({ show, close }) => {
         gas: estimatedGas,
       })
       .on("transactionHash", (hash) => {
-        console.log("TransactionHash Call");
-        console.log(hash);
         setLoading(true);
         setCommitComplete(false);
       })
       .on("receipt", (receipt) => {
-        console.log("Receipt call");
-        console.log(receipt);
         setCommitComplete(true);
       })
       .on("error", (err) => {
-        console.log("Error Call");
-        console.log(err);
         setLoading(false);
         alert("Error: " + err.message);
       });
