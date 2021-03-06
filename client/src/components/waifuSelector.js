@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Popup from "./popup";
 import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
+import {
+  getDungeonContract,
+  getWETContract,
+} from "../app/utils/contracthelper";
+import { web3 } from "../app/utils/contracthelper";
 import { Box, Button } from "rimble-ui";
 import Loading from "./loading";
+import BN from "bn.js";
+import { GLOBALS } from "../app/utils/globals";
+
+import { RootStoreContext } from "../app/stores/root.store";
 
 const StyledWaifuSelector = styled.div``;
 
@@ -80,6 +89,9 @@ const WaifuSelector = ({ show, close }) => {
   const [waifuId, setWaifuId] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const rootStore = useContext(RootStoreContext);
+  const { transactionStore } = rootStore;
+
   const AddWaifu = () => {
     if (waifuId === "") {
       alert("Must enter an ID");
@@ -97,6 +109,31 @@ const WaifuSelector = ({ show, close }) => {
     setWaifus(newWaifus);
     setWaifuId("");
   };
+
+  const doBurnWaifus = async () => {
+    const dungeonContract = await getDungeonContract();
+    const WetAddress = GLOBALS.WET_CONTRACT_ADDRESS;
+    const estimatedGas = 200000 * waifus.length;
+    const WetCost = 5930 * waifus.length;
+    const WaifuIds = waifus.map((w) => w.id);
+    dungeonContract.methods
+      .commitSwapWaifus(WaifuIds)
+      .send()
+      .on("transactionHash", (hash) => {
+        transactionStore.addPendingTransaction({
+          txHash: hash,
+          description: `Reroll Waifus: ` + WaifuIds.join(","),
+        });
+      })
+      .on("receipt", (receipt) => {
+        alert("Receipt success");
+      })
+      .on("error", (err) => {
+        console.log(err);
+      }); // If a out of gas error, the second parameter is the receipt.
+  };
+
+  if (!show) return null;
 
   return (
     <StyledWaifuSelector>
@@ -128,7 +165,7 @@ const WaifuSelector = ({ show, close }) => {
                 <Button.Outline
                   className="waifu-card-buttons"
                   onClick={() => {
-                    console.log("meow");
+                    doBurnWaifus();
                   }}
                 >
                   <span className="waifu-button-learnmore">Burn Waifus</span>

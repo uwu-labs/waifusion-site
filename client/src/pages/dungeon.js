@@ -11,6 +11,7 @@ import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
 import Loading from "../components/loading";
 import WaifuSelector from "../components/waifuSelector";
 import BuyWaifus from "../components/buyWaifus";
+import { GLOBALS } from "../app/utils/globals";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -35,8 +36,23 @@ const ButtonContainer = styled.div`
 `;
 
 const DungeonPage = () => {
+
+  
+
+  const revealedWaifuIndex = (waifuIndex) =>{ 
+    return (Number(waifuIndex) + GLOBALS.STARTING_INDEX) % 16384;
+}
   const [selectingWaifus, setSelectingWaifus] = useState(false);
   const [buyingWaifus, setBuyingWaifus] = useState(false);
+  const maxDisplayWaifuCount = 5;
+  var waifuDisplays = [];
+
+  for(var i = 0; i< maxDisplayWaifuCount; i++){
+    var currentDisplayWaifuId = Math.floor(Math.random() * (GLOBALS.TOTAL_WAIFUS+1))
+    waifuDisplays.push(
+<img className="dungeon-waifu-card-image" src={GLOBALS.GALLERY_VIEWABLE_URL +"/" + revealedWaifuIndex(currentDisplayWaifuId) +'.png'}/>
+    );
+  }
 
   return (
     <Layout>
@@ -57,6 +73,12 @@ const DungeonPage = () => {
                   Be a hero and save your beloved by buying her freedom, or be the
                   villain and burn one of your current Waifus with WET in
                   exchange for a new one from the dungeon.
+                  <br/><br/>
+                </div>
+                <div className="waifu-card-text waifu-about-text">
+                  A peek in the dungeon
+                  <br/>
+                  {waifuDisplays}
                 </div>
               </center>
             </Box>
