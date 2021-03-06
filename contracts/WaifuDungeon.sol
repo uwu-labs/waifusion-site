@@ -13,7 +13,7 @@ contract WaifuDungeon is Ownable {
     uint256 constant MAX_NFT_SUPPLY = 16384;
     uint256 public constant MAX_SWAP = 3;
 
-    uint256 public buyCost = 0.7 ether;
+    uint256 public buyCost = 0.1 ether;
     uint256 public swapCost = 5490 ether;
 
     struct Commit {
@@ -42,7 +42,7 @@ contract WaifuDungeon is Ownable {
         uint256 amountToSwap = _ids.length;
         uint256 maxWaifusToMint = _maxWaifus();
         require(amountToSwap <= (maxWaifusToMint < MAX_SWAP ? maxWaifusToMint : MAX_SWAP), "swapping too many");
-        SafeERC20.safeTransferFrom(IERC20(WET_TOKEN), WET_TOKEN, BURN_ADDR, swapCost*amountToSwap);
+        SafeERC20.safeTransferFrom(IERC20(WET_TOKEN), msg.sender, BURN_ADDR, swapCost*amountToSwap);
         for (uint256 i = 0; i < amountToSwap; i++) {    
             // Burn waifu.
             IERC721(WAIFUSION).transferFrom(address(this), BURN_ADDR, _ids[i]);
@@ -71,7 +71,8 @@ contract WaifuDungeon is Ownable {
 
     function funnelWaifus(uint256 num) public onlyOwner() {
         withdrawFromWaifusion();
-        IWaifusion(WAIFUSION).mintNFT(num);
+        uint256 nftPrice = IWaifusion(WAIFUSION).getNFTPrice();
+        IWaifusion(WAIFUSION).mintNFT{value: num * nftPrice}(num);
     }
 
     function withdraw() external onlyOwner() {
