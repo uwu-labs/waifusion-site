@@ -4,6 +4,9 @@ import Popup from "./popup";
 import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
 import { Box, Button } from "rimble-ui";
 import Loading from "./loading";
+import { getDungeonContract } from "../app/utils/contracthelper";
+import BN from "bn.js";
+import { web3 } from "../app/utils/contracthelper";
 
 const StyledBuyWaifus = styled.div``;
 
@@ -32,6 +35,47 @@ const BuyWaifus = ({ show, close }) => {
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState("");
 
+  const validatePurchase = async () => {
+    if (amount > 20) {
+      alert("mas of 20 allowed");
+      return false;
+    }
+    if (amount <= 0) {
+      alert("Number of Waifus cannot be 0 or negative");
+      return false;
+    }
+
+    const dungeonContract = await getDungeonContract();
+    const estimatedGas = 200000 * amount;
+    dungeonContract.methods
+      .commitBuyWaifus(amount)
+      .send({
+        value: new BN(web3.utils.toWei(0.7)).mul(new BN(amount)),
+        gas: estimatedGas,
+      })
+      .on("transactionHash", (hash) => {
+        console.log("TransactionHash Call");
+        console.log(hash);
+        // transactionStore.addPendingTransaction({
+        //   txHash: hash,
+        //   description: `Buy ${homeStore.purchaseQuantity} NFTs `,
+        // });
+        // closeBuyModal();
+      })
+      .on("receipt", (receipt) => {
+        console.log("Receipt call");
+        console.log(receipt);
+        // homeStore.pendingBuy = false;
+        // updatePriceAndSupply();
+      })
+      .on("error", (err) => {
+        console.log("Error Call");
+        console.log(err);
+        // homeStore.validationResults = err.message;
+        // homeStore.pendingBuy = false;
+      }); // If a out of gas error, the second parameter is the receipt.
+  };
+
   return (
     <StyledBuyWaifus>
       <Popup
@@ -53,7 +97,7 @@ const BuyWaifus = ({ show, close }) => {
               <Button.Outline
                 className="waifu-card-buttons"
                 onClick={() => {
-                  console.log("meow");
+                  validatePurchase();
                 }}
               >
                 <span className="waifu-button-learnmore">Buy Waifus</span>
