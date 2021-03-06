@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
 import PendingButton from "../app/templates/PendingButton";
 import Popup from "./popup";
+import { getDungeonContract } from "../app/utils/contracthelper";
+import BN from "bn.js";
+import { web3 } from "../app/utils/contracthelper";
 
 const StyledLoading = styled.div``;
 
@@ -17,8 +20,31 @@ const Image = styled.img`
   width: 80%;
 `;
 
-const Loading = ({ show, type }) => {
-  const [loading, setLoading] = useState(true);
+const Loading = ({ show, type, complete }) => {
+  const [loading, setLoading] = useState(false);
+
+  const revealWaifus = async () => {
+    const dungeonContract = await getDungeonContract();
+    dungeonContract.methods
+      .revealWaifus()
+      .send()
+      .on("transactionHash", (hash) => {
+        console.log("TransactionHash Call");
+        console.log(hash);
+        setLoading(true);
+      })
+      .on("receipt", (receipt) => {
+        console.log("Receipt call");
+        console.log(receipt);
+        setLoading(false);
+        alert("Waifus received");
+      })
+      .on("error", (err) => {
+        console.log("Error Call");
+        console.log(err);
+        alert("Error: " + err.message);
+      });
+  };
 
   return (
     <StyledLoading>
@@ -48,8 +74,10 @@ const Loading = ({ show, type }) => {
             </Content>
             <ButtonContainer>
               <PendingButton
-                isPending={loading}
-                clickEvent={() => console.log("meow")}
+                isPending={!complete || loading}
+                clickEvent={() => {
+                  if (complete) revealWaifus();
+                }}
                 text="Reveal Waifus"
               />
             </ButtonContainer>
