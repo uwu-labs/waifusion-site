@@ -1,11 +1,14 @@
-import WaifuABI from '../contracts/ERC721.abi';
-import WETABI from '../contracts/ERC20.abi';
-import { GLOBALS } from './globals';
-import Web3 from 'web3';
-import { navigate } from 'gatsby';
+import WaifuABI from "../contracts/ERC721.abi";
+import WETABI from "../contracts/ERC20.abi";
+import { GLOBALS } from "./globals";
+import Web3 from "web3";
+import { navigate } from "gatsby";
 
 const web3 = new Web3(GLOBALS.INFURA_API);
-const contract = new web3.eth.Contract(WaifuABI, GLOBALS.WAIFU_CONTRACT_ADDRESS);
+const contract = new web3.eth.Contract(
+  WaifuABI,
+  GLOBALS.WAIFU_CONTRACT_ADDRESS
+);
 const wetContract = new web3.eth.Contract(WETABI, GLOBALS.WET_CONTRACT_ADDRESS);
 
 const ethEnabled = async () => {
@@ -25,19 +28,23 @@ const getWaifuContract = async () => {
     return false;
   }
 
-  return new window.web3.eth.Contract(WaifuABI, GLOBALS.WAIFU_CONTRACT_ADDRESS, {
-    from: defaultAccount,
-  });
+  return new window.web3.eth.Contract(
+    WaifuABI,
+    GLOBALS.WAIFU_CONTRACT_ADDRESS,
+    {
+      from: defaultAccount,
+    }
+  );
 };
 
 const getAllowance = async () => {
   const defaultAccount = await ethEnabled();
   const wetContract = await getWETContract();
   const currentAllowance = await wetContract.methods
-      .allowance(defaultAccount, GLOBALS.WAIFU_CONTRACT_ADDRESS)
-      .call();
+    .allowance(defaultAccount, GLOBALS.WAIFU_CONTRACT_ADDRESS)
+    .call();
   return currentAllowance;
-}
+};
 
 // const getWETContract = async () => {
 //   const defaultAccount = await this.ethEnabled();
@@ -87,8 +94,7 @@ const getTotalSupply = async () => {
   // return totalSupply;
 };
 
-
-const balanceOf = async address => {
+const balanceOf = async (address) => {
   const defaultAccount = await ethEnabled();
   const currentlyOwned = await contract.methods
     .balanceOf(address || defaultAccount)
@@ -96,7 +102,7 @@ const balanceOf = async address => {
   return currentlyOwned;
 };
 
-const wetBalanceOf = async address => {
+const wetBalanceOf = async (address) => {
   const defaultAccount = await ethEnabled();
   const currentlyOwned = await wetContract.methods
     .balanceOf(address || defaultAccount)
@@ -113,22 +119,30 @@ const tokenOfOwnerByIndex = async (index, address) => {
   return currentlyOwned;
 };
 
-const accumulatedForIndex = async index => {
+const accumulatedForIndex = async (index) => {
   const defaultAccount = await ethEnabled();
 
-  const contract = new window.web3.eth.Contract(WETABI, GLOBALS.WET_CONTRACT_ADDRESS, {
-    from: defaultAccount,
-  });
+  const contract = new window.web3.eth.Contract(
+    WETABI,
+    GLOBALS.WET_CONTRACT_ADDRESS,
+    {
+      from: defaultAccount,
+    }
+  );
 
   return contract.methods.accumulated(index).call();
 };
 
-const claimWET = async indices => {
+const claimWET = async (indices) => {
   const defaultAccount = await ethEnabled();
 
-  const contract = new window.web3.eth.Contract(WETABI, GLOBALS.WET_CONTRACT_ADDRESS, {
-    from: defaultAccount,
-  });
+  const contract = new window.web3.eth.Contract(
+    WETABI,
+    GLOBALS.WET_CONTRACT_ADDRESS,
+    {
+      from: defaultAccount,
+    }
+  );
 
   return contract.methods.claim(indices).send({ from: defaultAccount });
 };
@@ -138,31 +152,33 @@ const changeNFTName = async (index, newName) => {
   return waifuContract.methods.changeName(index, newName).send();
 };
 
-const getWETName = async index => {
+const getWETName = async (index) => {
   return contract.methods.tokenNameByIndex(index).call();
 };
 
-const isNameReserved = async name => {
+const getTokenId = async (index) => {
+  return contract.methods.tokenByIndex(index).call();
+};
+
+const isNameReserved = async (name) => {
   return contract.methods.isNameReserved(name).call();
 };
 
-const getWETOwner = async index => {
+const getWETOwner = async (index) => {
   return contract.methods.ownerOf(index).call();
 };
 
-const toEthUnit = wei => {
+const toEthUnit = (wei) => {
   return web3.utils.fromWei(wei);
 };
 
 const getTransactionReceipt = async (windowWeb3, hash) => {
-  if(windowWeb3 == null)
-  {
-
+  if (windowWeb3 == null) {
   }
   return windowWeb3.eth.getTransactionReceipt(hash);
 };
 
-const getTimestampFromBlock = async hash => {
+const getTimestampFromBlock = async (hash) => {
   const receipt = await web3.eth.getBlock(hash);
   return receipt.timestamp;
 };
@@ -182,10 +198,11 @@ export {
   claimWET,
   changeNFTName,
   getWETName,
+  getTokenId,
   isNameReserved,
   getWETOwner,
   wetBalanceOf,
   getTransactionReceipt,
   getTimestampFromBlock,
-  getTotalSupply
+  getTotalSupply,
 };
