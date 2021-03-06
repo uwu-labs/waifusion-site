@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Popup from "./popup";
 import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
+import { getDungeonContract, getWETContract } from "../app/utils/contracthelper";
+import { web3 } from "../app/utils/contracthelper";
 import { Box, Button } from "rimble-ui";
 import Loading from "./loading";
+import BN from "bn.js";
+import { GLOBALS } from "../app/utils/globals";
 
 const StyledWaifuSelector = styled.div``;
 
@@ -98,6 +102,31 @@ const WaifuSelector = ({ show, close }) => {
     setWaifuId("");
   };
 
+  const doBurnWaifus = async () => {
+    const dungeonContract = await getDungeonContract();
+    const WetAddress = GLOBALS.WET_CONTRACT_ADDRESS;
+    const estimatedGas = 200000 * waifus.length;
+    const WetCost = 5930 * waifus.length;
+    const WaifuIds = waifus.map(w => w.id);
+    dungeonContract.methods
+      .commitSwapWaifus(WaifuIds)
+      .send({
+        value: new BN(web3.utils.toWei("0.7")).mul(new BN(waifus.length)),
+        gas: estimatedGas,
+      })
+      .on("receipt", (receipt) => {
+        console.log("Receipt call");
+        console.log(receipt);
+        // setCommitComplete(true);
+      })
+      .on("error", (err) => {
+        console.log("Error Call");
+        console.log(err);
+        setLoading(false);
+        alert("Error: " + err.message);
+      });
+  };
+
   if (!show) return null;
 
   return (
@@ -130,7 +159,7 @@ const WaifuSelector = ({ show, close }) => {
                 <Button.Outline
                   className="waifu-card-buttons"
                   onClick={() => {
-                    console.log("meow");
+                    doBurnWaifus()
                   }}
                 >
                   <span className="waifu-button-learnmore">Burn Waifus</span>
