@@ -13,7 +13,7 @@ import WaifuSelector from "../components/waifuSelector";
 import BuyWaifus from "../components/buyWaifus";
 import { GLOBALS } from "../app/utils/globals";
 
-import {balanceOf,tokenOfOwnerByIndex} from '../app/utils/contracthelper';
+import { balanceOf, tokenOfOwnerByIndex } from "../app/utils/contracthelper";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -38,47 +38,54 @@ const ButtonContainer = styled.div`
 `;
 
 const DungeonPage = () => {
-
-  
-
-  const revealedWaifuIndex = (waifuIndex) =>{ 
+  const revealedWaifuIndex = (waifuIndex) => {
     return (Number(waifuIndex) + GLOBALS.STARTING_INDEX) % 16384;
-}
+  };
   const [selectingWaifus, setSelectingWaifus] = useState(false);
   const [buyingWaifus, setBuyingWaifus] = useState(false);
   const [waifusInDungeon, setWaifusInDungeon] = useState(0);
   const [waifuDisplays, setWaifuDisplays] = useState([]);
 
-useEffect(()  => {
-    async function getDungeonPreview(){
-    var _waifyDisplay = []
-    var maxDisplayWaifuCount = 5;
+  useEffect(() => {
+    async function getDungeonPreview() {
+      var _waifyDisplay = [];
+      var maxDisplayWaifuCount = 5;
 
-    setWaifusInDungeon(await balanceOf(GLOBALS.DUNGEON_CONTRACT_ADDRESS));
-    console.log(waifusInDungeon);
-    for(var i = 0; i< maxDisplayWaifuCount && i < waifusInDungeon; i++){
-      var currentDisplayWaifuDungeonIndex = Math.floor(Math.random() * (waifusInDungeon));
-      var currentDisplayWaifuTokenId = await tokenOfOwnerByIndex(currentDisplayWaifuDungeonIndex, GLOBALS.DUNGEON_CONTRACT_ADDRESS);
-      var currentDisplayWaifuHTML = <img key={"waifu-peek-"+currentDisplayWaifuTokenId} className="dungeon-waifu-card-image" src={GLOBALS.GALLERY_VIEWABLE_URL +"/" + revealedWaifuIndex(currentDisplayWaifuTokenId) +'.png'}/>;
-      console.log(currentDisplayWaifuHTML);
-      if(_waifyDisplay.find(elem => elem.key == currentDisplayWaifuHTML.key)){
-        i--;
+      setWaifusInDungeon(await balanceOf(GLOBALS.DUNGEON_CONTRACT_ADDRESS));
+      for (var i = 0; i < maxDisplayWaifuCount && i < waifusInDungeon; i++) {
+        var currentDisplayWaifuDungeonIndex = Math.floor(
+          Math.random() * waifusInDungeon
+        );
+        var currentDisplayWaifuTokenId = await tokenOfOwnerByIndex(
+          currentDisplayWaifuDungeonIndex,
+          GLOBALS.DUNGEON_CONTRACT_ADDRESS
+        );
+        var currentDisplayWaifuHTML = (
+          <img
+            key={"waifu-peek-" + currentDisplayWaifuTokenId}
+            className="dungeon-waifu-card-image"
+            src={
+              GLOBALS.GALLERY_VIEWABLE_URL +
+              "/" +
+              revealedWaifuIndex(currentDisplayWaifuTokenId) +
+              ".png"
+            }
+          />
+        );
+        if (
+          _waifyDisplay.find((elem) => elem.key == currentDisplayWaifuHTML.key)
+        ) {
+          i--;
+        } else {
+          _waifyDisplay.push(currentDisplayWaifuHTML);
+        }
       }
-      else{
-        _waifyDisplay.push(currentDisplayWaifuHTML);
-      }
+      return _waifyDisplay;
     }
-    return _waifyDisplay;
-  }
-  getDungeonPreview().then((value) =>{
-    console.log(value);
-    setWaifuDisplays(value);
-  });;
-},[]);
-
-
-
-
+    getDungeonPreview().then((value) => {
+      setWaifuDisplays(value);
+    });
+  }, []);
 
   return (
     <Layout>
@@ -95,15 +102,16 @@ useEffect(()  => {
               <center className="waifu-card-box-center">
                 <div className="waifu-card-header-text">The Dungeon</div>
                 <div className="waifu-card-text waifu-about-text">
-                  Many of your beloved waifus are enslaved in the Dungeon!
-                  Be a hero and save your beloved by buying her freedom, or be the
+                  Many of your beloved waifus are enslaved in the Dungeon! Be a
+                  hero and save your beloved by buying her freedom, or be the
                   villain and burn one of your current Waifus with WET in
                   exchange for a new one from the dungeon.
-                  <br/><br/>
+                  <br />
+                  <br />
                 </div>
                 <div className="waifu-card-text waifu-about-text">
                   A peek in the dungeon
-                  <br/>
+                  <br />
                   {waifuDisplays}
                 </div>
               </center>
@@ -118,8 +126,8 @@ useEffect(()  => {
               <BoxContent>
                 <Header>Buy Waifus</Header>
                 <Content>
-                  Buy a new Waifu from the Dungeon for 0.7 ETH. You will
-                  receive a random Waifu from the dungeon.
+                  Buy a new Waifu from the Dungeon for 0.7 ETH. You will receive
+                  a random Waifu from the dungeon.
                 </Content>
                 <ButtonContainer>
                   <Button.Outline
