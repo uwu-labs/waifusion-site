@@ -57,11 +57,6 @@ const BuyWaifus = ({ show, close }) => {
         console.log("TransactionHash Call");
         console.log(hash);
         setLoading(true);
-        // transactionStore.addPendingTransaction({
-        //   txHash: hash,
-        //   description: `Buy ${homeStore.purchaseQuantity} NFTs `,
-        // });
-        // closeBuyModal();
       })
       .on("receipt", (receipt) => {
         console.log("Receipt call");
