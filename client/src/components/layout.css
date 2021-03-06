@@ -736,53 +736,8 @@ BELOW IS HOME CSS
 	margin-bottom: 2px !important;
 }
 
-.colored-completed {
-	fill:#61D55F;
-	z-index: 1000;	
-	color:#61D55F
-  }
-
-.colored-pending {
-	fill:#FBE55F;
-	color:#FBE55F
-}
-
-.colored-unavailable {
-	fill:#FCFEF4;
-	color:#FCFEF4
-}
-
 .detail-button-container {
 	padding-left:0px;
-}
-.eth-sale-text{
-	font-family: VT323;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 30px;
-	line-height: 30px;
-	color: #FC74C6;
-	/* padding-right: 75px; */
-	
-}
-
-
-.presale-progress {
-	padding-top:50px;
-}
-
-.presale-svg {
-	margin-left:-33px;
-}
-
-
-.presale-title {
-	font-family: VT323;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 42px;
-	line-height: 42px;
-	color: #FCFEF4;
 }
 
 .transactions-none-text {
@@ -832,12 +787,6 @@ BELOW IS HOME CSS
 
  .waifu-detail-box-sub-container{
 	margin-top:250px !important;
-} 
-
-.waifu-presale-container {
-	margin: 0 auto;
-	max-width: 1000px;
-	margin-top: -124px;
 }
 
 .waifu-transaction-box{
