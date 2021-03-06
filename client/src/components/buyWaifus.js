@@ -33,6 +33,7 @@ const Input = styled.input`
 
 const BuyWaifus = ({ show, close }) => {
   const [loading, setLoading] = useState(false);
+  const [commitComplete, setCommitComplete] = useState(false);
   const [amount, setAmount] = useState("");
 
   const validatePurchase = async () => {
@@ -57,18 +58,18 @@ const BuyWaifus = ({ show, close }) => {
         console.log("TransactionHash Call");
         console.log(hash);
         setLoading(true);
+        setCommitComplete(false);
       })
       .on("receipt", (receipt) => {
         console.log("Receipt call");
         console.log(receipt);
-        // homeStore.pendingBuy = false;
-        // updatePriceAndSupply();
+        setCommitComplete(true);
       })
       .on("error", (err) => {
         console.log("Error Call");
         console.log(err);
-        // homeStore.validationResults = err.message;
-        // homeStore.pendingBuy = false;
+        setLoading(false);
+        alert("Error: " + err.message);
       });
   };
 
@@ -102,7 +103,11 @@ const BuyWaifus = ({ show, close }) => {
           </BoxContent>
         }
       />
-      <Loading type={"buying"} show={show && loading} />
+      <Loading
+        type={"buying"}
+        show={show && loading}
+        complete={commitComplete}
+      />
     </StyledBuyWaifus>
   );
 };
