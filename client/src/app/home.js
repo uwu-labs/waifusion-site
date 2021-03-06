@@ -92,7 +92,7 @@ const Home = observer((props) => {
     const waifuContract = await getWaifuContract();
     homeStore.pendingBuy = false;
 
-    const estimatedGas = 200000 * homeStore.purchaseQuantity; //
+    const estimatedGas = 200000 * homeStore.purchaseQuantity;
     console.log("NFT Price: " + homeStore.nftPrice);
 
     var nftPrice = await waifuContract.methods.getNFTPrice().call();

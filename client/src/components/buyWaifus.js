@@ -4,6 +4,9 @@ import Popup from "./popup";
 import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
 import { Box, Button } from "rimble-ui";
 import Loading from "./loading";
+import { getDungeonContract } from "../app/utils/contracthelper";
+import BN from "bn.js";
+import { web3 } from "../app/utils/contracthelper";
 
 const StyledBuyWaifus = styled.div``;
 
@@ -30,12 +33,50 @@ const Input = styled.input`
 
 const BuyWaifus = ({ show, close }) => {
   const [loading, setLoading] = useState(false);
+  const [commitComplete, setCommitComplete] = useState(false);
   const [amount, setAmount] = useState("");
+
+  const validatePurchase = async () => {
+    if (amount > 20) {
+      alert("Maximum of 20 allowed");
+      return false;
+    }
+    if (amount <= 0) {
+      alert("Number of Waifus cannot be 0 or negative");
+      return false;
+    }
+
+    const dungeonContract = await getDungeonContract();
+    const estimatedGas = 200000 * amount;
+    dungeonContract.methods
+      .commitBuyWaifus(amount)
+      .send({
+        value: new BN(web3.utils.toWei("0.7")).mul(new BN(amount)),
+        gas: estimatedGas,
+      })
+      .on("transactionHash", (hash) => {
+        console.log("TransactionHash Call");
+        console.log(hash);
+        setLoading(true);
+        setCommitComplete(false);
+      })
+      .on("receipt", (receipt) => {
+        console.log("Receipt call");
+        console.log(receipt);
+        setCommitComplete(true);
+      })
+      .on("error", (err) => {
+        console.log("Error Call");
+        console.log(err);
+        setLoading(false);
+        alert("Error: " + err.message);
+      });
+  };
 
   return (
     <StyledBuyWaifus>
       <Popup
-        show={show}
+        show={show && !loading}
         close={() => {
           setAmount("");
           close();
@@ -53,7 +94,7 @@ const BuyWaifus = ({ show, close }) => {
               <Button.Outline
                 className="waifu-card-buttons"
                 onClick={() => {
-                  console.log("meow");
+                  validatePurchase();
                 }}
               >
                 <span className="waifu-button-learnmore">Buy Waifus</span>
@@ -62,7 +103,11 @@ const BuyWaifus = ({ show, close }) => {
           </BoxContent>
         }
       />
-      <Loading type={"buying"} show={loading} />
+      <Loading
+        type={"buying"}
+        show={show && loading}
+        complete={commitComplete}
+      />
     </StyledBuyWaifus>
   );
 };
