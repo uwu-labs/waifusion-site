@@ -11,6 +11,7 @@ import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
 import Loading from "../components/loading";
 import WaifuSelector from "../components/waifuSelector";
 import BuyWaifus from "../components/buyWaifus";
+import { GLOBALS } from "../app/utils/globals";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -34,13 +35,28 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-const MaidCafePage = () => {
+const DungeonPage = () => {
+
+  
+
+  const revealedWaifuIndex = (waifuIndex) =>{ 
+    return (Number(waifuIndex) + GLOBALS.STARTING_INDEX) % 16384;
+}
   const [selectingWaifus, setSelectingWaifus] = useState(false);
   const [buyingWaifus, setBuyingWaifus] = useState(false);
+  const maxDisplayWaifuCount = 5;
+  var waifuDisplays = [];
+
+  for(var i = 0; i< maxDisplayWaifuCount; i++){
+    var currentDisplayWaifuId = Math.floor(Math.random() * (GLOBALS.TOTAL_WAIFUS+1))
+    waifuDisplays.push(
+<img className="dungeon-waifu-card-image" src={GLOBALS.GALLERY_VIEWABLE_URL +"/" + revealedWaifuIndex(currentDisplayWaifuId) +'.png'}/>
+    );
+  }
 
   return (
     <Layout>
-      <SEO title="Maid Cafe" />
+      <SEO title="Dungeon" />
       <PageContainer>
         <Box className="waifu-card-box overview-card-box">
           <div className="box-upper">
@@ -51,11 +67,18 @@ const MaidCafePage = () => {
               style={{ maxWidth: 1424, marginBottom: 1, innerHeight: 100 }}
             >
               <center className="waifu-card-box-center">
-                <div class="waifu-card-header-text">The Maid Cafe</div>
+                <div class="waifu-card-header-text">The Dungeon</div>
                 <div className="waifu-card-text waifu-about-text">
-                  Many of your beloved waifus are working in The Maid Cafe. Come
-                  for a drink and enjoy the show! Take a Waifu home buy buying
-                  her, or by burning one of your current Waifus with WET.
+                  Many of your beloved waifus are enslaved in the Dungeon!
+                  Be a hero and save your beloved by buying her freedom, or be the
+                  villain and burn one of your current Waifus with WET in
+                  exchange for a new one from the dungeon.
+                  <br/><br/>
+                </div>
+                <div className="waifu-card-text waifu-about-text">
+                  A peek in the dungeon
+                  <br/>
+                  {waifuDisplays}
                 </div>
               </center>
             </Box>
@@ -69,8 +92,8 @@ const MaidCafePage = () => {
               <BoxContent>
                 <Header>Buy Waifus</Header>
                 <Content>
-                  Buy a new Waifu from the Maid Cafe for 0.7 ETH. You will
-                  recieve a random Waifu from the Cafe.
+                  Buy a new Waifu from the Dungeon for 0.7 ETH. You will
+                  receive a random Waifu from the dungeon.
                 </Content>
                 <ButtonContainer>
                   <Button.Outline
@@ -92,7 +115,7 @@ const MaidCafePage = () => {
                 <Header>Burn Waifus</Header>
                 <Content>
                   Burn one of your existing Waifus and pay 5,490 WET Tokens to
-                  recieve a new random Waifu.
+                  receive a new random Waifu.
                 </Content>
                 <ButtonContainer>
                   <Button.Outline
@@ -117,4 +140,4 @@ const MaidCafePage = () => {
     </Layout>
   );
 };
-export default MaidCafePage;
+export default DungeonPage;

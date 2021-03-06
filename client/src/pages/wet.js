@@ -23,16 +23,23 @@ const WETTokenPage = () => (
               <div class="waifu-card-header-text">What is it?</div>
                 <div className="waifu-card-text waifu-about-text" >
                 The Waifu Enhancement Token (WET) is an exclusive token to the Waifusion world wide harem. 
-                WET serves only one single purpose: It allows its holder to give their Waifu a unique name that 
-                is permanently stored and publicly visible on the Ethereum Blockchain. Thus, commoditizing the 
-                name itself and making it the rarest of all attributes within the entire harem. This opens up a 
-                whole new dimension for collectibles where the value hierarchy of the individual pieces of the 
-                whole collective art is highly impacted by the preferences of their husbands.
+                WET serves two purposes: <br/><br/>
+                  <ul class="waifu-wet-rules">
+                    <li>
+                  Give Waifus a unique name that is permanently stored and publicly visible on the Ethereum Blockchain. 
+                  </li>
+                  <li>
+                    Burning an undesirable Waifu in exchange for a new Waifu from the Dungeon
+                    </li>
+                  </ul>
                 </div>
                 <div className="waifu-card-text waifu-about-text" >
                 If you own a Waifu, you can claim the WETs that are constantly being produced by them being in your harem.
-                 Each Waifu will drip around 3,660 WETs per year. To change the name of any Waifu, 
-                 you need to send 1,830 WETs (about ½ years of Waif emission) to the Waifusion contract and boil them.
+                 Each Waifu will drip around 3,660 WETs per year. 
+                 <br/>
+                 To change the name of any Waifu, you need to send 1,830 WETs (about ½ years of Waifu emission) to the Waifusion contract and boil them.
+                 <br/>
+                 To burn a Waifu you need to send a Waifu and 5,490 WETs to the Waifusion contract and boil them.
                   </div>
                   <br/>
                  <div class="waifu-card-header-text">The Rules</div>
@@ -47,11 +54,10 @@ const WETTokenPage = () => (
                  </ul>
                  <br/>
                  <div className="waifu-card-text waifu-about-text" >
-                 Each year, approximately 3,660 WETs will drip off each Waifu. You need 1,830 WETs to change the name of your Waifu. After 10 years, the emission of new WETs comes to a halt. From then on, WETs can only be boiled until no Waifus are WET anymore (Ben Shapiro is a prophet) and the names of the Waifus cannot be altered. The harem is then considered complete.
+                 Each year, approximately 3,660 WETs will drip off each Waifu. After 10 years, the emission of new WETs comes to a halt. From then on, WETs can only be boiled until no Waifus are WET anymore (Ben Shapiro is a prophet) and the names of the Waifus cannot be altered. The harem is then considered complete.
                  <br/><br/> Number of WETs emitted per year per Waifu: around 3,660
                   <br/>Number of WETs required for one name change: 1,830
-
-                 
+                  <br/>Number of WETs required to burn and re-roll Waifu: 5,490
                   </div>
                   <br/>
                   <br/>

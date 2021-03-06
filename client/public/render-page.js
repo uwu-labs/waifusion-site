@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("/Users/chasemanning/Documents/repositories/waifusion-brothel/client/node_modules/@reach/router/index.js"), require("fs"), require("/Users/chasemanning/Documents/repositories/waifusion-brothel/client/node_modules/lodash/merge.js"), require("path"), require("react"), require("react-dom/server"), require("react-helmet"));
+		module.exports = factory(require("/Users/chasemanning/Documents/repositories/waifusion-dungeon/client/node_modules/@reach/router/index.js"), require("fs"), require("/Users/chasemanning/Documents/repositories/waifusion-dungeon/client/node_modules/lodash/merge.js"), require("path"), require("react"), require("react-dom/server"), require("react-helmet"));
 	else if(typeof define === 'function' && define.amd)
-		define("lib", ["/Users/chasemanning/Documents/repositories/waifusion-brothel/client/node_modules/@reach/router/index.js", "fs", "/Users/chasemanning/Documents/repositories/waifusion-brothel/client/node_modules/lodash/merge.js", "path", "react", "react-dom/server", "react-helmet"], factory);
+		define("lib", ["/Users/chasemanning/Documents/repositories/waifusion-dungeon/client/node_modules/@reach/router/index.js", "fs", "/Users/chasemanning/Documents/repositories/waifusion-dungeon/client/node_modules/lodash/merge.js", "path", "react", "react-dom/server", "react-helmet"], factory);
 	else if(typeof exports === 'object')
-		exports["lib"] = factory(require("/Users/chasemanning/Documents/repositories/waifusion-brothel/client/node_modules/@reach/router/index.js"), require("fs"), require("/Users/chasemanning/Documents/repositories/waifusion-brothel/client/node_modules/lodash/merge.js"), require("path"), require("react"), require("react-dom/server"), require("react-helmet"));
+		exports["lib"] = factory(require("/Users/chasemanning/Documents/repositories/waifusion-dungeon/client/node_modules/@reach/router/index.js"), require("fs"), require("/Users/chasemanning/Documents/repositories/waifusion-dungeon/client/node_modules/lodash/merge.js"), require("path"), require("react"), require("react-dom/server"), require("react-helmet"));
 	else
-		root["lib"] = factory(root["/Users/chasemanning/Documents/repositories/waifusion-brothel/client/node_modules/@reach/router/index.js"], root["fs"], root["/Users/chasemanning/Documents/repositories/waifusion-brothel/client/node_modules/lodash/merge.js"], root["path"], root["react"], root["react-dom/server"], root["react-helmet"]);
+		root["lib"] = factory(root["/Users/chasemanning/Documents/repositories/waifusion-dungeon/client/node_modules/@reach/router/index.js"], root["fs"], root["/Users/chasemanning/Documents/repositories/waifusion-dungeon/client/node_modules/lodash/merge.js"], root["path"], root["react"], root["react-dom/server"], root["react-helmet"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE__reach_router__, __WEBPACK_EXTERNAL_MODULE_fs__, __WEBPACK_EXTERNAL_MODULE_lodash_merge__, __WEBPACK_EXTERNAL_MODULE_path__, __WEBPACK_EXTERNAL_MODULE_react__, __WEBPACK_EXTERNAL_MODULE_react_dom_server__, __WEBPACK_EXTERNAL_MODULE_react_helmet__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -34252,7 +34252,7 @@ exports.fromPromise = function (fn) {
 
 /***/ "@reach/router":
 /*!**************************************************************************************************************************!*\
-  !*** external "/Users/chasemanning/Documents/repositories/waifusion-brothel/client/node_modules/@reach/router/index.js" ***!
+  !*** external "/Users/chasemanning/Documents/repositories/waifusion-dungeon/client/node_modules/@reach/router/index.js" ***!
   \**************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -34296,7 +34296,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_fs__;
 
 /***/ "lodash/merge":
 /*!*******************************************************************************************************************!*\
-  !*** external "/Users/chasemanning/Documents/repositories/waifusion-brothel/client/node_modules/lodash/merge.js" ***!
+  !*** external "/Users/chasemanning/Documents/repositories/waifusion-dungeon/client/node_modules/lodash/merge.js" ***!
   \*******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {

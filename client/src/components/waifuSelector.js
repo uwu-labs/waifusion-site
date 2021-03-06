@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Popup from "./popup";
 import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
+import {
+  getDungeonContract,
+  getWETContract,
+} from "../app/utils/contracthelper";
+import { web3 } from "../app/utils/contracthelper";
 import { Box, Button } from "rimble-ui";
 import Loading from "./loading";
+import BN from "bn.js";
+import { GLOBALS } from "../app/utils/globals";
+
+import { RootStoreContext } from "../app/stores/root.store";
 
 const StyledWaifuSelector = styled.div``;
 
@@ -79,6 +88,10 @@ const WaifuSelector = ({ show, close }) => {
   const [waifus, setWaifus] = useState([]);
   const [waifuId, setWaifuId] = useState("");
   const [loading, setLoading] = useState(false);
+  const [commitComplete, setCommitComplete] = useState(false);
+
+  const rootStore = useContext(RootStoreContext);
+  const { transactionStore } = rootStore;
 
   const AddWaifu = () => {
     if (waifuId === "") {
@@ -98,12 +111,33 @@ const WaifuSelector = ({ show, close }) => {
     setWaifuId("");
   };
 
+  const doBurnWaifus = async () => {
+    const dungeonContract = await getDungeonContract();
+    const estimatedGas = 200000 * waifus.length;
+    const wetCost = 5490 * waifus.length;
+    const waifuIds = waifus.map((w) => w.id);
+    dungeonContract.methods
+      .commitSwapWaifus(waifuIds)
+      .send()
+      .on("transactionHash", (hash) => {
+        setLoading(true);
+        setCommitComplete(false);
+      })
+      .on("receipt", (receipt) => {
+        setCommitComplete(true);
+      })
+      .on("error", (err) => {
+        setLoading(false);
+        alert("Error: " + err.message);
+      });
+  };
+
   if (!show) return null;
 
   return (
     <StyledWaifuSelector>
       <Popup
-        show={show}
+        show={show && !loading}
         content={
           <BoxContent>
             <Header>Add Waifus to Burn</Header>
@@ -130,7 +164,7 @@ const WaifuSelector = ({ show, close }) => {
                 <Button.Outline
                   className="waifu-card-buttons"
                   onClick={() => {
-                    console.log("meow");
+                    doBurnWaifus();
                   }}
                 >
                   <span className="waifu-button-learnmore">Burn Waifus</span>
@@ -145,7 +179,11 @@ const WaifuSelector = ({ show, close }) => {
           close();
         }}
       />
-      <Loading type={"burning"} show={loading} />
+      <Loading
+        type={"burning"}
+        show={show && loading}
+        complete={commitComplete}
+      />
     </StyledWaifuSelector>
   );
 };

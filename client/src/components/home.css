@@ -9,47 +9,11 @@
 	margin-bottom: 2px !important;
 }
 
-.colored-completed {
-	fill:#61D55F;
-	z-index: 1000;	
-	color:#61D55F
-  }
-
-.colored-pending {
-	fill:#FBE55F;
-	color:#FBE55F
-}
-
-.colored-unavailable {
-	fill:#FCFEF4;
-	color:#FCFEF4
-}
-
 .detail-button-container {
 	padding-left:0px;
 }
-.eth-sale-text{
-	font-family: VT323;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 30px;
-	line-height: 30px;
-	color: #FC74C6;
-	/* padding-right: 75px; */
-	
-}
 
-
-.presale-progress {
-	padding-top:50px;
-}
-
-.presale-svg {
-	margin-left:-33px;
-}
-
-
-.presale-title {
+.dungeon-cta-title {
 	font-family: VT323;
 	font-style: normal;
 	font-weight: normal;
@@ -106,7 +70,9 @@
  .waifu-detail-box-sub-container{
 	margin-top:250px !important;
 } 
-
+.dungeon-waifu-card-image{
+	width: 20%;
+}
 .waifu-presale-container {
 	margin: 0 auto;
 	max-width: 1000px;
@@ -288,6 +254,10 @@
 	border-color:2px solid rgba(250.00000029802322, 72.00000330805779, 155.00000596046448, 1);
 }
 
+.waifu-button-learnmore.large {
+	width: 210px;
+}
+
 span.button-text:hover {
 	border:2px solid rgba(250.00000029802322, 72.00000330805779, 155.00000596046448, 1);
 }
@@ -308,14 +278,15 @@ span.button-text:hover {
     padding-left:5px !important;
     padding-right:5px !important;
 	border-radius: 0 !important;
-	
-	
 }
 .waifu-card-buttons:focus {outline:0;}
 
-.waifu-card-buttons:hover { 
+.waifu-card-buttons:hover {
 	border:2px solid rgba(250.00000029802322, 72.00000330805779, 155.00000596046448, 1) !important;
 	color:rgba(249.00000035762787, 28.000000230968, 113.00000086426735, 1) !important;
+}
+.waifu-card-buttons.large {
+	width: 217px !important;
 }
 
 .waifu-card-image {
@@ -336,6 +307,10 @@ span.button-text:hover {
 .waifu-about-text {
 	padding-top:26px;
 	padding-bottom:30px;
+}
+
+.text-center {
+	text-align:center;
 }
 
 .waifu-about-smart {
@@ -363,10 +338,10 @@ span.button-text:hover {
 }
 .waifu-blurred-text {
 	margin-top:-332px;
-	margin-left :-416px;
+	margin-left:-416px;
 }
 .waifu-focus-text {
-	margin-left :470px;
+	margin-left:470px;
 }
 
 .waifu-card {
