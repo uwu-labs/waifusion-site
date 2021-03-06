@@ -282,14 +282,13 @@ const Home = observer((props) => {
                   <br />
                   Have a naughty waifu? Burn WET to throw her into the dungeon permanently and exchange her for a more obedient waifu.
                 </div>
-                <Button.Outline
-                  className="waifu-card-buttons large"
-                  onClick={()=>{navigate('/dungeon')}}
-                >
-                  <span className="waifu-button-learnmore large">
-                    To the Dungeon...
-                  </span>
-                </Button.Outline>
+                <Link to="/dungeon">
+                  <Button.Outline className="waifu-card-buttons large" >
+                    <span className="waifu-button-learnmore large">
+                      To the Dungeon...
+                    </span>
+                  </Button.Outline>
+                </Link>
               </center>
             </Box>
           </div>
