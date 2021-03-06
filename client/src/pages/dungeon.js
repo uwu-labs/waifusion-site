@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button } from "rimble-ui";
 
 import Layout from "../components/layout";
@@ -12,6 +12,8 @@ import Loading from "../components/loading";
 import WaifuSelector from "../components/waifuSelector";
 import BuyWaifus from "../components/buyWaifus";
 import { GLOBALS } from "../app/utils/globals";
+
+import {balanceOf,tokenOfOwnerByIndex} from '../app/utils/contracthelper';
 
 const PageContainer = styled.div`
   width: 100%;
@@ -44,15 +46,39 @@ const DungeonPage = () => {
 }
   const [selectingWaifus, setSelectingWaifus] = useState(false);
   const [buyingWaifus, setBuyingWaifus] = useState(false);
-  const maxDisplayWaifuCount = 5;
-  var waifuDisplays = [];
+  const [waifusInDungeon, setWaifusInDungeon] = useState(0);
+  const [waifuDisplays, setWaifuDisplays] = useState([]);
 
-  for(var i = 0; i< maxDisplayWaifuCount; i++){
-    var currentDisplayWaifuId = Math.floor(Math.random() * (GLOBALS.TOTAL_WAIFUS+1))
-    waifuDisplays.push(
-<img className="dungeon-waifu-card-image" src={GLOBALS.GALLERY_VIEWABLE_URL +"/" + revealedWaifuIndex(currentDisplayWaifuId) +'.png'}/>
-    );
+useEffect(()  => {
+    async function getDungeonPreview(){
+    var _waifuDisplay = []
+    var maxDisplayWaifuCount = 5;
+
+    setWaifusInDungeon(await balanceOf(GLOBALS.DUNGEON_CONTRACT_ADDRESS));
+    for(var i = 0; i< maxDisplayWaifuCount && i < waifusInDungeon; i++){
+
+      var currentDisplayWaifuDungeonIndex = Math.floor(Math.random() * (waifusInDungeon));
+      var currentDisplayWaifuTokenId = await tokenOfOwnerByIndex(currentDisplayWaifuDungeonIndex, GLOBALS.DUNGEON_CONTRACT_ADDRESS);
+      var currentDisplayWaifuHTML = <img className="dungeon-waifu-card-image" src={GLOBALS.GALLERY_VIEWABLE_URL +"/" + revealedWaifuIndex(currentDisplayWaifuTokenId) +'.png'}/>;
+      console.log(currentDisplayWaifuTokenId);
+      if(_waifuDisplay.includes(currentDisplayWaifuHTML)){
+        i--;
+      }
+      else{
+        _waifuDisplay.push(currentDisplayWaifuHTML);
+      }
+    }
+    return _waifuDisplay;
   }
+  getDungeonPreview().then((value) =>{
+    console.log(value);
+    setWaifuDisplays(value);
+  });;
+},[]);
+
+
+
+
 
   return (
     <Layout>
