@@ -6,6 +6,7 @@ import Popup from "./popup";
 import { getDungeonContract } from "../app/utils/contracthelper";
 import BN from "bn.js";
 import { web3 } from "../app/utils/contracthelper";
+import RevealComplete from "./revealComplete";
 
 const StyledLoading = styled.div``;
 
@@ -22,6 +23,7 @@ const Image = styled.img`
 
 const Loading = ({ show, type, complete }) => {
   const [loading, setLoading] = useState(false);
+  const [revealed, setRevealed] = useState(false);
 
   const revealWaifus = async () => {
     const dungeonContract = await getDungeonContract();
@@ -33,6 +35,7 @@ const Loading = ({ show, type, complete }) => {
       })
       .on("receipt", (receipt) => {
         setLoading(false);
+        setRevealed(true);
         alert("Waifus received");
       })
       .on("error", (err) => {
@@ -43,7 +46,7 @@ const Loading = ({ show, type, complete }) => {
   return (
     <StyledLoading>
       <Popup
-        show={show}
+        show={show && !revealed}
         content={
           <BoxContent>
             <Header>
@@ -78,6 +81,7 @@ const Loading = ({ show, type, complete }) => {
           </BoxContent>
         }
       />
+      <RevealComplete show={show && revealed} />
     </StyledLoading>
   );
 };
