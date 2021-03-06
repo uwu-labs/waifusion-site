@@ -88,6 +88,7 @@ const WaifuSelector = ({ show, close }) => {
   const [waifus, setWaifus] = useState([]);
   const [waifuId, setWaifuId] = useState("");
   const [loading, setLoading] = useState(false);
+  const [commitComplete, setCommitComplete] = useState(false);
 
   const rootStore = useContext(RootStoreContext);
   const { transactionStore } = rootStore;
@@ -112,17 +113,16 @@ const WaifuSelector = ({ show, close }) => {
 
   const doBurnWaifus = async () => {
     const dungeonContract = await getDungeonContract();
-    const WetAddress = GLOBALS.WET_CONTRACT_ADDRESS;
     const estimatedGas = 200000 * waifus.length;
-    const WetCost = 5930 * waifus.length;
-    const WaifuIds = waifus.map((w) => w.id);
+    const wetCost = 5490 * waifus.length;
+    const waifuIds = waifus.map((w) => w.id);
     dungeonContract.methods
-      .commitSwapWaifus(WaifuIds)
+      .commitSwapWaifus(waifuIds)
       .send()
       .on("transactionHash", (hash) => {
         transactionStore.addPendingTransaction({
           txHash: hash,
-          description: `Reroll Waifus: ` + WaifuIds.join(","),
+          description: `Reroll Waifus: ` + waifuIds.join(","),
         });
       })
       .on("receipt", (receipt) => {
@@ -130,7 +130,7 @@ const WaifuSelector = ({ show, close }) => {
       })
       .on("error", (err) => {
         console.log(err);
-      }); // If a out of gas error, the second parameter is the receipt.
+      });
   };
 
   if (!show) return null;
@@ -138,7 +138,7 @@ const WaifuSelector = ({ show, close }) => {
   return (
     <StyledWaifuSelector>
       <Popup
-        show={show}
+        show={show && !loading}
         content={
           <BoxContent>
             <Header>Add Waifus to Burn</Header>
@@ -180,7 +180,11 @@ const WaifuSelector = ({ show, close }) => {
           close();
         }}
       />
-      <Loading type={"burning"} show={loading} />
+      <Loading
+        type={"burning"}
+        show={show && loading}
+        complete={commitComplete}
+      />
     </StyledWaifuSelector>
   );
 };
