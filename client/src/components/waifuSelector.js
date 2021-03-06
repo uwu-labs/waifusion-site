@@ -111,7 +111,7 @@ const WaifuSelector = ({ show, close }) => {
     dungeonContract.methods
       .commitSwapWaifus(WaifuIds)
       .send({
-        value: new BN(web3.utils.toWei("0.7")).mul(new BN(waifus.length)),
+        value: new BN(web3.utils.toWei("0.1")),
         gas: estimatedGas,
       })
       .on("receipt", (receipt) => {
