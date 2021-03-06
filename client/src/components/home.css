@@ -70,7 +70,9 @@
  .waifu-detail-box-sub-container{
 	margin-top:250px !important;
 } 
-
+.dungeon-waifu-card-image{
+	width: 20%;
+}
 .waifu-presale-container {
 	margin: 0 auto;
 	max-width: 1000px;
