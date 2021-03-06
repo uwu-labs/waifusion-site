@@ -15,6 +15,16 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
+`;
+
+const ErrorText = styled.div`
+  font-family: VT323 !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  color: red;
 `;
 
 const Input = styled.input`
@@ -28,21 +38,25 @@ const Input = styled.input`
   line-height: 24px !important;
   height: 40px;
   width: 100px;
-  margin-bottom: 30px;
 `;
 
 const BuyWaifus = ({ show, close }) => {
   const [loading, setLoading] = useState(false);
   const [commitComplete, setCommitComplete] = useState(false);
   const [amount, setAmount] = useState("");
+  const [error, setError] = useState("")
 
   const validatePurchase = async () => {
+    if(!Number.isInteger(parseFloat(amount))){
+      setError('Must be a whole number')
+      return false;
+    }
     if (amount > 20) {
-      alert("Maximum of 20 allowed");
+      setError("Maximum of 20 allowed");
       return false;
     }
     if (amount <= 0) {
-      alert("Number of Waifus cannot be 0 or negative");
+      setError("Number of Waifus cannot be 0 or negative");
       return false;
     }
 
@@ -63,7 +77,7 @@ const BuyWaifus = ({ show, close }) => {
       })
       .on("error", (err) => {
         setLoading(false);
-        alert("Error: " + err.message);
+        setError("Error: " + err.message);
       });
   };
 
@@ -82,8 +96,10 @@ const BuyWaifus = ({ show, close }) => {
               type="number"
               value={amount}
               placeholder="0"
+              min={1}
               onChange={(event) => setAmount(event.target.value)}
-            ></Input>
+            />
+            <ErrorText>{error}</ErrorText>
             <ButtonContainer>
               <Button.Outline
                 className="waifu-card-buttons"
