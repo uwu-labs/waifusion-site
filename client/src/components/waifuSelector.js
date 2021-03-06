@@ -98,8 +98,6 @@ const WaifuSelector = ({ show, close }) => {
     setWaifuId("");
   };
 
-  if (!show) return null;
-
   return (
     <StyledWaifuSelector>
       <Popup
