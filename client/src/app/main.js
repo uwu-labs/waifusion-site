@@ -129,7 +129,6 @@ const Main = observer((props) => {
       const index = await tokenOfOwnerByIndex(i);
       const name = await getWETName(index);
       const id = await getTokenId(index);
-      console.log(id);
       const accumulated = new BN(await accumulatedForIndex(index));
       totalAccumulated = totalAccumulated.add(accumulated);
 
