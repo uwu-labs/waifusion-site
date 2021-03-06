@@ -29,7 +29,7 @@ const WETTokenPage = () => (
                   Give Waifus a unique name that is permanently stored and publicly visible on the Ethereum Blockchain. 
                   </li>
                   <li>
-                    Burning an undesirable Waifu in exchange for a new Waifu from the Maid Cafe
+                    Burning an undesirable Waifu in exchange for a new Waifu from the Dungeon
                     </li>
                   </ul>
                 </div>
