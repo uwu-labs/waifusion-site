@@ -29,19 +29,13 @@ const Loading = ({ show, type, complete }) => {
       .revealWaifus()
       .send()
       .on("transactionHash", (hash) => {
-        console.log("TransactionHash Call");
-        console.log(hash);
         setLoading(true);
       })
       .on("receipt", (receipt) => {
-        console.log("Receipt call");
-        console.log(receipt);
         setLoading(false);
         alert("Waifus received");
       })
       .on("error", (err) => {
-        console.log("Error Call");
-        console.log(err);
         alert("Error: " + err.message);
       });
   };
