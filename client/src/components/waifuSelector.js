@@ -40,7 +40,7 @@ const ErrorText = styled.div`
   color: red;
 `;
 
-const SelectionContainer = styled.div`
+const SelectedWaifuContainer = styled.div`
   margin-bottom:10px;
   width: 100%;
   display: flex;
@@ -171,10 +171,10 @@ const WaifuSelector = ({ show, close }) => {
             <Header>Add Waifus to Burn</Header>
             <SelectedWaifus>
               {waifus.map((waifu) => (
-                  <SelectionContainer key={waifu.id}>
+                  <SelectedWaifuContainer key={waifu.id}>
                     <AddButton onClick={() => removeWaifu(waifu.id)}>-</AddButton>
                     <SelectedWaifu>{waifu.id}</SelectedWaifu>
-                  </SelectionContainer>
+                  </SelectedWaifuContainer>
               ))}
             </SelectedWaifus>
             {waifus.length < 3 && (
