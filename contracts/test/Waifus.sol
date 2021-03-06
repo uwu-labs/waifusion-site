@@ -4,7 +4,7 @@
 
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 /**
  * @dev Wrappers over Solidity's arithmetic operations with added overflow
@@ -174,7 +174,7 @@ library SafeMath {
  */
 abstract contract Context {
     function _msgSender() internal view virtual returns (address payable) {
-        return msg.sender;
+        return payable(msg.sender);
     }
 
     function _msgData() internal view virtual returns (bytes memory) {
@@ -207,7 +207,7 @@ library Strings {
         uint256 index = digits - 1;
         temp = value;
         while (temp != 0) {
-            buffer[index--] = byte(uint8(48 + temp % 10));
+            buffer[index--] = bytes1(uint8(48 + temp % 10));
             temp /= 10;
         }
         return string(buffer);
@@ -874,7 +874,7 @@ library EnumerableMap {
      * already present.
      */
     function set(UintToAddressMap storage map, uint256 key, address value) internal returns (bool) {
-        return _set(map._inner, bytes32(key), bytes32(uint256(value)));
+        return _set(map._inner, bytes32(key), bytes32(uint256(uint160(value))));
     }
 
     /**
@@ -911,7 +911,7 @@ library EnumerableMap {
     */
     function at(UintToAddressMap storage map, uint256 index) internal view returns (uint256, address) {
         (bytes32 key, bytes32 value) = _at(map._inner, index);
-        return (uint256(key), address(uint256(value)));
+        return (uint256(key), address(uint160(uint256(value))));
     }
 
     /**
@@ -922,14 +922,14 @@ library EnumerableMap {
      * - `key` must be in the map.
      */
     function get(UintToAddressMap storage map, uint256 key) internal view returns (address) {
-        return address(uint256(_get(map._inner, bytes32(key))));
+        return address(uint160(uint256(_get(map._inner, bytes32(key)))));
     }
 
     /**
      * @dev Same as {get}, with a custom error message when `key` is not in the map.
      */
     function get(UintToAddressMap storage map, uint256 key, string memory errorMessage) internal view returns (address) {
-        return address(uint256(_get(map._inner, bytes32(key), errorMessage)));
+        return address(uint160(uint256(_get(map._inner, bytes32(key), errorMessage))));
     }
 }
 
@@ -1076,7 +1076,7 @@ library EnumerableSet {
      * already present.
      */
     function add(AddressSet storage set, address value) internal returns (bool) {
-        return _add(set._inner, bytes32(uint256(value)));
+        return _add(set._inner, bytes32(uint256(uint160(value))));
     }
 
     /**
@@ -1086,14 +1086,14 @@ library EnumerableSet {
      * present.
      */
     function remove(AddressSet storage set, address value) internal returns (bool) {
-        return _remove(set._inner, bytes32(uint256(value)));
+        return _remove(set._inner, bytes32(uint256(uint160(value))));
     }
 
     /**
      * @dev Returns true if the value is in the set. O(1).
      */
     function contains(AddressSet storage set, address value) internal view returns (bool) {
-        return _contains(set._inner, bytes32(uint256(value)));
+        return _contains(set._inner, bytes32(uint256(uint160(value))));
     }
 
     /**
@@ -1114,7 +1114,7 @@ library EnumerableSet {
     * - `index` must be strictly less than {length}.
     */
     function at(AddressSet storage set, uint256 index) internal view returns (address) {
-        return address(uint256(_at(set._inner, index)));
+        return address(uint160(uint256(_at(set._inner, index))));
     }
 
 
@@ -1463,27 +1463,27 @@ contract Waifus is Context, Ownable, ERC165, IWaifus, IERC721Metadata {
         uint currentSupply = totalSupply();
 
         if (currentSupply >= 16381) {
-            return 100000000000000000000; // 16381 - 16383 100 ETH
+            return 10000000000000000000; // 16381 - 16383 100 ETH
         } else if (currentSupply >= 16000) {
-            return 2000000000000000000; // 16000 - 16380 2.0 ETH
+            return 200000000000000000; // 16000 - 16380 2.0 ETH
         } else if (currentSupply >= 15000) {
-            return 1300000000000000000; // 15000  - 15999 1.3 ETH
+            return 130000000000000000; // 15000  - 15999 1.3 ETH
         } else if (currentSupply >= 13000) {
-            return 1100000000000000000; // 13000 - 14999 1.1 ETH
+            return 110000000000000000; // 13000 - 14999 1.1 ETH
         } else if (currentSupply >= 11000) {
-            return 900000000000000000; // 11000 - 12999 0.9 ETH
+            return 90000000000000000; // 11000 - 12999 0.9 ETH
         } else if (currentSupply >= 9000) {
-            return 700000000000000000; // 9000 - 10999 0.7 ETH
+            return 70000000000000000; // 9000 - 10999 0.7 ETH
         } else if (currentSupply >= 7000) {
-            return 500000000000000000; // 7000 - 8999 0.5 ETH
+            return 50000000000000000; // 7000 - 8999 0.5 ETH
         } else if (currentSupply >= 5000) {
-            return 400000000000000000; // 5000 - 6999 0.4 ETH
+            return 40000000000000000; // 5000 - 6999 0.4 ETH
         } else if (currentSupply >= 3000) {
-            return 300000000000000000; // 3000 - 4999 0.3 ETH
+            return 30000000000000000; // 3000 - 4999 0.3 ETH
         } else if (currentSupply >= 1500) {
-            return 200000000000000000; // 1500 - 2999 0.2 ETH
+            return 20000000000000000; // 1500 - 2999 0.2 ETH
         } else {
-            return 100000000000000000; // 0 - 1499 0.1 ETH 
+            return 10000000000000000; // 0 - 1499 0.1 ETH 
         }
     }
 
@@ -1558,7 +1558,7 @@ contract Waifus is Context, Ownable, ERC165, IWaifus, IERC721Metadata {
     */
     function withdraw() onlyOwner public {
         uint balance = address(this).balance;
-        msg.sender.transfer(balance);
+        payable(msg.sender).transfer(balance);
     }
 
     /**
