@@ -274,16 +274,19 @@ const Home = observer((props) => {
               <center className="waifu-card-box-center">
                 <div className="dungeon-cta-title">The Dungeon</div>
                 <div className="waifu-card-text waifu-about-text text-center">
-                  Help! All the remaining waifus got thrown in the dungeon!
+                  Help! All the remaining waifus have been thrown in the
+                  dungeon!
                   <br />
                   <br />
-                  You can buy a waifu's freedom by paying the last presale price of .7ETH
+                  You can buy a waifu's freedom by paying the last presale price
+                  of 0.7ETH
                   <br />
                   <br />
-                  Have a naughty waifu? Burn WET to throw her into the dungeon permanently and exchange her for a more obedient waifu.
+                  Have a naughty waifu? Burn WET to throw her into the dungeon
+                  permanently and exchange her for a more obedient waifu.
                 </div>
                 <Link to="/dungeon">
-                  <Button.Outline className="waifu-card-buttons large" >
+                  <Button.Outline className="waifu-card-buttons large">
                     <span className="waifu-button-learnmore large">
                       To the Dungeon...
                     </span>
