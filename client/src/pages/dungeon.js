@@ -12,7 +12,14 @@ import WaifuSelector from "../components/waifuSelector";
 import BuyWaifus from "../components/buyWaifus";
 import { GLOBALS } from "../app/utils/globals";
 
-import { balanceOf, tokenOfOwnerByIndex } from "../app/utils/contracthelper";
+import {
+  balanceOf,
+  getAllowance,
+  getWETContract,
+  tokenOfOwnerByIndex,
+} from "../app/utils/contracthelper";
+import BN from "bn.js";
+import PendingButton from "../app/templates/PendingButton";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -36,7 +43,8 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 const ChainGraphic = styled.div`
-  transform: ${(props) => `TranslateX(-50%) TranslateX(${props.x}) TranslateY(${props.y}) Rotate(${props.rotate})`};
+  transform: ${(props) =>
+    `TranslateX(-50%) TranslateX(${props.x}) TranslateY(${props.y}) Rotate(${props.rotate})`};
 `;
 
 const DungeonPage = () => {
@@ -47,15 +55,23 @@ const DungeonPage = () => {
   const [buyingWaifus, setBuyingWaifus] = useState(false);
   const [waifuDisplays, setWaifuDisplays] = useState([]);
   const [chainDisplays, setChainDisplays] = useState([]);
+  const [approved, setApproved] = useState(false);
+  const [approvalLoading, setApprovalLoading] = useState(false);
 
   useEffect(() => {
+    getAllowance().then((value) => {
+      setApproved(value >= GLOBALS.APPROVE_AMOUNT);
+    });
+
     async function getDungeonPreview() {
       var _waifyDisplay = [];
       var maxDisplayWaifuCount = 5;
 
       var _waifuCount = await balanceOf(GLOBALS.DUNGEON_CONTRACT_ADDRESS);
       for (var i = 0; i < maxDisplayWaifuCount && i < _waifuCount; i++) {
-        var currentDisplayWaifuDungeonIndex = Math.floor(Math.random() * _waifuCount);
+        var currentDisplayWaifuDungeonIndex = Math.floor(
+          Math.random() * _waifuCount
+        );
         var currentDisplayWaifuTokenId = await tokenOfOwnerByIndex(
           currentDisplayWaifuDungeonIndex,
           GLOBALS.DUNGEON_CONTRACT_ADDRESS
@@ -91,15 +107,42 @@ const DungeonPage = () => {
     const minChainsCount = 4;
     const maxChainsCount = 12;
     var _chainTemp = [];
-    var displayChainCount = Math.floor(Math.random() * (maxChainsCount - minChainsCount) + minChainsCount);
-    for(var i = 0; i < displayChainCount; i++){
-      var newChainGraphic = <ChainGraphic className="waifu-dungeon-chain-overlay" x={Math.floor(Math.random() *50)+"%"} y={Math.floor(Math.random() *100)+"%"} rotate={Math.floor(Math.random() *360) + "deg"}></ChainGraphic>
-      _chainTemp.push(newChainGraphic)
+    var displayChainCount = Math.floor(
+      Math.random() * (maxChainsCount - minChainsCount) + minChainsCount
+    );
+    for (var i = 0; i < displayChainCount; i++) {
+      var newChainGraphic = (
+        <ChainGraphic
+          className="waifu-dungeon-chain-overlay"
+          x={Math.floor(Math.random() * 50) + "%"}
+          y={Math.floor(Math.random() * 100) + "%"}
+          rotate={Math.floor(Math.random() * 360) + "deg"}
+        ></ChainGraphic>
+      );
+      _chainTemp.push(newChainGraphic);
     }
 
     setChainDisplays(_chainTemp);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const approveAccount = async () => {
+    const wetContract = await getWETContract();
+    wetContract.methods
+      .approve(GLOBALS.WAIFU_CONTRACT_ADDRESS, new BN(GLOBALS.APPROVE_AMOUNT))
+      .send()
+      .on("transactionHash", (hash) => {
+        setApprovalLoading(true);
+      })
+      .on("receipt", (receipt) => {
+        setApprovalLoading(false);
+        setApproved(true);
+      })
+      .on("error", (err) => {
+        console.log(err);
+        setApprovalLoading(false);
+      });
+  };
 
   return (
     <Layout>
@@ -131,7 +174,14 @@ const DungeonPage = () => {
                   A peek in the dungeon
                   <br />
                   <div className="waifu-dungeon-peek-container">
-                    <div style={{position:"absolute", width:"100%", height:"100%", overflow:"hidden"}}>
+                    <div
+                      style={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        overflow: "hidden",
+                      }}
+                    >
                       {chainDisplays}
                     </div>
                     {waifuDisplays}
@@ -183,14 +233,23 @@ const DungeonPage = () => {
                   receive a new random Waifu.
                 </Content>
                 <ButtonContainer>
-                  <Button.Outline
-                    className="waifu-card-buttons"
-                    onClick={() => {
-                      setSelectingWaifus(true);
-                    }}
-                  >
-                    <span className="waifu-button-learnmore">Burn WAIFU</span>
-                  </Button.Outline>
+                  {!approved && (
+                    <PendingButton
+                      isPending={approvalLoading}
+                      clickEvent={() => approveAccount()}
+                      text="Approve WET"
+                    />
+                  )}
+                  {approved && (
+                    <Button.Outline
+                      className="waifu-card-buttons"
+                      onClick={() => {
+                        setSelectingWaifus(true);
+                      }}
+                    >
+                      <span className="waifu-button-learnmore">Burn WAIFU</span>
+                    </Button.Outline>
+                  )}
                 </ButtonContainer>
               </BoxContent>
             </BoxUpper>
