@@ -65,6 +65,15 @@ const getAllowance = async () => {
   return currentAllowance;
 };
 
+const isDungeonApprovedForAll = async () => {
+  const defaultAccount = await ethEnabled();
+  const waifuContract = await getWaifuContract();
+  const approvedForAll = await waifuContract.methods
+    .isApprovedForAll(defaultAccount, GLOBALS.DUNGEON_CONTRACT_ADDRESS)
+    .call();
+  return approvedForAll;
+};
+
 const getDungeonAllowance = async () => {
   const defaultAccount = await ethEnabled();
   const wetContract = await getWETContract();
@@ -195,6 +204,7 @@ export {
   getDungeonContract,
   ethEnabled,
   getAllowance,
+  isDungeonApprovedForAll,
   getDungeonAllowance,
   getWETContract,
   getWaifuContract,

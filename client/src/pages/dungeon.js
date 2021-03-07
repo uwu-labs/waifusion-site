@@ -15,7 +15,9 @@ import { GLOBALS } from "../app/utils/globals";
 import {
   balanceOf,
   getDungeonAllowance,
+  getWaifuContract,
   getWETContract,
+  isDungeonApprovedForAll,
   tokenOfOwnerByIndex,
 } from "../app/utils/contracthelper";
 import BN from "bn.js";
@@ -55,12 +57,18 @@ const DungeonPage = () => {
   const [buyingWaifus, setBuyingWaifus] = useState(false);
   const [waifuDisplays, setWaifuDisplays] = useState([]);
   const [chainDisplays, setChainDisplays] = useState([]);
-  const [approved, setApproved] = useState(false);
-  const [approvalLoading, setApprovalLoading] = useState(false);
+  const [wetApproved, setWetApproved] = useState(false);
+  const [wetApprovalLoading, setWetApprovalLoading] = useState(false);
+  const [nftApproved, setNftApproved] = useState(false);
+  const [nftApprovalLoading, setNftApprovalLoading] = useState(false);
 
   useEffect(() => {
     getDungeonAllowance().then((value) => {
-      setApproved(value >= new BN(GLOBALS.APPROVE_AMOUNT));
+      setWetApproved(value >= new BN(GLOBALS.APPROVE_AMOUNT));
+    });
+
+    isDungeonApprovedForAll().then((value) => {
+      setNftApproved(value);
     });
 
     async function getDungeonPreview() {
@@ -132,15 +140,33 @@ const DungeonPage = () => {
       .approve(GLOBALS.DUNGEON_CONTRACT_ADDRESS, new BN(GLOBALS.APPROVE_AMOUNT))
       .send()
       .on("transactionHash", (hash) => {
-        setApprovalLoading(true);
+        setWetApprovalLoading(true);
       })
       .on("receipt", (receipt) => {
-        setApprovalLoading(false);
-        setApproved(true);
+        setWetApprovalLoading(false);
+        setWetApproved(true);
       })
       .on("error", (err) => {
         alert("Error: " + err);
-        setApprovalLoading(false);
+        setWetApprovalLoading(false);
+      });
+  };
+
+  const approveNfts = async () => {
+    const waifuContract = await getWaifuContract();
+    waifuContract.methods
+      .setApprovalForAll(GLOBALS.DUNGEON_CONTRACT_ADDRESS, true)
+      .send()
+      .on("transactionHash", (hash) => {
+        setNftApprovalLoading(true);
+      })
+      .on("receipt", (receipt) => {
+        setNftApprovalLoading(false);
+        setNftApproved(true);
+      })
+      .on("error", (err) => {
+        alert("Error: " + err);
+        setNftApprovalLoading(false);
       });
   };
 
@@ -233,14 +259,21 @@ const DungeonPage = () => {
                   receive a new random Waifu.
                 </Content>
                 <ButtonContainer>
-                  {!approved && (
+                  {!wetApproved && (
                     <PendingButton
-                      isPending={approvalLoading}
+                      isPending={wetApprovalLoading}
                       clickEvent={() => approveAccount()}
                       text="Approve WET"
                     />
                   )}
-                  {approved && (
+                  {wetApproved && !nftApproved && (
+                    <PendingButton
+                      isPending={nftApprovalLoading}
+                      clickEvent={() => approveNfts()}
+                      text="Approve WAIFU"
+                    />
+                  )}
+                  {wetApproved && nftApproved && (
                     <Button.Outline
                       className="waifu-card-buttons"
                       onClick={() => {
