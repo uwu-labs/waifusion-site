@@ -1,11 +1,7 @@
 // Frameworks
 import React from "react";
 import { Link } from "gatsby";
-import {
-  Flex,
-  Button,
-  Box,
-} from "rimble-ui";
+import { Flex, Button, Box } from "rimble-ui";
 
 // Components
 import { GLOBALS } from "./utils/globals.js";
@@ -18,7 +14,7 @@ import BlurredText from "../images/blurred_text_crop.png";
 import "../components/home.css";
 
 // Main Route
-const Home = props => {
+const Home = (props) => {
   return (
     <>
       <Box className="waifu-card-container">
@@ -27,7 +23,11 @@ const Home = props => {
           <Box>
             <Box className="waifu-card-box waifu-pic-box waifu-pic-box-container waifu-card">
               <div className="box-upper">
-                <img src={WaifuPinkBar} className="waifu-card-box-pinkbar" />
+                <img
+                  src={WaifuPinkBar}
+                  alt="pink nav bar"
+                  className="waifu-card-box-pinkbar"
+                />
                 <Box
                   className="waifu-card-box-pink-sub waifu-pic-box waifu-card-sub-black"
                   color="white"
@@ -37,17 +37,31 @@ const Home = props => {
                     <span className="card-box-center-pink-text">
                       Waifu Name #6969
                     </span>
-                    <img className="waifu-dotted-line" src={WaifuDottedLine} />
-                    <img className="waifu-focus-text" src={FocusText} />
+                    <img
+                      className="waifu-dotted-line"
+                      alt="pink nav bar"
+                      src={WaifuDottedLine}
+                    />
+                    <img
+                      className="waifu-focus-text"
+                      alt="pink nav bar"
+                      src={FocusText}
+                    />
                     <img
                       className="waifu-card-image"
+                      alt="pink nav bar"
                       src={GLOBALS.DEFAULT_WAIFU_IMAGE}
                     />
                     <br />
-                    <img className="waifu-blurred-text" src={BlurredText} />
+                    <img
+                      className="waifu-blurred-text"
+                      alt="pink nav bar"
+                      src={BlurredText}
+                    />
                     <br />
                     <img
                       className="waifu-dotted-line"
+                      alt="pink nav bar"
                       style={{ paddingTop: "0px" }}
                       src={WaifuDottedLine}
                     />
@@ -68,6 +82,7 @@ const Home = props => {
               <div className="green-sub-box">
                 <img
                   src={OverviewGreenBar}
+                  alt="pink nav bar"
                   className="waifu-card-box-greenbar"
                 />
                 <Box
@@ -124,7 +139,11 @@ const Home = props => {
       <Box className="waifu-presale-container">
         <Box className="waifu-card-box">
           <div className="box-upper">
-            <img src={OverviewGreenBar} className="waifu-card-box-greenbar" />
+            <img
+              src={OverviewGreenBar}
+              alt="green nav bar"
+              className="waifu-card-box-greenbar"
+            />
             <Box
               className="waifu-card-box-presale-sub"
               color="white"
