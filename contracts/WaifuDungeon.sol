@@ -6,7 +6,7 @@ import "./IWaifusion.sol";
 import "./token/SafeERC20.sol";
 import "./utils/Ownable.sol";
 
-import "hardhat/console.sol";
+// Author: 0xKiwi. 
 
 contract WaifuDungeon is Ownable {
     address public constant BURN_ADDR = 0x0000000000000000000000000000000000080085;
@@ -16,7 +16,7 @@ contract WaifuDungeon is Ownable {
     uint256 public constant MAX_SWAP = 3;
     bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
 
-    uint256 public buyCost = 0.1 ether;
+    uint256 public buyCost = 0.7 ether;
     uint256 public swapCost = 5490 ether;
 
     uint256 public waifuCount;
@@ -35,12 +35,13 @@ contract WaifuDungeon is Ownable {
     mapping (uint256 => Waifu) public waifusInDungeon;
 
     constructor() Ownable() {
-        IERC20(WET_TOKEN).approve(WAIFUSION, 2**256 - 1);
     }
     
     receive() external payable {
     }
 
+    // This function is executed when a ERC721 is received via safeTransferFrom. This function is purposely strict to ensure 
+    // the NFTs in this contract are all valid.
     function onERC721Received(address operator, address from, uint256 tokenId, bytes calldata data) external returns (bytes4) {
         // Only accept NFTs through this function if they're being funneled.
         require(msg.sender == WAIFUSION);
@@ -108,6 +109,8 @@ contract WaifuDungeon is Ownable {
         IWaifusion(WAIFUSION).mintNFT{value: num * nftPrice}(num);
     }
 
+    // addNFTToDungeon allows for arbitrary NFT addition to the contract, assuming 
+    // its ID fits within uint48. 
     function addNFTToDungeon(address nftContract, uint256 nftID) external {
         require(nftContract != address(0), "zero addr");
         IERC721(nftContract).transferFrom(msg.sender, address(this), nftID);

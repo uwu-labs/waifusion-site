@@ -97,7 +97,6 @@ describe("Setup", function() {
 describe("WaifuDungeon", function() {
   it("Should set the deployer as owner", async function() {
     expect(await waifuDungeon.owner()).to.equal(ownerAddress);
-    expect(await wet.allowance(waifuDungeon.address, WAIFUSION)).to.equal("115792089237316195423570985008687907853269984665640564039457584007913129639935");
   });
 
   it("Should not let anyone funnel waifus", async function() {
@@ -139,6 +138,7 @@ describe("WaifuDungeon", function() {
   });
 
   it("increment block", async function() {
+    await network.provider.send("evm_mine")
     await network.provider.send("evm_mine")
   })
 
