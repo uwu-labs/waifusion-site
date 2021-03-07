@@ -121,6 +121,7 @@ const DungeonPage = () => {
     for (var i = 0; i < displayChainCount; i++) {
       var newChainGraphic = (
         <ChainGraphic
+          key={"chain-"+i}
           className="waifu-dungeon-chain-overlay"
           x={Math.floor(Math.random() * 50) + "%"}
           y={Math.floor(Math.random() * 100) + "%"}
