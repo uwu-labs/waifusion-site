@@ -56,7 +56,7 @@ contract WaifuDungeon is Ownable {
     function commitBuyWaifus(uint256 num) external payable {
         require(msg.value >= num * buyCost, "not enough ether to buy");
         require(num <= 20, "swapping too many");
-        require(num <= waifuCount, "swapping too many");
+        require(num <= waifuCount, "not enough waifus in dungeon");
         _commitRandomWaifus(num);
     }
 
@@ -65,7 +65,7 @@ contract WaifuDungeon is Ownable {
     function commitSwapWaifus(uint256[] calldata _ids) external {
         uint256 amountToSwap = _ids.length;
         require(amountToSwap <= MAX_SWAP, "swapping too many");
-        require(amountToSwap <= waifuCount, "swapping too many");
+        require(amountToSwap <= waifuCount, "not enough waifus in dungeon");
         address _BURN_ADDR = BURN_ADDR;
         address _WAIFUSION = WAIFUSION;
         SafeERC20.safeTransferFrom(IERC20(WET_TOKEN), msg.sender, _BURN_ADDR, swapCost*amountToSwap);
