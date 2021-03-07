@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
+import { BoxContent, Header, Content } from "../styles/BoxContent";
 import PendingButton from "../app/templates/PendingButton";
 import Popup from "./popup";
 import { getDungeonContract } from "../app/utils/contracthelper";
-import BN from "bn.js";
-import { web3 } from "../app/utils/contracthelper";
+import RevealComplete from "./revealComplete";
 
 const StyledLoading = styled.div``;
 
@@ -22,6 +21,7 @@ const Image = styled.img`
 
 const Loading = ({ show, type, complete }) => {
   const [loading, setLoading] = useState(false);
+  const [revealed, setRevealed] = useState(false);
 
   const revealWaifus = async () => {
     const dungeonContract = await getDungeonContract();
@@ -29,19 +29,13 @@ const Loading = ({ show, type, complete }) => {
       .revealWaifus()
       .send()
       .on("transactionHash", (hash) => {
-        console.log("TransactionHash Call");
-        console.log(hash);
         setLoading(true);
       })
       .on("receipt", (receipt) => {
-        console.log("Receipt call");
-        console.log(receipt);
         setLoading(false);
-        alert("Waifus received");
+        setRevealed(true);
       })
       .on("error", (err) => {
-        console.log("Error Call");
-        console.log(err);
         alert("Error: " + err.message);
       });
   };
@@ -49,7 +43,7 @@ const Loading = ({ show, type, complete }) => {
   return (
     <StyledLoading>
       <Popup
-        show={show}
+        show={show && !revealed}
         content={
           <BoxContent>
             <Header>
@@ -84,6 +78,7 @@ const Loading = ({ show, type, complete }) => {
           </BoxContent>
         }
       />
+      <RevealComplete show={show && revealed} />
     </StyledLoading>
   );
 };

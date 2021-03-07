@@ -11,10 +11,6 @@ const contract = new web3.eth.Contract(
   GLOBALS.WAIFU_CONTRACT_ADDRESS
 );
 const wetContract = new web3.eth.Contract(WETABI, GLOBALS.WET_CONTRACT_ADDRESS);
-const dungeonContract = new web3.eth.Contract(
-  DUNGEON,
-  GLOBALS.DUNGEON_CONTRACT_ADDRESS
-);
 
 // Dungeon Functions
 const getDungeonContract = async () => {
@@ -69,16 +65,6 @@ const getAllowance = async () => {
   return currentAllowance;
 };
 
-// const getWETContract = async () => {
-//   const defaultAccount = await this.ethEnabled();
-//   if (defaultAccount === false) {
-//       return false;
-//   }
-//   return new window.web3.eth.Contract(WETABI, GLOBALS.WET_CONTRACT_ADDRESS, {
-//       from: defaultAccount,
-//   });
-// };
-
 const getWETContract = async () => {
   const defaultAccount = await ethEnabled();
   if (defaultAccount === false) {
@@ -103,18 +89,7 @@ const maxUserCanBuy = async () => {
 };
 
 const getTotalSupply = async () => {
-  // const waifuContract = await getWaifuContract();
-  // if(waifuContract == false)
-  // {
-  //   console.log("Contracthelper getTotalSupply redirect");
-  //   navigate(`/app/login/`);
-  // }
   return contract.methods.totalSupply().call();
-  // const totalSupply = await waifuContract.methods
-  //   .totalSupply()
-  //   .call();
-
-  // return totalSupply;
 };
 
 const balanceOf = async (address) => {
@@ -131,7 +106,6 @@ const wetBalanceOf = async (address) => {
     .balanceOf(address || defaultAccount)
     .call();
   return currentlyOwned;
-  return "1";
 };
 
 const tokenOfOwnerByIndex = async (index, address) => {

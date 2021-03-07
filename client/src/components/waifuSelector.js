@@ -1,18 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Popup from "./popup";
-import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
-import {
-  getDungeonContract,
-  getWETContract,
-} from "../app/utils/contracthelper";
-import { web3 } from "../app/utils/contracthelper";
-import { Box, Button } from "rimble-ui";
+import { BoxContent, Header } from "../styles/BoxContent";
+import { getDungeonContract } from "../app/utils/contracthelper";
+import { Button } from "rimble-ui";
 import Loading from "./loading";
-import BN from "bn.js";
-import { GLOBALS } from "../app/utils/globals";
-
-import { RootStoreContext } from "../app/stores/root.store";
 
 const StyledWaifuSelector = styled.div``;
 
@@ -28,6 +20,24 @@ const SelectedWaifu = styled.div`
   font-weight: normal !important;
   font-size: 24px !important;
   line-height: 24px !important;
+  margin-left: 10px;
+`;
+
+const ErrorText = styled.div`
+  font-family: VT323 !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  color: red;
+`;
+
+const SelectedWaifuContainer = styled.div`
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 const AddContainer = styled.div`
@@ -89,18 +99,20 @@ const WaifuSelector = ({ show, close }) => {
   const [waifuId, setWaifuId] = useState("");
   const [loading, setLoading] = useState(false);
   const [commitComplete, setCommitComplete] = useState(false);
-
-  const rootStore = useContext(RootStoreContext);
-  const { transactionStore } = rootStore;
+  const [error, setError] = useState("");
 
   const AddWaifu = () => {
-    if (waifuId === "") {
-      alert("Must enter an ID");
+    if (!Number.isInteger(parseFloat(waifuId))) {
+      setError("Must enter an ID");
+      return;
+    }
+    if (waifuId < 0 || waifuId > 16384) {
+      setError("Must enter an ID between 0 and 16384");
       return;
     }
     const matching = waifus.filter((waifu) => waifu.id === waifuId);
     if (matching.length > 0) {
-      alert("Waifu already added");
+      setError("Waifu already added");
       return;
     }
 
@@ -111,10 +123,13 @@ const WaifuSelector = ({ show, close }) => {
     setWaifuId("");
   };
 
+  const removeWaifu = (id) => {
+    const newWaifus = waifus.filter((waifu) => waifu.id !== id);
+    setWaifus(newWaifus);
+  };
+
   const doBurnWaifus = async () => {
     const dungeonContract = await getDungeonContract();
-    const estimatedGas = 200000 * waifus.length;
-    const wetCost = 5490 * waifus.length;
     const waifuIds = waifus.map((w) => w.id);
     dungeonContract.methods
       .commitSwapWaifus(waifuIds)
@@ -128,7 +143,7 @@ const WaifuSelector = ({ show, close }) => {
       })
       .on("error", (err) => {
         setLoading(false);
-        alert("Error: " + err.message);
+        setError("Error: " + err.message);
       });
   };
 
@@ -143,18 +158,28 @@ const WaifuSelector = ({ show, close }) => {
             <Header>Add Waifus to Burn</Header>
             <SelectedWaifus>
               {waifus.map((waifu) => (
-                <SelectedWaifu>{waifu.id}</SelectedWaifu>
+                <SelectedWaifuContainer key={waifu.id}>
+                  <AddButton onClick={() => removeWaifu(waifu.id)}>-</AddButton>
+                  <SelectedWaifu>{waifu.id}</SelectedWaifu>
+                </SelectedWaifuContainer>
               ))}
             </SelectedWaifus>
             {waifus.length < 3 && (
-              <AddContainer>
-                <AddInput
-                  value={waifuId}
-                  placeholder="Waifu ID"
-                  onChange={(event) => setWaifuId(event.target.value)}
-                ></AddInput>
-                <AddButton onClick={() => AddWaifu()}>+</AddButton>
-              </AddContainer>
+              <>
+                <AddContainer>
+                  <AddInput
+                    value={waifuId}
+                    placeholder="Waifu ID"
+                    onChange={(event) => {
+                      setError("");
+                      const val = event.target.value.replace(/[^0-9]/g, "");
+                      setWaifuId(val);
+                    }}
+                  />
+                  <AddButton onClick={() => AddWaifu()}>+</AddButton>
+                </AddContainer>
+                <ErrorText>{error}</ErrorText>
+              </>
             )}
             {waifus.length >= 1 && (
               <Cost>{`Cost: ${waifus.length * 5490} WET`}</Cost>

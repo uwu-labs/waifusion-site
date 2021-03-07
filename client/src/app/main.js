@@ -1,16 +1,7 @@
 // Frameworks
 import React, { useContext, useEffect } from "react";
 import { navigate, Link } from "gatsby";
-import {
-  Heading,
-  Blockie,
-  Flex,
-  QR,
-  Button,
-  Text,
-  Box,
-  Loader,
-} from "rimble-ui";
+import { Flex, QR, Button, Text, Box, Loader } from "rimble-ui";
 import { observer } from "mobx-react-lite";
 import BN from "bn.js";
 
@@ -25,7 +16,6 @@ import {
   getTokenId,
   getWETContract,
   wetBalanceOf,
-  getWaifuContract,
 } from "./utils/contracthelper";
 import { GLOBALS } from "./utils/globals.js";
 
@@ -33,13 +23,9 @@ import { GLOBALS } from "./utils/globals.js";
 import { RootStoreContext } from "./stores/root.store";
 
 // Components
-import PendingButton from "./templates/PendingButton";
-
-import OverviewGreenBar from "../images/overview_green_bar.png";
 import WetPinkBar from "../images/wet_pink_bar.png";
 import WaifuPinkBar from "../images/waifucard_pink_bar.png";
 import WaifuDottedLine from "../images/waifu_dotted_line.png";
-import WaifuImage from "../images/waifu.png";
 import FocusText from "../images/focus_waifu_card_text.png";
 import BlurredText from "../images/blurred_text_crop.png";
 
@@ -58,6 +44,7 @@ const Main = observer((props) => {
       navigate(`/app/login`);
     }
     updateWETS();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const revealedWaifuIndex = (waifuIndex) => {
@@ -129,7 +116,6 @@ const Main = observer((props) => {
       const index = await tokenOfOwnerByIndex(i);
       const name = await getWETName(index);
       const id = await getTokenId(index);
-      console.log(id);
       const accumulated = new BN(await accumulatedForIndex(index));
       totalAccumulated = totalAccumulated.add(accumulated);
 
@@ -148,7 +134,11 @@ const Main = observer((props) => {
     <>
       <Box className="waifu-card-box wallet-box">
         <div className="box-upper">
-          <img src={WetPinkBar} className="waifu-card-box-greenbar" />
+          <img
+            src={WetPinkBar}
+            alt="pink nav bar"
+            className="waifu-card-box-greenbar"
+          />
           <Box
             className="waifu-card-box-sub"
             color="white"
@@ -207,14 +197,18 @@ const Main = observer((props) => {
         </div>
       </Box>
 
-      {WETStore.isLoading == false &&
+      {WETStore.isLoading === false &&
         WETStore.ownedItems.map((item) => (
           <Box
             key={item.index}
             className="waifu-card-box waifu-pic-box waifu-pic-box-container waifu-card wallet-waifu-card"
           >
             <div className="box-upper">
-              <img src={WaifuPinkBar} className="waifu-card-box-pinkbar" />
+              <img
+                src={WaifuPinkBar}
+                alt="pink nav bar"
+                className="waifu-card-box-pinkbar"
+              />
               <Box
                 className="waifu-card-box-pink-sub waifu-pic-box waifu-card-sub-black"
                 color="white"
@@ -231,13 +225,22 @@ const Main = observer((props) => {
                     <span className="waifu-box-number">Waifu ID: </span>
                     <span className="waifu-box-number">{item.id}</span>
                   </span>
-                  <img className="waifu-dotted-line" src={WaifuDottedLine} />
-                  <img className="waifu-focus-text" src={FocusText} />
+                  <img
+                    className="waifu-dotted-line"
+                    alt="waifu dotted line"
+                    src={WaifuDottedLine}
+                  />
+                  <img
+                    className="waifu-focus-text"
+                    alt="waifu focus text"
+                    src={FocusText}
+                  />
                   <Link to={"/app/detail/" + item.index}>
                     <img
                       className="waifu-card-image"
+                      alt=""
                       src={
-                        GLOBALS.WAIFUS_VIEWABLE_URL == ""
+                        GLOBALS.WAIFUS_VIEWABLE_URL === ""
                           ? GLOBALS.DEFAULT_WAIFU_IMAGE
                           : GLOBALS.WAIFUS_VIEWABLE_URL +
                             "/" +
@@ -247,10 +250,15 @@ const Main = observer((props) => {
                     />
                     <br />
                   </Link>
-                  <img className="waifu-blurred-text" src={BlurredText} />
+                  <img
+                    className="waifu-blurred-text"
+                    alt="waifu blurred text"
+                    src={BlurredText}
+                  />
                   <br />
                   <img
                     className="waifu-dotted-line"
+                    alt="dotted line"
                     style={{ paddingTop: "0px" }}
                     src={WaifuDottedLine}
                   />
@@ -273,7 +281,11 @@ const Main = observer((props) => {
         {WETStore.isLoading && (
           <Box className="waifu-card-box wallet-box">
             <div className="box-upper">
-              <img src={WetPinkBar} className="waifu-card-box-greenbar" />
+              <img
+                src={WetPinkBar}
+                alt="wet pink bar"
+                className="waifu-card-box-greenbar"
+              />
               <Box
                 className="waifu-card-box-sub"
                 color="white"
@@ -292,10 +304,14 @@ const Main = observer((props) => {
             </div>
           </Box>
         )}
-        {WETStore.isLoading == false && WETStore.ownedItems.length == 0 && (
+        {WETStore.isLoading === false && WETStore.ownedItems.length === 0 && (
           <Box className="waifu-card-box wallet-box">
             <div className="box-upper">
-              <img src={WetPinkBar} className="waifu-card-box-greenbar" />
+              <img
+                src={WetPinkBar}
+                alt="pink nav bar"
+                className="waifu-card-box-greenbar"
+              />
               <Box
                 className="waifu-card-box-sub"
                 color="white"

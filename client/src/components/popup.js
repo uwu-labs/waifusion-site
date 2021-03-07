@@ -27,6 +27,7 @@ const Popup = ({ show, content, close }) => {
           <img
             src={WaifuPinkBar}
             className="waifu-card-box-pinkbar"
+            alt="pink nav bar"
             onClick={() => {
               if (close) close();
             }}
