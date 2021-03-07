@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
+import { BoxContent, Header, Content } from "../styles/BoxContent";
 import PendingButton from "../app/templates/PendingButton";
 import Popup from "./popup";
 import { getDungeonContract } from "../app/utils/contracthelper";
-import BN from "bn.js";
-import { web3 } from "../app/utils/contracthelper";
 import RevealComplete from "./revealComplete";
 
 const StyledLoading = styled.div``;
