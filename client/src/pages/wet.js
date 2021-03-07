@@ -95,7 +95,7 @@ const WETTokenPage = () => (
       <div className="box-upper">
         <img
           src={WetPinkBar}
-          img="pink nav bar"
+          alt="pink nav bar"
           className="waifu-card-box-greenbar"
         />
         <Box
