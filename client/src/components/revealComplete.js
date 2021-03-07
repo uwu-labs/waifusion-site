@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Popup from "./popup";
-import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
-import { Box, Button } from "rimble-ui";
+import { BoxContent, Header } from "../styles/BoxContent";
+import { Button } from "rimble-ui";
 
 const StyledRevealComplete = styled.div``;
 
