@@ -143,7 +143,8 @@ const WaifuSelector = ({ show, close }) => {
       })
       .on("error", (err) => {
         setLoading(false);
-        setError("Error: " + err.message);
+        console.log('error: ', err.message)
+        setError("Error: Contract failure");
       });
   };
 
