@@ -20,11 +20,11 @@ const WETTokenPage = () => (
         <img src={OverviewGreenBar} className="waifu-card-box-greenbar"/>
         <Box className="waifu-card-box-sub" color="white" style={{maxWidth:1424, marginBottom:1}}>
             <center className="waifu-card-box-center">
-              <div class="waifu-card-header-text">What is it?</div>
+              <div className="waifu-card-header-text">What is it?</div>
                 <div className="waifu-card-text waifu-about-text" >
                 The Waifu Enhancement Token (WET) is an exclusive token to the Waifusion world wide harem. 
                 WET serves two purposes: <br/><br/>
-                  <ul class="waifu-wet-rules">
+                  <ul className="waifu-wet-rules">
                     <li>
                   Give Waifus a unique name that is permanently stored and publicly visible on the Ethereum Blockchain. 
                   </li>
@@ -42,9 +42,9 @@ const WETTokenPage = () => (
                  To burn a Waifu you need to send a Waifu and 5,490 WETs to the Waifusion contract and boil them.
                   </div>
                   <br/>
-                 <div class="waifu-card-header-text">The Rules</div>
+                 <div className="waifu-card-header-text">The Rules</div>
                  <br/>
-                 <ul class="waifu-wet-rules">
+                 <ul className="waifu-wet-rules">
                   <li>No name can be identical, duh, you baka, all Waifus are unique </li>
                   <li>There is a limit of 25 characters; this includes spaces</li>
                   <li>The names are not case sensitive</li>
@@ -71,11 +71,11 @@ const WETTokenPage = () => (
               <img src={WetPinkBar} className="waifu-card-box-greenbar"/>
               <Box className="waifu-card-box-sub" color="white" style={{maxWidth:1424, marginBottom:1}}>
                   <center className="waifu-card-box-center">
-                    <div class="waifu-card-header-text waifu-smartcontract-header">Verified Smart Contracts</div>
+                    <div className="waifu-card-header-text waifu-smartcontract-header">Verified Smart Contracts</div>
 
-                    <div class="waifu-about-header-text  waifu-header-smart">Waifu Contract</div>
+                    <div className="waifu-about-header-text  waifu-header-smart">Waifu Contract</div>
                     <div className="waifu-card-text waifu-about-text waifu-about-smart" >{GLOBALS.WAIFU_CONTRACT_ADDRESS}</div>
-                    <div class="waifu-about-header-text ">WET Contract</div>
+                    <div className="waifu-about-header-text ">WET Contract</div>
                     <div className="waifu-card-text waifu-about-text waifu-about-smart" >{GLOBALS.WET_CONTRACT_ADDRESS}</div>
                   </center>
               </Box>
