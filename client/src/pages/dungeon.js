@@ -18,10 +18,12 @@ import {
   getWaifuContract,
   getWETContract,
   isDungeonApprovedForAll,
+  revealPending,
   tokenOfOwnerByIndex,
 } from "../app/utils/contracthelper";
 import BN from "bn.js";
 import PendingButton from "../app/templates/PendingButton";
+import Loading from "../components/loading";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -61,6 +63,7 @@ const DungeonPage = () => {
   const [wetApprovalLoading, setWetApprovalLoading] = useState(false);
   const [nftApproved, setNftApproved] = useState(false);
   const [nftApprovalLoading, setNftApprovalLoading] = useState(false);
+  const [hasPendingReveal, setHasPendingReveal] = useState(false);
 
   useEffect(() => {
     getDungeonAllowance().then((value) => {
@@ -69,6 +72,10 @@ const DungeonPage = () => {
 
     isDungeonApprovedForAll().then((value) => {
       setNftApproved(value);
+    });
+
+    revealPending().then((value) => {
+      if (value) setHasPendingReveal(true);
     });
 
     async function getDungeonPreview() {
@@ -137,7 +144,10 @@ const DungeonPage = () => {
   const approveAccount = async () => {
     const wetContract = await getWETContract();
     wetContract.methods
-      .approve(GLOBALS.DUNGEON_CONTRACT_ADDRESS, new BN(GLOBALS.APPROVE_AMOUNT))
+      .approve(
+        GLOBALS.DUNGEON_CONTRACT_ADDRESS,
+        new BN("1647000000000000000000000")
+      )
       .send()
       .on("transactionHash", (hash) => {
         setWetApprovalLoading(true);
@@ -294,6 +304,7 @@ const DungeonPage = () => {
         close={() => setSelectingWaifus(false)}
       />
       <BuyWaifus show={buyingWaifus} close={() => setBuyingWaifus(false)} />
+      <Loading show={hasPendingReveal} complete={true} />
     </Layout>
   );
 };

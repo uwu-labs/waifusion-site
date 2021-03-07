@@ -47,10 +47,21 @@ const Loading = ({ show, type, complete }) => {
         content={
           <BoxContent>
             <Header>
-              {type === "buying" ? "Buying Waifus" : "Burning Waifus"}
+              {complete
+                ? "Reveal Waifus"
+                : type === "buying"
+                ? "Buying Waifus"
+                : "Burning Waifus"}
             </Header>
             <Content>
-              {type === "buying" ? (
+              {complete ? (
+                <Image
+                  src={
+                    "http://cdn.lowgif.com/full/7bcb85f7e2f44370-how-has-love-live-sunshine-changed-the-idol-anime-game-this.gif"
+                  }
+                  alt="waifu revealing giv"
+                />
+              ) : type === "buying" ? (
                 <Image
                   src={
                     "https://media1.tenor.com/images/40cdfd153b02a70564d7e8604186b48d/tenor.gif"

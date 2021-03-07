@@ -29,6 +29,34 @@ const getDungeonContract = async () => {
   );
 };
 
+const isDungeonApprovedForAll = async () => {
+  const defaultAccount = await ethEnabled();
+  const waifuContract = await getWaifuContract();
+  const approvedForAll = await waifuContract.methods
+    .isApprovedForAll(defaultAccount, GLOBALS.DUNGEON_CONTRACT_ADDRESS)
+    .call();
+  return approvedForAll;
+};
+
+const getDungeonAllowance = async () => {
+  const defaultAccount = await ethEnabled();
+  const wetContract = await getWETContract();
+  const currentAllowance = await wetContract.methods
+    .allowance(defaultAccount, GLOBALS.DUNGEON_CONTRACT_ADDRESS)
+    .call();
+  return currentAllowance;
+};
+
+const revealPending = async () => {
+  const defaultAccount = await ethEnabled();
+  const dungeonContract = await getDungeonContract();
+  const commits = await dungeonContract.methods.commits(defaultAccount).call();
+  console.log("got commits");
+  console.log(commits);
+  console.log(commits.amount > 0);
+  return commits.amount > 0;
+};
+
 // Other Functions
 const ethEnabled = async () => {
   if (window.ethereum) {
@@ -61,24 +89,6 @@ const getAllowance = async () => {
   const wetContract = await getWETContract();
   const currentAllowance = await wetContract.methods
     .allowance(defaultAccount, GLOBALS.WAIFU_CONTRACT_ADDRESS)
-    .call();
-  return currentAllowance;
-};
-
-const isDungeonApprovedForAll = async () => {
-  const defaultAccount = await ethEnabled();
-  const waifuContract = await getWaifuContract();
-  const approvedForAll = await waifuContract.methods
-    .isApprovedForAll(defaultAccount, GLOBALS.DUNGEON_CONTRACT_ADDRESS)
-    .call();
-  return approvedForAll;
-};
-
-const getDungeonAllowance = async () => {
-  const defaultAccount = await ethEnabled();
-  const wetContract = await getWETContract();
-  const currentAllowance = await wetContract.methods
-    .allowance(defaultAccount, GLOBALS.DUNGEON_CONTRACT_ADDRESS)
     .call();
   return currentAllowance;
 };
@@ -202,10 +212,11 @@ export {
   web3,
   contract,
   getDungeonContract,
-  ethEnabled,
-  getAllowance,
   isDungeonApprovedForAll,
   getDungeonAllowance,
+  revealPending,
+  ethEnabled,
+  getAllowance,
   getWETContract,
   getWaifuContract,
   maxUserCanBuy,
