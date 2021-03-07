@@ -1,7 +1,6 @@
 // Frameworks
-import React, { useContext } from "react";
+import React from "react";
 import { Router } from "@reach/router";
-import { useStaticQuery, graphql } from "gatsby";
 
 // Layout Management
 import PublicRoute from "./components/PublicRoute";
@@ -14,7 +13,6 @@ import Main from "./main";
 import Login from "./login";
 
 // Data Store
-import { RootStoreContext } from "./stores/root.store";
 import TransactionHistory from "./TransactionHistory";
 import Provenance from "./Provenance";
 import Dungeon from "./dungeon";
@@ -25,18 +23,6 @@ import Owner from "./Owner";
 
 // Dynamic Application Wrapper
 const App = (props) => {
-  const rootStore = useContext(RootStoreContext);
-  const siteData = useStaticQuery(graphql`
-    query SiteDataQuery {
-      site {
-        siteMetadata {
-          title
-          logoUrl
-        }
-      }
-    }
-  `);
-
   // Primary App Layout + Router
   return (
     <Layout>
