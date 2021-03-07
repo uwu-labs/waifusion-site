@@ -1,6 +1,6 @@
 // Frameworks
 import React from "react";
-import { Heading, Button, Loader } from "rimble-ui";
+import { Button, Loader } from "rimble-ui";
 import styled from "styled-components";
 
 const NewLoader = styled(Loader)`
