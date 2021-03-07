@@ -170,8 +170,6 @@ const Detail = observer((props) => {
         detailStore.changeNamePending = true;
       }); // If a out of gas error, the second parameter is the receipt.
     closeNCModal();
-
-    // e.preventDefault();
   };
 
   const listTrait = (trait) => {
@@ -186,7 +184,6 @@ const Detail = observer((props) => {
           {trait.value}
         </Button.Outline>
       );
-      // return <li>{trait.value}</li>
     }
   };
 

@@ -6,6 +6,8 @@ import "./IWaifusion.sol";
 import "./token/SafeERC20.sol";
 import "./utils/Ownable.sol";
 
+import "hardhat/console.sol";
+
 contract WaifuDungeon is Ownable {
     address public constant BURN_ADDR = 0x0000000000000000000000000000000000080085;
     address public constant WET_TOKEN = 0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2;
@@ -17,13 +19,20 @@ contract WaifuDungeon is Ownable {
     uint256 public buyCost = 0.1 ether;
     uint256 public swapCost = 5490 ether;
 
+    uint256 public waifuCount;
+
     struct Commit {
         uint64 block;
         uint64 amount;
-        bool revealed;
+        bool committed;
     }
-    
     mapping (address => Commit) public commits;
+
+    struct Waifu {
+        address nftContract;
+        uint48 waifuID;
+    }
+    mapping (uint256 => Waifu) public waifusInDungeon;
 
     constructor() Ownable() {
         IERC20(WET_TOKEN).approve(WAIFUSION, 2**256 - 1);
@@ -33,37 +42,51 @@ contract WaifuDungeon is Ownable {
     }
 
     function onERC721Received(address operator, address from, uint256 tokenId, bytes calldata data) external returns (bytes4) {
-        if (from == WAIFUSION) {
-            return _ERC721_RECEIVED;
-        }
-        return bytes4(0);
+        // Only accept NFTs through this function if they're being funneled.
+        require(msg.sender == WAIFUSION);
+        require(operator == address(this));
+        require(tokenId <= MAX_NFT_SUPPLY);
+        waifusInDungeon[waifuCount] = Waifu(WAIFUSION, uint48(tokenId));
+        waifuCount++;
+        return _ERC721_RECEIVED;
     }
     
+    // This function commits that the sender will purchase a waifu within the next 255 blocks.
+    // If they fail to revealWaifus() within that timeframe. The money they sent is forfeited to reduce complexity.
     function commitBuyWaifus(uint256 num) external payable {
         require(msg.value >= num * buyCost, "not enough ether to buy");
-        uint256 maxWaifusToMint = _maxWaifus();
-        require(num < maxWaifusToMint, "too many waifus for you");
+        require(num <= 20, "swapping too many");
+        require(num <= waifuCount, "swapping too many");
         _commitRandomWaifus(num);
     }
 
+    // This function commits that the sender will swap a waifu within the next 255 blocks.
+    // If they fail to revealWaifus() within that timeframe. The money they sent is forfeited to reduce complexity.
     function commitSwapWaifus(uint256[] calldata _ids) external {
         uint256 amountToSwap = _ids.length;
-        uint256 maxWaifusToMint = _maxWaifus();
-        require(amountToSwap <= (maxWaifusToMint < MAX_SWAP ? maxWaifusToMint : MAX_SWAP), "swapping too many");
-        SafeERC20.safeTransferFrom(IERC20(WET_TOKEN), msg.sender, BURN_ADDR, swapCost*amountToSwap);
+        require(amountToSwap <= MAX_SWAP, "swapping too many");
+        require(amountToSwap <= waifuCount, "swapping too many");
+        address _BURN_ADDR = BURN_ADDR;
+        address _WAIFUSION = WAIFUSION;
+        SafeERC20.safeTransferFrom(IERC20(WET_TOKEN), msg.sender, _BURN_ADDR, swapCost*amountToSwap);
         for (uint256 i = 0; i < amountToSwap; i++) {    
             // Burn waifu.
-            IERC721(WAIFUSION).transferFrom(address(this), BURN_ADDR, _ids[i]);
+            IERC721(_WAIFUSION).transferFrom(msg.sender, _BURN_ADDR, _ids[i]);
         }
         _commitRandomWaifus(amountToSwap);
     }
 
-    function revealWaifus() external returns (uint256[] memory) {
+    function revealWaifus() external {
         uint256[] memory randomIDs = _revealRandomWaifus();
         for (uint256 i = 0; i < randomIDs.length; i++) { 
-            IERC721(WAIFUSION).transferFrom(address(this), msg.sender, randomIDs[i]);
+            Waifu memory waifu = waifusInDungeon[randomIDs[i]];
+            IERC721(waifu.nftContract).safeTransferFrom(address(this), msg.sender, uint256(waifu.waifuID));
         }
-        return randomIDs;
+        for (uint256 i = 0; i < randomIDs.length; i++) { 
+            waifusInDungeon[randomIDs[i]] = waifusInDungeon[waifuCount];
+            delete waifusInDungeon[waifuCount];
+            waifuCount--;
+        }
     }
 
     // Permissioned functions.
@@ -73,7 +96,9 @@ contract WaifuDungeon is Ownable {
     }
 
     function funnelMaxWaifus() external onlyOwner() {
-        uint256 waifusToMint = _maxWaifus();
+        uint256 remainingWaifus = MAX_NFT_SUPPLY - IWaifusion(WAIFUSION).totalSupply();
+        uint256 waifusToMint = remainingWaifus < 20 ? remainingWaifus : 20;
+        require(waifusToMint > 0, "outta waifus");
         funnelWaifus(waifusToMint);
     }
 
@@ -81,6 +106,13 @@ contract WaifuDungeon is Ownable {
         withdrawFromWaifusion();
         uint256 nftPrice = IWaifusion(WAIFUSION).getNFTPrice();
         IWaifusion(WAIFUSION).mintNFT{value: num * nftPrice}(num);
+    }
+
+    function addNFTToDungeon(address nftContract, uint256 nftID) external {
+        require(nftContract != address(0), "zero addr");
+        IERC721(nftContract).transferFrom(msg.sender, address(this), nftID);
+        waifusInDungeon[waifuCount] = Waifu(nftContract, uint48(nftID));
+        waifuCount++;
     }
 
     function withdraw() external onlyOwner() {
@@ -100,43 +132,32 @@ contract WaifuDungeon is Ownable {
         swapCost = newSwapCost;
     }
 
-    // View functions.
-
-    function waifusInMaidCafe() public view returns (uint256) {
-        return IERC721(WAIFUSION).balanceOf(address(this));
-    }
-
     // Internal functions.
 
-    function _maxWaifus() internal view returns (uint256) {
-        uint256 remainingWaifus = MAX_NFT_SUPPLY - IWaifusion(WAIFUSION).totalSupply();
-        uint256 waifusToMint = remainingWaifus < 20 ? remainingWaifus : 20;
-        return waifusToMint;
-    }
-
     function _commitRandomWaifus(uint256 num) internal {
-        uint256 commitBlock = block.number;
-        commits[msg.sender].block = uint64(commitBlock);
+        require(num > 0, "anon, you cant reveal 0 waifus");
+        uint256 currentBlock = block.number;
+        require(commits[msg.sender].block + 255 < currentBlock, "still need to reveal");
+        commits[msg.sender].block = uint64(currentBlock);
         commits[msg.sender].amount = uint64(num);
-        commits[msg.sender].revealed = false;
     }
 
     function _revealRandomWaifus() internal returns (uint256[] memory) {
         Commit memory commit = commits[msg.sender];
-        require(!commit.revealed,"WaifuMaidCafe: Already revealed");
-        commits[msg.sender].revealed = true;
+        require(commit.amount > 0, "WaifuMaidCafe: Need to commit");
         require(uint64(block.number) > commit.block, "WaifuMaidCafe: cannot reveal same block");
         require(uint64(block.number) <= commit.block + 255, "WaifuMaidCafe: Revealed too late");
-
+        delete commits[msg.sender];
+        
         // Get the hash of the block that happened after they committed.
         bytes32 revealHash = blockhash(commit.block + 1);
 
         uint256[] memory randomIDs = new uint256[](commit.amount); 
-        uint256 _waifusInMaidCafe = waifusInMaidCafe();
-        uint256 randomIndex = uint256(keccak256(abi.encodePacked(revealHash))) % _waifusInMaidCafe;
+        uint256 _waifuCount = waifuCount;
+        uint256 randomIndex = uint256(keccak256(abi.encodePacked(revealHash))) % _waifuCount;
         for (uint256 i = 0; i < commit.amount; i++) {
             randomIDs[i] = randomIndex;
-            randomIndex = (randomIndex + 1) % _waifusInMaidCafe;
+            randomIndex = (randomIndex + 1) % _waifuCount;
         }
         return randomIDs;
     }

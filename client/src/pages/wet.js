@@ -118,6 +118,10 @@ const WETTokenPage = () => (
             <div className="waifu-card-text waifu-about-text waifu-about-smart">
               {GLOBALS.WET_CONTRACT_ADDRESS}
             </div>
+            <div className="waifu-about-header-text ">Dungeon Contract</div>
+            <div className="waifu-card-text waifu-about-text waifu-about-smart">
+              {GLOBALS.DUNGEON_CONTRACT_ADDRESS}
+            </div>
           </center>
         </Box>
       </div>
