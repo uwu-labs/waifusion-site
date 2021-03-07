@@ -13,16 +13,14 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-const RevealComplete = ({ show, close }) => {
+const RevealComplete = ({ show }) => {
   return (
     <StyledRevealComplete>
       <Popup
         show={show}
-        close={close}
         content={
           <BoxContent>
             <Header>Waifu Revealed!!!</Header>
-
             <ButtonContainer>
               <Button.Outline
                 className="waifu-card-buttons"
