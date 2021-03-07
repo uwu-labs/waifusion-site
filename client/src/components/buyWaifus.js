@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Popup from "./popup";
-import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
-import { Box, Button } from "rimble-ui";
+import { BoxContent, Header } from "../styles/BoxContent";
+import { Button } from "rimble-ui";
 import Loading from "./loading";
 import { getDungeonContract } from "../app/utils/contracthelper";
 import BN from "bn.js";
@@ -44,11 +44,11 @@ const BuyWaifus = ({ show, close }) => {
   const [loading, setLoading] = useState(false);
   const [commitComplete, setCommitComplete] = useState(false);
   const [amount, setAmount] = useState("");
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   const validatePurchase = async () => {
-    if(!Number.isInteger(parseFloat(amount))){
-      setError('Must be a whole number')
+    if (!Number.isInteger(parseFloat(amount))) {
+      setError("Must be a whole number");
       return false;
     }
     if (amount > 20) {
