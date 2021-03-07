@@ -6,6 +6,7 @@ pragma solidity ^0.8.0;
  * @dev Interface of the ERC20 standard as defined in the EIP.
  */
 interface IERC20 {
+    function claim(uint256[] memory indices) external returns (uint256);
     /**
      * @dev Returns the amount of tokens in existence.
      */
