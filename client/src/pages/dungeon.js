@@ -12,7 +12,16 @@ import WaifuSelector from "../components/waifuSelector";
 import BuyWaifus from "../components/buyWaifus";
 import { GLOBALS } from "../app/utils/globals";
 
-import { balanceOf, tokenOfOwnerByIndex } from "../app/utils/contracthelper";
+import {
+  balanceOf,
+  getDungeonAllowance,
+  getWaifuContract,
+  getWETContract,
+  isDungeonApprovedForAll,
+  tokenOfOwnerByIndex,
+} from "../app/utils/contracthelper";
+import BN from "bn.js";
+import PendingButton from "../app/templates/PendingButton";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -35,6 +44,10 @@ const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const ChainGraphic = styled.div`
+  transform: ${(props) =>
+    `TranslateX(-50%) TranslateX(${props.x}) TranslateY(${props.y}) Rotate(${props.rotate})`};
+`;
 
 const DungeonPage = () => {
   const revealedWaifuIndex = (waifuIndex) => {
@@ -43,8 +56,21 @@ const DungeonPage = () => {
   const [selectingWaifus, setSelectingWaifus] = useState(false);
   const [buyingWaifus, setBuyingWaifus] = useState(false);
   const [waifuDisplays, setWaifuDisplays] = useState([]);
+  const [chainDisplays, setChainDisplays] = useState([]);
+  const [wetApproved, setWetApproved] = useState(false);
+  const [wetApprovalLoading, setWetApprovalLoading] = useState(false);
+  const [nftApproved, setNftApproved] = useState(false);
+  const [nftApprovalLoading, setNftApprovalLoading] = useState(false);
 
   useEffect(() => {
+    getDungeonAllowance().then((value) => {
+      setWetApproved(value >= new BN(GLOBALS.APPROVE_AMOUNT));
+    });
+
+    isDungeonApprovedForAll().then((value) => {
+      setNftApproved(value);
+    });
+
     async function getDungeonPreview() {
       var _waifyDisplay = [];
       var maxDisplayWaifuCount = 5;
@@ -85,8 +111,64 @@ const DungeonPage = () => {
     getDungeonPreview().then((value) => {
       setWaifuDisplays(value);
     });
+
+    const minChainsCount = 4;
+    const maxChainsCount = 12;
+    var _chainTemp = [];
+    var displayChainCount = Math.floor(
+      Math.random() * (maxChainsCount - minChainsCount) + minChainsCount
+    );
+    for (var i = 0; i < displayChainCount; i++) {
+      var newChainGraphic = (
+        <ChainGraphic
+          className="waifu-dungeon-chain-overlay"
+          x={Math.floor(Math.random() * 50) + "%"}
+          y={Math.floor(Math.random() * 100) + "%"}
+          rotate={Math.floor(Math.random() * 360) + "deg"}
+        ></ChainGraphic>
+      );
+      _chainTemp.push(newChainGraphic);
+    }
+
+    setChainDisplays(_chainTemp);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const approveAccount = async () => {
+    const wetContract = await getWETContract();
+    wetContract.methods
+      .approve(GLOBALS.DUNGEON_CONTRACT_ADDRESS, new BN(GLOBALS.APPROVE_AMOUNT))
+      .send()
+      .on("transactionHash", (hash) => {
+        setWetApprovalLoading(true);
+      })
+      .on("receipt", (receipt) => {
+        setWetApprovalLoading(false);
+        setWetApproved(true);
+      })
+      .on("error", (err) => {
+        alert("Error: " + err);
+        setWetApprovalLoading(false);
+      });
+  };
+
+  const approveNfts = async () => {
+    const waifuContract = await getWaifuContract();
+    waifuContract.methods
+      .setApprovalForAll(GLOBALS.DUNGEON_CONTRACT_ADDRESS, true)
+      .send()
+      .on("transactionHash", (hash) => {
+        setNftApprovalLoading(true);
+      })
+      .on("receipt", (receipt) => {
+        setNftApprovalLoading(false);
+        setNftApproved(true);
+      })
+      .on("error", (err) => {
+        alert("Error: " + err);
+        setNftApprovalLoading(false);
+      });
+  };
 
   return (
     <Layout>
@@ -117,7 +199,19 @@ const DungeonPage = () => {
                 <div className="waifu-card-text waifu-about-text">
                   A peek in the dungeon
                   <br />
-                  {waifuDisplays}
+                  <div className="waifu-dungeon-peek-container">
+                    <div
+                      style={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {chainDisplays}
+                    </div>
+                    {waifuDisplays}
+                  </div>
                 </div>
               </center>
             </Box>
@@ -165,14 +259,30 @@ const DungeonPage = () => {
                   receive a new random Waifu.
                 </Content>
                 <ButtonContainer>
-                  <Button.Outline
-                    className="waifu-card-buttons"
-                    onClick={() => {
-                      setSelectingWaifus(true);
-                    }}
-                  >
-                    <span className="waifu-button-learnmore">Burn WAIFU</span>
-                  </Button.Outline>
+                  {!wetApproved && (
+                    <PendingButton
+                      isPending={wetApprovalLoading}
+                      clickEvent={() => approveAccount()}
+                      text="Approve WET"
+                    />
+                  )}
+                  {wetApproved && !nftApproved && (
+                    <PendingButton
+                      isPending={nftApprovalLoading}
+                      clickEvent={() => approveNfts()}
+                      text="Approve WAIFU"
+                    />
+                  )}
+                  {wetApproved && nftApproved && (
+                    <Button.Outline
+                      className="waifu-card-buttons"
+                      onClick={() => {
+                        setSelectingWaifus(true);
+                      }}
+                    >
+                      <span className="waifu-button-learnmore">Burn WAIFU</span>
+                    </Button.Outline>
+                  )}
                 </ButtonContainer>
               </BoxContent>
             </BoxUpper>
