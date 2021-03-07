@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/pages/index.js"],"names":["App"],"mappings":"4FAAA,uBACeA,YAAf","file":"component---src-pages-index-js-8a65cb06f36bc1a3217b.js","sourcesContent":["import App from '../app/app';\r\nexport default App;\r\n"],"sourceRoot":""}
