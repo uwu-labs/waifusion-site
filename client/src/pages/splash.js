@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text } from "rimble-ui";
-import styled, { keyframes } from "styled-components";
+import { keyframes } from "styled-components";
 
 import Window from "../assets/Window.svg";
 import Logo from "../assets/Logo.svg";
@@ -15,17 +15,6 @@ const LogoText = keyframes`
     blink{
         50%{opacity: 0;}
     }
-`;
-
-const WindowDiv = styled.div`
-  width: 1010;
-  height: 450;
-  position: "relative";
-  left: "50%";
-  top: "50%";
-  transform: " translate(-50%, -50%)";
-  animation: ${LogoText} 1.2s ease-in-out;
-  animation-iteration-count: infinite;
 `;
 
 const SplashPage = () => {
@@ -119,7 +108,7 @@ const SplashPage = () => {
                   fontFamily: "VT323",
                   fontSize: "72px",
                   textAlign: "center",
-                  animation: "${LogoText} 1.2s ease-in-out infinite",
+                  animation: `${LogoText} 1.2s ease-in-out infinite`,
                 }}
               >
                 <span className="blink">COMING SOON</span>
@@ -138,7 +127,7 @@ const SplashPage = () => {
                 transform: " translate(-90%, -90%)",
               }}
             >
-              <a href="https://www.google.com" target="_blank">
+              <a href="https://www.google.com" target="_blank" rel="noreferrer">
                 Discord
               </a>
             </Text>
