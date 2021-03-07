@@ -42,7 +42,6 @@ const DungeonPage = () => {
   };
   const [selectingWaifus, setSelectingWaifus] = useState(false);
   const [buyingWaifus, setBuyingWaifus] = useState(false);
-  const [waifusInDungeon, setWaifusInDungeon] = useState(0);
   const [waifuDisplays, setWaifuDisplays] = useState([]);
 
   useEffect(() => {
@@ -50,10 +49,10 @@ const DungeonPage = () => {
       var _waifyDisplay = [];
       var maxDisplayWaifuCount = 5;
 
-      setWaifusInDungeon(await balanceOf(GLOBALS.DUNGEON_CONTRACT_ADDRESS));
-      for (var i = 0; i < maxDisplayWaifuCount && i < waifusInDungeon; i++) {
+      var _waifuCount = await balanceOf(GLOBALS.DUNGEON_CONTRACT_ADDRESS);
+      for (var i = 0; i < maxDisplayWaifuCount && i < _waifuCount; i++) {
         var currentDisplayWaifuDungeonIndex = Math.floor(
-          Math.random() * waifusInDungeon
+          Math.random() * _waifuCount
         );
         var currentDisplayWaifuTokenId = await tokenOfOwnerByIndex(
           currentDisplayWaifuDungeonIndex,
