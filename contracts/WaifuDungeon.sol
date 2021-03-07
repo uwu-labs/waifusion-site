@@ -54,7 +54,7 @@ contract WaifuDungeon is Ownable {
     // This function commits that the sender will purchase a waifu within the next 255 blocks.
     // If they fail to revealWaifus() within that timeframe. The money they sent is forfeited to reduce complexity.
     function commitBuyWaifus(uint256 num) external payable {
-        require(msg.value >= num * buyCost, "WaifuDungeon: not enough ether to buy");
+        require(msg.value == num * buyCost, "WaifuDungeon: invalid ether to buy");
         require(num <= 20, "WaifuDungeon: swapping too many");
         require(num <= waifuCount, "WaifuDungeon: not enough waifus in dungeon");
         _commitRandomWaifus(num);
@@ -84,22 +84,24 @@ contract WaifuDungeon is Ownable {
         }
         for (uint256 i = 0; i < randomIDs.length; i++) { 
             uint256 count = waifuCount;
-            waifusInDungeon[randomIDs[i]] = waifusInDungeon[count];
-            delete waifusInDungeon[count];
+            if (randomIDs[i] < count) {
+                waifusInDungeon[randomIDs[i]] = waifusInDungeon[count-1];
+            }
+            delete waifusInDungeon[count-1];
             waifuCount--;
         }
     }
 
     // Permissioned functions.
 
-    function withdrawFromWaifusion() public onlyOwner() {
-        IWaifusion(WAIFUSION).withdraw();
-    }
-
+    // This function is permissioned and allows the owner to receive ETH from the waifusion contract, 
+    // and uses said funds to buy more NFTs. If there are under 20 waifus remaining in the contract, it should adjust to that.
     function funnelMaxWaifus() external onlyOwner() {
         uint256 remainingWaifus = MAX_NFT_SUPPLY - IWaifusion(WAIFUSION).totalSupply();
         uint256 waifusToMint = remainingWaifus < 20 ? remainingWaifus : 20;
-        require(waifusToMint > 0, "WaifuDungeon: outta waifus");
+        if (waifusToMint == 0) {
+            return;
+        }
         funnelWaifus(waifusToMint);
     }
 
@@ -111,7 +113,7 @@ contract WaifuDungeon is Ownable {
 
     // addNFTToDungeon allows for arbitrary NFT addition to the contract, assuming 
     // its ID fits within uint48. 
-    function addNFTToDungeon(address nftContract, uint256 nftID) external {
+    function addNFTToDungeon(address nftContract, uint256 nftID) external onlyOwner() {
         require(nftContract != address(0), "WaifuDungeon: addNFT zero addr");
         IERC721(nftContract).transferFrom(msg.sender, address(this), nftID);
         waifusInDungeon[waifuCount] = Waifu(nftContract, uint64(nftID));
@@ -120,7 +122,11 @@ contract WaifuDungeon is Ownable {
 
     function withdraw() external onlyOwner() {
         uint256 balance = address(this).balance;
-        payable(_msgSender()).transfer(balance);
+        payable(msg.sender).transfer(balance);
+    }
+
+    function withdrawFromWaifusion() public onlyOwner() {
+        IWaifusion(WAIFUSION).withdraw();
     }
 
     function setWaifusionOwner(address newOwner) external onlyOwner() {
@@ -147,7 +153,7 @@ contract WaifuDungeon is Ownable {
 
     function _revealRandomWaifus() internal returns (uint256[] memory) {
         Commit memory commit = commits[msg.sender];
-        require(commit.amount > 0, "WaifuDungeon: Need to commit");
+        require(commit.amount > 0 && commit.block != 0, "WaifuDungeon: Need to commit");
         require(commit.block < uint64(block.number), "WaifuDungeon: cannot reveal same block");
         require(commit.block + 255 >= uint64(block.number), "WaifuDungeon: Revealed too late");
         commits[msg.sender].block = 0;
