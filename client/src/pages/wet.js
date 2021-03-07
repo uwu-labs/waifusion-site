@@ -88,33 +88,33 @@ const WETTokenPage = () => (
             <br />
           </center>
         </Box>
-        {/*Contract window */}
-        <Box className="waifu-card-box smart-contract-box">
-          <div className="box-upper">
-            <img src={WetPinkBar} className="waifu-card-box-greenbar" />
-            <Box
-              className="waifu-card-box-sub"
-              color="white"
-              style={{ maxWidth: 1424, marginBottom: 1 }}
-            >
-              <center className="waifu-card-box-center">
-                <div className="waifu-card-header-text waifu-smartcontract-header">
-                  Verified Smart Contracts
-                </div>
+      </div>
+    </Box>
+    {/*Contract window */}
+    <Box className="waifu-card-box smart-contract-box">
+      <div className="box-upper">
+        <img src={WetPinkBar} className="waifu-card-box-greenbar" />
+        <Box
+          className="waifu-card-box-sub"
+          color="white"
+          style={{ maxWidth: 1424, marginBottom: 1 }}
+        >
+          <center className="waifu-card-box-center">
+            <div className="waifu-card-header-text waifu-smartcontract-header">
+              Verified Smart Contracts
+            </div>
 
-                <div className="waifu-about-header-text  waifu-header-smart">
-                  Waifu Contract
-                </div>
-                <div className="waifu-card-text waifu-about-text waifu-about-smart">
-                  {GLOBALS.WAIFU_CONTRACT_ADDRESS}
-                </div>
-                <div className="waifu-about-header-text ">WET Contract</div>
-                <div className="waifu-card-text waifu-about-text waifu-about-smart">
-                  {GLOBALS.WET_CONTRACT_ADDRESS}
-                </div>
-              </center>
-            </Box>
-          </div>
+            <div className="waifu-about-header-text  waifu-header-smart">
+              Waifu Contract
+            </div>
+            <div className="waifu-card-text waifu-about-text waifu-about-smart">
+              {GLOBALS.WAIFU_CONTRACT_ADDRESS}
+            </div>
+            <div className="waifu-about-header-text ">WET Contract</div>
+            <div className="waifu-card-text waifu-about-text waifu-about-smart">
+              {GLOBALS.WET_CONTRACT_ADDRESS}
+            </div>
+          </center>
         </Box>
       </div>
     </Box>
