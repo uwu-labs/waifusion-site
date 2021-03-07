@@ -13,7 +13,11 @@ const OverviewPage = () => (
 
     <Box className="waifu-card-box overview-card-box">
       <div className="box-upper">
-        <img src={OverviewGreenBar} className="waifu-card-box-greenbar" />
+        <img
+          src={OverviewGreenBar}
+          alt="green nav bar"
+          className="waifu-card-box-greenbar"
+        />
         <Box
           className="waifu-card-box-sub"
           color="white"
