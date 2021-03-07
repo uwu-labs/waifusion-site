@@ -2,8 +2,6 @@ import { GLOBALS } from "./globals.js";
 const IPFS = require("ipfs-core");
 let node = null;
 
-// const node = await IPFS.create();
-
 const getIpfsNode = async () => {
   if (node == null) {
     node = await IPFS.create();
@@ -12,7 +10,10 @@ const getIpfsNode = async () => {
 };
 
 var getImageIdFromIndex = (index) => {
-  return ((new Number(index) + GLOBALS.STARTING_INDEX) % 16384).toString();
+  return (
+    (new Number.parseInt(index) + GLOBALS.STARTING_INDEX) %
+    16384
+  ).toString();
 };
 
 const cleanWaifus = (waifus) => {
@@ -54,10 +55,6 @@ const cleanWaifus = (waifus) => {
   });
 };
 
-const extractTraits = (waifus, trait) => {
-  //Return an array of waifus that have the trait
-};
-
 const loadWaifus = async () => {
   //This is the one that grabs all the info from ipfs
   //names.json
@@ -89,7 +86,7 @@ const getWaifuById = async (id) => {
   var waifusArr = await loadWaifus();
   debugger;
   var result = waifusArr.find((item) => {
-    return item.index == id;
+    return item.index === id;
   });
   return result;
 };
