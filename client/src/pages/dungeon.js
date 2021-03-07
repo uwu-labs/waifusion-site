@@ -8,7 +8,6 @@ import WaifuPinkBar from "../images/waifucard_pink_bar.png";
 // import { GLOBALS } from "../app/utils/globals.js";
 import styled from "styled-components";
 import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
-import Loading from "../components/loading";
 import WaifuSelector from "../components/waifuSelector";
 import BuyWaifus from "../components/buyWaifus";
 import { GLOBALS } from "../app/utils/globals";
@@ -64,6 +63,7 @@ const DungeonPage = () => {
           <img
             key={"waifu-peek-" + currentDisplayWaifuTokenId}
             className="dungeon-waifu-card-image"
+            alt=""
             src={
               GLOBALS.GALLERY_VIEWABLE_URL +
               "/" +
@@ -73,7 +73,8 @@ const DungeonPage = () => {
           />
         );
         if (
-          _waifyDisplay.find((elem) => elem.key == currentDisplayWaifuHTML.key)
+          // eslint-disable-next-line no-loop-func
+          _waifyDisplay.find((elem) => elem.key === currentDisplayWaifuHTML.key)
         ) {
           i--;
         } else {
@@ -85,6 +86,7 @@ const DungeonPage = () => {
     getDungeonPreview().then((value) => {
       setWaifuDisplays(value);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -93,7 +95,11 @@ const DungeonPage = () => {
       <PageContainer>
         <Box className="waifu-card-box overview-card-box">
           <div className="box-upper">
-            <img src={OverviewGreenBar} className="waifu-card-box-greenbar" />
+            <img
+              src={OverviewGreenBar}
+              alt="green nav bar"
+              className="waifu-card-box-greenbar"
+            />
             <Box
               className="waifu-card-box-sub"
               color="white"
@@ -122,7 +128,11 @@ const DungeonPage = () => {
         <PurchaseOptionsContainer>
           <Box className="waifu-card-box">
             <BoxUpper>
-              <img src={WaifuPinkBar} className="waifu-card-box-pinkbar" />
+              <img
+                src={WaifuPinkBar}
+                alt="pink nav bar"
+                className="waifu-card-box-pinkbar"
+              />
               <BoxContent>
                 <Header>Buy Waifus</Header>
                 <Content>
@@ -144,7 +154,11 @@ const DungeonPage = () => {
           </Box>
           <Box className="waifu-card-box">
             <BoxUpper>
-              <img src={WaifuPinkBar} className="waifu-card-box-pinkbar" />
+              <img
+                src={WaifuPinkBar}
+                alt="pink nav bar"
+                className="waifu-card-box-pinkbar"
+              />
               <BoxContent>
                 <Header>Burn Waifus</Header>
                 <Content>
