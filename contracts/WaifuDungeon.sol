@@ -24,13 +24,12 @@ contract WaifuDungeon is Ownable {
     struct Commit {
         uint64 block;
         uint64 amount;
-        bool committed;
     }
     mapping (address => Commit) public commits;
 
     struct Waifu {
         address nftContract;
-        uint48 waifuID;
+        uint64 waifuID;
     }
     mapping (uint256 => Waifu) public waifusInDungeon;
 
@@ -44,10 +43,10 @@ contract WaifuDungeon is Ownable {
     // the NFTs in this contract are all valid.
     function onERC721Received(address operator, address from, uint256 tokenId, bytes calldata data) external returns (bytes4) {
         // Only accept NFTs through this function if they're being funneled.
-        require(msg.sender == WAIFUSION);
-        require(operator == address(this));
-        require(tokenId <= MAX_NFT_SUPPLY);
-        waifusInDungeon[waifuCount] = Waifu(WAIFUSION, uint48(tokenId));
+        require(msg.sender == WAIFUSION, "WaifuDungeon: NFT not from waifusion");
+        require(operator == address(this), "WaifuDungeon: invalid operator");
+        require(tokenId <= MAX_NFT_SUPPLY, "WaifuDungeon: over max waifus");
+        waifusInDungeon[waifuCount] = Waifu(WAIFUSION, uint64(tokenId));
         waifuCount++;
         return _ERC721_RECEIVED;
     }
@@ -55,9 +54,9 @@ contract WaifuDungeon is Ownable {
     // This function commits that the sender will purchase a waifu within the next 255 blocks.
     // If they fail to revealWaifus() within that timeframe. The money they sent is forfeited to reduce complexity.
     function commitBuyWaifus(uint256 num) external payable {
-        require(msg.value >= num * buyCost, "not enough ether to buy");
-        require(num <= 20, "swapping too many");
-        require(num <= waifuCount, "not enough waifus in dungeon");
+        require(msg.value >= num * buyCost, "WaifuDungeon: not enough ether to buy");
+        require(num <= 20, "WaifuDungeon: swapping too many");
+        require(num <= waifuCount, "WaifuDungeon: not enough waifus in dungeon");
         _commitRandomWaifus(num);
     }
 
@@ -65,8 +64,8 @@ contract WaifuDungeon is Ownable {
     // If they fail to revealWaifus() within that timeframe. The money they sent is forfeited to reduce complexity.
     function commitSwapWaifus(uint256[] calldata _ids) external {
         uint256 amountToSwap = _ids.length;
-        require(amountToSwap <= MAX_SWAP, "swapping too many");
-        require(amountToSwap <= waifuCount, "not enough waifus in dungeon");
+        require(amountToSwap <= MAX_SWAP, "WaifuDungeon: swapping too many");
+        require(amountToSwap <= waifuCount, "WaifuDungeon: not enough waifus in dungeon");
         address _BURN_ADDR = BURN_ADDR;
         address _WAIFUSION = WAIFUSION;
         SafeERC20.safeTransferFrom(IERC20(WET_TOKEN), msg.sender, _BURN_ADDR, swapCost*amountToSwap);
@@ -84,8 +83,9 @@ contract WaifuDungeon is Ownable {
             IERC721(waifu.nftContract).safeTransferFrom(address(this), msg.sender, uint256(waifu.waifuID));
         }
         for (uint256 i = 0; i < randomIDs.length; i++) { 
-            waifusInDungeon[randomIDs[i]] = waifusInDungeon[waifuCount];
-            delete waifusInDungeon[waifuCount];
+            uint256 count = waifuCount;
+            waifusInDungeon[randomIDs[i]] = waifusInDungeon[count];
+            delete waifusInDungeon[count];
             waifuCount--;
         }
     }
@@ -99,7 +99,7 @@ contract WaifuDungeon is Ownable {
     function funnelMaxWaifus() external onlyOwner() {
         uint256 remainingWaifus = MAX_NFT_SUPPLY - IWaifusion(WAIFUSION).totalSupply();
         uint256 waifusToMint = remainingWaifus < 20 ? remainingWaifus : 20;
-        require(waifusToMint > 0, "outta waifus");
+        require(waifusToMint > 0, "WaifuDungeon: outta waifus");
         funnelWaifus(waifusToMint);
     }
 
@@ -112,9 +112,9 @@ contract WaifuDungeon is Ownable {
     // addNFTToDungeon allows for arbitrary NFT addition to the contract, assuming 
     // its ID fits within uint48. 
     function addNFTToDungeon(address nftContract, uint256 nftID) external {
-        require(nftContract != address(0), "zero addr");
+        require(nftContract != address(0), "WaifuDungeon: addNFT zero addr");
         IERC721(nftContract).transferFrom(msg.sender, address(this), nftID);
-        waifusInDungeon[waifuCount] = Waifu(nftContract, uint48(nftID));
+        waifusInDungeon[waifuCount] = Waifu(nftContract, uint64(nftID));
         waifuCount++;
     }
 
@@ -138,19 +138,19 @@ contract WaifuDungeon is Ownable {
     // Internal functions.
 
     function _commitRandomWaifus(uint256 num) internal {
-        require(num > 0, "anon, you cant reveal 0 waifus");
+        require(num > 0, "WaifuDungeon: anon, you cant reveal 0 waifus");
         uint256 currentBlock = block.number;
-        require(commits[msg.sender].block + 255 < currentBlock, "still need to reveal");
+        require(commits[msg.sender].block + 255 < currentBlock, "WaifuDungeon: still need to reveal");
         commits[msg.sender].block = uint64(currentBlock);
         commits[msg.sender].amount = uint64(num);
     }
 
     function _revealRandomWaifus() internal returns (uint256[] memory) {
         Commit memory commit = commits[msg.sender];
-        require(commit.amount > 0, "WaifuMaidCafe: Need to commit");
-        require(uint64(block.number) > commit.block, "WaifuMaidCafe: cannot reveal same block");
-        require(uint64(block.number) <= commit.block + 255, "WaifuMaidCafe: Revealed too late");
-        delete commits[msg.sender];
+        require(commit.amount > 0, "WaifuDungeon: Need to commit");
+        require(commit.block < uint64(block.number), "WaifuDungeon: cannot reveal same block");
+        require(commit.block + 255 >= uint64(block.number), "WaifuDungeon: Revealed too late");
+        commits[msg.sender].block = 0;
         
         // Get the hash of the block that happened after they committed.
         bytes32 revealHash = blockhash(commit.block + 1);
