@@ -93,7 +93,11 @@ const WETTokenPage = () => (
     {/*Contract window */}
     <Box className="waifu-card-box smart-contract-box">
       <div className="box-upper">
-        <img src={WetPinkBar} className="waifu-card-box-greenbar" />
+        <img
+          src={WetPinkBar}
+          img="pink nav bar"
+          className="waifu-card-box-greenbar"
+        />
         <Box
           className="waifu-card-box-sub"
           color="white"
