@@ -1,43 +1,40 @@
-import { decorate, observable, computed, action } from 'mobx';
-import * as _ from 'lodash';
+import { decorate, observable } from "mobx";
 
 class DetailStore {
+  isPendingNameChange = false;
+  nameValidation = "";
+  currentName = "";
+  changedName = "";
+  changeNamePending = false;
+  isinsufficientBalance = false;
+  owner = "";
+  accumulatedWET = 0;
+  wetBalance = 0;
+  isPendingApproval = false;
+  isApproved = false;
+  currentWaifu = null;
 
-    isPendingNameChange = false;
-    nameValidation = '';
-    currentName = '';
-    changedName = '';
-    changeNamePending = false;
-    isinsufficientBalance = false;
-    owner = '';
-    accumulatedWET = 0;
-    wetBalance = 0;
-    isPendingApproval = false;
-    isApproved = false;
-    currentWaifu = null;
-    
+  constructor(rootStore) {
+    this.rootStore = rootStore;
+  }
 
-    constructor(rootStore) {
-        this.rootStore = rootStore;
-    }
-
-    updateChangedName (cn) {
-        this.changedName = cn;
-    }
+  updateChangedName(cn) {
+    this.changedName = cn;
+  }
 }
 decorate(DetailStore, {
-    isPendingNameChange: observable,
-    nameValidation: observable,
-    currentName: observable,
-    changedName: observable,
-    changeNamePending: observable,
-    isinsufficientBalance: observable,
-    owner: observable,
-    accumulatedWET: observable,
-    wetBalance: observable,
-    isPendingApproval: observable,
-    isApproved: observable,
-    currentWaifu: observable
+  isPendingNameChange: observable,
+  nameValidation: observable,
+  currentName: observable,
+  changedName: observable,
+  changeNamePending: observable,
+  isinsufficientBalance: observable,
+  owner: observable,
+  accumulatedWET: observable,
+  wetBalance: observable,
+  isPendingApproval: observable,
+  isApproved: observable,
+  currentWaifu: observable,
 });
 
 export default DetailStore;
