@@ -1,18 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Popup from "./popup";
-import { BoxUpper, BoxContent, Header, Content } from "../styles/BoxContent";
-import {
-  getDungeonContract,
-  getWETContract,
-} from "../app/utils/contracthelper";
-import { web3 } from "../app/utils/contracthelper";
-import { Box, Button } from "rimble-ui";
+import { BoxContent, Header } from "../styles/BoxContent";
+import { getDungeonContract } from "../app/utils/contracthelper";
+import { Button } from "rimble-ui";
 import Loading from "./loading";
-import BN from "bn.js";
-import { GLOBALS } from "../app/utils/globals";
-
-import { RootStoreContext } from "../app/stores/root.store";
 
 const StyledWaifuSelector = styled.div``;
 
@@ -41,7 +33,7 @@ const ErrorText = styled.div`
 `;
 
 const SelectedWaifuContainer = styled.div`
-  margin-bottom:10px;
+  margin-bottom: 10px;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -109,11 +101,8 @@ const WaifuSelector = ({ show, close }) => {
   const [commitComplete, setCommitComplete] = useState(false);
   const [error, setError] = useState("");
 
-  const rootStore = useContext(RootStoreContext);
-  const { transactionStore } = rootStore;
-
   const AddWaifu = () => {
-    if(!Number.isInteger(parseFloat(waifuId))){
+    if (!Number.isInteger(parseFloat(waifuId))) {
       setError("Must enter an ID");
       return;
     }
@@ -134,15 +123,13 @@ const WaifuSelector = ({ show, close }) => {
     setWaifuId("");
   };
 
-  const removeWaifu = id => {
-    const newWaifus = waifus.filter(waifu => waifu.id !== id)
-    setWaifus(newWaifus)
-  }
+  const removeWaifu = (id) => {
+    const newWaifus = waifus.filter((waifu) => waifu.id !== id);
+    setWaifus(newWaifus);
+  };
 
   const doBurnWaifus = async () => {
     const dungeonContract = await getDungeonContract();
-    const estimatedGas = 200000 * waifus.length;
-    const wetCost = 5490 * waifus.length;
     const waifuIds = waifus.map((w) => w.id);
     dungeonContract.methods
       .commitSwapWaifus(waifuIds)
@@ -171,29 +158,29 @@ const WaifuSelector = ({ show, close }) => {
             <Header>Add Waifus to Burn</Header>
             <SelectedWaifus>
               {waifus.map((waifu) => (
-                  <SelectedWaifuContainer key={waifu.id}>
-                    <AddButton onClick={() => removeWaifu(waifu.id)}>-</AddButton>
-                    <SelectedWaifu>{waifu.id}</SelectedWaifu>
-                  </SelectedWaifuContainer>
+                <SelectedWaifuContainer key={waifu.id}>
+                  <AddButton onClick={() => removeWaifu(waifu.id)}>-</AddButton>
+                  <SelectedWaifu>{waifu.id}</SelectedWaifu>
+                </SelectedWaifuContainer>
               ))}
             </SelectedWaifus>
             {waifus.length < 3 && (
-                <>
-                  <AddContainer>
-                    <AddInput
-                      value={waifuId}
-                      placeholder="Waifu ID"
-                      onChange={(event) => {
-                        setError("")
-                        const val = event.target.value.replace(/[^0-9]/g, '');
-                        setWaifuId(val)
-                      }}
-                      />
-                    <AddButton onClick={() => AddWaifu()}>+</AddButton>
-                  </AddContainer>
-                  <ErrorText>{error}</ErrorText>
-                </>
-              )}
+              <>
+                <AddContainer>
+                  <AddInput
+                    value={waifuId}
+                    placeholder="Waifu ID"
+                    onChange={(event) => {
+                      setError("");
+                      const val = event.target.value.replace(/[^0-9]/g, "");
+                      setWaifuId(val);
+                    }}
+                  />
+                  <AddButton onClick={() => AddWaifu()}>+</AddButton>
+                </AddContainer>
+                <ErrorText>{error}</ErrorText>
+              </>
+            )}
             {waifus.length >= 1 && (
               <Cost>{`Cost: ${waifus.length * 5490} WET`}</Cost>
             )}
