@@ -1,4 +1,5 @@
 import React from "react";
+import { Box } from "rimble-ui";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
