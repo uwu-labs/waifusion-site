@@ -15,7 +15,11 @@ const WETTokenPage = () => (
     <SEO title="WET Token" />
     <Box className="waifu-card-box overview-card-box">
       <div className="box-upper">
-        <img src={OverviewGreenBar} className="waifu-card-box-greenbar" />
+        <img
+          src={OverviewGreenBar}
+          alt="green nav bar"
+          className="waifu-card-box-greenbar"
+        />
         <Box
           className="waifu-card-box-sub"
           color="white"
@@ -89,7 +93,11 @@ const WETTokenPage = () => (
     {/*Contract window */}
     <Box className="waifu-card-box smart-contract-box">
       <div className="box-upper">
-        <img src={WetPinkBar} className="waifu-card-box-greenbar" />
+        <img
+          src={WetPinkBar}
+          alt="pink nav bar"
+          className="waifu-card-box-greenbar"
+        />
         <Box
           className="waifu-card-box-sub"
           color="white"
