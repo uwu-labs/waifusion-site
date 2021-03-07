@@ -13,18 +13,14 @@ const OverviewPage = () => (
 
     <Box className="waifu-card-box overview-card-box">
       <div className="box-upper">
-        <img
-          src={OverviewGreenBar}
-          alt="green nav bar"
-          className="waifu-card-box-greenbar"
-        />
+        <img src={OverviewGreenBar} className="waifu-card-box-greenbar" />
         <Box
           className="waifu-card-box-sub"
           color="white"
           style={{ maxWidth: 1424, marginBottom: 1 }}
         >
           <center className="waifu-card-box-center">
-            <div class="waifu-card-header-text">
+            <div className="waifu-card-header-text">
               How will I be able to tell the rarity of my Waifu?
             </div>
             <div className="waifu-card-text waifu-about-text">
@@ -37,7 +33,7 @@ const OverviewPage = () => (
             </div>
             <br />
 
-            <div class="waifu-card-header-text">Get WET</div>
+            <div className="waifu-card-header-text">Get WET</div>
             <div className="waifu-card-text waifu-about-text">
               Get your Waifus Wet. Waifu Enhancement Token or WET is a token
               that allows you to change the name of your Waifus leaving your

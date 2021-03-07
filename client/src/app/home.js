@@ -95,7 +95,7 @@ const Home = props => {
                       you sell them... Baka.
                       <br />
                       <br />
-                      <div class="waifu-card-header-text">
+                      <div className="waifu-card-header-text">
                         Get Your Waifus WET?
                       </div>
                       <br />
