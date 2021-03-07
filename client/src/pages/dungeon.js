@@ -35,6 +35,9 @@ const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const ChainGraphic = styled.div`
+  transform: ${(props) => `TranslateX(-50%) TranslateX(${props.x}) TranslateY(${props.y}) Rotate(${props.rotate})`};
+`;
 
 const DungeonPage = () => {
   const revealedWaifuIndex = (waifuIndex) => {
@@ -43,6 +46,7 @@ const DungeonPage = () => {
   const [selectingWaifus, setSelectingWaifus] = useState(false);
   const [buyingWaifus, setBuyingWaifus] = useState(false);
   const [waifuDisplays, setWaifuDisplays] = useState([]);
+  const [chainDisplays, setChainDisplays] = useState([]);
 
   useEffect(() => {
     async function getDungeonPreview() {
@@ -51,9 +55,7 @@ const DungeonPage = () => {
 
       var _waifuCount = await balanceOf(GLOBALS.DUNGEON_CONTRACT_ADDRESS);
       for (var i = 0; i < maxDisplayWaifuCount && i < _waifuCount; i++) {
-        var currentDisplayWaifuDungeonIndex = Math.floor(
-          Math.random() * _waifuCount
-        );
+        var currentDisplayWaifuDungeonIndex = Math.floor(Math.random() * _waifuCount);
         var currentDisplayWaifuTokenId = await tokenOfOwnerByIndex(
           currentDisplayWaifuDungeonIndex,
           GLOBALS.DUNGEON_CONTRACT_ADDRESS
@@ -85,6 +87,17 @@ const DungeonPage = () => {
     getDungeonPreview().then((value) => {
       setWaifuDisplays(value);
     });
+
+    const minChainsCount = 4;
+    const maxChainsCount = 12;
+    var _chainTemp = [];
+    var displayChainCount = Math.floor(Math.random() * (maxChainsCount - minChainsCount) + minChainsCount);
+    for(var i = 0; i < displayChainCount; i++){
+      var newChainGraphic = <ChainGraphic className="waifu-dungeon-chain-overlay" x={Math.floor(Math.random() *50)+"%"} y={Math.floor(Math.random() *100)+"%"} rotate={Math.floor(Math.random() *360) + "deg"}></ChainGraphic>
+      _chainTemp.push(newChainGraphic)
+    }
+
+    setChainDisplays(_chainTemp);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -117,7 +130,12 @@ const DungeonPage = () => {
                 <div className="waifu-card-text waifu-about-text">
                   A peek in the dungeon
                   <br />
-                  {waifuDisplays}
+                  <div className="waifu-dungeon-peek-container">
+                    <div style={{position:"absolute", width:"100%", height:"100%", overflow:"hidden"}}>
+                      {chainDisplays}
+                    </div>
+                    {waifuDisplays}
+                  </div>
                 </div>
               </center>
             </Box>
