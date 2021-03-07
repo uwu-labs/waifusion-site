@@ -20,6 +20,7 @@ contract WaifuDungeon is Ownable {
     uint256 public swapCost = 5490 ether;
 
     uint256 public waifuCount;
+    uint256 public revealNonce;
 
     struct Commit {
         uint64 block;
@@ -163,11 +164,12 @@ contract WaifuDungeon is Ownable {
 
         uint256[] memory randomIDs = new uint256[](commit.amount); 
         uint256 _waifuCount = waifuCount;
-        uint256 randomIndex = uint256(keccak256(abi.encodePacked(revealHash))) % _waifuCount;
+        uint256 randomIndex = uint256(keccak256(abi.encodePacked(revealNonce, revealHash))) % _waifuCount;
         for (uint256 i = 0; i < commit.amount; i++) {
             randomIDs[i] = randomIndex;
             randomIndex = (randomIndex + 1) % _waifuCount;
         }
+        revealNonce++;
         return randomIDs;
     }
 }
