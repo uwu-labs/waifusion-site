@@ -194,7 +194,10 @@ describe("WaifuDungeon", function () {
   })
 
   it("Should reveal 5 waifus next tx", async function () {
+    let revealNonceBefore = await waifuDungeon.revealNonce();
     await testReveal(ownerAccount, 5, true);
+    let revealNonceAfter = await waifuDungeon.revealNonce();
+    expect(revealNonceBefore.toNumber()).to.be.lessThan(revealNonceAfter.toNumber())
   });
 
   it("increment block", async function () {
@@ -465,7 +468,10 @@ describe("WaifuDungeon Edge Cases", function () {
   })
 
   it("Should reveal last waifu next tx", async function () {
+    let revealNonceBefore = await waifuDungeon.revealNonce();
     await testReveal(userAAccount, 1, false)
+    let revealNonceAfter = await waifuDungeon.revealNonce();
+    expect(revealNonceBefore.toNumber()).to.be.lessThan(revealNonceAfter.toNumber())
 
     let waifusInDungeon = await waifuDungeon.waifusInDungeon(0);
     expect(waifusInDungeon.nftContract).to.equal("0x0000000000000000000000000000000000000000");
