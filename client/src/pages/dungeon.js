@@ -14,7 +14,7 @@ import { GLOBALS } from "../app/utils/globals";
 
 import {
   balanceOf,
-  getAllowance,
+  getDungeonAllowance,
   getWETContract,
   tokenOfOwnerByIndex,
 } from "../app/utils/contracthelper";
@@ -59,8 +59,8 @@ const DungeonPage = () => {
   const [approvalLoading, setApprovalLoading] = useState(false);
 
   useEffect(() => {
-    getAllowance().then((value) => {
-      setApproved(value >= GLOBALS.APPROVE_AMOUNT);
+    getDungeonAllowance().then((value) => {
+      setApproved(value >= new BN(GLOBALS.APPROVE_AMOUNT));
     });
 
     async function getDungeonPreview() {
@@ -129,7 +129,7 @@ const DungeonPage = () => {
   const approveAccount = async () => {
     const wetContract = await getWETContract();
     wetContract.methods
-      .approve(GLOBALS.WAIFU_CONTRACT_ADDRESS, new BN(GLOBALS.APPROVE_AMOUNT))
+      .approve(GLOBALS.DUNGEON_CONTRACT_ADDRESS, new BN(GLOBALS.APPROVE_AMOUNT))
       .send()
       .on("transactionHash", (hash) => {
         setApprovalLoading(true);
@@ -139,7 +139,7 @@ const DungeonPage = () => {
         setApproved(true);
       })
       .on("error", (err) => {
-        console.log(err);
+        alert("Error: " + err);
         setApprovalLoading(false);
       });
   };

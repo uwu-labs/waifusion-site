@@ -65,6 +65,15 @@ const getAllowance = async () => {
   return currentAllowance;
 };
 
+const getDungeonAllowance = async () => {
+  const defaultAccount = await ethEnabled();
+  const wetContract = await getWETContract();
+  const currentAllowance = await wetContract.methods
+    .allowance(defaultAccount, GLOBALS.DUNGEON_CONTRACT_ADDRESS)
+    .call();
+  return currentAllowance;
+};
+
 const getWETContract = async () => {
   const defaultAccount = await ethEnabled();
   if (defaultAccount === false) {
@@ -186,6 +195,7 @@ export {
   getDungeonContract,
   ethEnabled,
   getAllowance,
+  getDungeonAllowance,
   getWETContract,
   getWaifuContract,
   maxUserCanBuy,
