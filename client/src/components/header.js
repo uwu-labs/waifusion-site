@@ -1,6 +1,6 @@
 import { navigate } from "gatsby";
 import PropTypes from "prop-types";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useMemo } from "react";
 import { Flex, Button, Box } from "rimble-ui";
 import Web3 from "web3";
 import { observer } from "mobx-react-lite";
@@ -20,9 +20,14 @@ const Header = observer(({ siteTitle, menuLinks }) => {
 
   const [timer, setTimer] = useState();
 
+  const windowWeb3 = useMemo(() => {
+    if (window != "undefined") {
+      return new Web3(window.ethereum)
+    }
+  }, [])
+
   const checkWalletAndPendingTransactions = async () => {
-    if (window.ethereum) {
-      let windowWeb3 = new Web3(window.ethereum);
+    if (windowWeb3) {
       const accounts = await windowWeb3.eth.getAccounts();
       walletStore.defaultAddress = accounts[0];
       const isLocked = !accounts || 0 === accounts.length;
