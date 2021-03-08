@@ -76,6 +76,24 @@ export default [
       "type": "function"
     },
     {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "nftContract",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nftID",
+          "type": "uint256"
+        }
+      ],
+      "name": "addNFTToDungeon",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "inputs": [],
       "name": "buyCost",
       "outputs": [
@@ -133,11 +151,6 @@ export default [
           "internalType": "uint64",
           "name": "amount",
           "type": "uint64"
-        },
-        {
-          "internalType": "bool",
-          "name": "revealed",
-          "type": "bool"
         }
       ],
       "stateMutability": "view",
@@ -164,6 +177,40 @@ export default [
       "type": "function"
     },
     {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "onERC721Received",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "inputs": [],
       "name": "owner",
       "outputs": [
@@ -185,14 +232,21 @@ export default [
     },
     {
       "inputs": [],
-      "name": "revealWaifus",
+      "name": "revealNonce",
       "outputs": [
         {
-          "internalType": "uint256[]",
+          "internalType": "uint256",
           "name": "",
-          "type": "uint256[]"
+          "type": "uint256"
         }
       ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "revealWaifus",
+      "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     },
@@ -263,12 +317,36 @@ export default [
     },
     {
       "inputs": [],
-      "name": "waifusInMaidCafe",
+      "name": "waifuCount",
       "outputs": [
         {
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "waifusInDungeon",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "nftContract",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "waifuID",
+          "type": "uint64"
         }
       ],
       "stateMutability": "view",
