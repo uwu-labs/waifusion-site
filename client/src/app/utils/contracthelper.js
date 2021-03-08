@@ -51,7 +51,7 @@ const revealPending = async () => {
   const defaultAccount = await ethEnabled();
   const dungeonContract = await getDungeonContract();
   const commits = await dungeonContract.methods.commits(defaultAccount).call();
-  return commits.amount > 0;
+  return commits.block > 0;
 };
 
 // Other Functions
