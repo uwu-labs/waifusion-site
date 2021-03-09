@@ -64,6 +64,7 @@ const DungeonPage = () => {
   const [nftApproved, setNftApproved] = useState(false);
   const [nftApprovalLoading, setNftApprovalLoading] = useState(false);
   const [hasPendingReveal, setHasPendingReveal] = useState(false);
+  const [waifusInDungeon, setWaifusInDungeon] = useState(null);
 
   useEffect(() => {
     getDungeonAllowance().then((value) => {
@@ -83,6 +84,7 @@ const DungeonPage = () => {
       var maxDisplayWaifuCount = 5;
 
       var _waifuCount = await balanceOf(GLOBALS.DUNGEON_CONTRACT_ADDRESS);
+      setWaifusInDungeon(_waifuCount);
       for (var i = 0; i < maxDisplayWaifuCount && i < _waifuCount; i++) {
         var currentDisplayWaifuDungeonIndex = Math.floor(
           Math.random() * _waifuCount
@@ -208,7 +210,10 @@ const DungeonPage = () => {
                   <br />
                 </div>
                 <div className="waifu-card-text waifu-about-text">
-                  A peek in the dungeon
+                  {`A peek in the dungeon (${
+                    waifusInDungeon ? waifusInDungeon : "----"
+                  } waifus remaining):`}
+                  <br />
                   <br />
                   <div className="waifu-dungeon-peek-container">
                     <div
