@@ -66,10 +66,16 @@ const DungeonPage = () => {
   const [hasPendingReveal, setHasPendingReveal] = useState(false);
 
   useEffect(() => {
+    console.log("meow");
     getDungeonAllowance().then((value) => {
+      console.log("mewer");
+      console.log(value);
+      console.log(GLOBALS.APPROVE_AMOUNT);
+      console.log(new BN(GLOBALS.APPROVE_AMOUNT));
       setWetApproved(value >= new BN(GLOBALS.APPROVE_AMOUNT));
     });
 
+    console.log("mewer");
     isDungeonApprovedForAll().then((value) => {
       setNftApproved(value);
     });
@@ -128,7 +134,7 @@ const DungeonPage = () => {
     for (var i = 0; i < displayChainCount; i++) {
       var newChainGraphic = (
         <ChainGraphic
-          key={"chain-"+i}
+          key={"chain-" + i}
           className="waifu-dungeon-chain-overlay"
           x={Math.floor(Math.random() * 50) + "%"}
           y={Math.floor(Math.random() * 100) + "%"}
@@ -147,7 +153,7 @@ const DungeonPage = () => {
     wetContract.methods
       .approve(
         GLOBALS.DUNGEON_CONTRACT_ADDRESS,
-        new BN("1647000000000000000000000")
+        new BN("9999999999999999999999999999")
       )
       .send()
       .on("transactionHash", (hash) => {
