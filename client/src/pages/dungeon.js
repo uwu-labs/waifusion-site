@@ -66,16 +66,13 @@ const DungeonPage = () => {
   const [hasPendingReveal, setHasPendingReveal] = useState(false);
 
   useEffect(() => {
-    console.log("meow");
     getDungeonAllowance().then((value) => {
-      console.log("mewer");
       console.log(value);
       console.log(GLOBALS.APPROVE_AMOUNT);
       console.log(new BN(GLOBALS.APPROVE_AMOUNT));
       setWetApproved(value >= new BN(GLOBALS.APPROVE_AMOUNT));
     });
 
-    console.log("mewer");
     isDungeonApprovedForAll().then((value) => {
       setNftApproved(value);
     });
