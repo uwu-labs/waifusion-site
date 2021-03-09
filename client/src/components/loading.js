@@ -15,6 +15,16 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
+const ErrorText = styled.div`
+  font-family: VT323 !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  color: red;
+  margin-bottom: 30px;
+`;
+
 const Image = styled.img`
   width: 80%;
 `;
@@ -53,6 +63,9 @@ const Loading = ({ show, type, complete }) => {
                 ? "Buying Waifus"
                 : "Burning Waifus"}
             </Header>
+            {!complete && (
+              <ErrorText>{`After ${type}, you have 45 minutes to reveal or Waifus will be lost forever. If gas fees show as high, try again in 1 minute.`}</ErrorText>
+            )}
             <Content>
               {complete ? (
                 <Image
