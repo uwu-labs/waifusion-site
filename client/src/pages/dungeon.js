@@ -67,9 +67,6 @@ const DungeonPage = () => {
 
   useEffect(() => {
     getDungeonAllowance().then((value) => {
-      console.log(value);
-      console.log(GLOBALS.APPROVE_AMOUNT);
-      console.log(new BN(GLOBALS.APPROVE_AMOUNT));
       setWetApproved(value >= new BN(GLOBALS.APPROVE_AMOUNT));
     });
 
