@@ -63,8 +63,8 @@ contract WaifuDungeon is Ownable {
     // This function commits that the sender will swap a waifu within the next 255 blocks.
     // If they fail to revealWaifus() within that timeframe. The money they sent is forfeited to reduce complexity.
     function commitSwapWaifus(uint256[] calldata _ids) external payable {
-        require(msg.value == SWAP_COST);
         uint256 amountToSwap = _ids.length;
+        require(msg.value == swapCost * amountToSwap);
         require(amountToSwap <= MAX_SWAP, "WaifuDungeon: swapping too many");
         require(amountToSwap <= waifuCount, "WaifuDungeon: not enough waifus in dungeon");
         address _BURN_ADDR = BURN_ADDR;
@@ -102,13 +102,12 @@ contract WaifuDungeon is Ownable {
         if (waifusToMint == 0) {
             return;
         }
-        funnelWaifus(waifusToMint);
+        funnelWaifusFromWaifusion(waifusToMint);
     }
 
     function funnelWaifusFromWaifusion(uint256 num) public onlyOwner() {
         withdrawFromWaifusion();
-        uint256 nftPrice = IWaifusion(WAIFUSION).getNFTPrice();
-        IWaifusion(WAIFUSION).mintNFT{value: num * nftPrice}(num);
+        funnelWaifus(num);
     }
 
     function funnelWaifus(uint256 num) public onlyOwner() {

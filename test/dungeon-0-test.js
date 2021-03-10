@@ -6,7 +6,6 @@ var userAAccount, userAAddress;
 var userBAccount, userBAddress;
 var userCAccount, userCAddress;
 var WaifuDungeon, waifuDungeon;
-var WET_TOKEN, wet;
 var WAIFUSION, waifusion;
 var WAIFUSION2, waifusion2;
 var waifusionOwner, waifusionOwnerSigner;
@@ -35,21 +34,13 @@ describe("Setup", function () {
     waifuDungeon = await WaifuDungeon.deploy();
     await waifuDungeon.deployed();
 
-    WET_TOKEN = await waifuDungeon.WET_TOKEN()
-    wet = await ethers.getContractAt("contracts/token/IERC20.sol:IERC20", WET_TOKEN);
-
     WAIFUSION = await waifuDungeon.WAIFUSION()
     waifusion = await ethers.getContractAt("Waifus", WAIFUSION);
 
     let waifusion2Factory = await ethers.getContractFactory("Waifus");
-    waifusion2 = await waifusion2Factory.deploy("dummy", "dummy", WET_TOKEN);
+    waifusion2 = await waifusion2Factory.deploy("dummy", "dummy", waifusion.address);
     console.log(waifusion2.address)
     waifusionOwner = await waifusion.owner();
-    // wet = await ethers.getContractAt("IERC20", WET_TOKEN);
-    // deploy stablecoins to local blockchain emulator
-    // wet = await testHelper.deployCoin(ethers, 'dai');
-    // use deployed stablecoin address for collaterals
-    // COLLATERAL = dai.address;
   });
 
   it("Should set the dungeon as waifusion owner", async function () {
@@ -70,14 +61,11 @@ describe("Setup", function () {
     )
   });
 
-  it("Should let a user buy 1 NFT and claim WET", async function () {
-    expect((await wet.balanceOf(ownerAddress)).toString()).to.equal("0");
+  it("Should let a user buy 1 NFT", async function () {
     await waifusion.mintNFT(1, { value: ethers.utils.parseEther("0.7") });
     expect(await waifusion.balanceOf(ownerAddress)).to.equal(1);
     ownerNFTId = await waifusion.totalSupply() - 1
     expect(await waifusion.ownerOf(ownerNFTId)).to.equal(ownerAddress);
-    await wet.claim([ownerNFTId])
-    expect((await wet.balanceOf(ownerAddress)).toString()).to.not.equal("0");
   })
 
   it("Should let a user buy 5 NFTs pt. 2", async function () {
@@ -102,8 +90,6 @@ describe("Setup", function () {
     for (let i = 0; i < waifus.length; i++) {
       expect(await waifusion.ownerOf(waifus[i])).to.equal(ownerAddress);
     }
-    await wet.claim(ownerNFTIdOthers)
-    expect((await wet.balanceOf(ownerAddress)).toString()).to.not.equal(0);
   })
 });
 
@@ -133,11 +119,11 @@ describe("WaifuDungeon", function () {
   });
 
   it("Should not let me buy 5 waifus with 0.7 eth", async function () {
-    await expect(waifuDungeon.commitBuyWaifus(5, { value: ethers.utils.parseEther("0.7") })).to.revertedWith("invalid ether");
+    await expect(waifuDungeon.commitBuyWaifus(5, { value: ethers.utils.parseEther("0.7") })).to.revertedWith("invalid bnb");
   });
 
   it("Should not let me buy 3 waifus with 4.2 eth", async function () {
-    await expect(waifuDungeon.commitBuyWaifus(3, { value: ethers.utils.parseEther("4.2") })).to.revertedWith("invalid ether");
+    await expect(waifuDungeon.commitBuyWaifus(3, { value: ethers.utils.parseEther("4.2") })).to.revertedWith("invalid bnb");
   });
 
   it("Should let owner add 5 arbitrary NFTs", async function () {
@@ -163,9 +149,9 @@ describe("WaifuDungeon", function () {
     await network.provider.send("evm_mine")
   })
 
-  it("Should commit waifu for 0.7 eth", async function () {
+  it("Should commit waifu for 1.8 bnb", async function () {
     let userAContract = waifuDungeon.connect(userAAccount);
-    await userAContract.commitBuyWaifus(1, { value: ethers.utils.parseEther("0.7") });
+    await userAContract.commitBuyWaifus(1, { value: ethers.utils.parseEther("1.8") });
   });
 
   it("increment block", async function () {
@@ -185,8 +171,8 @@ describe("WaifuDungeon", function () {
     await expect(userADungeon.revealWaifus()).to.revertedWith("Need to commit")
   })
 
-  it("Should commit 5 waifus for 3.5 eth", async function () {
-    await waifuDungeon.commitBuyWaifus(5, { value: ethers.utils.parseEther("3.5") });
+  it("Should commit 5 waifus for 9 bnb", async function () {
+    await waifuDungeon.commitBuyWaifus(5, { value: ethers.utils.parseEther("9") });
   });
 
   it("increment block", async function () {
@@ -206,13 +192,12 @@ describe("WaifuDungeon", function () {
 
   let waifusBalanceBeforeSwap;
   let waifusBalance2BeforeSwap;
-  it("Should commit swap 1 waifus for 5490 WET", async function () {
+  it("Should commit swap 1 waifus for 0.25 BNB", async function () {
     waifusBalanceBeforeSwap = await waifusion.balanceOf(ownerAddress);
     waifusBalance2BeforeSwap = await waifusion2.balanceOf(ownerAddress);
-    await wet.approve(waifuDungeon.address, ethers.utils.parseEther("5490"));
     await waifusion.setApprovalForAll(waifuDungeon.address, true);
     expect(await waifusion.isApprovedForAll(ownerAddress, waifuDungeon.address)).to.equal(true)
-    await waifuDungeon.commitSwapWaifus([ownerNFTId]);
+    await waifuDungeon.commitSwapWaifus([ownerNFTId], {value: ethers.utils.parseEther("0.25")});
   });
 
   it("increment block", async function () {
@@ -227,17 +212,12 @@ describe("WaifuDungeon", function () {
     await network.provider.send("evm_mine")
   })
 
-  it("Should set the swap price to 5000 WET", async function () {
-    await waifuDungeon.setSwapCost(ethers.utils.parseEther("5000"))
-  })
-
-  it("Should commit swap 2 waifus for 10000 WET", async function () {
+  it("Should commit swap 2 waifus for 0.5 BNB", async function () {
     waifusBalanceBeforeSwap = await waifusion.balanceOf(ownerAddress);
     waifusBalance2BeforeSwap = await waifusion2.balanceOf(ownerAddress);
-    await wet.approve(waifuDungeon.address, ethers.utils.parseEther("10000"));
     await waifusion.setApprovalForAll(waifuDungeon.address, true);
     expect(await waifusion.isApprovedForAll(ownerAddress, waifuDungeon.address)).to.equal(true)
-    await waifuDungeon.commitSwapWaifus([ownerNFTIdOthers[0], ownerNFTIdOthers[1]]);
+    await waifuDungeon.commitSwapWaifus([ownerNFTIdOthers[0], ownerNFTIdOthers[1]], {value: ethers.utils.parseEther("0.5")});
   });
 
   it("increment block", async function () {
@@ -288,11 +268,11 @@ describe("WaifuDungeon", function () {
 
   it("Should let multiple people commit at the same time", async function() {
     let userAContract = waifuDungeon.connect(userAAccount);
-    await userAContract.commitBuyWaifus(2, { value: ethers.utils.parseEther("1.4") });
+    await userAContract.commitBuyWaifus(2, { value: ethers.utils.parseEther("3.6") });
     let userBContract = waifuDungeon.connect(userBAccount);
-    await userBContract.commitBuyWaifus(2, { value: ethers.utils.parseEther("1.4") });
+    await userBContract.commitBuyWaifus(2, { value: ethers.utils.parseEther("3.6") });
     let userCContract = waifuDungeon.connect(userCAccount);
-    await userCContract.commitBuyWaifus(2, { value: ethers.utils.parseEther("1.4") });
+    await userCContract.commitBuyWaifus(2, { value: ethers.utils.parseEther("3.6") });
   });
 
   it("increment block", async function () {
@@ -361,18 +341,10 @@ describe("Setup Edge Cases", function () {
     waifuDungeon = await WaifuDungeon.deploy();
     await waifuDungeon.deployed();
 
-    WET_TOKEN = await waifuDungeon.WET_TOKEN()
-    wet = await ethers.getContractAt("contracts/token/IERC20.sol:IERC20", WET_TOKEN);
-
     WAIFUSION = await waifuDungeon.WAIFUSION()
     waifusion = await ethers.getContractAt("Waifus", WAIFUSION);
 
     waifusionOwner = await waifusion.owner();
-    // wet = await ethers.getContractAt("IERC20", WET_TOKEN);
-    // deploy stablecoins to local blockchain emulator
-    // wet = await testHelper.deployCoin(ethers, 'dai');
-    // use deployed stablecoin address for collaterals
-    // COLLATERAL = dai.address;
   });
 
   it("Should set the dungeon as waifusion owner", async function () {
@@ -394,15 +366,12 @@ describe("Setup Edge Cases", function () {
     )
   });
 
-  it("Should let a user buy 2 NFTs and claim WET", async function () {
-    expect((await wet.balanceOf(ownerAddress)).toString()).to.equal("0");
+  it("Should let a user buy 2 NFTs", async function () {
     await waifusion.mintNFT(2, { value: ethers.utils.parseEther("1.4") });
     expect(await waifusion.balanceOf(ownerAddress)).to.equal(2);
     ownerNFTId = await waifusion.totalSupply() - 2
     expect(await waifusion.ownerOf(ownerNFTId)).to.equal(ownerAddress);
     expect(await waifusion.ownerOf(ownerNFTId + 1)).to.equal(ownerAddress);
-    await wet.claim([ownerNFTId, ownerNFTId + 1])
-    expect((await wet.balanceOf(ownerAddress)).toString()).to.not.equal("0");
   })
 
   it("Should let a user buy 10 NFTs pt. 2", async function () {
@@ -419,8 +388,6 @@ describe("Setup Edge Cases", function () {
     for (let i = 0; i < waifus.length; i++) {
       expect(await waifusion.ownerOf(waifus[i])).to.equal(ownerAddress);
     }
-    await wet.claim(ownerNFTIdOthers)
-    expect((await wet.balanceOf(ownerAddress)).toString()).to.not.equal(0);
   })
 });
 
