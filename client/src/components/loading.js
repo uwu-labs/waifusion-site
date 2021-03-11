@@ -64,7 +64,7 @@ const Loading = ({ show, type, complete }) => {
                 : "Burning Waifus"}
             </Header>
             {!complete && (
-              <ErrorText>{`After ${type}, you have 10 minutes to reveal or Waifus will be lost forever. If gas fees show as high, try again in 1 minute.`}</ErrorText>
+              <ErrorText>{`After ${type}, you have 10 minutes to reveal or Waifus will be lost forever. If gas fees seem excessively high, reject the transaction and try again.`}</ErrorText>
             )}
             <Content>
               {complete ? (
