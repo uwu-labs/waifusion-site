@@ -4,6 +4,8 @@ import Popup from "./popup";
 import { BoxContent, Header } from "../styles/BoxContent";
 import { getDungeonContract } from "../app/utils/contracthelper";
 import { Button } from "rimble-ui";
+import BN from "bn.js";
+import { web3 } from "../app/utils/contracthelper";
 import Loading from "./loading";
 
 const StyledWaifuSelector = styled.div``;
@@ -131,9 +133,14 @@ const WaifuSelector = ({ show, close }) => {
   const doBurnWaifus = async () => {
     const dungeonContract = await getDungeonContract();
     const waifuIds = waifus.map((w) => w.id);
+    const numToBurn = waifuIds.length;
+    const estimatedGas = 200000 * numToBurn;
     dungeonContract.methods
       .commitSwapWaifus(waifuIds)
-      .send()
+      .send({
+        value: new BN(web3.utils.toWei("0.25")).mul(new BN(numToBurn)),
+        gas: estimatedGas,
+      })
       .on("transactionHash", (hash) => {
         setLoading(true);
         setCommitComplete(false);

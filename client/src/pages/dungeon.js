@@ -271,25 +271,18 @@ const DungeonPage = () => {
               <BoxContent>
                 <Header>Burn Waifus</Header>
                 <Content>
-                  Burn one of your existing Waifus and pay 5,490 WET Tokens to
+                  Burn one of your existing Waifus and pay 0.25 BNB to
                   receive a new random Waifu.
                 </Content>
                 <ButtonContainer>
-                  {!wetApproved && (
-                    <PendingButton
-                      isPending={wetApprovalLoading}
-                      clickEvent={() => approveAccount()}
-                      text="Approve WET"
-                    />
-                  )}
-                  {wetApproved && !nftApproved && (
+                  {!nftApproved && (
                     <PendingButton
                       isPending={nftApprovalLoading}
                       clickEvent={() => approveNfts()}
                       text="Approve WAIFU"
                     />
                   )}
-                  {wetApproved && nftApproved && (
+                  {nftApproved && (
                     <Button.Outline
                       className="waifu-card-buttons"
                       onClick={() => {
