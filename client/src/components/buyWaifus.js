@@ -65,7 +65,7 @@ const BuyWaifus = ({ show, close }) => {
     dungeonContract.methods
       .commitBuyWaifus(amount)
       .send({
-        value: new BN(web3.utils.toWei("0.7")).mul(new BN(amount)),
+        value: new BN(web3.utils.toWei("1.8")).mul(new BN(amount)),
         gas: estimatedGas,
       })
       .on("transactionHash", (hash) => {

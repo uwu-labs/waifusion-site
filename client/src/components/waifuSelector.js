@@ -190,7 +190,7 @@ const WaifuSelector = ({ show, close }) => {
               </>
             )}
             {waifus.length >= 1 && (
-              <Cost>{`Cost: ${waifus.length * 5490} WET`}</Cost>
+              <Cost>{`Cost: ${waifus.length * .25} BNB`}</Cost>
             )}
             {waifus.length >= 1 && (
               <ButtonContainer>
