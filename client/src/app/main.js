@@ -117,10 +117,11 @@ const Main = observer((props) => {
       const name = await getWETName(index);
       const id = await getTokenId(index);
       const accumulated = new BN(await accumulatedForIndex(index));
-      totalAccumulated = totalAccumulated.add(accumulated);
+      const accumulatedWETNumber =  Number(await toEthUnit(accumulated)).toFixed(2);
 
+      totalAccumulated = totalAccumulated.add(accumulated);
       if (WETStore.items.length < balance) {
-        WETStore.addOwnedItem({ index, name, id });
+        WETStore.addOwnedItem({ index, name, id, accumulatedWETNumber});
       }
     }
 
@@ -270,6 +271,13 @@ const Main = observer((props) => {
                       {" "}
                       {item.index} / {GLOBALS.TOTAL_WAIFUS}
                     </span>
+                  </span>
+                  
+                  <br />
+                  <br />
+                  <span className="card-box-center-pink-text test-margin">
+                    <span className="waifu-box-number">Unclaimed WET: </span>
+                    <span className="waifu-box-number">{item.accumulatedWETNumber}</span>
                   </span>
                 </center>
               </Box>
