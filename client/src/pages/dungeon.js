@@ -245,7 +245,7 @@ const DungeonPage = () => {
               <BoxContent>
                 <Header>Buy Waifus</Header>
                 <Content>
-                  Buy a new Waifu from the Dungeon for 0.7 ETH. You will receive
+                  Buy a new Waifu from the Dungeon for .25 BNB. You will receive
                   a random Waifu from the dungeon.
                 </Content>
                 <ButtonContainer>

@@ -157,7 +157,7 @@ const Home = (props) => {
                   <br />
                   <br />
                   You can buy a waifu's freedom by paying the last presale price
-                  of 0.7ETH
+                  of 0.25BNB
                   <br />
                   <br />
                   Have a naughty waifu? Burn WET to throw her into the dungeon
