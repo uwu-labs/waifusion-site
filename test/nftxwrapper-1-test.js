@@ -8,7 +8,7 @@ var userCAccount, userCAddress;
 var WaifuDungeon, waifuDungeon;
 var WET_TOKEN, wet;
 var NFTX_WRAPPER, nftxWrapper;
-let nftxTokenOwner = "0x50664ede715e131f584d3e7eaabd7818bb20a068";
+let nftxTokenOwner = "0x50664edE715e131F584D3E7EaAbd7818Bb20A068";
 let nftxTokenOwnerSigner;
 let xToken;
 var WAIFUSION, waifusion;
@@ -65,7 +65,6 @@ describe("Setup", function () {
 
     nftxTokenOwnerSigner = await ethers.provider.getSigner(nftxTokenOwner)
     let wrapperWithNFTOwner = nftxWrapper.connect(nftxTokenOwnerSigner);
-    let wrapperAddr = await wrapperWithNFTOwner.userWrapperAddr(nftxTokenOwner);
     await wrapperWithNFTOwner.checkChild();
   });
 
@@ -74,6 +73,30 @@ describe("Setup", function () {
     let wrapperAddr = await wrapperWithNFTOwner.userWrapperAddr(nftxTokenOwner);
     let xTokenWithOwner = xToken.connect(nftxTokenOwnerSigner);
     await xTokenWithOwner.approve(wrapperAddr, "99999999999999999999999999999");
+    let wetWithOwner = wet.connect(nftxTokenOwnerSigner);
+    await wetWithOwner.approve(wrapperAddr, "99999999999999999999999999999");
     await wrapperWithNFTOwner.commitWaifusWithNFTX(3);
   })
+
+  it("increment block", async function () {
+    await network.provider.send("evm_mine")
+    await network.provider.send("evm_mine")
+  })
+
+  it("Should allow to redeem waifus swapped through NFTX", async function() {
+    let wrapperWithNFTOwner = nftxWrapper.connect(nftxTokenOwnerSigner);
+    let tx = await wrapperWithNFTOwner.revealWaifusWithNFTX();
+    let receipt = await tx.wait();
+    let waifus = [];
+    for (let i = 0; i < receipt.logs.length; i += 4) {
+      let log = receipt.logs[i];
+      waifus.push({
+        waifuID: ethers.BigNumber.from(log.topics[3]),
+        nftContract: log.address,
+      })
+    }
+    for (let i = 0; i < waifus.length; i++) {
+      expect(await waifusion.ownerOf(waifus[i].waifuID.toString())).to.equal(nftxTokenOwner);
+    }
+  });
 });

@@ -7,7 +7,7 @@ import "./WrapperChild.sol";
 contract NFTXDungeonWrapper {
   // TODO: Maybe derive some way from NFTX addr.
   address immutable wrapperChildImpl;
-  address public nftxFund = 0x87665C29Ea77C4285ea7443F5f71C54Ea90305b8; 
+  address public nftxFund = 0xAf93fCce0548D3124A5fC3045adAf1ddE4e8Bf7e; 
   address public xToken = 0x0F10E6ec76346c2362897BFe948c8011BB72880F;
   uint256 public vaultID = 37;
 
@@ -21,7 +21,7 @@ contract NFTXDungeonWrapper {
     WrapperChildImpl(userWrapper).commitSwapWaifus(num);
   }
 
-  function revealWaifusWithNFTX(uint256 num) external {
+  function revealWaifusWithNFTX() external {
     address userWrapper = checkChild();
     WrapperChildImpl(userWrapper).revealWaifus();
   }

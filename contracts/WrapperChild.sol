@@ -26,8 +26,9 @@ interface IWaifuDungeon {
 }
 
 contract WrapperChildImpl {
-  IWaifuDungeon constant WAIFU_DUNGEON = IWaifuDungeon(0xB291984262259BcFe6Aa02b66a06e9769C5c1eF3);
   IERC721 constant WAIFUSION = IERC721(0x2216d47494E516d8206B70FCa8585820eD3C4946);
+  IERC20 constant WET = IERC20(0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2);
+  IWaifuDungeon constant WAIFU_DUNGEON = IWaifuDungeon(0xB291984262259BcFe6Aa02b66a06e9769C5c1eF3);
   bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
   uint256 private constant UNSET = 1 << 255;
   uint256 private constant MAX_SWAP = 3;
@@ -45,7 +46,8 @@ contract WrapperChildImpl {
     parent = IWrapperParent(_parent);
     user = _user;
     console.log("NFTX Fund: %s", parent.nftxFund());
-    IERC20(parent.xToken()).approve(address(parent.nftxFund()), type(uint256).max);
+    IERC20(parent.xToken()).approve(parent.nftxFund(), type(uint256).max);
+    WET.approve(address(WAIFU_DUNGEON), type(uint256).max);
     console.log("xToken: %s", parent.xToken());
 
     WAIFUSION.setApprovalForAll(address(WAIFU_DUNGEON), true);
@@ -54,7 +56,8 @@ contract WrapperChildImpl {
 
   function onERC721Received(address operator, address from, uint256 tokenId, bytes calldata data) external returns (bytes4) {
       if (from == address(WAIFU_DUNGEON)) {
-        WAIFUSION.safeTransferFrom(address(this), user, tokenId);
+        // Use msg.sender here to allow arbitrary NFTs from dungeon.
+        IERC721(msg.sender).safeTransferFrom(address(this), user, tokenId);
       } else if (from == address(parent.nftxFund())) {
         receivedNftID = tokenId;
       } else {
@@ -64,7 +67,7 @@ contract WrapperChildImpl {
   }
 
   function commitSwapWaifus(uint256 num) external onlyParent() {
-    IERC20(parent.xToken()).transferFrom(user, address(this), num);
+    IERC20(parent.xToken()).transferFrom(user, address(this), num * 1 ether);
     uint256[] memory ids = new uint256[](num);
     for (uint256 i = 0; i < num; i++) {
       console.log(i);
@@ -72,6 +75,7 @@ contract WrapperChildImpl {
       ids[i] = receivedNftID;
       console.log(receivedNftID);
     }
+    WET.transferFrom(user, address(this), num * 5490 ether);
     WAIFU_DUNGEON.commitSwapWaifus(ids);
   }
 
