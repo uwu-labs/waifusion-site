@@ -8,11 +8,34 @@ import { observer } from "mobx-react-lite";
 import { RootStoreContext } from "../app/stores/root.store";
 
 // import Logo from '../assets/Logo.svg'
-import Logo from "../images/Eth_Logo.png";
+import LogoImg from "../images/Eth_Logo.png";
 import NavPinkBar from "../images/nav_pink_bar.png";
 import "./header.css";
 
 import { getTransactionReceipt } from "../app/utils/contracthelper";
+import styled from "styled-components";
+
+const Container = styled.header`
+  margin: 1.45rem 0;
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem;
+
+  @media (max-width: 990px) {
+    flex-direction: column;
+  }
+`;
+
+const Logo = styled.img`
+  margin-bottom: 1.45rem;
+`;
+
+const ButtonsWrapper = styled.div``;
 
 const Header = observer(({ siteTitle, menuLinks }) => {
   const rootStore = useContext(RootStoreContext);
@@ -64,12 +87,7 @@ const Header = observer(({ siteTitle, menuLinks }) => {
   }, []);
 
   return (
-    <header
-      style={{
-        marginBottom: `1.45rem`,
-        marginTop: `1.45rem`,
-      }}
-    >
+    <Container>
       <Box className="waifu-card-box" maxWidth={1435}>
         <div style={{ marginLeft: 4, marginTop: 4 }}>
           <img
@@ -82,9 +100,9 @@ const Header = observer(({ siteTitle, menuLinks }) => {
             color="white"
             style={{ maxWidth: 1424, marginBottom: 1 }}
           >
-            <Flex className="nav-flex-box">
-              <img className="menu-logo" alt="pink nav bar" src={Logo} />
-              <div className="nav-bar-button-container">
+            <Content>
+              <Logo alt="" src={LogoImg} />
+              <ButtonsWrapper>
                 {menuLinks.map((link) => (
                   <Button.Outline
                     key={link.name}
@@ -98,12 +116,12 @@ const Header = observer(({ siteTitle, menuLinks }) => {
                     {link.name}
                   </Button.Outline>
                 ))}
-              </div>
-            </Flex>
+              </ButtonsWrapper>
+            </Content>
           </Box>
         </div>
       </Box>
-    </header>
+    </Container>
   );
 });
 
@@ -116,24 +134,3 @@ Header.defaultProps = {
 };
 
 export default Header;
-/*
-<nav>
-                        <ul style={{ display: "flex", flex: 1 }}>
-                        {menuLinks.map(link => (
-                            <li
-                            key={link.name}
-                            style={{
-                                listStyleType: `none`,
-                                padding: `1rem`,
-                            }}
-                            >
-                            <Link style={{ color: `white` }} to={link.link}>
-                                {link.name}
-                            </Link>
-                            </li>
-                        ))}
-                        </ul>
-                    </nav>
-
-
-*/

@@ -1,6 +1,6 @@
 module.exports = {
     siteTitle: 'Waifusion',
-    siteDesc: 'Waifusion is a digital Waifu collection of 16,384 guaranteed-unique Waifusion NFTs.',
+    siteDesc: 'Waifusion is a digital Waifu collection of 16,384 guaranteed-unique Waifu NFTs.',
     siteAuthor: 'Waifusion Team',
     siteLogoUrl: 'src/images/logo_icon.png',
 
