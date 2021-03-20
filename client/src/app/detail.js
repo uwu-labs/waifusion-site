@@ -207,7 +207,7 @@ const Detail = observer((props) => {
                   <center className="waifu-pic-box-center waifu-card-pink-center">
                     <span className="card-box-center-pink-text test-margin">
                       <span className="waifu-box-number">Waifu Name: </span>
-                      <span className="waifu-box-number"></span>
+                      <span className="waifu-box-number">{detailStore.name}</span>
                     </span>
                     <img
                       className="waifu-dotted-line"
