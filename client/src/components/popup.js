@@ -24,14 +24,17 @@ const Popup = ({ show, content, close }) => {
     <StyledPopup>
       <Box className="waifu-card-box">
         <BoxUpper>
-          <img
-            src={WaifuPinkBar}
-            className="waifu-card-box-pinkbar"
-            alt="pink nav bar"
-            onClick={() => {
-              if (close) close();
-            }}
-          />
+          <button
+          onClick={() => {
+            if (close) close();
+          }}          
+          >
+            <img
+              src={WaifuPinkBar}
+              className="waifu-card-box-pinkbar"
+              alt="pink nav bar"
+            />
+          </button>
           {content}
         </BoxUpper>
       </Box>

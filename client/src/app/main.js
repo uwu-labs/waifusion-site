@@ -1,7 +1,7 @@
 // Frameworks
 import React, { useContext, useEffect } from "react";
 import { navigate, Link } from "gatsby";
-import { Flex, QR, Button, Text, Box, Loader, left } from "rimble-ui";
+import { Flex, QR, Button, Text, Box, Loader } from "rimble-ui";
 import { observer } from "mobx-react-lite";
 import BN from "bn.js";
 
