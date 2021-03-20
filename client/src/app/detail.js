@@ -66,40 +66,6 @@ const Detail = observer((props) => {
     return (Number(waifuIndex) + GLOBALS.STARTING_INDEX) % 16384;
   };
 
-  const approveAccount = async () => {
-    const ownerAddress = await getWETOwner(props.detailId);
-    const defaultAddress = await ethEnabled();
-    if (defaultAddress === ownerAddress) {
-      const currentAllowance = await getAllowance();
-      if (currentAllowance > 0) {
-        detailStore.isApproved = true;
-      } else {
-        const wetContract = await getWETContract();
-        wetContract.methods
-          .approve(
-            GLOBALS.WAIFU_CONTRACT_ADDRESS,
-            new BN(GLOBALS.APPROVE_AMOUNT)
-          )
-          .send()
-          .on("transactionHash", (hash) => {
-            transactionStore.addPendingTransaction({
-              txHash: hash,
-              description: "Approval",
-            });
-          })
-          .on("receipt", (receipt) => {
-            console.log(receipt);
-            detailStore.isPendingApproval = false;
-            detailStore.isApproved = true;
-          })
-          .on("error", (err) => {
-            console.log(err);
-            detailStore.isPendingApproval = false;
-          }); // If a out of gas error, the second parameter is the receipt.
-      }
-    }
-  };
-
   const closeNCModal = () => {
     detailStore.isPendingNameChange = false;
     detailStore.isinsufficientBalance = false;
@@ -295,20 +261,6 @@ const Detail = observer((props) => {
                           {walletStore.defaultAddress === detailStore.owner && (
                             <Flex>
                               <Box>
-                                {!detailStore.isApproved && (
-                                  <Box className="wallet-buttons">
-                                    <Button.Outline
-                                      className="waifu-card-buttons"
-                                      onClick={approveAccount}
-                                    >
-                                      <span className="waifu-button-learnmore">
-                                        {" "}
-                                        Approve
-                                      </span>{" "}
-                                    </Button.Outline>
-                                  </Box>
-                                )}
-                                {detailStore.isApproved && (
                                   <center>
                                     <Box className="wallet-buttons">
                                       <Button.Outline
@@ -322,7 +274,6 @@ const Detail = observer((props) => {
                                       </Button.Outline>
                                     </Box>
                                   </center>
-                                )}
                               </Box>
                             </Flex>
                           )}
