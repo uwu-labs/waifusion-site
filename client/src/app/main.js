@@ -151,7 +151,7 @@ const Main = observer((props) => {
               <Flex className="wallet-qr-container">
                 <Box>
                   <div>
-                    <QR value={walletStore.defaultAddress} size={308} />
+                    <QR value={walletStore.defaultAddress} size={308} bgColor={"#181425"} fgColor={"#ffffff"} />
                   </div>
                 </Box>
                 <Box col-sm-4>
