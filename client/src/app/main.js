@@ -18,6 +18,7 @@ import {
   wetBalanceOf,
 } from "./utils/contracthelper";
 import { GLOBALS } from "./utils/globals.js";
+import { revealedWaifuIndex } from "./utils/waifuDisplay.js";
 
 // Data Store
 import { RootStoreContext } from "./stores/root.store";
@@ -44,10 +45,6 @@ const Main = observer((props) => {
     updateWETS();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const revealedWaifuIndex = (waifuIndex) => {
-    return (Number(waifuIndex) + GLOBALS.STARTING_INDEX) % 16384;
-  };
 
   const approveAccount = async () => {
     const currentAllowance = await getAllowance();
