@@ -45,6 +45,7 @@ class WETStore {
   }
 
   async syncOwnedItems() {
+    this.ownedItems = [];
     const balance = await balanceOf();
 
     for (let i = 0; i < balance; i++) {
@@ -54,9 +55,7 @@ class WETStore {
       const accumulated = new BN(await accumulatedForIndex(index));
       const accumulatedWETNumber =  Number(await toEthUnit(accumulated)).toFixed(2);
 
-      if (this.items.length < balance) {
-        this.addOwnedItem({ index, name, id, accumulatedWETNumber});
-      }
+      this.addOwnedItem({ index, name, id, accumulatedWETNumber });
     }
   }
 }
