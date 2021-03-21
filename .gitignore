@@ -9,6 +9,5 @@ artifacts
 /client/node_modules
 /client/.cache
 coverage/
-client/public
 
 **.idea/**
