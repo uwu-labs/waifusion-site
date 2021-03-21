@@ -7,19 +7,18 @@ import { revealedWaifuIndex } from "../app/utils/waifuDisplay.js";
 export default ({cardIndex}) => {
   return (
     <Link to={"/app/detail/" + cardIndex}>
-    <img
-      className="waifu-card-image"
-      alt=""
-      src={
-        GLOBALS.WAIFUS_VIEWABLE_URL === ""
-          ? GLOBALS.DEFAULT_WAIFU_IMAGE
-          : GLOBALS.WAIFUS_VIEWABLE_URL +
-            "/" +
-            revealedWaifuIndex(cardIndex) +
-            ".png"
-      }
-    />
-    <br />
-  </Link>
+      <img
+        alt=""
+        src={
+          GLOBALS.GALLERY_VIEWABLE_URL === ""
+            ? GLOBALS.DEFAULT_WAIFU_IMAGE
+            : GLOBALS.GALLERY_VIEWABLE_URL +
+              "/" +
+              revealedWaifuIndex(cardIndex) +
+              ".png"
+        }
+      />
+      <br />
+    </Link>
   )
 }
