@@ -1,0 +1,25 @@
+import React from "react";
+import { Link } from "gatsby";
+
+import { GLOBALS } from "../app/utils/globals.js";
+import { revealedWaifuIndex } from "../app/utils/waifuDisplay.js";
+
+export default ({cardIndex}) => {
+  return (
+    <Link to={"/app/detail/" + cardIndex}>
+    <img
+      className="waifu-card-image"
+      alt=""
+      src={
+        GLOBALS.WAIFUS_VIEWABLE_URL === ""
+          ? GLOBALS.DEFAULT_WAIFU_IMAGE
+          : GLOBALS.WAIFUS_VIEWABLE_URL +
+            "/" +
+            revealedWaifuIndex(cardIndex) +
+            ".png"
+      }
+    />
+    <br />
+  </Link>
+  )
+}
