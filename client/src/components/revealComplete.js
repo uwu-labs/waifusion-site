@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { observer } from 'mobx-react-lite';
 
 import styled from "styled-components";
@@ -18,9 +18,9 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-const getRevealedWaifus = (WETStore) => {
+const getRevealedWaifus = async (WETStore) => {
   const oldWaifuIds = WETStore.ownedItems.map(item => item.id);
-  WETStore.syncOwnedItems();
+  await WETStore.syncOwnedItems();
   const newWaifus = WETStore.ownedItems;
   return newWaifus.filter(waifu => !oldWaifuIds.includes(waifu.id));
 }
@@ -28,6 +28,15 @@ const getRevealedWaifus = (WETStore) => {
 const RevealComplete = observer(({ show }) => {
   const rootStore = useContext(RootStoreContext);
   const { WETStore } = rootStore;
+  const [revealedWaifus, setRevealedWaifus] = useState([])
+  
+  useEffect(() => {
+    if (show) {
+      getRevealedWaifus(WETStore).then((value) => {
+        setRevealedWaifus(value);
+      })
+    }
+  })
 
   return (
     <StyledRevealComplete>
@@ -38,7 +47,7 @@ const RevealComplete = observer(({ show }) => {
             <Header>Waifu Revealed!!!</Header>
             {
               show && (
-                getRevealedWaifus(WETStore).map((item) => {
+                revealedWaifus.map((item) => {
                   return <WaifuCard cardIndex={item.id} />
                 })
               )
