@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { observer } from 'mobx-react-lite';
+
 import styled from "styled-components";
 import Popup from "./popup";
 import { BoxContent, Header } from "../styles/BoxContent";
 import { Button } from "rimble-ui";
+import WaifuCard from "./waifuCard.js";
+
+import { RootStoreContext } from "../app/stores/root.store";
 
 const StyledRevealComplete = styled.div``;
 
@@ -13,7 +18,17 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-const RevealComplete = ({ show }) => {
+const getRevealedWaifus = (WETStore) => {
+  const oldWaifuIds = WETStore.ownedItems.map(item => item.id);
+  WETStore.syncOwnedItems();
+  const newWaifus = WETStore.ownedItems;
+  return newWaifus.filter(waifu => !oldWaifuIds.includes(waifu.id));
+}
+
+const RevealComplete = observer(({ show }) => {
+  const rootStore = useContext(RootStoreContext);
+  const { WETStore } = rootStore;
+
   return (
     <StyledRevealComplete>
       <Popup
@@ -21,6 +36,13 @@ const RevealComplete = ({ show }) => {
         content={
           <BoxContent>
             <Header>Waifu Revealed!!!</Header>
+            {
+              show && (
+                getRevealedWaifus(WETStore).map((item) => {
+                  return <WaifuCard cardIndex={item.id} />
+                })
+              )
+            }
             <ButtonContainer>
               <Button.Outline
                 className="waifu-card-buttons"
@@ -36,6 +58,6 @@ const RevealComplete = ({ show }) => {
       />
     </StyledRevealComplete>
   );
-};
+});
 
 export default RevealComplete;
