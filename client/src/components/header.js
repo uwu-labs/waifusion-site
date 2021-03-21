@@ -1,7 +1,7 @@
 import { navigate } from "gatsby";
 import PropTypes from "prop-types";
 import React, { useContext, useEffect, useState } from "react";
-import { Flex, Button, Box } from "rimble-ui";
+import { Button, Box } from "rimble-ui";
 import Web3 from "web3";
 import { observer } from "mobx-react-lite";
 
