@@ -107,6 +107,7 @@ const Detail = observer((props) => {
   };
 
   const openNCModal = async () => {
+    await approveAccount();
     detailStore.nameValidation = "";
     const wetBalance = await wetBalanceOf();
     const currentAllowance = await getAllowance();
@@ -207,7 +208,7 @@ const Detail = observer((props) => {
                   <center className="waifu-pic-box-center waifu-card-pink-center">
                     <span className="card-box-center-pink-text test-margin">
                       <span className="waifu-box-number">Waifu Name: </span>
-                      <span className="waifu-box-number"></span>
+                      <span className="waifu-box-number">{detailStore.name}</span>
                     </span>
                     <img
                       className="waifu-dotted-line"
@@ -295,20 +296,6 @@ const Detail = observer((props) => {
                           {walletStore.defaultAddress === detailStore.owner && (
                             <Flex>
                               <Box>
-                                {!detailStore.isApproved && (
-                                  <Box className="wallet-buttons">
-                                    <Button.Outline
-                                      className="waifu-card-buttons"
-                                      onClick={approveAccount}
-                                    >
-                                      <span className="waifu-button-learnmore">
-                                        {" "}
-                                        Approve
-                                      </span>{" "}
-                                    </Button.Outline>
-                                  </Box>
-                                )}
-                                {detailStore.isApproved && (
                                   <center>
                                     <Box className="wallet-buttons">
                                       <Button.Outline
@@ -322,7 +309,6 @@ const Detail = observer((props) => {
                                       </Button.Outline>
                                     </Box>
                                   </center>
-                                )}
                               </Box>
                             </Flex>
                           )}
