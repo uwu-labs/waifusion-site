@@ -30,7 +30,6 @@ class WalletStore {
 
   loginWalletIfNeeded() {
     if (!this.isWalletConnected) {
-      console.log('login')
       navigate('/app/login')
     }
   }

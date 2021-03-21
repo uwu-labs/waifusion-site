@@ -126,7 +126,6 @@ const Main = observer((props) => {
     WETStore.totalAccumulatedLoading = false;
     // WETStore.setIsLoading(false);
   };
-  console.log(WETStore.ownedItems)
   return (
     <>
       <Box className="waifu-card-box wallet-box">
