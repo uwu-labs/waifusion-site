@@ -40,9 +40,7 @@ const Main = observer((props) => {
       await updateWETState();
       WETStore.setIsLoading(false);
     }
-    if (!walletStore.isWalletConnected) {
-      navigate(`/app/login`);
-    }
+    walletStore.loginWalletIfNeeded()
     updateWETS();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -131,6 +129,7 @@ const Main = observer((props) => {
     WETStore.totalAccumulatedLoading = false;
     // WETStore.setIsLoading(false);
   };
+  console.log(WETStore.ownedItems)
   return (
     <>
       <Box className="waifu-card-box wallet-box">
