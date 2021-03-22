@@ -9,3 +9,7 @@ To run the front end locally you can use these commands:
 `npm i`  
 `npm start`  
 visit: http://localhost:8000/
+
+## Where's the dungeon contract gone?
+
+We've moved it to [here](https://github.com/waifusion/contracts) in an effort to clean up the Waifusion project. This repo now only contains the Gatsby code.
