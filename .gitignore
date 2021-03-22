@@ -1,13 +1,8 @@
 node_modules
 
 # Gatsby Build
-/client/public
-
-# Hardhat files
-cache
-artifacts
-/client/node_modules
-/client/.cache
+public
+.cache
 coverage/
 
 **.idea/**
