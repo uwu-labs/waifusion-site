@@ -27,8 +27,6 @@ const getRevealedWaifus = async (WETStore) => {
   const oldWaifuIds = WETStore.ownedItems.map(item => item.id);
   await WETStore.syncOwnedItems();
   const newWaifuIds = WETStore.ownedItems.map(item => item.id);
-  const newWaifus = WETStore.ownedItems;
-  return newWaifus.filter(waifu => !oldWaifuIds.includes(waifu.id));
   return newWaifuIds.filter(newId => !oldWaifuIds.includes(newId));
 }
 
