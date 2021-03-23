@@ -5,7 +5,7 @@ import { keyframes } from "styled-components";
 import Window from "../assets/Window.svg";
 import Logo from "../assets/Logo.svg";
 
-import SplashLayout from "../components/splashlayout";
+import SplashLayout from "../components/splashLayout";
 import SEO from "../components/seo";
 
 import "../components/layout.css";
