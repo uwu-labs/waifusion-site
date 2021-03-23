@@ -1,6 +1,6 @@
 // Frameworks
 import React, { useContext, useEffect } from "react";
-import { navigate, Link } from "gatsby";
+import { Link } from "gatsby";
 import { Flex, QR, Button, Text, Box, Loader } from "rimble-ui";
 import { observer } from "mobx-react-lite";
 import BN from "bn.js";
@@ -18,6 +18,7 @@ import {
   wetBalanceOf,
 } from "./utils/contracthelper";
 import { GLOBALS } from "./utils/globals.js";
+import { revealedWaifuIndex } from "./utils/waifuDisplay.js";
 
 // Data Store
 import { RootStoreContext } from "./stores/root.store";
@@ -40,16 +41,10 @@ const Main = observer((props) => {
       await updateWETState();
       WETStore.setIsLoading(false);
     }
-    if (!walletStore.isWalletConnected) {
-      navigate(`/app/login`);
-    }
+    walletStore.loginWalletIfNeeded()
     updateWETS();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const revealedWaifuIndex = (waifuIndex) => {
-    return (Number(waifuIndex) + GLOBALS.STARTING_INDEX) % 16384;
-  };
 
   const approveAccount = async () => {
     const currentAllowance = await getAllowance();

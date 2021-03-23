@@ -28,6 +28,7 @@ const Popup = ({ show, content, close }) => {
           onClick={() => {
             if (close) close();
           }}          
+          style={{ padding: '0 2px 0 0', borderWidth: 0, lineHeight: 1 }}
           >
             <img
               src={WaifuPinkBar}

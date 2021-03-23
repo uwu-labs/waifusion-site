@@ -1,4 +1,5 @@
 import { decorate, observable, computed } from "mobx";
+import { navigate } from "gatsby";
 import * as _ from "lodash";
 import { autoSave } from "../utils/autoSave";
 
@@ -25,6 +26,12 @@ class WalletStore {
 
   get hasAccount() {
     return !_.isEmpty(this.defaultAddress);
+  }
+
+  loginWalletIfNeeded() {
+    if (!this.isWalletConnected) {
+      navigate('/app/login')
+    }
   }
 }
 decorate(WalletStore, {

@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Button } from "rimble-ui";
+import { observer } from "mobx-react-lite";
+
+import { RootStoreContext } from "../app/stores/root.store";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -51,7 +54,10 @@ const ChainGraphic = styled.div`
     `TranslateX(-50%) TranslateX(${props.x}) TranslateY(${props.y}) Rotate(${props.rotate})`};
 `;
 
-const DungeonPage = () => {
+const DungeonPage = observer(() => {
+  const rootStore = useContext(RootStoreContext);
+  const { walletStore, WETStore } = rootStore;
+
   const revealedWaifuIndex = (waifuIndex) => {
     return (Number(waifuIndex) + GLOBALS.STARTING_INDEX) % 16384;
   };
@@ -67,6 +73,9 @@ const DungeonPage = () => {
   const [waifusInDungeon, setWaifusInDungeon] = useState(null);
 
   useEffect(() => {
+    walletStore.loginWalletIfNeeded();
+    WETStore.syncOwnedItems();
+
     getDungeonAllowance().then((value) => {
       setWetApproved(value >= new BN(GLOBALS.APPROVE_AMOUNT));
     });
@@ -313,5 +322,5 @@ const DungeonPage = () => {
       <Loading show={hasPendingReveal} complete={true} />
     </Layout>
   );
-};
+});
 export default DungeonPage;
