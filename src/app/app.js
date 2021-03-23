@@ -20,12 +20,21 @@ import Gallery from "./Gallery";
 import Detail from "./Detail";
 import Home from "./Home";
 import Owner from "./Owner";
+import { Helmet } from "react-helmet";
 
 // Dynamic Application Wrapper
 const App = (props) => {
   // Primary App Layout + Router
   return (
     <Layout>
+      <Helmet>
+        <title>Waifusion</title>
+        <meta name="description" content={"Waifusion is a set of 16384 uniquely generated, anime inspired, digital waifu NFT collectibles on the Ethereum blockchain trading on OpenSea."}/>
+        <meta itemprop="name" content={"Waifusion"}/>
+        <meta property="og:site_name" content={"Waifusion"}/>
+        <meta name="keywords" content="Waifus, NFT, NFT waifu, opensea, waifu harem, non fungible token"/>
+        <meta property="twitter:description" content={"Waifusion is a set of 16384 uniquely generated, anime inspired, digital waifu NFT collectibles on the Ethereum blockchain trading on OpenSea."}/>
+      </Helmet>
       <Router>
         <PublicRoute path="/app">
           <PrivateRoute path="/" component={Main} />

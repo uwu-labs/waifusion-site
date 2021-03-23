@@ -1,9 +1,6 @@
-# Waifusion Dungeon
+# Waifusion Website 
 
-Welcome to the repo for the Waifusion Dungeon feature.  
-This is a project to extend on the Waifusion NFT platform to add a dungeon contract.  
-This contract and feature allows users to buy waifus after the sale has ended.  
-Also they are able to burn their current waifus to receive a random waifu from the dungeon.  
+Welcome to the repo for the waifusion.sexy website - a Gatsby project implementing Web3 which allows users to interact with the Waifusion NFT project.
 
 ## Local Development Setup
 
@@ -12,3 +9,7 @@ To run the front end locally you can use these commands:
 `npm i`  
 `npm start`  
 visit: http://localhost:8000/
+
+## Where's the dungeon contract gone?
+
+We've moved it to [here](https://github.com/waifusion/contracts) in an effort to clean up the Waifusion project. This repo now only contains the Gatsby code.
