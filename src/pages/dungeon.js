@@ -25,7 +25,7 @@ import {
   tokenOfOwnerByIndex,
 } from "../app/utils/contracthelper";
 import BN from "bn.js";
-import PendingButton from "../app/templates/PendingButton";
+import PendingButton from "../app/templates/pendingbutton";
 import Loading from "../components/loading";
 
 const PageContainer = styled.div`

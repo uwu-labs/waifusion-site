@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { BoxContent, Header, Content } from "../styles/BoxContent";
-import PendingButton from "../app/templates/PendingButton";
+import PendingButton from "../app/templates/pendingbutton";
 import Popup from "./popup";
 import { getDungeonContract } from "../app/utils/contracthelper";
 import RevealComplete from "./revealComplete";
