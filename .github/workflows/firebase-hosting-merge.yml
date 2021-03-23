@@ -13,8 +13,6 @@ jobs:
           node-version: "10.x"
       - name: Installing Dependencies
         run: npm install
-      - name: Install Gatsby CLI
-        run: npm install -g gatsby-cli
       - name: Building
         run: npm run build
       - name: Install Firebase Tools
