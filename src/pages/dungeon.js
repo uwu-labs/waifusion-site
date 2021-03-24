@@ -209,7 +209,7 @@ const DungeonPage = observer(() => {
               style={{ maxWidth: 1424, marginBottom: 1, innerHeight: 100 }}
             >
               <center className="waifu-card-box-center">
-                <div className="waifu-card-header-text">The Dungeon {GLOBALS.WAIFU_VERSION}</div>
+                <div className="waifu-card-header-text">The Dungeon</div>
                 <div className="waifu-card-text waifu-about-text">
                   Many of your beloved waifus are enslaved in the Dungeon! Be a
                   hero and save your beloved by buying her freedom, or be the

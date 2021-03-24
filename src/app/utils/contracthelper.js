@@ -1,7 +1,7 @@
 import WaifuABI from "../contracts/ERC721.abi";
 import WETABI from "../contracts/ERC20.abi";
 import DUNGEON from "../contracts/Dungeon.abi";
-import DUNGEONBSC from "../contracts/Dungeon.abi";
+import DUNGEONBSC from "../contracts/DungeonBSC.abi";
 import { GLOBALS } from "./globals";
 import Web3 from "web3";
 import { navigate } from "gatsby";
