@@ -44,6 +44,10 @@ const Detail = observer((props) => {
     updateDetailWETS();
     getWaifuDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    return () => {
+      detailStore.currentWaifu = null;
+    }
   }, []);
 
   const updateWaifuState = async () => {
@@ -278,7 +282,7 @@ const Detail = observer((props) => {
                           flexWrap="wrap"
                           style={{ maxwidth: "590px" }}
                         >
-                          {detailStore.currentWaifu.traits.map((trait) =>
+                          {detailStore.currentWaifu.attributes.map((trait) =>
                             listTrait(trait)
                           )}
                         </Flex>

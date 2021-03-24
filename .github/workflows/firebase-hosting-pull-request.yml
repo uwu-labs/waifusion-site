@@ -9,6 +9,6 @@ jobs:
         with:
           node-version: "12.x"
       - name: Installing Dependencies
-        run: npm install
+        run: npm ci --production
       - name: Building
         run: npm run build

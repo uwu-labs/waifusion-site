@@ -139,10 +139,14 @@ const getWaifuTraitsById = async (id) => {
       data += chunk.toString();
     }
 
-    var waifuArray = JSON.parse(data);
+    const waifuData = JSON.parse(data);
 
-    cleanedWaifu = cleanWaifu(waifuArray);
-    return cleanedWaifu;
+    return waifuData;
+
+    // The code below was part of the branch before but it handled the IPFS data wrong.
+    // cleanedWaifu = cleanWaifu(waifuArray);
+    // console.log(cleanedWaifu);
+    // return cleanedWaifu;
   } catch (error) {}
 };
 
