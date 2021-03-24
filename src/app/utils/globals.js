@@ -1,6 +1,6 @@
 export const GLOBALS = {};
 
-GLOBALS.WAIFU_VERSION = window && window.location.hostname === "waifusionbsc.sexy" ? "bsc" : "eth";
+GLOBALS.WAIFU_VERSION = (typeof window !== "undefined" && window.location.hostname === "waifusionbsc.sexy") ? "bsc" : "eth";
 
 GLOBALS.WALLET_TYPE_WALLETCONNECT = "walletconnect";
 GLOBALS.WALLET_TYPE_METAMASK = "metamask";
