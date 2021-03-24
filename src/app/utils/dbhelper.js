@@ -142,6 +142,7 @@ const getWaifuTraitsById = async (id) => {
     var waifuArray = JSON.parse(data);
 
     cleanedWaifu = cleanWaifu(waifuArray);
+    console.log(cleanedWaifu);
     return cleanedWaifu;
   } catch (error) {}
 };

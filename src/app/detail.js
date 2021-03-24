@@ -63,7 +63,7 @@ const Detail = observer((props) => {
   };
 
   const revealedWaifuIndex = (waifuIndex) => {
-    return (Number(waifuIndex) + GLOBALS.STARTING_INDEX) % 16384;
+    return (Number(waifuIndex) + GLOBALS.STARTING_INDEX) % 11000;
   };
 
   const approveAccount = async () => {
