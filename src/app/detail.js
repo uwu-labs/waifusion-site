@@ -52,7 +52,6 @@ const Detail = observer((props) => {
 
   const updateWaifuState = async () => {
     detailStore.currentWaifu = await getWaifuTraitsById(props.detailId);
-    console.log(detailStore.currentWaifu);
   };
 
   const updateDetailWETState = async () => {
