@@ -35,7 +35,7 @@ GLOBALS.DEFAULT_WAIFU_IMAGE =
 GLOBALS.WAIFUS_URL = "https://ipfs.io/ipfs/#"; //replace # with hash of the names.json (huge list of all waifus)
 GLOBALS.WAIFUS_JSON_HASH = "QmPUsgFPH6dFYZG2dPvRfE2mRrWSJ3wVLt2KZUNdE8vqDv";
 
-GLOBALS.WAIFUS_VIEWABLE_URL = "https://ipfs.io/ipfs/QmQuzMGqHxSXugCUvWQjDCDHWhiGB75usKbrZk6Ec6pFvw"; //SET THIS FOR WALLET PAGE TO LOAD WAIFU IMAGE
+GLOBALS.WAIFUS_VIEWABLE_URL = "https://cloudflare-ipfs.com/ipfs/QmQuzMGqHxSXugCUvWQjDCDHWhiGB75usKbrZk6Ec6pFvw"; //SET THIS FOR WALLET PAGE TO LOAD WAIFU IMAGE
 GLOBALS.GALLERY_VIEWABLE_URL =
   "https://ipfs.io/ipfs/QmQuzMGqHxSXugCUvWQjDCDHWhiGB75usKbrZk6Ec6pFvw";
 GLOBALS.WAIFUS_THUMBNAILS_URL = "";
