@@ -48,6 +48,7 @@ const Detail = observer((props) => {
 
   const updateWaifuState = async () => {
     detailStore.currentWaifu = await getWaifuTraitsById(props.detailId);
+    console.log(detailStore.currentWaifu);
   };
 
   const updateDetailWETState = async () => {
@@ -63,7 +64,7 @@ const Detail = observer((props) => {
   };
 
   const revealedWaifuIndex = (waifuIndex) => {
-    return (Number(waifuIndex) + GLOBALS.STARTING_INDEX) % 11000;
+    return (Number(waifuIndex) + GLOBALS.STARTING_INDEX) % 16384;
   };
 
   const approveAccount = async () => {
@@ -278,7 +279,7 @@ const Detail = observer((props) => {
                           flexWrap="wrap"
                           style={{ maxwidth: "590px" }}
                         >
-                          {detailStore.currentWaifu.traits.map((trait) =>
+                          {detailStore.currentWaifu.attributes.map((trait) =>
                             listTrait(trait)
                           )}
                         </Flex>
