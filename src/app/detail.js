@@ -44,6 +44,10 @@ const Detail = observer((props) => {
     updateDetailWETS();
     getWaifuDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    return () => {
+      detailStore.currentWaifu = null;
+    }
   }, []);
 
   const updateWaifuState = async () => {
