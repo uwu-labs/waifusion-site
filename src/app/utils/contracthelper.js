@@ -1,6 +1,7 @@
 import WaifuABI from "../contracts/ERC721.abi";
 import WETABI from "../contracts/ERC20.abi";
 import DUNGEON from "../contracts/Dungeon.abi";
+import DUNGEONBSC from "../contracts/Dungeon.abi";
 import { GLOBALS } from "./globals";
 import Web3 from "web3";
 import { navigate } from "gatsby";
@@ -21,7 +22,7 @@ const getDungeonContract = async () => {
   }
 
   return new window.web3.eth.Contract(
-    DUNGEON,
+    GLOBALS.WAIFU_VERSION === "eth" ? DUNGEON : DUNGEONBSC,
     GLOBALS.DUNGEON_CONTRACT_ADDRESS,
     {
       from: defaultAccount,

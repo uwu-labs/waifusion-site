@@ -7,6 +7,7 @@ import Loading from "./loading";
 import { getDungeonContract } from "../app/utils/contracthelper";
 import BN from "bn.js";
 import { web3 } from "../app/utils/contracthelper";
+import { GLOBALS } from "../app/utils/globals";
 
 const StyledBuyWaifus = styled.div``;
 
@@ -65,7 +66,7 @@ const BuyWaifus = ({ show, close }) => {
     dungeonContract.methods
       .commitBuyWaifus(amount)
       .send({
-        value: new BN(web3.utils.toWei("0.7")).mul(new BN(amount)),
+        value: new BN(web3.utils.toWei(GLOBALS.BUY_PRICE)).mul(new BN(amount)),
         gas: estimatedGas,
       })
       .on("transactionHash", (hash) => {
