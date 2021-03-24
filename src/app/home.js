@@ -35,7 +35,7 @@ const Home = (props) => {
                 >
                   <center className="waifu-pic-box-center waifu-card-pink-center">
                     <span className="card-box-center-pink-text">
-                      Waifu Name #6969 test
+                      Waifu Name #6969
                     </span>
                     <img
                       className="waifu-dotted-line"
