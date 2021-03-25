@@ -254,7 +254,7 @@ const DungeonPage = observer(() => {
               <BoxContent>
                 <Header>Buy Waifus</Header>
                 <Content>
-                  Buy a new Waifu from the Dungeon for 0.7 ETH. You will receive
+                  Buy a new Waifu from the Dungeon for {GLOBALS.BUY_PRICE} {GLOBALS.CURRENCY}. You will receive
                   a random Waifu from the dungeon.
                 </Content>
                 <ButtonContainer>

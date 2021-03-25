@@ -5,6 +5,7 @@ import PendingButton from "../app/templates/pendingbutton";
 import Popup from "./popup";
 import { getDungeonContract } from "../app/utils/contracthelper";
 import RevealComplete from "./revealComplete";
+import { GLOBALS } from "../app/utils/globals";
 
 const StyledLoading = styled.div``;
 
@@ -64,7 +65,7 @@ const Loading = ({ show, type, complete }) => {
                 : "Burning Waifus"}
             </Header>
             {!complete && (
-              <ErrorText>{`After ${type}, you have 45 minutes to reveal or Waifus will be lost forever. If gas fees show as high, try again in 1 minute.`}</ErrorText>
+              <ErrorText>{GLOBALS.WAIFU_VERSION === "eth" ? `After ${type}, you have 45 minutes to reveal or Waifus will be lost forever. If gas fees show as high, try again in 1 minute.` : `After ${type}, you have 10 minutes to reveal or Waifus will be lost forever. If gas fees seem excessively high, reject the transaction and try again.`}</ErrorText>
             )}
             <Content>
               {complete ? (

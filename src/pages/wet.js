@@ -48,11 +48,10 @@ const WETTokenPage = () => (
               around 3,660 WETs per year.
               <br />
               To change the name of any Waifu, you need to send 1,830 WETs
-              (about ½ years of Waifu emission) to the Waifusion contract and
-              boil them.
+              (about ½ years of Waifu emission) to the Waifusion contract with the new name.
               <br />
               To burn a Waifu you need to send a Waifu and 5,490 WETs to the
-              Waifusion contract and boil them.
+              Waifusion contract they will disappear forever...
             </div>
             <br />
             <div className="waifu-card-header-text">The Rules</div>

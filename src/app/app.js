@@ -1,5 +1,5 @@
 // Frameworks
-import React from "react";
+import React, { useEffect } from "react";
 import { Router } from "@reach/router";
 
 // Layout Management
@@ -21,6 +21,7 @@ import Detail from "./detail";
 import Home from "./home";
 import Owner from "./owner";
 import { Helmet } from "react-helmet";
+import { GLOBALS } from "./utils/globals";
 
 // Dynamic Application Wrapper
 const App = (props) => {
