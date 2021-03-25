@@ -5,13 +5,14 @@ import { observer } from "mobx-react-lite";
 import { Helmet } from "react-helmet";
 
 // Data Store
-import { RootStoreContext } from "./stores/root.store";
-import { GLOBALS } from "./utils/globals.js";
+import { RootStoreContext } from "../app/stores/root.store";
+import { GLOBALS } from "../app/utils/globals.js";
 
 import WaifuPinkBar from "../images/waifucard_pink_bar.png";
 import WaifuDottedLine from "../images/waifu_dotted_line.png";
 import FocusText from "../images/focus_waifu_card_text.png";
 import BlurredText from "../images/blurred_text_crop.png";
+import Layout from "../components/layout";
 
 // Main Route
 const Gallery = observer((props) => {
@@ -31,7 +32,7 @@ const Gallery = observer((props) => {
   };
 
   return (
-    <>
+    <Layout>
       {/*Need to add key to box when do full gallery */}
       <Helmet>
         <title>Gallery</title>
@@ -132,7 +133,7 @@ const Gallery = observer((props) => {
           </Box>
         </div>
       </Box>
-    </>
+    </Layout>
   );
 });
 

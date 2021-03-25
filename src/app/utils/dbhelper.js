@@ -91,44 +91,8 @@ const getWaifuById = async (id) => {
   return result;
 };
 
-const cleanWaifu = (waifu) => {
-  return {
-    index: waifu["index"],
-    traits: waifu.attributes,
-    // HeadAccessory: waifu.attributes[0].value,
-    // headaccessoryStyle: waifu.attributes[1].value,
-    // Top: waifu.attributes[2].value,
-    // TopColor: waifu.attributes[3].value,
-    // Bottom: waifu.attributes[4].value,
-    // BottomColor: waifu.attributes[5].value,
-    // Wings: waifu.attributes[6].value,
-    // WingsColor: waifu.attributes[7].value,
-    // Tail: waifu.attributes[8].value,
-    // TailColor: waifu.attributes[9].value,
-    // HandAccessory: waifu.attributes[10].value,
-    // Skintone: waifu.attributes[11].value,
-    // BodySize: waifu.attributes[12].value,
-    // Background: waifu.attributes[13].value,
-    // BackgroundStyle: waifu.attributes[14].value,
-    // Face: waifu.attributes[15].value,
-    // Hairstyle: waifu.attributes[16].value,
-    // HairColor: waifu.attributes[17].value,
-    // Eyes: waifu.attributes[18].value,
-    // SpeechBubble: waifu.attributes[19].value,
-    // Socks: waifu.attributes[20].value,
-    // SocksColor: waifu.attributes[21].value,
-    // NeckAccessory: waifu.attributes[22].value,
-    // NeckAccessoryColor: waifu.attributes[23].value,
-    previewUrl: GLOBALS.WAIFUS_VIEWABLE_URL.concat(
-      "/",
-      getImageIdFromIndex(waifu["index"]),
-      ".png"
-    ),
-  };
-};
 const getWaifuTraitsById = async (id) => {
   try {
-    var cleanedWaifu = {};
     let client = await getIpfsNode();
     var url = GLOBALS.WAIFUS_TRAITS_HASH + "/" + id + ".json";
     const stream = client.cat(url);
