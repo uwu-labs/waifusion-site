@@ -1,5 +1,5 @@
 name: Build application on PR
-"on": pull_request
+on: pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
         with:
-          node-version: "12.x"
+          node-version: 12.x
       - name: Gatsby Cache
         id: gatsby-cache-build
         uses: actions/cache@v2
