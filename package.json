@@ -73,7 +73,8 @@
   "scripts": {
     "start": "npm run develop",
     "develop": "gatsby develop",
-    "build": "npm run clean && gatsby build --prefix-paths",
+    "build_clean": "npm run clean && gatsby build --prefix-paths",
+    "build": "gatsby build --prefix-paths",
     "serve": "gatsby serve",
     "clean": "rimraf .cache public",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
