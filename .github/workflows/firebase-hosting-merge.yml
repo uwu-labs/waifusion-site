@@ -11,10 +11,23 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: "12.x"
+      - name: Gatsby Cache
+        id: gatsby-cache-build
+        uses: actions/cache@v2
+        with:
+          path: |
+            public
+            .cache
+          key: ${{ runner.os }}-gatsby-build-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-gatsby-build-
       - name: Installing Dependencies
         run: npm ci --production
       - name: Building
         run: npm run build
+        env:
+          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+          CI: true
       - name: Install Firebase Tools
         run: npm install -g firebase-tools
       - name: Deploying to Firebase
