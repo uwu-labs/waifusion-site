@@ -7,7 +7,6 @@ import { useStaticQuery, graphql } from "gatsby";
 // Layout Components
 import Header from "./header";
 import "./layout.css";
-import Logo from "../images/Eth_logo.png";
 
 const customTheme = {};
 
