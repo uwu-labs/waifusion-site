@@ -43,11 +43,12 @@ const Detail = observer((props) => {
     }
     updateDetailWETS();
     getWaifuDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
 
     return () => {
       detailStore.currentWaifu = null;
-    }
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateWaifuState = async () => {
@@ -212,7 +213,9 @@ const Detail = observer((props) => {
                   <center className="waifu-pic-box-center waifu-card-pink-center">
                     <span className="card-box-center-pink-text test-margin">
                       <span className="waifu-box-number">Waifu Name: </span>
-                      <span className="waifu-box-number">{detailStore.name}</span>
+                      <span className="waifu-box-number">
+                        {detailStore.name}
+                      </span>
                     </span>
                     <img
                       className="waifu-dotted-line"
@@ -300,19 +303,19 @@ const Detail = observer((props) => {
                           {walletStore.defaultAddress === detailStore.owner && (
                             <Flex>
                               <Box>
-                                  <center>
-                                    <Box className="wallet-buttons">
-                                      <Button.Outline
-                                        className="waifu-card-buttons"
-                                        onClick={openNCModal}
-                                      >
-                                        <span className="waifu-button-learnmore">
-                                          {" "}
-                                          Change Name
-                                        </span>{" "}
-                                      </Button.Outline>
-                                    </Box>
-                                  </center>
+                                <center>
+                                  <Box className="wallet-buttons">
+                                    <Button.Outline
+                                      className="waifu-card-buttons"
+                                      onClick={openNCModal}
+                                    >
+                                      <span className="waifu-button-learnmore">
+                                        {" "}
+                                        Change Name
+                                      </span>{" "}
+                                    </Button.Outline>
+                                  </Box>
+                                </center>
                               </Box>
                             </Flex>
                           )}

@@ -7,13 +7,14 @@ import { observer } from "mobx-react-lite";
 
 import { RootStoreContext } from "../app/stores/root.store";
 
-// import LogoImg from '../assets/Logo.svg'
-import LogoImg from "../images/Eth_logo.png";
+import ethLogo from "../images/Eth_logo.png";
+import bscLogo from "../images/Bsc_Logo.png";
 import NavPinkBar from "../images/nav_pink_bar.png";
 import "./header.css";
 
 import { getTransactionReceipt } from "../app/utils/contracthelper";
 import styled from "styled-components";
+import { GLOBALS } from "../app/utils/globals";
 
 const Container = styled.header`
   margin: 1.45rem 0;
@@ -45,10 +46,10 @@ const Header = observer(({ siteTitle, menuLinks }) => {
 
   const windowWeb3 = useMemo(() => {
     if (typeof window != "undefined") {
-      return new Web3(window.ethereum)
+      return new Web3(window.ethereum);
     }
     return false;
-  }, [])
+  }, []);
 
   const checkWalletAndPendingTransactions = async () => {
     if (windowWeb3) {
@@ -107,7 +108,11 @@ const Header = observer(({ siteTitle, menuLinks }) => {
             style={{ maxWidth: 1424, marginBottom: 1 }}
           >
             <Content>
-              <Logo alt="" src={LogoImg} />
+              {GLOBALS.WAIFU_VERSION === "bsc" ? (
+                <Logo alt="BCS Waifu Logo" src={bscLogo} />
+              ) : (
+                <Logo alt="ETH Waifu Logo" src={ethLogo} />
+              )}
               <ButtonsWrapper>
                 {menuLinks.map((link) => (
                   <Button.Outline
