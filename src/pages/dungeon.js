@@ -194,6 +194,7 @@ const DungeonPage = observer(() => {
 
   return (
     <Layout>
+      <SEO title={"Dungeon | Waifusion"}/>
       <PageContainer>
         <Box className="waifu-card-box overview-card-box">
           <div className="box-upper">
