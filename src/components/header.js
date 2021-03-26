@@ -8,7 +8,7 @@ import { observer } from "mobx-react-lite";
 import { RootStoreContext } from "../app/stores/root.store";
 
 import ethLogo from "../images/Eth_logo.png";
-import bscLogo from "../images/Bsc_logo.png";
+import bscLogo from "../images/Bsc_Logo.png";
 import NavPinkBar from "../images/nav_pink_bar.png";
 import "./header.css";
 
