@@ -3,10 +3,10 @@ import React, { useContext, useEffect } from "react";
 import { navigate } from "gatsby";
 import { observer } from "mobx-react-lite";
 import { Flex, Text, Box } from "rimble-ui";
-import OverviewGreenBar from "../images/overview_green_bar.png";
+import OverviewGreenBar from "../../images/overview_green_bar.png";
 
 // Data Store
-import { RootStoreContext } from "./stores/root.store";
+import { RootStoreContext } from "../stores/root.store";
 
 // Main Route
 const TransactionHistory = observer((props) => {

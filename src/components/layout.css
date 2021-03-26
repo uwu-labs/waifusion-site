@@ -946,6 +946,10 @@ BELOW IS HOME CSS
 	padding-left:25px;
 }
 
+.waifu-box-number svg:hover {
+  opacity: 0.5;
+}
+
 .waifu-button-learnmore{
 	border: 2px solid #181425;
 	width: 133px;
@@ -1530,13 +1534,6 @@ background-color: #FDACB9;
 margin-top: -24px;
 }
 
-
-
-.footer-social-banner {
-  margin-left: auto !important ; 
-  margin-right: 0 !important ;
-}
-
 .footer-logo {
   margin-top:18px !important;
   margin-left:200px !important;
@@ -1545,13 +1542,6 @@ margin-top: -24px;
 .footer-social-text-div {
   margin-top:55px;
   padding-right:60px !important;
-}
-.footer-social-text-div:nth-last-child(1) {
-  margin-right:200px !important;
-}
-
-.footer-social-text-div:nth-child(1) {
-  padding-left:200px !important;
 }
 
 .footer-bottom-sytle {

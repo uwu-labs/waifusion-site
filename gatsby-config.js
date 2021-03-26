@@ -17,7 +17,7 @@ module.exports = {
       },
       {
         name: "GALLERY",
-        link: "/app/gallery",
+        link: "/gallery",
       },
       {
         name: "WET TOKEN",

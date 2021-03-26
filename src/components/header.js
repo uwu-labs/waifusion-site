@@ -7,7 +7,7 @@ import { observer } from "mobx-react-lite";
 
 import { RootStoreContext } from "../app/stores/root.store";
 
-// import Logo from '../assets/Logo.svg'
+// import LogoImg from '../assets/Logo.svg'
 import LogoImg from "../images/Eth_logo.png";
 import NavPinkBar from "../images/nav_pink_bar.png";
 import "./header.css";

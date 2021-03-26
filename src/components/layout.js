@@ -1,6 +1,6 @@
 // Frameworks
 import React from "react";
-import { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { theme, Box, Text, Flex } from "rimble-ui";
 import { useStaticQuery, graphql } from "gatsby";
 
@@ -10,6 +10,13 @@ import "./layout.css";
 import Logo from "../images/Eth_logo.png";
 
 const customTheme = {};
+
+const FooterItemsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+`;
 
 // Layout Wrapper
 const Layout = ({ children }) => {
@@ -45,10 +52,7 @@ const Layout = ({ children }) => {
             <main>{children}</main>
             <footer className="footer-bottom-sytle">
               <Box>
-                <Flex>
-                  <Box>
-                    <img className="footer-logo" alt="footer logo" src={Logo} />
-                  </Box>
+                <FooterItemsWrapper>
                   <Box className="footer-social-banner">
                     <Flex>
                       <Box className="footer-social-text-div">
@@ -57,7 +61,6 @@ const Layout = ({ children }) => {
                             color: "white",
                             fontFamily: "VT323",
                             fontSize: "36px",
-                            textAlign: "right",
                           }}
                         >
                           <a
@@ -75,7 +78,6 @@ const Layout = ({ children }) => {
                             color: "white",
                             fontFamily: "VT323",
                             fontSize: "36px",
-                            textAlign: "right",
                           }}
                         >
                           <a
@@ -93,11 +95,27 @@ const Layout = ({ children }) => {
                             color: "white",
                             fontFamily: "VT323",
                             fontSize: "36px",
-                            textAlign: "right",
                           }}
                         >
                           <a
-                            href="mailto: waifusion@protonmail.com"
+                            href="https://t.me/Waifusion"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Telegram
+                          </a>
+                        </Text>
+                      </Box>
+                      <Box className="footer-social-text-div">
+                        <Text
+                          style={{
+                            color: "white",
+                            fontFamily: "VT323",
+                            fontSize: "36px",
+                          }}
+                        >
+                          <a
+                            href="mailto: waifusiongovernance@gmail.com"
                             target="_blank"
                             rel="noreferrer"
                           >
@@ -107,7 +125,7 @@ const Layout = ({ children }) => {
                       </Box>
                     </Flex>
                   </Box>
-                </Flex>
+                </FooterItemsWrapper>
               </Box>
             </footer>
           </div>

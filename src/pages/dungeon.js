@@ -194,7 +194,7 @@ const DungeonPage = observer(() => {
 
   return (
     <Layout>
-      <SEO title="Dungeon" />
+      <SEO title={"Dungeon | Waifusion"}/>
       <PageContainer>
         <Box className="waifu-card-box overview-card-box">
           <div className="box-upper">
@@ -320,7 +320,7 @@ const DungeonPage = observer(() => {
       />
       <BuyWaifus show={buyingWaifus} close={() => setBuyingWaifus(false)} />
       <Loading show={hasPendingReveal} complete={true} />
-    </Layout>
+      </Layout>
   );
 });
 export default DungeonPage;

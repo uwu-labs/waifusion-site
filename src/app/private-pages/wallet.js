@@ -16,19 +16,19 @@ import {
   getTokenId,
   getWETContract,
   wetBalanceOf,
-} from "./utils/contracthelper";
-import { GLOBALS } from "./utils/globals.js";
-import { revealedWaifuIndex } from "./utils/waifuDisplay.js";
+} from "../utils/contracthelper";
+import { GLOBALS } from "../utils/globals.js";
+import { revealedWaifuIndex } from "../utils/waifuDisplay.js";
 
 // Data Store
-import { RootStoreContext } from "./stores/root.store";
+import { RootStoreContext } from "../stores/root.store";
 
 // Components
-import WetPinkBar from "../images/wet_pink_bar.png";
-import WaifuPinkBar from "../images/waifucard_pink_bar.png";
-import WaifuDottedLine from "../images/waifu_dotted_line.png";
-import FocusText from "../images/focus_waifu_card_text.png";
-import BlurredText from "../images/blurred_text_crop.png";
+import WetPinkBar from "../../images/wet_pink_bar.png";
+import WaifuPinkBar from "../../images/waifucard_pink_bar.png";
+import WaifuDottedLine from "../../images/waifu_dotted_line.png";
+import FocusText from "../../images/focus_waifu_card_text.png";
+import BlurredText from "../../images/blurred_text_crop.png";
 
 // Main Route
 const Main = observer((props) => {
