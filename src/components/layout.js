@@ -97,7 +97,7 @@ const Layout = ({ children }) => {
                           }}
                         >
                           <a
-                            href="mailto: waifusion@protonmail.com"
+                            href="mailto: waifusiongovernance@gmail.com"
                             target="_blank"
                             rel="noreferrer"
                           >

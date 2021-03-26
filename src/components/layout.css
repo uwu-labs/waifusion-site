@@ -946,6 +946,10 @@ BELOW IS HOME CSS
 	padding-left:25px;
 }
 
+.waifu-box-number svg:hover {
+  opacity: 0.5;
+}
+
 .waifu-button-learnmore{
 	border: 2px solid #181425;
 	width: 133px;

@@ -24,7 +24,7 @@ module.exports = {
         {
             icon: 'fa-envelope-o',
             name: 'Email',
-            url: 'mailto:waifusion@protonmail.com',
+            url: 'mailto:waifusiongovernance@gmail.com',
         },
     ],
 };
