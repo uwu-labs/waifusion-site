@@ -6,6 +6,7 @@ const theme = defaultTheme;
 const GlobalStyle = createGlobalStyle`
   :root {
     --text-primary: ${theme.textPrimary};
+    --text-secondary: ${theme.textSecondary};
     --background-primary: ${theme.backgroundPrimary};
   }
 
