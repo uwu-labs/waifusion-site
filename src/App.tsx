@@ -7,6 +7,7 @@ import GlobalStyle from "./GlobalStyles";
 import BrowsePage from "./pages/BrowsePage";
 import WalletPage from "./pages/WalletPage";
 import DungeonPage from "./pages/DungeonPage";
+import ProvenancePage from "./pages/ProvenancePage";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -32,6 +33,7 @@ function App() {
             <Route exact path="/browse" component={BrowsePage} />
             <Route exact path="/wallet" component={WalletPage} />
             <Route exact path="/dungeon" component={DungeonPage} />
+            <Route exact path="/provenance" component={ProvenancePage} />
           </Switch>
         </ContentWrapper>
 
