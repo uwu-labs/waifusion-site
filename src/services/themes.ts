@@ -9,4 +9,6 @@ export const defaultTheme = {
   primary: "#F9C5F7",
   secondary: "#FFEFC2",
   highlight: "#16899B",
+  danger: "#ef5252",
+  dangerShadow: "#c23d3d",
 };
