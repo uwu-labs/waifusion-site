@@ -9,8 +9,11 @@ const GlobalStyle = createGlobalStyle`
     --text-secondary: ${theme.textSecondary};
     --background-primary: ${theme.backgroundPrimary};
     --primary: ${theme.primary};
+    --primary-shadow: ${theme.primaryShadow};
     --secondary: ${theme.secondary};
+    --secondary-shadow: ${theme.secondaryShadow};
     --highlight: ${theme.highlight};
+    --highlight-shadow: ${theme.highlightShadow};
     --danger: ${theme.danger};
     --danger-shadow: ${theme.dangerShadow};
   }
