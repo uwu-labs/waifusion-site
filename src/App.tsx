@@ -8,6 +8,7 @@ import BrowsePage from "./pages/BrowsePage";
 import WalletPage from "./pages/WalletPage";
 import DungeonPage from "./pages/DungeonPage";
 import ProvenancePage from "./pages/ProvenancePage";
+import HistoryPage from "./pages/HistoryPage";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -34,6 +35,7 @@ function App() {
             <Route exact path="/wallet" component={WalletPage} />
             <Route exact path="/dungeon" component={DungeonPage} />
             <Route exact path="/provenance" component={ProvenancePage} />
+            <Route exact path="/history" component={HistoryPage} />
           </Switch>
         </ContentWrapper>
 
