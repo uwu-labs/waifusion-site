@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.footer`
+  position: relative;
   border-top: 2px solid #e7e4e7;
   width: 100%;
   padding: 2rem;
@@ -23,6 +24,13 @@ const Link = styled.a`
   }
 `;
 
+const AbsoluteCenterSection = styled(Section)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 const Footer = () => {
   return (
     <Container>
@@ -30,7 +38,9 @@ const Footer = () => {
         <Link href="/provenance">Provenance</Link>
         <Link href="/history">History</Link>
       </Section>
-      <Section>Made with ❤️ by the Waifusion comunity</Section>
+      <AbsoluteCenterSection>
+        Made with ❤️ by the Waifusion comunity
+      </AbsoluteCenterSection>
       <Section>
         <Link
           href="https://twitter.com/waifusion"
