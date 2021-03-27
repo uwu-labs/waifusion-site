@@ -49,7 +49,8 @@ const Item = styled.li`
   cursor: pointer;
 `;
 
-const LinkableItem = styled.a`
+const LinkableItem = styled(Link)`
+  text-decoration: none;
   display: flex;
   flex-wrap: nowrap;
   font-weight: 500;
@@ -95,19 +96,19 @@ const Navbar = () => {
 
       <NavItemsWrapper>
         <Item>
-          <LinkableItem>
+          <LinkableItem to={"/browse"}>
             <SearchIcon />
             <label>Browse</label>
           </LinkableItem>
         </Item>
         <Item>
-          <LinkableItem>
+          <LinkableItem to={"/wallet"}>
             <WalletIcon />
             <label>Wallet</label>
           </LinkableItem>
         </Item>
         <Item>
-          <LinkableItem>
+          <LinkableItem to={"/dungeon"}>
             <DungeonIcon />
             <label>Dungeon</label>
           </LinkableItem>
