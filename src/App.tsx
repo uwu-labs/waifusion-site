@@ -17,15 +17,15 @@ const ContentWrapper = styled.div`
 function App() {
   return (
     <Wrapper>
-      <Navbar />
-
-      <ContentWrapper>
         <Router>
+        <Navbar />
+
+          <ContentWrapper>
           <Switch>
             <Route exact path="/waifu/:id" component={WaifuDetail} />
           </Switch>
+          </ContentWrapper>
         </Router>
-      </ContentWrapper>
     </Wrapper>
   );
 }

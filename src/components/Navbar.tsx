@@ -1,6 +1,9 @@
+import { useState } from "react";
 import styled from "styled-components";
-import LogoImg from "../assets/logo.svg";
+import LogoImg from "../assets/logo-nomask.svg";
+import LogoMaskImg from "../assets/logo-mask.svg";
 import { ChevronDownIcon, DungeonIcon, SearchIcon, WalletIcon } from "./Icons";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -12,8 +15,10 @@ const Container = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 3rem;
-  width: 9rem;
+  height: 4rem;
+  width: 10rem;
+  cursor: pointer;
+  color: #fff;
 `;
 
 const NavItemsWrapper = styled.ul`
@@ -56,9 +61,17 @@ const SignedInAddressContainer = styled.div`
 `;
 
 const Navbar = () => {
+  const [logoHoverActive, setLogoHoverActive] = useState(false);
+
   return (
     <Container>
-      <Logo src={LogoImg} />
+      <Link to={"/"}>
+        <Logo
+          onMouseEnter={() => setLogoHoverActive(true)}
+          onMouseLeave={() => setLogoHoverActive(false)}
+          src={!logoHoverActive ? LogoMaskImg : LogoImg}
+        />
+      </Link>
 
       <NavItemsWrapper>
         <Item>
