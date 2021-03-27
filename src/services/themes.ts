@@ -8,9 +8,10 @@ export const defaultTheme = {
 
   primary: "#F9C5F7",
   primaryShadow: "#DE9CDC",
-  primaryDark: "#a1599f",
+  primaryDark: "#A1599F",
   secondary: "#FFEFC2",
   secondaryShadow: "#EBD493",
+  secondaryDark: "#bd9c42",
   highlight: "#16899B",
   highlightShadow: "#1F4A51",
   danger: "#ef5252",
