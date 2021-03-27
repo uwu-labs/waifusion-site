@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
     --primary-dark: ${theme.primaryDark};
     --secondary: ${theme.secondary};
     --secondary-shadow: ${theme.secondaryShadow};
+    --secondary-dark: ${theme.secondaryDark};
     --highlight: ${theme.highlight};
     --highlight-shadow: ${theme.highlightShadow};
     --danger: ${theme.danger};
