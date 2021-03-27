@@ -1,7 +1,8 @@
 export const defaultTheme = {
-  name: 'default',
+  name: "default",
 
   backgroundPrimary: "#ffffff",
 
-  textPrimary: "#29252a"
+  textPrimary: "#29252a",
+  textSecondary: "#817d82",
 };
