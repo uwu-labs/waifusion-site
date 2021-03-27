@@ -34,6 +34,7 @@ const Item = styled.li`
   margin-left: 30px;
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 `;
 
 const LinkableItem = styled.a`
@@ -42,10 +43,19 @@ const LinkableItem = styled.a`
   font-weight: 500;
   align-items: center;
   font-size: 15pt;
+  cursor: pointer;
+
+  :hover {
+    filter: brightness(2);
+  }
 
   svg {
     height: 14pt;
     margin-right: 7px;
+  }
+
+  label {
+    cursor: pointer;
   }
 `;
 
