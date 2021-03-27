@@ -9,6 +9,7 @@ import WalletPage from "./pages/WalletPage";
 import DungeonPage from "./pages/DungeonPage";
 import ProvenancePage from "./pages/ProvenancePage";
 import HistoryPage from "./pages/HistoryPage";
+import HomePage from "./pages/HomePage";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -31,11 +32,12 @@ function App() {
         <ContentWrapper>
           <Switch>
             <Route exact path="/waifu/:id" component={WaifuDetail} />
-            <Route exact path="/browse" component={BrowsePage} />
-            <Route exact path="/wallet" component={WalletPage} />
-            <Route exact path="/dungeon" component={DungeonPage} />
-            <Route exact path="/provenance" component={ProvenancePage} />
-            <Route exact path="/history" component={HistoryPage} />
+            <Route path="/browse" component={BrowsePage} />
+            <Route path="/wallet" component={WalletPage} />
+            <Route path="/dungeon" component={DungeonPage} />
+            <Route path="/provenance" component={ProvenancePage} />
+            <Route path="/history" component={HistoryPage} />
+            <Route path="/" component={HomePage} />
           </Switch>
         </ContentWrapper>
 
