@@ -60,7 +60,7 @@ const LinkableItem = styled.a`
 `;
 
 const SignedInAddressContainer = styled.div`
-  background-color: #f9c5f7;
+  background-color: var(--primary);
   border-radius: 50px;
   padding: 0.5rem 1rem;
   font-weight: 600;
