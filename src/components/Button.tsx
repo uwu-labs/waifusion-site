@@ -10,8 +10,8 @@ const Button = styled.button<{
   color: ${(props) => {
     if (props.primary) return "var(--text-primary)";
     else if (props.secondary) return "var(--text-secondary)";
-    else if (props.highlight) return "#ffffff";
-    else if (props.danger) return "#ffffff";
+    else if (props.highlight) return "var(--background-primary)";
+    else if (props.danger) return "var(--background-primary)";
     else return "#817d82";
   }};
   border-radius: 0.5rem;

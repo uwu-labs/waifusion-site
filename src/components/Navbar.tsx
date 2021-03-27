@@ -18,7 +18,7 @@ const Logo = styled.img`
   height: 4rem;
   width: 10rem;
   cursor: pointer;
-  color: #fff;
+  color: var(--background-primary);
   vertical-align: bottom;
 `;
 

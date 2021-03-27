@@ -77,7 +77,7 @@ const WaifuOwnerIconWrapper = styled.div`
 `;
 
 const WaifuOwnerIcon = styled.img`
-  border: 2px solid #fff;
+  border: 2px solid var(--background-primary);
   border-radius: 50%;
   width: 40px;
   height: 40px;
