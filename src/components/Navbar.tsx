@@ -4,6 +4,7 @@ import LogoImg from "../assets/logo-nomask.svg";
 import LogoMaskImg from "../assets/logo-mask.svg";
 import { ChevronDownIcon, DungeonIcon, SearchIcon, WalletIcon } from "./Icons";
 import { Link } from "react-router-dom";
+import Button from "./Button";
 
 const Container = styled.div`
   display: flex;
@@ -71,12 +72,7 @@ const LinkableItem = styled.a`
   }
 `;
 
-const SignedInAddressContainer = styled.div`
-  background-color: var(--primary);
-  border-radius: 50px;
-  padding: 0.5rem 1rem;
-  font-weight: 600;
-
+const SignedInAddressContainer = styled(Button)`
   svg {
     margin-left: 5px;
     vertical-align: middle;
@@ -117,7 +113,7 @@ const Navbar = () => {
           </LinkableItem>
         </Item>
         <Item>
-          <SignedInAddressContainer>
+          <SignedInAddressContainer primary small>
             0xd...3AF
             <ChevronDownIcon />
           </SignedInAddressContainer>
