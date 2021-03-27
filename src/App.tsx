@@ -1,7 +1,9 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import WaifuDetail from "./pages/WaifuDetail";
+import Footer from "./components/Footer";
+import { defaultTheme } from "./services/themes";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -14,18 +16,30 @@ const ContentWrapper = styled.div`
   padding: 2rem;
 `;
 
+const theme = defaultTheme;
+
+const GlobalStyle = createGlobalStyle`
+  :root {
+    --text-primary: ${theme.textPrimary};
+    --background-primary: ${theme.backgroundPrimary};
+  }
+`;
+
 function App() {
   return (
     <Wrapper>
-        <Router>
+      <GlobalStyle/>
+      <Router>
         <Navbar />
 
-          <ContentWrapper>
+        <ContentWrapper>
           <Switch>
             <Route exact path="/waifu/:id" component={WaifuDetail} />
           </Switch>
-          </ContentWrapper>
-        </Router>
+        </ContentWrapper>
+
+        <Footer />
+      </Router>
     </Wrapper>
   );
 }

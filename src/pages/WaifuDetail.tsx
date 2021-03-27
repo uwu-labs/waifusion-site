@@ -36,6 +36,10 @@ const Content = styled.div`
     font-size: 16pt;
     color: #817d82;
   }
+
+  button {
+    margin-bottom: 1rem;
+  }
 `;
 
 const Header = styled.div`
@@ -273,6 +277,7 @@ const WaifuDetail = () => {
 
           <h2>Tools</h2>
           <Button>Change Name</Button>
+          <Button danger>Burn Waifu</Button>
         </Content>
       </Wrapper>
     </PageContentWrapper>

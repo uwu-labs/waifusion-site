@@ -11,7 +11,7 @@ const Container = styled.div`
   align-items: center;
   box-sizing: border-box;
   padding: 15px 32px;
-  border-bottom: 1px solid #e7e4e7;
+  border-bottom: 2px solid #e7e4e7;
 `;
 
 const Logo = styled.img`
