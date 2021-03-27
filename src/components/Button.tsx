@@ -9,7 +9,7 @@ const Button = styled.button<{
   min-width: 10rem;
   color: ${(props) => {
     if (props.primary) return "var(--primary-dark)";
-    else if (props.secondary) return "var(--text-secondary)";
+    else if (props.secondary) return "var(--secondary-dark)";
     else if (props.highlight) return "var(--background-primary)";
     else if (props.danger) return "var(--background-primary)";
     else return "#817d82";
