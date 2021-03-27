@@ -44,9 +44,10 @@ const LinkableItem = styled.a`
   align-items: center;
   font-size: 15pt;
   cursor: pointer;
+  transition: 0.3s;
 
   :hover {
-    filter: brightness(2);
+    color: var(--primary-shadow);
   }
 
   svg {
