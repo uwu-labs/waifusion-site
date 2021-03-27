@@ -38,7 +38,7 @@ function App() {
             <Route path="/dungeon" component={DungeonPage} />
             <Route path="/provenance" component={ProvenancePage} />
             <Route path="/history" component={HistoryPage} />
-            <Route path="/" component={HomePage} />
+            <Route exact path="/" component={HomePage} />
             <Route path="*" component={NotFoundPage} />
           </Switch>
         </ContentWrapper>
