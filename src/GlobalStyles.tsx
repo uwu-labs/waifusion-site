@@ -27,6 +27,10 @@ const GlobalStyle = createGlobalStyle`
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
+
+  a {
+    color: var(--text-primary);
+  }
 `;
 
 export default GlobalStyle;
