@@ -8,6 +8,9 @@ const GlobalStyle = createGlobalStyle`
     --text-primary: ${theme.textPrimary};
     --text-secondary: ${theme.textSecondary};
     --background-primary: ${theme.backgroundPrimary};
+    --primary: ${theme.primary};
+    --secondary: ${theme.secondary};
+    --highlight: ${theme.highlight};
   }
 
   * {
