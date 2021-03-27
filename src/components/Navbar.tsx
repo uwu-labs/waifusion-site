@@ -14,12 +14,23 @@ const Container = styled.div`
   border-bottom: 2px solid #e7e4e7;
 `;
 
-const Logo = styled.img`
+const LogoContainer = styled(Link)`
+  position: relative;
   height: 4rem;
   width: 10rem;
+`;
+
+const Logo = styled.img<{ hide?: boolean }>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
   cursor: pointer;
   color: var(--background-primary);
   vertical-align: bottom;
+  transition: opacity 0.2s;
+  opacity: ${(props) => (props.hide ? "0" : "1")};
 `;
 
 const NavItemsWrapper = styled.ul`
@@ -44,7 +55,7 @@ const LinkableItem = styled.a`
   align-items: center;
   font-size: 15pt;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s;
 
   :hover {
     color: var(--primary-shadow);
@@ -77,13 +88,14 @@ const Navbar = () => {
 
   return (
     <Container>
-      <Link to={"/"}>
-        <Logo
-          onMouseEnter={() => setLogoHoverActive(true)}
-          onMouseLeave={() => setLogoHoverActive(false)}
-          src={!logoHoverActive ? LogoMaskImg : LogoImg}
-        />
-      </Link>
+      <LogoContainer
+        to={"/"}
+        onMouseEnter={() => setLogoHoverActive(true)}
+        onMouseLeave={() => setLogoHoverActive(false)}
+      >
+        <Logo src={LogoMaskImg} />
+        <Logo src={LogoImg} hide={!logoHoverActive} />
+      </LogoContainer>
 
       <NavItemsWrapper>
         <Item>
