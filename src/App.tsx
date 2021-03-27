@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import GlobalStyle from "./GlobalStyles";
 import BrowsePage from "./pages/BrowsePage";
 import WalletPage from "./pages/WalletPage";
+import DungeonPage from "./pages/DungeonPage";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -30,6 +31,7 @@ function App() {
             <Route exact path="/waifu/:id" component={WaifuDetail} />
             <Route exact path="/browse" component={BrowsePage} />
             <Route exact path="/wallet" component={WalletPage} />
+            <Route exact path="/dungeon" component={DungeonPage} />
           </Switch>
         </ContentWrapper>
 
