@@ -31,7 +31,7 @@ const NavItemsWrapper = styled.ul`
 `;
 
 const Item = styled.li`
-  margin-left: 25px;
+  margin-left: 30px;
   display: flex;
   flex-direction: row;
 `;
@@ -45,7 +45,7 @@ const LinkableItem = styled.a`
 
   svg {
     height: 14pt;
-    margin-right: 10px;
+    margin-right: 7px;
   }
 `;
 
