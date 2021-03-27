@@ -6,13 +6,16 @@ export const Button = styled.button<{ danger?: boolean }>`
   border-radius: 0.5rem;
   outline: none;
   display: inline-flex;
-  border: 2px solid ${({ danger }) => (danger ? "#c23d3d" : "#e7e4e7")};
+  border: 2px solid
+    ${({ danger }) => (danger ? "var(--danger-shadow)" : "#e7e4e7")};
   font-family: "Calibre";
   height: 3rem;
-  background-color: ${(props) => (props.danger ? "#ef5252" : "transparent")};
+  background-color: ${(props) =>
+    props.danger ? "var(--danger)" : "transparent"};
   align-items: center;
   justify-content: space-around;
-  box-shadow: 0 0.2rem 0 0 ${({ danger }) => (danger ? "#c23d3d" : "#e7e4e7")};
+  box-shadow: 0 0.2rem 0 0
+    ${({ danger }) => (danger ? "var(--danger-shadow)" : "#e7e4e7")};
   font-weight: 500;
   line-height: 1;
   font-size: 14pt;
@@ -20,12 +23,14 @@ export const Button = styled.button<{ danger?: boolean }>`
   cursor: pointer;
 
   :hover {
-    box-shadow: 0 0.3rem 0 0 ${({ danger }) => (danger ? "#c23d3d" : "#e7e4e7")};
+    box-shadow: 0 0.3rem 0 0
+      ${({ danger }) => (danger ? "var(--danger-shadow)" : "#e7e4e7")};
     transform: translateY(-0.1rem);
   }
 
   :active {
-    box-shadow: 0 0 0 0 ${({ danger }) => (danger ? "#c23d3d" : "#e7e4e7")};
+    box-shadow: 0 0 0 0
+      ${({ danger }) => (danger ? "var(--danger-shadow)" : "#e7e4e7")};
     transform: translateY(0.2rem);
   }
 `;
