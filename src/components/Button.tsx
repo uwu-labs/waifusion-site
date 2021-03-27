@@ -5,8 +5,10 @@ const Button = styled.button<{
   secondary?: boolean;
   highlight?: boolean;
   danger?: boolean;
+  small?: boolean;
 }>`
-  min-width: 10rem;
+  min-width: ${(props) => (props.small ? "0" : "10rem")};
+  padding: ${(props) => (props.small ? "0.5rem 1rem" : "0")};
   color: ${(props) => {
     if (props.primary) return "var(--primary-dark)";
     else if (props.secondary) return "var(--secondary-dark)";
@@ -14,7 +16,7 @@ const Button = styled.button<{
     else if (props.danger) return "var(--background-primary)";
     else return "#817d82";
   }};
-  border-radius: 0.5rem;
+  border-radius: ${(props) => (props.small ? "1.9rem" : "0.5rem")};
   outline: none;
   display: inline-flex;
   border: 2px solid
@@ -26,7 +28,7 @@ const Button = styled.button<{
       else return "#e7e4e7";
     }};
   font-family: "Calibre";
-  height: 3rem;
+  height: ${(props) => (props.small ? "auto" : "3rem")};
   background-color: ${(props) => {
     if (props.primary) return "var(--primary)";
     else if (props.secondary) return "var(--secondary)";
