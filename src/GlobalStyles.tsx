@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     --background-primary: ${theme.backgroundPrimary};
     --primary: ${theme.primary};
     --primary-shadow: ${theme.primaryShadow};
+    --primary-dark: ${theme.primaryDark};
     --secondary: ${theme.secondary};
     --secondary-shadow: ${theme.secondaryShadow};
     --highlight: ${theme.highlight};
