@@ -5,7 +5,6 @@
 /.pnp
 .pnp.js
 .cache
-/public
 
 # testing
 /coverage
