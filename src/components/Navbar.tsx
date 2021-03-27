@@ -10,7 +10,7 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   box-sizing: border-box;
-  padding: 15px 32px;
+  padding: 10px 32px;
   border-bottom: 2px solid #e7e4e7;
 `;
 
@@ -19,6 +19,7 @@ const Logo = styled.img`
   width: 10rem;
   cursor: pointer;
   color: #fff;
+  vertical-align: bottom;
 `;
 
 const NavItemsWrapper = styled.ul`
@@ -43,7 +44,7 @@ const LinkableItem = styled.a`
   font-size: 15pt;
 
   svg {
-    height: 15pt;
+    height: 14pt;
     margin-right: 10px;
   }
 `;
