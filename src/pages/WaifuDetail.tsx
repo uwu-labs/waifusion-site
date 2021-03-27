@@ -28,6 +28,7 @@ const Content = styled.div`
   }
 
   h2 {
+    margin: 20px 0;
     font-weight: 500;
   }
 
@@ -115,7 +116,7 @@ const TraitsContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const TraitTag = styled.div<{colorTrait?: string}>`
+const TraitTag = styled.div<{ colorTrait?: string }>`
   width: 50%;
   background-color: #f9f6f9;
   border: 2px solid #f2eef3;
@@ -134,7 +135,7 @@ const TraitTag = styled.div<{colorTrait?: string}>`
     height: 18pt;
     width: 18pt;
     margin-right: 0.5rem;
-    color: ${props => props.colorTrait ? props.colorTrait : "#817d82"};
+    color: ${(props) => (props.colorTrait ? props.colorTrait : "#817d82")};
   }
 
   h3 {
@@ -241,7 +242,10 @@ const WaifuDetail = () => {
           </Header>
 
           <h2>Bio</h2>
-          <p>Kaitlyn is a cute catgirl who loves to swim. She is also very shy and is currently learning how to speak Japanese.</p>
+          <p>
+            Kaitlyn is a cute catgirl who loves to swim. She is also very shy
+            and is currently learning how to speak Japanese.
+          </p>
 
           <h2>Traits</h2>
           <TraitsContainer>
@@ -267,7 +271,7 @@ const WaifuDetail = () => {
               </TraitDetail>
             </TraitTag>
             <TraitTag colorTrait={"#98614b"}>
-              <EyesTraitIcon/>
+              <EyesTraitIcon />
               <TraitDetail>
                 <h3>Brown</h3>
                 <label>Eyes</label>
