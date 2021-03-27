@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import WaifuDetail from "./pages/WaifuDetail";
 import Footer from "./components/Footer";
 import GlobalStyle from "./GlobalStyles";
+import BrowsePage from "./pages/BrowsePage";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -26,6 +27,7 @@ function App() {
         <ContentWrapper>
           <Switch>
             <Route exact path="/waifu/:id" component={WaifuDetail} />
+            <Route exact path="/browse" component={BrowsePage} />
           </Switch>
         </ContentWrapper>
 
