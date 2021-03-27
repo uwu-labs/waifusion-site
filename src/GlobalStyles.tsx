@@ -11,6 +11,8 @@ const GlobalStyle = createGlobalStyle`
     --primary: ${theme.primary};
     --secondary: ${theme.secondary};
     --highlight: ${theme.highlight};
+    --danger: ${theme.danger};
+    --danger-shadow: ${theme.dangerShadow};
   }
 
   * {
