@@ -35,7 +35,7 @@ const Content = styled.div`
   p {
     margin: 0;
     font-size: 16pt;
-    color: #817d82;
+    color: var(--text-secondary);
   }
 
   button {
@@ -87,7 +87,7 @@ const MetaRow = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  color: #9c9b9c;
+  color: var(--text-secondary);
 `;
 
 const MetaItem = styled.div`
@@ -135,7 +135,8 @@ const TraitTag = styled.div<{ colorTrait?: string }>`
     height: 18pt;
     width: 18pt;
     margin-right: 0.5rem;
-    color: ${(props) => (props.colorTrait ? props.colorTrait : "#817d82")};
+    color: ${(props) =>
+      props.colorTrait ? props.colorTrait : "var(--text-secondary)"};
   }
 
   h3 {
