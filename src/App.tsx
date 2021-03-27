@@ -10,6 +10,7 @@ import DungeonPage from "./pages/DungeonPage";
 import ProvenancePage from "./pages/ProvenancePage";
 import HistoryPage from "./pages/HistoryPage";
 import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -38,6 +39,7 @@ function App() {
             <Route path="/provenance" component={ProvenancePage} />
             <Route path="/history" component={HistoryPage} />
             <Route path="/" component={HomePage} />
+            <Route path="*" component={NotFoundPage} />
           </Switch>
         </ContentWrapper>
 
