@@ -105,7 +105,7 @@ const Navbar = () => {
         </Item>
         <Item>
           <SignedInAddressContainer>
-            0xd3A
+            0xd...3AF
             <ChevronDownIcon />
           </SignedInAddressContainer>
         </Item>
