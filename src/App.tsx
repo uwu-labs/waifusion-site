@@ -23,12 +23,18 @@ const GlobalStyle = createGlobalStyle`
     --text-primary: ${theme.textPrimary};
     --background-primary: ${theme.backgroundPrimary};
   }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 function App() {
   return (
     <Wrapper>
-      <GlobalStyle/>
+      <GlobalStyle />
       <Router>
         <Navbar />
 
