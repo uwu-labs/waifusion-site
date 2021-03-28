@@ -20,7 +20,6 @@ const Header = (props: Props) => {
   return (
     <StyledHeader>
       <Text>{props.text}</Text>
-      <Underline />
     </StyledHeader>
   );
 };
