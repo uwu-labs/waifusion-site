@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Underline from "./Underline";
+import { useTranslation } from "react-i18next";
 
 const StyledFooter = styled.div`
   display: flex;
@@ -47,45 +48,45 @@ const AbsoluteCenterSection = styled(Section)`
 `;
 
 const Footer = () => {
+  const [t] = useTranslation();
+
   return (
     <StyledFooter>
       <Underline />
       <Container>
         <Section>
-          <InternalLink to={"/provenance"}>Provenance</InternalLink>
-          <InternalLink to={"/history"}>History</InternalLink>
+          <InternalLink to={"/provenance"}>{t('provenance')}</InternalLink>
+          <InternalLink to={"/history"}>{t('history')}</InternalLink>
         </Section>
-        <AbsoluteCenterSection>
-          Made with 💜 by the Waifusion comunity
-        </AbsoluteCenterSection>
+        <AbsoluteCenterSection>{t('footer')}</AbsoluteCenterSection>
         <Section>
           <ExternalLink
             href="https://twitter.com/waifusion"
             target="_blank"
             rel="noreferrer"
           >
-            Twitter
+            {t('contact.twitter')}
           </ExternalLink>
           <ExternalLink
             href="https://discord.com/invite/q5hRZR72wm"
             target="_blank"
             rel="noreferrer"
           >
-            Discord
+            {t('contact.discord')}
           </ExternalLink>
           <ExternalLink
             href="https://t.me/Waifusion"
             target="_blank"
             rel="noreferrer"
           >
-            Telegram
+            {t('contact.telegram')}
           </ExternalLink>
           <ExternalLink
             href="mailto: waifusiongovernance@gmail.com"
             target="_blank"
             rel="noreferrer"
           >
-            Contact
+            {t('contact.contact')}
           </ExternalLink>
         </Section>
       </Container>
