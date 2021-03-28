@@ -8,6 +8,9 @@ const GlobalStyle = createGlobalStyle`
     --text-primary: ${theme.textPrimary};
     --text-secondary: ${theme.textSecondary};
     --background-primary: ${theme.backgroundPrimary};
+    --plain: ${theme.plain};
+    --plain-shadow: ${theme.plainShadow};
+    --plain-dark: ${theme.plainDark};
     --primary: ${theme.primary};
     --primary-shadow: ${theme.primaryShadow};
     --primary-dark: ${theme.primaryDark};
@@ -24,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    color: var(--text-primary);
   }
 
   body {
