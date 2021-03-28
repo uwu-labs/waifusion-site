@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const CONFETTI_COUNT = 40;
 
@@ -10,7 +10,6 @@ type ConfettiType = {
   height: number;
   blur: number;
   rotation: number;
-  color: number;
 };
 
 const StyledConfetti = styled.div`
@@ -21,8 +20,24 @@ const StyledConfetti = styled.div`
   height: 100%;
 `;
 
+const rotate = keyframes`
+    0% {
+        transform: translate(-80vh, -80vh);
+    }
+    100% {
+        transform: translate(80vh, 80vh);
+    }
+`;
+
+const Animate = styled.div`
+  animation: ${rotate} 3s linear 0s infinite;
+`;
+
 const ConfettiItem = styled.div`
   position: absolute;
+  border-radius: 2px;
+  animation: ${rotate} 20s linear 0s infinite;
+  background-color: var(--primary);
 `;
 
 const Confetti = () => {
@@ -31,14 +46,15 @@ const Confetti = () => {
   useEffect(() => {
     let _confetti: ConfettiType[] = [];
     for (let i = 0; i < CONFETTI_COUNT; i++) {
+      const width = Math.random() * 50 + 10;
+
       _confetti.push({
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        width: Math.random() * 10 + 10,
-        height: Math.random() * 10 + 5,
-        blur: Math.random() * 2 + 1,
+        left: Math.random() * 200 - 100,
+        top: Math.random() * 200 - 100,
+        width: width,
+        height: width / 2,
+        blur: (width - 10) / 5,
         rotation: Math.random() * 360,
-        color: Math.round(Math.random() * 3),
       });
       console.log("meow");
     }
@@ -56,7 +72,6 @@ const Confetti = () => {
             height: conf.height + "px",
             filter: "blur(" + conf.blur + "px)",
             transform: "rotation(" + conf.rotation + "deg)",
-            backgroundColor: "red",
           }}
         />
       ))}
