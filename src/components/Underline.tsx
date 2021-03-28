@@ -10,7 +10,7 @@ const rotate = keyframes`
 `;
 
 const StyledUnderline = styled.div`
-  height: 3px;
+  height: 2px;
   width: 100%;
   filter: saturate(1.5);
   background: linear-gradient(
@@ -22,7 +22,6 @@ const StyledUnderline = styled.div`
       var(--primary) 100%
     )
     0% 0% / 300% 300%;
-  transform: translateY(-1rem);
   animation: ${rotate} 3s linear 0s infinite;
   border-radius: 1px;
 `;
