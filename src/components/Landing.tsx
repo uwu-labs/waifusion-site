@@ -2,8 +2,10 @@ import styled, { keyframes } from "styled-components";
 import Header from "./Header";
 import landing from "../assets/landing.png";
 import Button from "./Button";
+import Confetti from "./Confetti";
 
 const StyledLanding = styled.div`
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -79,6 +81,7 @@ const Landing = () => {
       <Header text={"Waifusion"} />
       <SubHeader>No Waifu, No Laifu</SubHeader>
       <Image src={landing} />
+      <Confetti />
       <Background>
         <Card>
           <CardText>
