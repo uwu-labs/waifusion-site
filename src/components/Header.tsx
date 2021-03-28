@@ -36,20 +36,6 @@ const rotate = keyframes`
 //     )
 //     0% 0% / 300% 300%;
 
-//   background: linear-gradient(
-//       45deg,
-//       var(--primary) 0%,
-//       var(--primary) 10%,
-//       var(--secondary) 10%,
-//       var(--secondary) 20%,
-//       var(--highlight) 20%,
-//       var(--highlight) 30%,
-//       var(--text-secondary) 30%,
-//       var(--text-secondary) 100%,
-//       var(--primary) 100%
-//     )
-//     0% 0% / 300% 300%;
-
 const Underline = styled.div`
   height: 3px;
   width: 100%;
