@@ -14,7 +14,7 @@ const Button = styled.button<{
     else if (props.secondary) return "var(--secondary-dark)";
     else if (props.highlight) return "var(--background-primary)";
     else if (props.danger) return "var(--background-primary)";
-    else return "#817d82";
+    else return "var(--plain-dark)";
   }};
   border-radius: ${(props) => (props.small ? "1.9rem" : "0.5rem")};
   outline: none;
@@ -25,7 +25,7 @@ const Button = styled.button<{
       else if (props.secondary) return "var(--secondary-shadow)";
       else if (props.highlight) return "var(--highlight-shadow)";
       else if (props.danger) return "var(--danger-shadow)";
-      else return "#e7e4e7";
+      else return "var(--plain-shadow)";
     }};
   font-family: "Calibre";
   height: ${(props) => (props.small ? "auto" : "3rem")};
@@ -34,7 +34,7 @@ const Button = styled.button<{
     else if (props.secondary) return "var(--secondary)";
     else if (props.highlight) return "var(--highlight)";
     else if (props.danger) return "var(--danger)";
-    else return "transparent";
+    else return "var(--plain)";
   }};
   align-items: center;
   justify-content: space-around;
@@ -44,7 +44,7 @@ const Button = styled.button<{
       else if (props.secondary) return "var(--secondary-shadow)";
       else if (props.highlight) return "var(--highlight-shadow)";
       else if (props.danger) return "var(--danger-shadow)";
-      else return "#e7e4e7";
+      else return "var(--plain-shadow)";
     }};
   font-weight: 500;
   line-height: 1;
@@ -59,7 +59,7 @@ const Button = styled.button<{
         else if (props.secondary) return "var(--secondary-shadow)";
         else if (props.highlight) return "var(--highlight-shadow)";
         else if (props.danger) return "var(--danger-shadow)";
-        else return "#e7e4e7";
+        else return "var(--plain-shadow)";
       }};
     transform: translateY(-0.1rem);
   }
@@ -71,7 +71,6 @@ const Button = styled.button<{
         else if (props.secondary) return "var(--secondary-shadow)";
         else if (props.highlight) return "var(--highlight-shadow)";
         else if (props.danger) return "var(--danger-shadow)";
-        else return "#e7e4e7";
       }};
     transform: translateY(0.2rem);
   }
