@@ -32,10 +32,12 @@ const Header = styled.div`
     font-weight: 600;
     font-size: 40pt;
     margin: 20px 0px;
+    color: var(--background-primary);
   }
 
   p {
     font-size: 20pt;
+    color: var(--background-primary);
   }
 `;
 
