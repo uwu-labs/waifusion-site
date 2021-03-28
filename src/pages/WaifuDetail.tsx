@@ -101,6 +101,14 @@ const MetaItem = styled.div`
   svg {
     height: 16pt;
   }
+
+  line {
+    color: var(--text-secondary);
+  }
+
+  label {
+    color: var(--text-secondary);
+  }
 `;
 
 const WaifuOwnerContainer = styled.div`
@@ -118,11 +126,10 @@ const TraitsContainer = styled.div`
 
 const TraitTag = styled.div<{ colorTrait?: string }>`
   width: 50%;
-  background-color: #f9f6f9;
-  border: 2px solid #f2eef3;
+  background-color: var(--plain);
+  border: 2px solid var(--plain-shadow);
   border-radius: 100px;
   padding: 0.5rem 1.2rem;
-  color: #817d82;
   font-weight: 500;
   width: fit-content;
   display: flex;
@@ -137,10 +144,20 @@ const TraitTag = styled.div<{ colorTrait?: string }>`
     margin-right: 0.5rem;
     color: ${(props) =>
       props.colorTrait ? props.colorTrait : "var(--text-secondary)"};
+    color: var(--plain-dark);
+  }
+
+  path {
+    color: var(--plain-dark);
   }
 
   h3 {
     margin: 0;
+    color: var(--plain-dark);
+  }
+
+  label {
+    color: var(--plain-dark);
   }
 `;
 
