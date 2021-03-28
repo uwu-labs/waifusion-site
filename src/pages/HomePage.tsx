@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Landing from "../components/Landing";
 
-const Container = styled(PageContentWrapper)`
+const Container = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
