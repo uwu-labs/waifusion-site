@@ -3,6 +3,7 @@ import Header from "./Header";
 import landing from "../assets/landing.png";
 import Button from "./Button";
 import Confetti from "./Confetti";
+import { useTranslation } from "react-i18next";
 
 const StyledLanding = styled.div`
   position: relative;
@@ -76,22 +77,19 @@ const ButtonContainer = styled.div`
 `;
 
 const Landing = () => {
+  const [t] = useTranslation();
+
   return (
     <StyledLanding>
-      <Header text={"Waifusion"} />
-      <SubHeader>No Waifu, No Laifu</SubHeader>
+      <Header text={t('name')} />
+      <SubHeader>{t('tagline')}</SubHeader>
       <Image src={landing} />
       <Confetti />
       <Background>
         <Card>
-          <CardText>
-            Waifusion is a digital Waifu collection. There are 16,384
-            guaranteed-unique Waifusion NFTs. They’re just like you; a beautiful
-            work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu
-            is wholly unique and yours forever... unless you sell them... Baka.
-          </CardText>
+          <CardText>{t('description')}</CardText>
           <ButtonContainer>
-            <Button primary>Get Waifus</Button>
+            <Button primary>{t('buttons.getWaifus')}</Button>
           </ButtonContainer>
         </Card>
       </Background>
