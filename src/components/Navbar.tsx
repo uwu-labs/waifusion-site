@@ -3,6 +3,12 @@ import { ChevronDownIcon, DungeonIcon, SearchIcon, WalletIcon } from "./Icons";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 import Logo from "./Logo";
+import Underline from "./Underline";
+
+const StyledNavbar = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -10,7 +16,6 @@ const Container = styled.div`
   align-items: center;
   box-sizing: border-box;
   padding: 10px 32px;
-  border-bottom: 2px solid #e7e4e7;
 `;
 
 const NavItemsWrapper = styled.ul`
@@ -64,35 +69,38 @@ const SignedInAddressContainer = styled(Button)`
 
 const Navbar = () => {
   return (
-    <Container>
-      <Logo />
-      <NavItemsWrapper>
-        <Item>
-          <LinkableItem to={"/browse"}>
-            <SearchIcon />
-            <label>Browse</label>
-          </LinkableItem>
-        </Item>
-        <Item>
-          <LinkableItem to={"/wallet"}>
-            <WalletIcon />
-            <label>Wallet</label>
-          </LinkableItem>
-        </Item>
-        <Item>
-          <LinkableItem to={"/dungeon"}>
-            <DungeonIcon />
-            <label>Dungeon</label>
-          </LinkableItem>
-        </Item>
-        <Item>
-          <SignedInAddressContainer primary small>
-            0xd...3AF
-            <ChevronDownIcon />
-          </SignedInAddressContainer>
-        </Item>
-      </NavItemsWrapper>
-    </Container>
+    <StyledNavbar>
+      <Container>
+        <Logo />
+        <NavItemsWrapper>
+          <Item>
+            <LinkableItem to={"/browse"}>
+              <SearchIcon />
+              <label>Browse</label>
+            </LinkableItem>
+          </Item>
+          <Item>
+            <LinkableItem to={"/wallet"}>
+              <WalletIcon />
+              <label>Wallet</label>
+            </LinkableItem>
+          </Item>
+          <Item>
+            <LinkableItem to={"/dungeon"}>
+              <DungeonIcon />
+              <label>Dungeon</label>
+            </LinkableItem>
+          </Item>
+          <Item>
+            <SignedInAddressContainer primary small>
+              0xd...3AF
+              <ChevronDownIcon />
+            </SignedInAddressContainer>
+          </Item>
+        </NavItemsWrapper>
+      </Container>
+      <Underline />
+    </StyledNavbar>
   );
 };
 
