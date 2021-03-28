@@ -1,5 +1,4 @@
-import styled, { keyframes } from "styled-components";
-import Underline from "./Underline";
+import styled from "styled-components";
 
 const StyledHeader = styled.div`
   display: flex;
