@@ -8,7 +8,7 @@ const StyledHeader = styled.div`
 
 const Text = styled.h1`
   font-size: 5rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-primary);
 `;
 
