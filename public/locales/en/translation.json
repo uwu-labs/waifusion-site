@@ -1,0 +1,30 @@
+{
+    "name": "Waifusion",
+    "tagline": "No Waifu, No Laifu",
+    "description": "Waifusion is a digital Waifu collection. There are 16,384 guaranteed-unique Waifusion NFTs. They’re just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifuis wholly unique and yours forever... unless you sell them... Baka.",
+    "footer": "Made with 💜 by the Waifusion comunity",
+    "history": "History",
+    "provenance": "Provenance",
+    "contact": {
+        "twitter": "Twitter",
+        "discord": "Discord",
+        "telegram": "Telegram",
+        "contact": "Contact"
+    },
+    "buttons": {
+        "getWaifus": "Get Waifus"
+    },
+    "headers": {
+        "browse": "Browse Waifus",
+        "dungeon": "Waifu Dungeon",
+        "history": "Your History",
+        "notFound": "404 Page not Found",
+        "provenance": "Provenance",
+        "wallet": "Your Wallet"
+    },
+    "navigation": {
+        "browse": "Browse",
+        "wallet": "Wallet",
+        "dungeon": "Dungeon"
+    }
+}
