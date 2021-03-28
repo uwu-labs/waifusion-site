@@ -49,7 +49,7 @@ const Footer = () => {
         <InternalLink to={"/history"}>History</InternalLink>
       </Section>
       <AbsoluteCenterSection>
-        Made with ❤️ by the Waifusion comunity
+        Made with 💜 by the Waifusion comunity
       </AbsoluteCenterSection>
       <Section>
         <ExternalLink
