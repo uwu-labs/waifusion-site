@@ -57,6 +57,9 @@ const SignedInAddressContainer = styled(Button)`
     margin-left: 5px;
     vertical-align: middle;
   }
+  path {
+    color: var(--primary-dark);
+  }
 `;
 
 const Navbar = () => {
