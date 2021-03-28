@@ -6,6 +6,9 @@ export const defaultTheme = {
   textPrimary: "#241E39",
   textSecondary: "#817d82",
 
+  plain: "#FFFFFF",
+  plainShadow: "#E7E4E7",
+  plainDark: "#817D82",
   primary: "#F9C5F7",
   primaryShadow: "#DE9CDC",
   primaryDark: "#A1599F",
