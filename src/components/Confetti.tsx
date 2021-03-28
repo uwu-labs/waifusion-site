@@ -21,27 +21,8 @@ const StyledConfetti = styled.div`
   height: 100%;
 `;
 
-const ConfettiItem = styled.div<{
-  left: number;
-  top: number;
-  width: number;
-  height: number;
-  blur: number;
-  rotation: number;
-  color: number;
-}>`
+const ConfettiItem = styled.div`
   position: absolute;
-  left: ${(props) => props.left + "%"};
-  top: ${(props) => props.top + "%"};
-  width: ${(props) => props.width + "px"};
-  height: ${(props) => props.height + "px"};
-  filter: blur(${(props) => props.blur + "px"});
-  transform: rotate(${(props) => props.rotation + "deg"});
-  color: ${(props) => {
-    if (props.color === 0) return "var(--highlight)";
-    else if (props.color === 1) return "var(--secondary)";
-    else return "var(--primary)";
-  }};
 `;
 
 const Confetti = () => {
@@ -50,7 +31,7 @@ const Confetti = () => {
   useEffect(() => {
     let _confetti: ConfettiType[] = [];
     for (let i = 0; i < CONFETTI_COUNT; i++) {
-      confetti.push({
+      _confetti.push({
         left: Math.random() * 100,
         top: Math.random() * 100,
         width: Math.random() * 10 + 10,
@@ -59,6 +40,7 @@ const Confetti = () => {
         rotation: Math.random() * 360,
         color: Math.round(Math.random() * 3),
       });
+      console.log("meow");
     }
     setConfetti(_confetti);
   }, []);
@@ -67,13 +49,15 @@ const Confetti = () => {
     <StyledConfetti>
       {confetti.map((conf: ConfettiType) => (
         <ConfettiItem
-          left={conf.left}
-          top={conf.top}
-          width={conf.width}
-          height={conf.height}
-          blur={conf.blur}
-          rotation={conf.rotation}
-          color={conf.color}
+          style={{
+            left: conf.left + "%",
+            top: conf.top + "%",
+            width: conf.width + "px",
+            height: conf.height + "px",
+            filter: "blur(" + conf.blur + "px)",
+            transform: "rotation(" + conf.rotation + "deg)",
+            backgroundColor: "red",
+          }}
         />
       ))}
     </StyledConfetti>
