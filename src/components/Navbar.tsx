@@ -1,7 +1,4 @@
-import { useState } from "react";
 import styled from "styled-components";
-import LogoImg from "../assets/logo-nomask.svg";
-import LogoMaskImg from "../assets/logo-mask.svg";
 import { ChevronDownIcon, DungeonIcon, SearchIcon, WalletIcon } from "./Icons";
 import { Link } from "react-router-dom";
 import Button from "./Button";
