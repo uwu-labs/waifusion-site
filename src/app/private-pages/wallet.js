@@ -8,14 +8,10 @@ import BN from "bn.js";
 // Wallet Interface
 import {
   getAllowance,
-  tokenOfOwnerByIndex,
-  balanceOf,
-  accumulatedForIndex,
   toEthUnit,
-  getWETName,
-  getTokenId,
   getWETContract,
   wetBalanceOf,
+  accoomulate,
 } from "../utils/contracthelper";
 import { GLOBALS } from "../utils/globals.js";
 import { revealedWaifuIndex } from "../utils/waifuDisplay.js";
@@ -102,23 +98,20 @@ const Main = observer((props) => {
       2
     );
 
-    const balance = await balanceOf();
     let totalAccumulated = new BN(0);
-
     WETStore.totalAccumulatedLoading = true;
 
-    for (let i = 0; i < balance; i++) {
-      const index = await tokenOfOwnerByIndex(i);
-      const name = await getWETName(index);
-      const id = await getTokenId(index);
-      const accumulated = new BN(await accumulatedForIndex(index));
-      const accumulatedWETNumber =  Number(await toEthUnit(accumulated)).toFixed(2);
 
+    const t = await accoomulate();
+
+    t.forEach(async(token) => {
+      const accumulated = new BN(token.wetAccumulated);
+      const accumulatedWETNumber = Number(await toEthUnit(accumulated)).toFixed(2);
+
+      WETStore.addOwnedItem({ index: token.tokenId, name: token.name, id: token.tokenId, accumulatedWETNumber});
       totalAccumulated = totalAccumulated.add(accumulated);
-      if (WETStore.items.length < balance) {
-        WETStore.addOwnedItem({ index, name, id, accumulatedWETNumber});
-      }
-    }
+      console.log(accumulated)
+    })
 
     WETStore.totalAccumulated = Number(
       await toEthUnit(totalAccumulated)

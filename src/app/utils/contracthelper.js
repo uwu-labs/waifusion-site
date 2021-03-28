@@ -1,5 +1,6 @@
 import WaifuABI from "../contracts/ERC721.abi";
 import WETABI from "../contracts/ERC20.abi";
+import ACCOOMULATORABI from "../contracts/Accoomulator.abi";
 import DUNGEON from "../contracts/Dungeon.abi";
 import DUNGEONBSC from "../contracts/DungeonBSC.abi";
 import { GLOBALS } from "./globals";
@@ -142,6 +143,20 @@ const tokenOfOwnerByIndex = async (index, address) => {
   return currentlyOwned;
 };
 
+const accoomulate = async () => {
+  const defaultAccount = await ethEnabled();
+
+  const contract = new window.web3.eth.Contract(
+    ACCOOMULATORABI,
+    GLOBALS.ACCOOMULATOR_CONTRACT_ADDRESS,
+    {
+      from: defaultAccount,
+    }
+  );
+
+  return contract.methods.accoomulatedTokenIdsOwned(defaultAccount).call();
+}
+
 const accumulatedForIndex = async (index) => {
   const defaultAccount = await ethEnabled();
 
@@ -232,4 +247,5 @@ export {
   getTransactionReceipt,
   getTimestampFromBlock,
   getTotalSupply,
+  accoomulate
 };
