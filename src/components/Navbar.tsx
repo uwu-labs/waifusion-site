@@ -5,6 +5,7 @@ import LogoMaskImg from "../assets/logo-mask.svg";
 import { ChevronDownIcon, DungeonIcon, SearchIcon, WalletIcon } from "./Icons";
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import Logo from "./Logo";
 
 const Container = styled.div`
   display: flex;
@@ -13,25 +14,6 @@ const Container = styled.div`
   box-sizing: border-box;
   padding: 10px 32px;
   border-bottom: 2px solid #e7e4e7;
-`;
-
-const LogoContainer = styled(Link)`
-  position: relative;
-  height: 4rem;
-  width: 10rem;
-`;
-
-const Logo = styled.img<{ hide?: boolean }>`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  cursor: pointer;
-  color: var(--background-primary);
-  vertical-align: bottom;
-  transition: opacity 0.2s;
-  opacity: ${(props) => (props.hide ? "0" : "1")};
 `;
 
 const NavItemsWrapper = styled.ul`
@@ -81,19 +63,9 @@ const SignedInAddressContainer = styled(Button)`
 `;
 
 const Navbar = () => {
-  const [logoHoverActive, setLogoHoverActive] = useState(false);
-
   return (
     <Container>
-      <LogoContainer
-        to={"/"}
-        onMouseEnter={() => setLogoHoverActive(true)}
-        onMouseLeave={() => setLogoHoverActive(false)}
-      >
-        <Logo src={LogoMaskImg} />
-        <Logo src={LogoImg} hide={!logoHoverActive} />
-      </LogoContainer>
-
+      <Logo />
       <NavItemsWrapper>
         <Item>
           <LinkableItem to={"/browse"}>
