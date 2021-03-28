@@ -3,7 +3,7 @@ export const defaultTheme = {
 
   backgroundPrimary: "#ffffff",
 
-  textPrimary: "#29252a",
+  textPrimary: "#241E39",
   textSecondary: "#817d82",
 
   primary: "#F9C5F7",
