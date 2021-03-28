@@ -33,7 +33,7 @@ const Underline = styled.div`
       var(--primary) 100%
     )
     0% 0% / 300% 300%;
-  transform: translateY(-1.4rem);
+  transform: translateY(-1rem);
   animation: ${rotate} 3s linear 0s infinite;
   border-radius: 1px;
 `;
