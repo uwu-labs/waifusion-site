@@ -21,5 +21,10 @@
         "notFound": "404 Page not Found",
         "provenance": "Provenance",
         "wallet": "Your Wallet"
+    },
+    "navigation": {
+        "browse": "Browse",
+        "wallet": "Wallet",
+        "dungeon": "Dungeon"
     }
 }
