@@ -50,7 +50,7 @@ const Owner = observer((props) => {
         </Box>
         <Box col-sm-4>
           <Text>Current WET: {WETStore.wetBalance}</Text>
-          <Text>Accumulated WET: {WETStore.totalAccumulated}</Text>
+          <Text>Unclaimed WET: {WETStore.totalAccumulated}</Text>
         </Box>
       </Flex>
       <Flex>
