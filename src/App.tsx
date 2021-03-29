@@ -20,7 +20,6 @@ const ContentWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 2rem;
   min-height: 83.2vh;
 `;
 
