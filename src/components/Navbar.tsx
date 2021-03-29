@@ -44,6 +44,10 @@ const LinkableItem = styled(Link)`
   cursor: pointer;
   transition: all 0.3s;
 
+  * {
+    color: var(--text-secondary);
+  }
+
   :hover {
     * {
       color: var(--primary-shadow);
