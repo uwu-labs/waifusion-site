@@ -11,7 +11,7 @@ const StyledLanding = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 85vh;
+  padding: 3rem 0;
 `;
 
 const Content = styled.div`
