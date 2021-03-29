@@ -22,23 +22,7 @@ const StyledConfetti = styled.div`
   overflow: hidden;
 `;
 
-// const float = keyframes`
-//     0% {
-//         transform: translate(-20px, -5px);
-//     }
-//     50% {
-//         transform: translate(0, 0);
-//     }
-//     100% {
-//         transform: translate(20px, -2px);
-//     }
-// `;
-
-// const FloatAnimation = styled.div`
-//   animation: ${float} 3s alternate 0s infinite;
-// `;
-
-const rotate = keyframes`
+const fall = keyframes`
     0% {
         transform: translate(-80vh, -80vh);
     }
@@ -47,10 +31,26 @@ const rotate = keyframes`
     }
 `;
 
-const ConfettiItem = styled.img`
+const FallingAnimation = styled.div`
   position: absolute;
+  animation: ${fall} 20s linear 0s infinite;
+`;
+
+const float = keyframes`
+    0% {
+        transform: translate(-30px, -10px) rotate(35deg);
+    }
+    50% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate(30px, -10px) rotate(-35deg);
+    }
+`;
+
+const ConfettiItem = styled.img`
   border-radius: 2px;
-  animation: ${rotate} 20s linear 0s infinite;
+  animation: ${float} 3s alternate 0s infinite;
 `;
 
 const Confetti = () => {
@@ -67,7 +67,7 @@ const Confetti = () => {
         width: width,
         height: width / 2,
         blur: (width - 10) / 10,
-        rotation: Math.random() * 360,
+        rotation: Math.round(Math.random() * 360),
       });
       console.log("meow");
     }
@@ -77,17 +77,22 @@ const Confetti = () => {
   return (
     <StyledConfetti>
       {confetti.map((conf: ConfettiType) => (
-        <ConfettiItem
-          src={sakura}
+        <FallingAnimation
           style={{
             left: conf.left + "%",
             top: conf.top + "%",
-            width: conf.width + "px",
-            height: conf.height + "px",
-            filter: "blur(" + conf.blur + "px)",
-            transform: "rotation(" + conf.rotation + "deg)",
           }}
-        />
+        >
+          <ConfettiItem
+            src={sakura}
+            style={{
+              width: conf.width + "px",
+              height: conf.height + "px",
+              filter: "blur(" + conf.blur + "px)",
+              transform: "rotation(" + conf.rotation + "deg)",
+            }}
+          />
+        </FallingAnimation>
       ))}
     </StyledConfetti>
   );
