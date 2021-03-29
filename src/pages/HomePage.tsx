@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { PageContentWrapper } from "../components/CommonLayout";
 import Landing from "../components/Landing";
 
 const Container = styled.div`
