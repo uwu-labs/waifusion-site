@@ -75,10 +75,14 @@
         "no-param-reassign": "off",
         "no-return-assign": "off",
         "no-shadow": "off",
+        "no-use-before-define": "off",
         "no-underscore-dangle": "off",
         "no-unused-expressions": "off",
         "no-useless-return": "off",
         "prettier/prettier": "error",
+        "import/first": "error",
+		"import/no-amd": "error",
+		"import/no-webpack-loader-syntax": "error",
         "react/destructuring-assignment": "off",
         "react/forbid-prop-types": "off",
         "react/jsx-curly-newline": "off",
@@ -101,12 +105,37 @@
         "react/no-access-state-in-setstate": "off",
         "react/no-array-index-key": "off",
         "react/no-unescaped-entities": "off",
+        "react/prop-types": "off",
         "react/require-default-props": "off",
-        "react/jsx-no-bind": [
-            1,
-            {
-                "ignoreDOMComponents": false
-            }
-        ]
+        "jsx-a11y/accessible-emoji": "warn",
+		"jsx-a11y/alt-text": "warn",
+		"jsx-a11y/anchor-has-content": "warn",
+		"jsx-a11y/anchor-is-valid": [
+			"warn",
+			{
+				"aspects": ["noHref", "invalidHref"]
+			}
+		],
+		"jsx-a11y/aria-activedescendant-has-tabindex": "warn",
+		"jsx-a11y/aria-props": "warn",
+		"jsx-a11y/aria-proptypes": "warn",
+		"jsx-a11y/aria-role": [
+			"warn",
+			{
+				"ignoreNonDOM": true
+			}
+		],
+		"jsx-a11y/aria-unsupported-elements": "warn",
+		"jsx-a11y/heading-has-content": "warn",
+		"jsx-a11y/iframe-has-title": "warn",
+		"jsx-a11y/img-redundant-alt": "warn",
+		"jsx-a11y/no-access-key": "warn",
+		"jsx-a11y/no-distracting-elements": "warn",
+		"jsx-a11y/no-redundant-roles": "warn",
+		"jsx-a11y/role-has-required-aria-props": "warn",
+		"jsx-a11y/role-supports-aria-props": "warn",
+		"jsx-a11y/scope": "warn",
+		"react-hooks/exhaustive-deps": "warn",
+		"react-hooks/rules-of-hooks": "error"
     }
 }
