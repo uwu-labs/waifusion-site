@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
             {t("contact.twitter")}
           </ExternalLink>
           <ExternalLink
-            href="https://discord.com/invite/q5hRZR72wm"
+            href="https://discord.gg/CaR7RhfDZ6"
             target="_blank"
             rel="noreferrer"
           >
