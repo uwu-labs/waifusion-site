@@ -80,7 +80,7 @@ const Layout = ({ children }) => {
                           }}
                         >
                           <a
-                            href="https://discord.com/invite/q5hRZR72wm"
+                            href="https://discord.gg/qzZ3xYAD8v"
                             target="_blank"
                             rel="noreferrer"
                           >
