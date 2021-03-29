@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styled, { keyframes } from "styled-components";
 import Button from "./Button";
 
@@ -71,30 +72,21 @@ const Item = styled.li`
 `;
 
 const WetSlide = () => {
+  const [t] = useTranslation();
+
   return (
     <StyledSlide>
       <Card>
-        <Header>WET Token</Header>
+        <Header>{t("wet.header")}</Header>
         <Body>
-          The Waifu Enhancement Token (WET) is an exclusive token to the
-          Waifusion world wide harem. There are two uses for the WET Token:
+          {t("wet.overview")}
           <List>
-            <Item>
-              Renaming your Waifu to a new name perminantly stored on the
-              Ethereum Blockchain
-            </Item>
-            <Item>
-              Burning an undesirable Waifu in exchange for a new Waifu from the
-              Dungeon
-            </Item>
+            <Item>{t("wet.useOne")}</Item>
+            <Item>{t("wet.useTwo")}</Item>
           </List>
-          Waifus passively generate WET tokens just by holding them! Each Waifu
-          will generate 3,660 WET per year. You can claim your WET tokens in the
-          wallet page. To change the name of a Waifu, you need to send 1,830
-          WET. To burn a Waifu you need to send a Waifu and 5,490 WET to the
-          Waifusion contract, they will disappear forever...
+          {t("wet.detail")}
         </Body>
-        <Button secondary>Get WET</Button>
+        <Button secondary>{t("buttons.getWet")}</Button>
       </Card>
     </StyledSlide>
   );
