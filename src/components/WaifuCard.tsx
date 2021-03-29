@@ -9,6 +9,17 @@ const Container = styled.div`
   box-shadow: 0 0.2rem 0 0 var(--plain-shadow);
   padding: 0.5rem;
   cursor: pointer;
+  transition: all 0.3s;
+
+  :hover {
+    box-shadow: 0 0.3rem 0 0 var(--plain-shadow);
+    transform: translateY(-0.1rem);
+  }
+
+  :active {
+    box-shadow: 0 0 0 0 var(--plain-shadow);
+    transform: translateY(0.2rem);
+  }
 `;
 
 const ImageContainer = styled.div`
