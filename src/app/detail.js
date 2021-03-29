@@ -297,7 +297,7 @@ const Detail = observer((props) => {
                           Current WET: {detailStore.wetBalance}
                         </Text>
                         <Text className="waifu-detail-text">
-                          Accumulated WET: {detailStore.accumulatedWET}
+                          Unclaimed WET: {detailStore.accumulatedWET}
                         </Text>
                         <Flex className="wallet-button-container">
                           {walletStore.defaultAddress === detailStore.owner && (
