@@ -27,13 +27,13 @@ const fall = keyframes`
         transform: translate(-80vh, -80vh);
     }
     100% {
-        transform: translate(80vh, 80vh);
+        transform: translate(180vh, 180vh);
     }
 `;
 
 const FallingAnimation = styled.div`
   position: absolute;
-  animation: ${fall} 20s linear 0s infinite;
+  animation: ${fall} 30s linear 0s infinite;
 `;
 
 const float = keyframes`
