@@ -11,6 +11,7 @@ const StyledLanding = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 5rem;
 `;
 
 const SubHeader = styled.div`
