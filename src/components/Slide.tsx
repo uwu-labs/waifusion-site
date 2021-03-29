@@ -54,9 +54,20 @@ const Header = styled.h2`
 const Body = styled.p`
   font-size: 1.4rem;
   font-weight: 500;
-  color: var(--plain-dark);
   margin-bottom: 2rem;
   text-align: center;
+  color: var(--plain-dark);
+`;
+
+const List = styled.ul`
+  margin: 1rem auto 2rem auto;
+  width: 80%;
+  text-align: left;
+`;
+
+const Item = styled.li`
+  color: var(--plain-dark);
+  margin-bottom: 0.3rem;
 `;
 
 const Slide = () => {
@@ -66,16 +77,22 @@ const Slide = () => {
         <Header>WET Token</Header>
         <Body>
           The Waifu Enhancement Token (WET) is an exclusive token to the
-          Waifusion world wide harem. WET serves two purposes: Give Waifus a
-          unique name that is permanently stored and publicly visible on the
-          Ethereum Blockchain. Burning an undesirable Waifu in exchange for a
-          new Waifu from the Dungeon If you own a Waifu, you can claim the WETs
-          that are constantly being produced by them being in your harem. Each
-          Waifu will drip around 3,660 WETs per year. To change the name of any
-          Waifu, you need to send 1,830 WETs (about ½ years of Waifu emission)
-          to the Waifusion contract with the new name. To burn a Waifu you need
-          to send a Waifu and 5,490 WETs to the Waifusion contract they will
-          disappear forever...
+          Waifusion world wide harem. There are two uses for the WET Token:
+          <List>
+            <Item>
+              Renaming your Waifu to a new name perminantly stored on the
+              Ethereum Blockchain
+            </Item>
+            <Item>
+              Burning an undesirable Waifu in exchange for a new Waifu from the
+              Dungeon
+            </Item>
+          </List>
+          Waifus passively generate WET tokens just by holding them! Each Waifu
+          will generate 3,660 WET per year. You can claim your WET tokens in the
+          wallet page. To change the name of a Waifu, you need to send 1,830
+          WET. To burn a Waifu you need to send a Waifu and 5,490 WET to the
+          Waifusion contract, they will disappear forever...
         </Body>
         <Button secondary>Get WET</Button>
       </Card>
