@@ -7,12 +7,19 @@ const StyledPreview = styled.div`
   min-height: 60vh;
 `;
 
+const previewWaifusTemp: Waifu[] = [
+  {
+    id: 2043,
+    name: "Kaitlyn"
+  }
+]
+
 const Preview = () => {
   return (
     <StyledPreview>
       This could be an example of some waifus maybe? Recently sold ones or
       something.
-      <WaifuCard/>
+      <WaifuCard waif/>
     </StyledPreview>
   );
 };

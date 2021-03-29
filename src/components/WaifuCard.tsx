@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Waifu } from "../types/waifusion";
 import { ArrowRightIcon } from "./Icons";
 
 const Container = styled.div`
@@ -6,13 +7,13 @@ const Container = styled.div`
   border-radius: 1rem;
   border: 2px solid var(--plain-shadow);
   box-shadow: 0 0.2rem 0 0 var(--plain-shadow);
-  padding: .5rem;
+  padding: 0.5rem;
 `;
 
 const ImageContainer = styled.div`
   overflow: hidden;
   width: 100%;
-  border-radius: .8rem;
+  border-radius: 0.8rem;
 `;
 
 const Image = styled.img`
@@ -38,7 +39,7 @@ const ActionRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-top: .5rem;
+  padding-top: 0.5rem;
 
   span {
     color: var(--text-secondary);
@@ -52,23 +53,23 @@ const ActionRow = styled.div`
   }
 `;
 
-const WaifuCard = () => {
+const WaifuCard = ({waifu}: {waifu: Waifu}) => {
   return (
     <Container>
-            <DetailHeader>
-        <span>Kaitlyn</span>
-        {" "}
-        <span>#2043</span>
+      <DetailHeader>
+        <span>Kaitlyn</span> <span>#2043</span>
       </DetailHeader>
       <ImageContainer>
-        <Image src={"https://global-harem.waifusion.sexy/v1/ETH_WAIFU/2043.png"}/>
+        <Image
+          src={"https://global-harem.waifusion.sexy/v1/ETH_WAIFU/2043.png"}
+        />
       </ImageContainer>
       <ActionRow>
         <span>View profile</span>
-        <ArrowRightIcon/>
+        <ArrowRightIcon />
       </ActionRow>
     </Container>
-  )
-}
+  );
+};
 
 export default WaifuCard;
