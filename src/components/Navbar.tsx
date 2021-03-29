@@ -45,7 +45,9 @@ const LinkableItem = styled(Link)`
   transition: all 0.3s;
 
   :hover {
-    color: var(--primary-shadow);
+    * {
+      color: var(--primary-shadow);
+    }
   }
 
   svg {
@@ -79,19 +81,19 @@ const Navbar = () => {
           <Item>
             <LinkableItem to={"/browse"}>
               <SearchIcon />
-              <label>{t('navigation.browse')}</label>
+              <label>{t("navigation.browse")}</label>
             </LinkableItem>
           </Item>
           <Item>
             <LinkableItem to={"/wallet"}>
               <WalletIcon />
-              <label>{t('navigation.wallet')}</label>
+              <label>{t("navigation.wallet")}</label>
             </LinkableItem>
           </Item>
           <Item>
             <LinkableItem to={"/dungeon"}>
               <DungeonIcon />
-              <label>{t('navigation.dungeon')}</label>
+              <label>{t("navigation.dungeon")}</label>
             </LinkableItem>
           </Item>
           <Item>
