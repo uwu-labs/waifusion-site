@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -26,27 +26,30 @@ const ContentWrapper = styled.div`
 
 const App: React.FC = () => {
   return (
-    <Wrapper>
-      <GlobalStyle />
-      <Router>
-        <Navbar />
+    // TODO: Make proper loading view
+    <Suspense fallback={<h1>Loading</h1>}>
+      <Wrapper>
+        <GlobalStyle />
+        <Router>
+          <Navbar />
 
-        <ContentWrapper>
-          <Switch>
-            <Route exact path="/waifu/:id" component={WaifuDetail} />
-            <Route path="/browse" component={BrowsePage} />
-            <Route path="/wallet" component={WalletPage} />
-            <Route path="/dungeon" component={DungeonPage} />
-            <Route path="/provenance" component={ProvenancePage} />
-            <Route path="/history" component={HistoryPage} />
-            <Route exact path="/" component={HomePage} />
-            <Route path="*" component={NotFoundPage} />
-          </Switch>
-        </ContentWrapper>
+          <ContentWrapper>
+            <Switch>
+              <Route exact path="/waifu/:id" component={WaifuDetail} />
+              <Route path="/browse" component={BrowsePage} />
+              <Route path="/wallet" component={WalletPage} />
+              <Route path="/dungeon" component={DungeonPage} />
+              <Route path="/provenance" component={ProvenancePage} />
+              <Route path="/history" component={HistoryPage} />
+              <Route exact path="/" component={HomePage} />
+              <Route path="*" component={NotFoundPage} />
+            </Switch>
+          </ContentWrapper>
 
-        <Footer />
-      </Router>
-    </Wrapper>
+          <Footer />
+        </Router>
+      </Wrapper>
+    </Suspense>
   );
 };
 
