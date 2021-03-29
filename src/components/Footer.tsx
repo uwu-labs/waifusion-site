@@ -45,6 +45,7 @@ const AbsoluteCenterSection = styled(Section)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: var(--text-secondary);
 `;
 
 const Footer = () => {
@@ -55,38 +56,38 @@ const Footer = () => {
       <Underline />
       <Container>
         <Section>
-          <InternalLink to={"/provenance"}>{t('provenance')}</InternalLink>
-          <InternalLink to={"/history"}>{t('history')}</InternalLink>
+          <InternalLink to={"/provenance"}>{t("provenance")}</InternalLink>
+          <InternalLink to={"/history"}>{t("history")}</InternalLink>
         </Section>
-        <AbsoluteCenterSection>{t('footer')}</AbsoluteCenterSection>
+        <AbsoluteCenterSection>{t("footer")}</AbsoluteCenterSection>
         <Section>
           <ExternalLink
             href="https://twitter.com/waifusion"
             target="_blank"
             rel="noreferrer"
           >
-            {t('contact.twitter')}
+            {t("contact.twitter")}
           </ExternalLink>
           <ExternalLink
             href="https://discord.com/invite/q5hRZR72wm"
             target="_blank"
             rel="noreferrer"
           >
-            {t('contact.discord')}
+            {t("contact.discord")}
           </ExternalLink>
           <ExternalLink
             href="https://t.me/Waifusion"
             target="_blank"
             rel="noreferrer"
           >
-            {t('contact.telegram')}
+            {t("contact.telegram")}
           </ExternalLink>
           <ExternalLink
             href="mailto: waifusiongovernance@gmail.com"
             target="_blank"
             rel="noreferrer"
           >
-            {t('contact.contact')}
+            {t("contact.contact")}
           </ExternalLink>
         </Section>
       </Container>
