@@ -11,10 +11,10 @@ const Button = styled.button<{
   padding: ${(props) => (props.small ? "0.5rem 1rem" : "0")};
   color: ${(props) => {
     if (props.primary) return "var(--primary-dark)";
-    else if (props.secondary) return "var(--secondary-dark)";
-    else if (props.highlight) return "var(--background-primary)";
-    else if (props.danger) return "var(--background-primary)";
-    else return "var(--plain-dark)";
+    if (props.secondary) return "var(--secondary-dark)";
+    if (props.highlight) return "var(--background-primary)";
+    if (props.danger) return "var(--background-primary)";
+    return "var(--plain-dark)";
   }};
   border-radius: ${(props) => (props.small ? "1.9rem" : "0.5rem")};
   outline: none;
@@ -22,29 +22,29 @@ const Button = styled.button<{
   border: 2px solid
     ${(props) => {
       if (props.primary) return "var(--primary-shadow)";
-      else if (props.secondary) return "var(--secondary-shadow)";
-      else if (props.highlight) return "var(--highlight-shadow)";
-      else if (props.danger) return "var(--danger-shadow)";
-      else return "var(--plain-shadow)";
+      if (props.secondary) return "var(--secondary-shadow)";
+      if (props.highlight) return "var(--highlight-shadow)";
+      if (props.danger) return "var(--danger-shadow)";
+      return "var(--plain-shadow)";
     }};
   font-family: "Calibre";
   height: ${(props) => (props.small ? "auto" : "3rem")};
   background-color: ${(props) => {
     if (props.primary) return "var(--primary)";
-    else if (props.secondary) return "var(--secondary)";
-    else if (props.highlight) return "var(--highlight)";
-    else if (props.danger) return "var(--danger)";
-    else return "var(--plain)";
+    if (props.secondary) return "var(--secondary)";
+    if (props.highlight) return "var(--highlight)";
+    if (props.danger) return "var(--danger)";
+    return "var(--plain)";
   }};
   align-items: center;
   justify-content: space-around;
   box-shadow: 0 0.2rem 0 0
     ${(props) => {
       if (props.primary) return "var(--primary-shadow)";
-      else if (props.secondary) return "var(--secondary-shadow)";
-      else if (props.highlight) return "var(--highlight-shadow)";
-      else if (props.danger) return "var(--danger-shadow)";
-      else return "var(--plain-shadow)";
+      if (props.secondary) return "var(--secondary-shadow)";
+      if (props.highlight) return "var(--highlight-shadow)";
+      if (props.danger) return "var(--danger-shadow)";
+      return "var(--plain-shadow)";
     }};
   font-weight: 500;
   line-height: 1;
@@ -56,10 +56,10 @@ const Button = styled.button<{
     box-shadow: 0 0.3rem 0 0
       ${(props) => {
         if (props.primary) return "var(--primary-shadow)";
-        else if (props.secondary) return "var(--secondary-shadow)";
-        else if (props.highlight) return "var(--highlight-shadow)";
-        else if (props.danger) return "var(--danger-shadow)";
-        else return "var(--plain-shadow)";
+        if (props.secondary) return "var(--secondary-shadow)";
+        if (props.highlight) return "var(--highlight-shadow)";
+        if (props.danger) return "var(--danger-shadow)";
+        return "var(--plain-shadow)";
       }};
     transform: translateY(-0.1rem);
   }
@@ -68,9 +68,9 @@ const Button = styled.button<{
     box-shadow: 0 0 0 0
       ${(props) => {
         if (props.primary) return "var(--primary-shadow)";
-        else if (props.secondary) return "var(--secondary-shadow)";
-        else if (props.highlight) return "var(--highlight-shadow)";
-        else if (props.danger) return "var(--danger-shadow)";
+        if (props.secondary) return "var(--secondary-shadow)";
+        if (props.highlight) return "var(--highlight-shadow)";
+        if (props.danger) return "var(--danger-shadow)";
       }};
     transform: translateY(0.2rem);
   }

@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { Waifu } from "../types/waifusion";
 import { ArrowRightIcon } from "./Icons";
@@ -65,7 +66,11 @@ const ActionRow = styled.div`
   }
 `;
 
-const WaifuCard = ({ waifu }: { waifu: Waifu }) => {
+type Props = {
+  waifu: Waifu;
+};
+
+const WaifuCard: React.FC<Props> = ({ waifu }) => {
   return (
     <Container>
       <DetailHeader>

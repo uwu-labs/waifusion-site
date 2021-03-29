@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -23,7 +24,7 @@ const ContentWrapper = styled.div`
   min-height: 83.2vh;
 `;
 
-function App() {
+const App: React.FC = () => {
   return (
     <Wrapper>
       <GlobalStyle />
@@ -47,6 +48,6 @@ function App() {
       </Router>
     </Wrapper>
   );
-}
+};
 
 export default App;

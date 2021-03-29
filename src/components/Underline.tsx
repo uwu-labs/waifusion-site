@@ -1,3 +1,4 @@
+import React from "react";
 import styled, { keyframes } from "styled-components";
 
 const rotate = keyframes`
@@ -26,7 +27,7 @@ const StyledUnderline = styled.div`
   border-radius: 1px;
 `;
 
-const Underline = () => {
+const Underline: React.FC = () => {
   return <StyledUnderline />;
 };
 

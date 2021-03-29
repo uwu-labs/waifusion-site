@@ -1,3 +1,4 @@
+import React from "react";
 import styled, { keyframes } from "styled-components";
 import Button from "./Button";
 
@@ -58,7 +59,7 @@ type Props = {
   buttonText?: string;
 };
 
-const Card = (props: Props) => {
+const Card: React.FC<Props> = (props) => {
   return (
     <Background>
       <StyledCard>

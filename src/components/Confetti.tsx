@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import sakura from "../assets/sakura.png";
 
@@ -53,18 +53,18 @@ const ConfettiItem = styled.img`
   animation: ${float} 3s alternate 0s infinite;
 `;
 
-const Confetti = () => {
+const Confetti: React.FC = () => {
   const [confetti, setConfetti] = useState<ConfettiType[]>([]);
 
   useEffect(() => {
-    let _confetti: ConfettiType[] = [];
+    const _confetti: ConfettiType[] = [];
     for (let i = 0; i < CONFETTI_COUNT; i++) {
       const width = Math.random() * 30 + 30;
 
       _confetti.push({
         left: Math.random() * 200 - 100,
         top: Math.random() * 200 - 100,
-        width: width,
+        width,
         height: width / 2,
         blur: (width - 10) / 10,
         rotation: Math.round(Math.random() * 360),
@@ -79,17 +79,17 @@ const Confetti = () => {
       {confetti.map((conf: ConfettiType) => (
         <FallingAnimation
           style={{
-            left: conf.left + "%",
-            top: conf.top + "%",
+            left: `${conf.left}%`,
+            top: `${conf.top}%`,
           }}
         >
           <ConfettiItem
             src={sakura}
             style={{
-              width: conf.width + "px",
-              height: conf.height + "px",
-              filter: "blur(" + conf.blur + "px)",
-              transform: "rotation(" + conf.rotation + "deg)",
+              width: `${conf.width}px`,
+              height: `${conf.height}px`,
+              filter: `blur(${conf.blur}px)`,
+              transform: `rotation(${conf.rotation}deg)`,
             }}
           />
         </FallingAnimation>

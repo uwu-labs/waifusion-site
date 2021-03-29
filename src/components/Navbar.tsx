@@ -1,10 +1,12 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React from "react";
 import styled from "styled-components";
-import { ChevronDownIcon, DungeonIcon, SearchIcon, WalletIcon } from "./Icons";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { ChevronDownIcon, DungeonIcon, SearchIcon, WalletIcon } from "./Icons";
 import Button from "./Button";
 import Logo from "./Logo";
 import Underline from "./Underline";
-import { useTranslation } from "react-i18next";
 
 const StyledNavbar = styled.div`
   display: flex;
@@ -74,7 +76,7 @@ const SignedInAddressContainer = styled(Button)`
   }
 `;
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [t] = useTranslation();
 
   return (
@@ -83,19 +85,19 @@ const Navbar = () => {
         <Logo />
         <NavItemsWrapper>
           <Item>
-            <LinkableItem to={"/browse"}>
+            <LinkableItem to="/browse">
               <SearchIcon />
               <label>{t("navigation.browse")}</label>
             </LinkableItem>
           </Item>
           <Item>
-            <LinkableItem to={"/wallet"}>
+            <LinkableItem to="/wallet">
               <WalletIcon />
               <label>{t("navigation.wallet")}</label>
             </LinkableItem>
           </Item>
           <Item>
-            <LinkableItem to={"/dungeon"}>
+            <LinkableItem to="/dungeon">
               <DungeonIcon />
               <label>{t("navigation.dungeon")}</label>
             </LinkableItem>

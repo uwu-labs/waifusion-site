@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React from "react";
 import styled from "styled-components";
 import Button from "../components/Button";
 import { PageContentWrapper } from "../components/CommonLayout";
@@ -229,7 +231,7 @@ const exampleTraits = [
   },
 ];
 
-const WaifuDetail = () => {
+const WaifuDetail: React.FC = () => {
   return (
     <PageContentWrapper>
       <Wrapper>
@@ -252,9 +254,7 @@ const WaifuDetail = () => {
                 <label>Owner</label>
               </WaifuOwnerInfo>
               <WaifuOwnerIconWrapper>
-                <WaifuOwnerIcon
-                  src={"https://avatars.githubusercontent.com/u/6209808?v=4"}
-                />
+                <WaifuOwnerIcon src="https://avatars.githubusercontent.com/u/6209808?v=4" />
               </WaifuOwnerIconWrapper>
             </WaifuOwnerContainer>
           </Header>
@@ -288,7 +288,7 @@ const WaifuDetail = () => {
                 <label>Top</label>
               </TraitDetail>
             </TraitTag>
-            <TraitTag colorTrait={"#98614b"}>
+            <TraitTag colorTrait="#98614b">
               <EyesTraitIcon />
               <TraitDetail>
                 <h3>Brown</h3>

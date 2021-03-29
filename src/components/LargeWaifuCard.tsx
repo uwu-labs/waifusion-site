@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -10,10 +11,13 @@ const Image = styled.img`
   width: 100%;
 `;
 
-const LargeWaifuCard = () => (
+const LargeWaifuCard: React.FC = () => (
   <Container>
-    <Image draggable={false} src={"https://ipfs.io/ipfs/QmQuzMGqHxSXugCUvWQjDCDHWhiGB75usKbrZk6Ec6pFvw/13638.png"}/>
+    <Image
+      draggable={false}
+      src="https://ipfs.io/ipfs/QmQuzMGqHxSXugCUvWQjDCDHWhiGB75usKbrZk6Ec6pFvw/13638.png"
+    />
   </Container>
-)
+);
 
 export default LargeWaifuCard;

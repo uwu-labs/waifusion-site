@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import Landing from "../components/Landing";
 import Preview from "../components/Preview";
@@ -9,7 +10,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <Container>
       <Landing />

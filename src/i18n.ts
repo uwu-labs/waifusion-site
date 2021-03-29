@@ -8,11 +8,11 @@ i18n
   .init({
     lng: "en",
     interpolation: {
-      escapeValue: false
+      escapeValue: false,
     },
     react: {
-      useSuspense: false
-    }
+      useSuspense: false,
+    },
   });
 
 export default i18n;
