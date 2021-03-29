@@ -9,7 +9,7 @@ const BrowsePage = () => {
 
   return (
     <StyledBrowsePage>
-      <Header text={t('headers.browse')} />
+      <Header text={t("headers.browse")} />
     </StyledBrowsePage>
   );
 };

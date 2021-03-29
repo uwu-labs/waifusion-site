@@ -12,8 +12,11 @@ const Image = styled.img`
 
 const LargeWaifuCard = () => (
   <Container>
-    <Image draggable={false} src={"https://ipfs.io/ipfs/QmQuzMGqHxSXugCUvWQjDCDHWhiGB75usKbrZk6Ec6pFvw/13638.png"}/>
+    <Image
+      draggable={false}
+      src="https://ipfs.io/ipfs/QmQuzMGqHxSXugCUvWQjDCDHWhiGB75usKbrZk6Ec6pFvw/13638.png"
+    />
   </Container>
-)
+);
 
 export default LargeWaifuCard;

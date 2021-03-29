@@ -252,9 +252,7 @@ const WaifuDetail = () => {
                 <label>Owner</label>
               </WaifuOwnerInfo>
               <WaifuOwnerIconWrapper>
-                <WaifuOwnerIcon
-                  src={"https://avatars.githubusercontent.com/u/6209808?v=4"}
-                />
+                <WaifuOwnerIcon src="https://avatars.githubusercontent.com/u/6209808?v=4" />
               </WaifuOwnerIconWrapper>
             </WaifuOwnerContainer>
           </Header>
@@ -288,7 +286,7 @@ const WaifuDetail = () => {
                 <label>Top</label>
               </TraitDetail>
             </TraitTag>
-            <TraitTag colorTrait={"#98614b"}>
+            <TraitTag colorTrait="#98614b">
               <EyesTraitIcon />
               <TraitDetail>
                 <h3>Brown</h3>

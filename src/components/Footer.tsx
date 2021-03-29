@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Underline from "./Underline";
 import { useTranslation } from "react-i18next";
+import Underline from "./Underline";
 
 const StyledFooter = styled.div`
   display: flex;
@@ -56,8 +56,8 @@ const Footer = () => {
       <Underline />
       <Container>
         <Section>
-          <InternalLink to={"/provenance"}>{t("provenance")}</InternalLink>
-          <InternalLink to={"/history"}>{t("history")}</InternalLink>
+          <InternalLink to="/provenance">{t("provenance")}</InternalLink>
+          <InternalLink to="/history">{t("history")}</InternalLink>
         </Section>
         <AbsoluteCenterSection>{t("footer")}</AbsoluteCenterSection>
         <Section>

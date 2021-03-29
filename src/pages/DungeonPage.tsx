@@ -9,7 +9,7 @@ const DungeonPage = () => {
 
   return (
     <StyledDungeonPage>
-      <Header text={t('headers.dungeon')} />
+      <Header text={t("headers.dungeon")} />
     </StyledDungeonPage>
   );
 };

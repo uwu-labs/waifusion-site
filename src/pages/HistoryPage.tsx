@@ -9,7 +9,7 @@ const HistoryPage = () => {
 
   return (
     <StyledHistoryPage>
-      <Header text={t('headers.history')} />
+      <Header text={t("headers.history")} />
     </StyledHistoryPage>
   );
 };

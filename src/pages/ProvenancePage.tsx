@@ -9,7 +9,7 @@ const ProvenancePage = () => {
 
   return (
     <StyledProvenancePage>
-      <Header text={t('headers.provenance')} />
+      <Header text={t("headers.provenance")} />
     </StyledProvenancePage>
   );
 };

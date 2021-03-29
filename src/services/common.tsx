@@ -115,7 +115,7 @@ export interface HivenPermissionOverrides {
 }
 
 export interface HivenMessageRoom extends HivenRoom {
-  status?: 'AWAITING_PUBLIC_KEYS' | 'READY' | 'DESTROYED';
+  status?: "AWAITING_PUBLIC_KEYS" | "READY" | "DESTROYED";
   public_keys?: { [user_id: string]: string };
   description: string | null;
   last_message_id: string;
@@ -204,7 +204,7 @@ export interface HivenHouseMembers {
 }
 
 export enum HivenResourceType {
-  ROOM = 'room',
+  ROOM = "room",
 }
 
 export interface HivenResourcePointer {

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import LogoImg from "../assets/logo-nomask.svg";
 import LogoMaskImg from "../assets/logo-mask.svg";
-import { Link } from "react-router-dom";
 
 const StyledLogo = styled(Link)`
   position: relative;
@@ -28,7 +28,7 @@ const Logo = () => {
 
   return (
     <StyledLogo
-      to={"/"}
+      to="/"
       onMouseEnter={() => setLogoHoverActive(true)}
       onMouseLeave={() => setLogoHoverActive(false)}
     >

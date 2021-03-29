@@ -9,7 +9,7 @@ const WalletPage = () => {
 
   return (
     <StyledWalletPage>
-      <Header text={t('headers.wallet')} />
+      <Header text={t("headers.wallet")} />
     </StyledWalletPage>
   );
 };

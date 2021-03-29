@@ -9,7 +9,7 @@ const NotFoundPage = () => {
 
   return (
     <StyledNotFoundPage>
-      <Header text={t('headers.notFound')} />
+      <Header text={t("headers.notFound")} />
     </StyledNotFoundPage>
   );
 };

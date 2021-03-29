@@ -1,4 +1,4 @@
-const API_BASE = 'https://api.waifusion.sexy/v1/';
+const API_BASE = "https://api.waifusion.sexy/v1/";
 
 export interface WaifusionAPIResponse {
   success: boolean;
@@ -13,7 +13,7 @@ interface WaifusionError {
 export const makeRequest = async (
   endpoint: string,
   {
-    method = 'GET',
+    method = "GET",
     body: outboundBody,
     media,
   }: {
@@ -24,20 +24,20 @@ export const makeRequest = async (
 ): Promise<WaifusionAPIResponse> => {
   try {
     const headers: { [key: string]: string } = {
-      accept: "application/json"
+      accept: "application/json",
     };
 
     if (outboundBody)
-      headers['Content-Type'] = media
-        ? 'multipart/form-data'
-        : 'application/json';
+      headers["Content-Type"] = media
+        ? "multipart/form-data"
+        : "application/json";
 
     const response: WaifusionAPIResponse = await fetch(API_BASE + endpoint, {
       method,
       headers,
       body: media
         ? outboundBody
-        : outboundBody && method !== 'GET' && method !== 'HEAD'
+        : outboundBody && method !== "GET" && method !== "HEAD"
         ? JSON.stringify(outboundBody)
         : null,
     }).then(async (res) =>
@@ -48,7 +48,7 @@ export const makeRequest = async (
       const { code, message } = response.error as any;
 
       switch (code) {
-        case 'rate_limit':
+        case "rate_limit":
           const timeout = message.expires_at - Date.now();
           setTimeout(
             () => makeRequest(endpoint, { method, body: outboundBody, media }),
@@ -59,11 +59,11 @@ export const makeRequest = async (
     }
 
     return (
-      response || { success: false, error: { code: 'internal_scoped_error' } }
+      response || { success: false, error: { code: "internal_scoped_error" } }
     );
   } catch (error) {
     console.error(error);
 
-    return { success: false, error: { code: 'internal_scoped_error' } };
+    return { success: false, error: { code: "internal_scoped_error" } };
   }
 };
