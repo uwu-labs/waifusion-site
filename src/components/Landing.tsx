@@ -34,7 +34,7 @@ const rotate = keyframes`
 `;
 
 const Background = styled.div`
-  box-shadow: 0px 4px 15px 15px rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 4px 20px 20px rgba(0, 0, 0, 0.04);
   width: 60vw;
   padding: 2px 2px 6px 2px;
   border-radius: 1.1rem;
@@ -57,8 +57,6 @@ const Card = styled.div`
   width: 100%;
   height: 100%;
   background-color: var(--plain);
-  /* box-shadow: 0 0.2rem 0 0 var(--plain-shadow);
-  border: 2px solid var(--plain-shadow); */
   padding: 1.8rem;
   border-radius: 1rem;
   display: flex;
@@ -81,15 +79,15 @@ const Landing = () => {
 
   return (
     <StyledLanding>
-      <Header text={t('name')} />
-      <SubHeader>{t('tagline')}</SubHeader>
+      <Header text={t("name")} />
+      <SubHeader>{t("tagline")}</SubHeader>
       <Image src={landing} />
       <Confetti />
       <Background>
         <Card>
-          <CardText>{t('description')}</CardText>
+          <CardText>{t("description")}</CardText>
           <ButtonContainer>
-            <Button primary>{t('buttons.getWaifus')}</Button>
+            <Button primary>{t("buttons.getWaifus")}</Button>
           </ButtonContainer>
         </Card>
       </Background>
