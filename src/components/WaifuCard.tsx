@@ -57,11 +57,11 @@ const WaifuCard = ({waifu}: {waifu: Waifu}) => {
   return (
     <Container>
       <DetailHeader>
-        <span>Kaitlyn</span> <span>#2043</span>
+        <span>{waifu.name}</span> <span>#{waifu.id}</span>
       </DetailHeader>
       <ImageContainer>
         <Image
-          src={"https://global-harem.waifusion.sexy/v1/ETH_WAIFU/2043.png"}
+          src={`https://global-harem.waifusion.sexy/v1/ETH_WAIFU/${waifu.id}.png`}
         />
       </ImageContainer>
       <ActionRow>
