@@ -81,8 +81,7 @@ const WetSlide = () => {
         <Body>
           {t("wet.overview")}
           <List>
-            <Item>{t("wet.useOne")}</Item>
-            <Item>{t("wet.useTwo")}</Item>
+            {(t("wet.use", { returnObjects: true }) as string[]).map((use) => <><Item>{use}</Item></>)}
           </List>
           {t("wet.detail")}
         </Body>
