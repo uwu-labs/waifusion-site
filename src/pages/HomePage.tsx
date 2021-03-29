@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Landing from "../components/Landing";
-import Slide from "../components/Slide";
+import WetSlide from "../components/WetSlide";
 
 const Container = styled.div`
   width: 100%;
@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <Container>
       <Landing />
-      <Slide />
+      <WetSlide />
     </Container>
   );
 };

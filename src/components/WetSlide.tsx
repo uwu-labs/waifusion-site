@@ -70,7 +70,7 @@ const Item = styled.li`
   margin-bottom: 0.3rem;
 `;
 
-const Slide = () => {
+const WetSlide = () => {
   return (
     <StyledSlide>
       <Card>
@@ -100,4 +100,4 @@ const Slide = () => {
   );
 };
 
-export default Slide;
+export default WetSlide;
