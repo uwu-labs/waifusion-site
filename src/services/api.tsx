@@ -55,6 +55,9 @@ export const makeRequest = async (
             timeout
           );
           break;
+        // TODO: properly handle this
+        default:
+          break;
       }
     }
 

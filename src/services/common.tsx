@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 export interface HivenClientUser {
   icon: string;
   id: string;
