@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import Button from "../components/Button";
 import { PageContentWrapper } from "../components/CommonLayout";
@@ -229,7 +230,7 @@ const exampleTraits = [
   },
 ];
 
-const WaifuDetail = () => {
+const WaifuDetail: React.FC = () => {
   return (
     <PageContentWrapper>
       <Wrapper>

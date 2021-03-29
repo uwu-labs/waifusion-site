@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -74,7 +75,7 @@ const SignedInAddressContainer = styled(Button)`
   }
 `;
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [t] = useTranslation();
 
   return (

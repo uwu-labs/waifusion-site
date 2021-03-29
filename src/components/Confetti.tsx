@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import sakura from "../assets/sakura.png";
 
@@ -53,7 +53,7 @@ const ConfettiItem = styled.img`
   animation: ${float} 3s alternate 0s infinite;
 `;
 
-const Confetti = () => {
+const Confetti: React.FC = () => {
   const [confetti, setConfetti] = useState<ConfettiType[]>([]);
 
   useEffect(() => {

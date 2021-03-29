@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 const StyledHeader = styled.div`
@@ -15,7 +16,7 @@ type Props = {
   text: string;
 };
 
-const Header = (props: Props) => {
+const Header: React.FC<Props> = (props) => {
   return (
     <StyledHeader>
       <Text>{props.text}</Text>

@@ -1,3 +1,4 @@
+import React from "react";
 import { useTranslation } from "react-i18next";
 import styled, { keyframes } from "styled-components";
 import Button from "./Button";
@@ -71,7 +72,7 @@ const Item = styled.li`
   margin-bottom: 0.3rem;
 `;
 
-const WetSlide = () => {
+const WetSlide: React.FC = () => {
   const [t] = useTranslation();
 
   return (

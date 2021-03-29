@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import Header from "./Header";
@@ -32,7 +33,7 @@ const Image = styled.img`
   width: 50vw;
 `;
 
-const Landing = () => {
+const Landing: React.FC = () => {
   const [t] = useTranslation();
 
   return (

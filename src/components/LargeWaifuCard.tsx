@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -10,7 +11,7 @@ const Image = styled.img`
   width: 100%;
 `;
 
-const LargeWaifuCard = () => (
+const LargeWaifuCard: React.FC = () => (
   <Container>
     <Image
       draggable={false}

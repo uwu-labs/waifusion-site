@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { Waifu } from "../types/waifusion";
 import WaifuCard from "./WaifuCard";
@@ -31,7 +32,7 @@ const previewWaifusTemp: Waifu[] = [
   },
 ];
 
-const Preview = () => {
+const Preview: React.FC = () => {
   return (
     <StyledPreview>
       This could be an example of some waifus maybe? Recently sold ones or

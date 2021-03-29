@@ -1,4 +1,6 @@
-export const WalletIcon = (props: any) => (
+import React from "react";
+
+export const WalletIcon: React.FC = (props: any) => (
   <svg
     aria-hidden="true"
     focusable="false"
@@ -16,7 +18,7 @@ export const WalletIcon = (props: any) => (
   </svg>
 );
 
-export const SearchIcon = (props: any) => (
+export const SearchIcon: React.FC = (props: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -34,7 +36,7 @@ export const SearchIcon = (props: any) => (
   </svg>
 );
 
-export const HashIcon = (props: any) => (
+export const HashIcon: React.FC = (props: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -54,7 +56,7 @@ export const HashIcon = (props: any) => (
   </svg>
 );
 
-export const CatgirlTraitIcon = (props: any) => (
+export const CatgirlTraitIcon: React.FC = (props: any) => (
   <svg width="16" height="16" viewBox="0 0 16 16" data-testid="dropdown-icon">
     <g
       id="Symbols"
@@ -85,7 +87,7 @@ export const CatgirlTraitIcon = (props: any) => (
   </svg>
 );
 
-export const SchoolgirlTraitIcon = (props: any) => (
+export const SchoolgirlTraitIcon: React.FC = (props: any) => (
   <svg
     aria-hidden="true"
     focusable="false"
@@ -103,7 +105,7 @@ export const SchoolgirlTraitIcon = (props: any) => (
   </svg>
 );
 
-export const SwimsuitTraitIcon = (props: any) => (
+export const SwimsuitTraitIcon: React.FC = (props: any) => (
   <svg
     aria-hidden="true"
     focusable="false"
@@ -121,7 +123,7 @@ export const SwimsuitTraitIcon = (props: any) => (
   </svg>
 );
 
-export const EyesTraitIcon = (props: any) => (
+export const EyesTraitIcon: React.FC = (props: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 421.75 469.03"
@@ -152,7 +154,7 @@ export const EyesTraitIcon = (props: any) => (
   </svg>
 );
 
-export const ChevronDownIcon = (props: any) => (
+export const ChevronDownIcon: React.FC = (props: any) => (
   <svg {...props} width="12" height="12" viewBox="0 0 16 16">
     <path
       d="M3.619 3.729h8.762a.75.75 0 0 1 .637 1.146l-4.381 7.042a.75.75 0 0 1-1.274 0L2.982 4.875a.75.75 0 0 1 .637-1.146z"
@@ -162,7 +164,7 @@ export const ChevronDownIcon = (props: any) => (
   </svg>
 );
 
-export const DungeonIcon = (props: any) => (
+export const DungeonIcon: React.FC = (props: any) => (
   <svg
     aria-hidden="true"
     focusable="false"
@@ -180,7 +182,7 @@ export const DungeonIcon = (props: any) => (
   </svg>
 );
 
-export const ArrowRightIcon = (props: any) => (
+export const ArrowRightIcon: React.FC = (props: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"

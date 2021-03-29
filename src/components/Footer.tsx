@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -48,7 +49,7 @@ const AbsoluteCenterSection = styled(Section)`
   color: var(--text-secondary);
 `;
 
-const Footer = () => {
+const Footer: React.FC = () => {
   const [t] = useTranslation();
 
   return (
