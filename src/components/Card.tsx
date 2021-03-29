@@ -43,6 +43,7 @@ const StyledCard = styled.div`
 const CardText = styled.p`
   font-size: 1.2rem;
   font-weight: 500;
+  text-align: center;
 `;
 
 const ButtonContainer = styled.div`
