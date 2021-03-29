@@ -3,7 +3,6 @@ import styled from "styled-components";
 const StyledHeader = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 3rem;
 `;
 
 const Text = styled.h1`

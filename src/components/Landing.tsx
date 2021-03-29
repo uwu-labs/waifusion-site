@@ -9,9 +9,16 @@ const StyledLanding = styled.div`
   position: relative;
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+`;
+
+const Content = styled.div`
+  width: 100%;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 5rem;
 `;
 
 const SubHeader = styled.div`
@@ -30,15 +37,17 @@ const Landing = () => {
 
   return (
     <StyledLanding>
-      <Header text={t("name")} />
-      <SubHeader>{t("tagline")}</SubHeader>
-      <Image src={landing} />
-      <Confetti />
-      <Card
-        text={t("description")}
-        buttonAction={() => alert("not implemented yet")}
-        buttonText={t("buttons.getWaifus")}
-      />
+      <Content>
+        <Header text={t("name")} />
+        <SubHeader>{t("tagline")}</SubHeader>
+        <Image src={landing} />
+        <Confetti />
+        <Card
+          text={t("description")}
+          buttonAction={() => alert("not implemented yet")}
+          buttonText={t("buttons.getWaifus")}
+        />
+      </Content>
     </StyledLanding>
   );
 };
