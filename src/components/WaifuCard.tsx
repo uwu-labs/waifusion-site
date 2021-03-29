@@ -8,6 +8,7 @@ const Container = styled.div`
   border: 2px solid var(--plain-shadow);
   box-shadow: 0 0.2rem 0 0 var(--plain-shadow);
   padding: 0.5rem;
+  cursor: pointer;
 `;
 
 const ImageContainer = styled.div`
@@ -53,7 +54,7 @@ const ActionRow = styled.div`
   }
 `;
 
-const WaifuCard = ({waifu}: {waifu: Waifu}) => {
+const WaifuCard = ({ waifu }: { waifu: Waifu }) => {
   return (
     <Container>
       <DetailHeader>
