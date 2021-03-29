@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "./Button";
 import Logo from "./Logo";
 import Underline from "./Underline";
+import { useTranslation } from "react-i18next";
 
 const StyledNavbar = styled.div`
   display: flex;
@@ -68,6 +69,8 @@ const SignedInAddressContainer = styled(Button)`
 `;
 
 const Navbar = () => {
+  const [t] = useTranslation();
+
   return (
     <StyledNavbar>
       <Container>
@@ -76,19 +79,19 @@ const Navbar = () => {
           <Item>
             <LinkableItem to={"/browse"}>
               <SearchIcon />
-              <label>Browse</label>
+              <label>{t('navigation.browse')}</label>
             </LinkableItem>
           </Item>
           <Item>
             <LinkableItem to={"/wallet"}>
               <WalletIcon />
-              <label>Wallet</label>
+              <label>{t('navigation.wallet')}</label>
             </LinkableItem>
           </Item>
           <Item>
             <LinkableItem to={"/dungeon"}>
               <DungeonIcon />
-              <label>Dungeon</label>
+              <label>{t('navigation.dungeon')}</label>
             </LinkableItem>
           </Item>
           <Item>
