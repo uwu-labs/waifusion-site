@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Landing from "../components/Landing";
+import Preview from "../components/Preview";
 import WetSlide from "../components/WetSlide";
 
 const Container = styled.div`
@@ -13,6 +14,7 @@ const Home = () => {
     <Container>
       <Landing />
       <WetSlide />
+      <Preview />
     </Container>
   );
 };
