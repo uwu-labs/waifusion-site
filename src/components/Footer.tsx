@@ -58,7 +58,6 @@ const Footer: React.FC = () => {
       <Container>
         <Section>
           <InternalLink to="/provenance">{t("provenance")}</InternalLink>
-          <InternalLink to="/history">{t("history")}</InternalLink>
         </Section>
         <AbsoluteCenterSection>{t("footer")}</AbsoluteCenterSection>
         <Section>
