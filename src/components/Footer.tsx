@@ -26,6 +26,7 @@ const Section = styled.div`
 const InternalLink = styled(Link)`
   margin-right: 20px;
   text-decoration: none;
+  color: var(--text-secondary);
 
   :hover {
     text-decoration: underline;
@@ -35,6 +36,7 @@ const InternalLink = styled(Link)`
 const ExternalLink = styled.a`
   margin-left: 20px;
   text-decoration: none;
+  color: var(--text-secondary);
 
   :hover {
     text-decoration: underline;
