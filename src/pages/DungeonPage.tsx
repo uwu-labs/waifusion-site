@@ -31,15 +31,6 @@ const rotate = keyframes`
     }
 `;
 
-const StyledSlide = styled.div`
-  width: 100%;
-  display: flex;
-  padding: 5rem 0;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--primary);
-`;
-
 const DungeonCard = styled.div`
   filter: saturate(1.05);
   padding: 0 2rem;
