@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router";
 import Header from "./Header";
 import landing from "../assets/landing.png";
 import Confetti from "./Confetti";
@@ -35,6 +36,7 @@ const Image = styled.img`
 
 const Landing: React.FC = () => {
   const [t] = useTranslation();
+  const history = useHistory();
 
   return (
     <StyledLanding>
@@ -45,7 +47,7 @@ const Landing: React.FC = () => {
         <Confetti />
         <Card
           text={t("description")}
-          buttonAction={() => alert("not implemented yet")}
+          buttonAction={() => history.push("/dungeon")}
           buttonText={t("buttons.getWaifus")}
         />
       </Content>
