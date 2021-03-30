@@ -45,8 +45,8 @@ const DungeonCard = styled.div`
   padding: 0 2rem;
   border-radius: 1rem;
   background-color: var(--plain);
-  border: 2px solid var(--plain-shadow);
-  box-shadow: 0 0.3rem 0 0 var(--plain-shadow);
+  border: 2px solid var(--text-secondary);
+  box-shadow: 0 0.3rem 0 0 var(--text-secondary);
   font-size: 1.4rem;
   font-weight: 500;
   display: flex;
