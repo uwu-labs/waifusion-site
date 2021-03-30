@@ -73,7 +73,7 @@ const DungeonPage: React.FC = () => {
       <Content>
         <CardContainer>
           <Card
-            text="Oh no... Many of our beloved waifus have been enslaved in the Dungeon! Be a hero and save your beloved Waifus by buying thier freedom for 0.7 ETH to get a random Waifu! Or burn a Waifu and pay 5,490 WET to free another random one from the Dungeon."
+            text="Oh no... Many of our beloved waifus have been enslaved in the Dungeon! Be a hero and save your beloved Waifus by buying thier freedom for 0.7 ETH to get a random Waifu. Or burn a Waifu and pay 5,490 WET to free another random one from the Dungeon."
             buttonAction={() => alert("Not implemented yet")}
             buttonText="Buy Waifu"
             secondButtonAction={() => alert("Not implemented yet")}
