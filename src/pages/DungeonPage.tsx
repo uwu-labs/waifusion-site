@@ -4,7 +4,8 @@ import styled, { keyframes } from "styled-components";
 import Card from "../components/Card";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Header from "../components/Header";
-import image from "../assets/dungeon.png";
+import waifuImage from "../assets/dungeon-waifu.png";
+import barsImage from "../assets/bars.png";
 
 const StyledDungeonPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -37,6 +38,7 @@ const DropShadow = styled.div`
 `;
 
 const DungeonCard = styled.div`
+  position: relative;
   filter: saturate(1.05);
   padding: 0 2rem;
   border-radius: 1rem;
@@ -58,10 +60,45 @@ const DungeonCard = styled.div`
     )
     0% 0% / 300% 300%;
   animation: ${rotate} 10s linear 0s infinite;
+  overflow: hidden;
 `;
 
-const Image = styled.img`
+const shake = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  95% {
+    transform: translateX(-2px);
+  }
+  96% {
+    transform: translateX(2px);
+  }
+  97% {
+    transform: translateX(-2px);
+  }
+  98% {
+    transform: translateX(2px);
+  }
+  99% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(2px);
+  }
+`;
+
+const WaifuImage = styled.img`
+  position: relative;
   height: 50vh;
+  animation: ${shake} 4s linear 0s infinite;
+`;
+
+const BarsImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 const DungeonPage: React.FC = () => {
@@ -82,7 +119,8 @@ const DungeonPage: React.FC = () => {
         </CardContainer>
         <DropShadow>
           <DungeonCard>
-            <Image src={image} />
+            <WaifuImage src={waifuImage} />
+            <BarsImage src={barsImage} />
           </DungeonCard>
         </DropShadow>
       </Content>
