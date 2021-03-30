@@ -4,6 +4,7 @@ import styled from "styled-components";
 const StyledHeader = styled.div`
   display: flex;
   flex-direction: column;
+  text-align: center;
 `;
 
 const Text = styled.h1`
