@@ -34,6 +34,10 @@ const Image = styled.img`
   width: 50vw;
 `;
 
+const CardContainer = styled.div`
+  width: 60vw;
+`;
+
 const Landing: React.FC = () => {
   const [t] = useTranslation();
   const history = useHistory();
@@ -45,11 +49,13 @@ const Landing: React.FC = () => {
         <SubHeader>{t("tagline")}</SubHeader>
         <Image src={landing} />
         <Confetti />
-        <Card
-          text={t("description")}
-          buttonAction={() => history.push("/dungeon")}
-          buttonText={t("buttons.getWaifus")}
-        />
+        <CardContainer>
+          <Card
+            text={t("description")}
+            buttonAction={() => history.push("/dungeon")}
+            buttonText={t("buttons.getWaifus")}
+          />
+        </CardContainer>
       </Content>
     </StyledLanding>
   );

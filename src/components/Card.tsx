@@ -13,7 +13,7 @@ const rotate = keyframes`
 
 const Background = styled.div`
   box-shadow: 0px 4px 20px 20px rgba(0, 0, 0, 0.04);
-  width: 60vw;
+  width: 100%;
   padding: 2px 2px 6px 2px;
   border-radius: 1.1rem;
   transform: translateY(-0.5rem);
@@ -57,6 +57,8 @@ type Props = {
   text: string;
   buttonAction?: () => void;
   buttonText?: string;
+  secondButtonAction?: () => void;
+  secondButtonText?: string;
 };
 
 const Card: React.FC<Props> = (props) => {
