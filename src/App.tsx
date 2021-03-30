@@ -9,7 +9,6 @@ import BrowsePage from "./pages/BrowsePage";
 import WalletPage from "./pages/WalletPage";
 import DungeonPage from "./pages/DungeonPage";
 import ProvenancePage from "./pages/ProvenancePage";
-import HistoryPage from "./pages/HistoryPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 
@@ -38,7 +37,6 @@ const App: React.FC = () => {
             <Route path="/wallet" component={WalletPage} />
             <Route path="/dungeon" component={DungeonPage} />
             <Route path="/provenance" component={ProvenancePage} />
-            <Route path="/history" component={HistoryPage} />
             <Route exact path="/" component={HomePage} />
             <Route path="*" component={NotFoundPage} />
           </Switch>
