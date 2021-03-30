@@ -31,6 +31,11 @@ const rotate = keyframes`
     }
 `;
 
+const DropShadow = styled.div`
+  box-shadow: 0px 4px 20px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 1rem;
+`;
+
 const DungeonCard = styled.div`
   filter: saturate(1.05);
   padding: 0 2rem;
@@ -75,9 +80,11 @@ const DungeonPage: React.FC = () => {
             secondButtonText="Burn Waifu"
           />
         </CardContainer>
-        <DungeonCard>
-          <Image src={image} />
-        </DungeonCard>
+        <DropShadow>
+          <DungeonCard>
+            <Image src={image} />
+          </DungeonCard>
+        </DropShadow>
       </Content>
     </StyledDungeonPage>
   );
