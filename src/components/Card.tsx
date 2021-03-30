@@ -51,6 +51,10 @@ const CardText = styled.p`
 const ButtonContainer = styled.div`
   margin-top: 2rem;
   display: flex;
+
+  button {
+    margin: 0 1rem;
+  }
 `;
 
 type Props = {
@@ -66,16 +70,28 @@ const Card: React.FC<Props> = (props) => {
     <Background>
       <StyledCard>
         <CardText>{props.text}</CardText>
-        {props.buttonText && (
+        {(props.buttonText || props.secondButtonText) && (
           <ButtonContainer>
-            <Button
-              primary
-              onClick={() => {
-                if (props.buttonAction) props.buttonAction();
-              }}
-            >
-              {props.buttonText}
-            </Button>
+            {props.buttonText && (
+              <Button
+                primary
+                onClick={() => {
+                  if (props.buttonAction) props.buttonAction();
+                }}
+              >
+                {props.buttonText}
+              </Button>
+            )}
+            {props.secondButtonText && (
+              <Button
+                secondary
+                onClick={() => {
+                  if (props.secondButtonAction) props.secondButtonAction();
+                }}
+              >
+                {props.secondButtonText}
+              </Button>
+            )}
           </ButtonContainer>
         )}
       </StyledCard>
