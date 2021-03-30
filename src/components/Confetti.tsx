@@ -69,7 +69,6 @@ const Confetti: React.FC = () => {
         blur: (width - 10) / 10,
         rotation: Math.round(Math.random() * 360),
       });
-      console.log("meow");
     }
     setConfetti(_confetti);
   }, []);
