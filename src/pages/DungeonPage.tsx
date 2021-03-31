@@ -24,12 +24,12 @@ const CardContainer = styled.div`
 `;
 
 const rotate = keyframes`
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 150% 50%;
-    }
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 150% 50%;
+  }
 `;
 
 const DropShadow = styled.div`
@@ -91,6 +91,8 @@ const WaifuImage = styled.img`
   position: relative;
   height: 50vh;
   animation: ${shake} 4s linear 0s infinite;
+  user-drag: none;
+  user-select: none;
 `;
 
 const BarsImage = styled.img`
@@ -99,6 +101,8 @@ const BarsImage = styled.img`
   left: 0;
   width: 100%;
   height: 100%;
+  user-drag: none;
+  user-select: none;
 `;
 
 const DungeonPage: React.FC = () => {
@@ -110,11 +114,11 @@ const DungeonPage: React.FC = () => {
       <Content>
         <CardContainer>
           <Card
-            text="Oh no... Many of our beloved waifus have been enslaved in the Dungeon! Be a hero and save your beloved Waifus by buying thier freedom for 0.7 ETH to get a random Waifu. Or burn a Waifu and pay 5,490 WET to free another random one from the Dungeon."
+            text={t("dungeon.description")}
             buttonAction={() => alert("Not implemented yet")}
-            buttonText="Buy Waifu"
+            buttonText={t("buttons.buyWaifu")}
             secondButtonAction={() => alert("Not implemented yet")}
-            secondButtonText="Burn Waifu"
+            secondButtonText={t("buttons.burnWaifu")}
           />
         </CardContainer>
         <DropShadow>
