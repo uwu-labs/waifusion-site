@@ -82,7 +82,9 @@ const WetSlide: React.FC = () => {
         <Body>
           {t("wet.overview")}
           <List>
-            {(t("wet.use", { returnObjects: true }) as string[]).map((use) => <><Item>{use}</Item></>)}
+            {(t("wet.use", { returnObjects: true }) as string[]).map((use) => (
+              <Item>{use}</Item>
+            ))}
           </List>
           {t("wet.detail")}
         </Body>
