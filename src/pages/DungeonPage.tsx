@@ -91,6 +91,8 @@ const WaifuImage = styled.img`
   position: relative;
   height: 50vh;
   animation: ${shake} 4s linear 0s infinite;
+  user-drag: none;
+  user-select: none;
 `;
 
 const BarsImage = styled.img`
@@ -99,6 +101,8 @@ const BarsImage = styled.img`
   left: 0;
   width: 100%;
   height: 100%;
+  user-drag: none;
+  user-select: none;
 `;
 
 const DungeonPage: React.FC = () => {
