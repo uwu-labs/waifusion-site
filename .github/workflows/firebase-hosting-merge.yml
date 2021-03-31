@@ -2,7 +2,7 @@ name: Deploy to Firebase Hosting on merge
 "on":
   push:
     branches:
-      - master
+      - v1
 jobs:
   deploy:
     runs-on: ubuntu-latest

@@ -1,5 +1,8 @@
 name: Build application on PR
-on: pull_request
+"on":
+  pull_request:
+    branches:
+      - v1
 jobs:
   build:
     runs-on: ubuntu-latest
