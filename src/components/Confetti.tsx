@@ -20,6 +20,8 @@ const StyledConfetti = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
+  backface-visibility: hidden;
+  perspective: 1000;
 `;
 
 const fall = keyframes`
