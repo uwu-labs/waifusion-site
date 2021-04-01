@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-const initWeb3 = () => {
+const initWeb3 = (): void => {
   if (!window.web3) return;
   window.web3 = new Web3(window.web3.currentProvider);
 };
