@@ -1,14 +1,26 @@
-import { StoreAction } from "../../types/state";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../index";
 
-const initial_user_state: any = {};
+interface UserState {
+  address: string;
+}
 
-const user = (state = initial_user_state, action: StoreAction) => {
-  switch (action.type) {
-    case "SET_USER_STATE":
-      return action.payload;
-    default:
-      return state;
-  }
+const initialState: UserState = {
+  address: "",
 };
 
-export default user;
+export const userSlice = createSlice({
+  name: "user",
+  initialState,
+  reducers: {
+    setAddress: (state, action: PayloadAction<string>) => {
+      state.address = action.payload;
+    },
+  },
+});
+
+export const { setAddress } = userSlice.actions;
+
+export const selectAddress = (state: RootState) => state.user.address;
+
+export default userSlice.reducer;
