@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -11,6 +11,7 @@ import DungeonPage from "./pages/DungeonPage";
 import ProvenancePage from "./pages/ProvenancePage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import web3 from "./services/web3";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -24,6 +25,10 @@ const ContentWrapper = styled.div`
 `;
 
 const App: React.FC = () => {
+  useEffect(() => {
+    web3.initWeb3();
+  }, []);
+
   return (
     // TODO: Make proper loading view
     <Suspense fallback={<h1>Loading</h1>}>
