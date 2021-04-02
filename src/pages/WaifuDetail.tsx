@@ -15,6 +15,8 @@ import LargeWaifuCard from "../components/LargeWaifuCard";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
+  max-width: 1200px;
+  margin: auto;
 `;
 
 const Content = styled.div`
