@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import Header from "../components/Header";
-import { getWaifus } from "../services/contract";
+import { ContractHelper, getAddress } from "../services/contract";
 import { Waifu } from "../types/waifusion";
 
 const StyledWalletPage = styled.div``;
@@ -12,7 +12,9 @@ const WalletPage: React.FC = () => {
   const [ownedWaifus, setOwnedWaifus] = useState<Waifu[]>([]);
 
   const loadOwnedWaifus = async () => {
-    const _ownedWaifus = await getWaifus();
+    const address = await getAddress();
+    const contractHelper = new ContractHelper(address);
+    const _ownedWaifus = await contractHelper.getWaifus();
     setOwnedWaifus(_ownedWaifus);
   };
 
