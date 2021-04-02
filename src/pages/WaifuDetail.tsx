@@ -272,11 +272,11 @@ const WaifuDetail: React.FC = () => {
           <Content>
             <Header>
               <PrimaryInfo>
-                <h1>Kaitlyn</h1>
+                <h1>{waifu.name}</h1>
                 <MetaRow>
                   <MetaItem>
                     <HashIcon />
-                    <label>2043</label>
+                    <label>{waifu.id}</label>
                   </MetaItem>
                 </MetaRow>
               </PrimaryInfo>
