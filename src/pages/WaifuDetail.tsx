@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import styled from "styled-components";
 import Button from "../components/Button";
@@ -12,6 +13,9 @@ import {
   SwimsuitTraitIcon,
 } from "../components/Icons";
 import LargeWaifuCard from "../components/LargeWaifuCard";
+import { ContractHelper } from "../services/contract";
+import { addWaifu, selectWaifus } from "../state/reducers/waifus";
+import { Waifu } from "../types/waifusion";
 
 const Wrapper = styled.div`
   display: flex;
@@ -238,81 +242,100 @@ type ParamProps = {
   id: string;
 };
 
-// Test
-
 const WaifuDetail: React.FC = () => {
+  const dispatch = useDispatch();
   const { id } = useParams<ParamProps>();
+  const waifus = useSelector(selectWaifus);
+  const waifu = waifus.filter((w: Waifu) => Number(w.id) === Number(id))[0];
+
+  const getWaifu = async () => {
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
+    const owner = await contractHelper.getWaifuOwner(Number(id));
+    const _waifus = await contractHelper.getWaifusOfAddress(owner);
+    _waifus.forEach((_waifu: Waifu) => {
+      if (waifus.map((w: Waifu) => w.id).indexOf(_waifu.id) === -1)
+        dispatch(addWaifu(_waifu));
+    });
+  };
+
+  useEffect(() => {
+    getWaifu();
+  });
 
   return (
     <PageContentWrapper>
-      <Wrapper>
-        <LargeWaifuCard id={Number(id)} />
-        <Content>
-          <Header>
-            <PrimaryInfo>
-              <h1>Kaitlyn</h1>
-              <MetaRow>
-                <MetaItem>
-                  <HashIcon />
-                  <label>2043</label>
-                </MetaItem>
-              </MetaRow>
-            </PrimaryInfo>
+      {!waifu && <p>Loading...</p>}
+      {waifu && (
+        <Wrapper>
+          <LargeWaifuCard id={Number(waifu.id)} />
+          <Content>
+            <Header>
+              <PrimaryInfo>
+                <h1>Kaitlyn</h1>
+                <MetaRow>
+                  <MetaItem>
+                    <HashIcon />
+                    <label>2043</label>
+                  </MetaItem>
+                </MetaRow>
+              </PrimaryInfo>
 
-            <WaifuOwnerContainer>
-              <WaifuOwnerInfo>
-                <h3>Phineas</h3>
-                <label>Owner</label>
-              </WaifuOwnerInfo>
-              <WaifuOwnerIconWrapper>
-                <WaifuOwnerIcon src="https://avatars.githubusercontent.com/u/6209808?v=4" />
-              </WaifuOwnerIconWrapper>
-            </WaifuOwnerContainer>
-          </Header>
+              <WaifuOwnerContainer>
+                <WaifuOwnerInfo>
+                  <h3>Phineas</h3>
+                  <label>Owner</label>
+                </WaifuOwnerInfo>
+                <WaifuOwnerIconWrapper>
+                  <WaifuOwnerIcon src="https://avatars.githubusercontent.com/u/6209808?v=4" />
+                </WaifuOwnerIconWrapper>
+              </WaifuOwnerContainer>
+            </Header>
 
-          <h2>Bio</h2>
-          <p>
-            Kaitlyn is a cute catgirl who loves to swim. She is also very shy
-            and is currently learning how to speak Japanese.
-          </p>
+            <h2>Bio</h2>
+            <p>
+              Kaitlyn is a cute catgirl who loves to swim. She is also very shy
+              and is currently learning how to speak Japanese.
+            </p>
 
-          <h2>Traits</h2>
-          <TraitsContainer>
-            <TraitTag>
-              <CatgirlTraitIcon />
-              <TraitDetail>
-                <h3>Catgirl</h3>
-                <label>HeadAccessory</label>
-              </TraitDetail>
-            </TraitTag>
-            <TraitTag>
-              <SchoolgirlTraitIcon />
-              <TraitDetail>
-                <h3>Schoolgirl</h3>
-                <label>Bottom</label>
-              </TraitDetail>
-            </TraitTag>
-            <TraitTag>
-              <SwimsuitTraitIcon />
-              <TraitDetail>
-                <h3>Swimsuit</h3>
-                <label>Top</label>
-              </TraitDetail>
-            </TraitTag>
-            <TraitTag colorTrait="#98614b">
-              <EyesTraitIcon />
-              <TraitDetail>
-                <h3>Brown</h3>
-                <label>Eyes</label>
-              </TraitDetail>
-            </TraitTag>
-          </TraitsContainer>
+            <h2>Traits</h2>
+            <TraitsContainer>
+              <TraitTag>
+                <CatgirlTraitIcon />
+                <TraitDetail>
+                  <h3>Catgirl</h3>
+                  <label>HeadAccessory</label>
+                </TraitDetail>
+              </TraitTag>
+              <TraitTag>
+                <SchoolgirlTraitIcon />
+                <TraitDetail>
+                  <h3>Schoolgirl</h3>
+                  <label>Bottom</label>
+                </TraitDetail>
+              </TraitTag>
+              <TraitTag>
+                <SwimsuitTraitIcon />
+                <TraitDetail>
+                  <h3>Swimsuit</h3>
+                  <label>Top</label>
+                </TraitDetail>
+              </TraitTag>
+              <TraitTag colorTrait="#98614b">
+                <EyesTraitIcon />
+                <TraitDetail>
+                  <h3>Brown</h3>
+                  <label>Eyes</label>
+                </TraitDetail>
+              </TraitTag>
+            </TraitsContainer>
 
-          <h2>Tools</h2>
-          <Button>Change Name</Button>
-          <Button danger>Burn Waifu</Button>
-        </Content>
-      </Wrapper>
+            <h2>Tools</h2>
+            <Button>Change Name</Button>
+            <Button danger>Burn Waifu</Button>
+          </Content>
+        </Wrapper>
+      )}
     </PageContentWrapper>
   );
 };

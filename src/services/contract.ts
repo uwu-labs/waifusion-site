@@ -147,9 +147,13 @@ export class ContractHelper {
   };
 
   accoomulate = async () => {
+    return this.accoomulateOfAddress(this.address);
+  };
+
+  accoomulateOfAddress = async (address: string) => {
     const accoomulatorContract = await this.getAccoomulateContract();
     return accoomulatorContract.methods
-      .accoomulatedTokenIdsOwned(this.address)
+      .accoomulatedTokenIdsOwned(address)
       .call();
   };
 
@@ -183,15 +187,19 @@ export class ContractHelper {
     return waifuContract.methods.isNameReserved(name).call();
   };
 
-  getWETOwner = async (index: number) => {
+  getWaifuOwner = async (index: number) => {
     const waifuContract = await this.getWaifuContract();
     return waifuContract.methods.ownerOf(index).call();
   };
 
   getWaifus = async () => {
+    return this.getWaifusOfAddress(this.address);
+  };
+
+  getWaifusOfAddress = async (address: string) => {
     const waifus: Waifu[] = [];
 
-    const t = await this.accoomulate();
+    const t = await this.accoomulateOfAddress(address);
     await t.forEach(async (token: any) => {
       const accumulated = new BN(token.wetAccumulated);
       const accumulatedWETNumber = Number(toEthUnit(accumulated));
