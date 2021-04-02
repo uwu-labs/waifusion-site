@@ -11,7 +11,7 @@ import DungeonPage from "./pages/DungeonPage";
 import ProvenancePage from "./pages/ProvenancePage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
-import web3 from "./services/web3";
+import { initWeb3 } from "./services/web3";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -26,7 +26,7 @@ const ContentWrapper = styled.div`
 
 const App: React.FC = () => {
   useEffect(() => {
-    web3.initWeb3();
+    initWeb3();
   }, []);
 
   return (
