@@ -11,13 +11,13 @@ const WalletPage: React.FC = () => {
   const [t] = useTranslation();
   const [ownedWaifus, setOwnedWaifus] = useState<Waifu[]>([]);
 
-  const setWallet = async () => {
+  const loadOwnedWaifus = async () => {
     const _ownedWaifus = await getWaifus();
     setOwnedWaifus(_ownedWaifus);
   };
 
   useEffect(() => {
-    setWallet();
+    loadOwnedWaifus();
   }, []);
 
   return (
