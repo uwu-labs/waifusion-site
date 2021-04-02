@@ -1,10 +1,14 @@
+import Web3 from "web3";
+import BN from "bn.js";
+import { toEthUnit } from "./web3";
+
 import WaifuABI from "../contracts/ERC721.json";
 import WETABI from "../contracts/ERC20.json";
 import ACCOOMULATORABI from "../contracts/Accoomulator.json";
 import DUNGEON from "../contracts/Dungeon.json";
 import DUNGEONBSC from "../contracts/DungeonBSC.json";
 import GLOBALS from "./globals";
-import Web3 from "web3";
+import { Waifu } from "../types/waifusion";
 
 export const ethEnabled = async (): Promise<string> => {
   if ((window as any).ethereum) {
@@ -98,29 +102,49 @@ export const getAllowance = async () => {
   return currentAllowance;
 };
 
-export const balanceOf = async (address: string) => {
+export const waifuBalance = async () => {
   const defaultAccount = await ethEnabled();
   const waifuContract = await getWaifuContract();
   const currentlyOwned = await waifuContract.methods
-    .balanceOf(address || defaultAccount)
+    .balanceOf(defaultAccount)
     .call();
   return currentlyOwned;
 };
 
-export const wetBalanceOf = async (address: string) => {
+export const waifuBalanceOfAddress = async (address: string) => {
+  const waifuContract = await getWaifuContract();
+  const currentlyOwned = await waifuContract.methods.balanceOf(address).call();
+  return currentlyOwned;
+};
+
+export const wetBalance = async () => {
   const defaultAccount = await ethEnabled();
   const wetContract = await getWETContract();
   const currentlyOwned = await wetContract.methods
-    .balanceOf(address || defaultAccount)
+    .balanceOf(defaultAccount)
     .call();
   return currentlyOwned;
 };
 
-export const tokenOfOwnerByIndex = async (index: number, address: string) => {
+export const wetBalanceOfAddress = async (address: string) => {
+  const wetContract = await getWETContract();
+  const currentlyOwned = await wetContract.methods.balanceOf(address).call();
+  return currentlyOwned;
+};
+
+export const tokenOfOwnerByIndex = async (index: number) => {
   const defaultAccount = await ethEnabled();
   const waifuContract = await getWaifuContract();
   const currentlyOwned = await waifuContract.methods
-    .tokenOfOwnerByIndex(address || defaultAccount, index)
+    .tokenOfOwnerByIndex(defaultAccount, index)
+    .call();
+  return currentlyOwned;
+};
+
+export const tokenOfAddressByIndex = async (index: number, address: string) => {
+  const waifuContract = await getWaifuContract();
+  const currentlyOwned = await waifuContract.methods
+    .tokenOfOwnerByIndex(address, index)
     .call();
   return currentlyOwned;
 };
@@ -167,4 +191,21 @@ export const isNameReserved = async (name: string) => {
 export const getWETOwner = async (index: number) => {
   const waifuContract = await getWaifuContract();
   return waifuContract.methods.ownerOf(index).call();
+};
+
+export const getWaifus = async () => {
+  const waifus: Waifu[] = [];
+
+  const t = await accoomulate();
+  await t.forEach(async (token: any) => {
+    const accumulated = new BN(token.wetAccumulated);
+    const accumulatedWETNumber = Number(toEthUnit(accumulated));
+    waifus.push({
+      id: token.tokenId,
+      name: token.name,
+      accumulatedWet: accumulatedWETNumber,
+    });
+  });
+
+  return waifus;
 };
