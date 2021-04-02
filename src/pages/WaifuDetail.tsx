@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
+import { useParams } from "react-router";
 import styled from "styled-components";
 import Button from "../components/Button";
 import { PageContentWrapper } from "../components/CommonLayout";
@@ -15,6 +16,8 @@ import LargeWaifuCard from "../components/LargeWaifuCard";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
+  max-width: 1200px;
+  margin: auto;
 `;
 
 const Content = styled.div`
@@ -231,11 +234,17 @@ const exampleTraits = [
   },
 ];
 
+type ParamProps = {
+  id: string;
+};
+
 const WaifuDetail: React.FC = () => {
+  const { id } = useParams<ParamProps>();
+
   return (
     <PageContentWrapper>
       <Wrapper>
-        <LargeWaifuCard />
+        <LargeWaifuCard id={Number(id)} />
         <Content>
           <Header>
             <PrimaryInfo>

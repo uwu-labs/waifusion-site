@@ -11,11 +11,15 @@ const Image = styled.img`
   width: 100%;
 `;
 
-const LargeWaifuCard: React.FC = () => (
+type Props = {
+  id: number;
+};
+
+const LargeWaifuCard: React.FC<Props> = ({ id }) => (
   <Container>
     <Image
       draggable={false}
-      src="https://ipfs.io/ipfs/QmQuzMGqHxSXugCUvWQjDCDHWhiGB75usKbrZk6Ec6pFvw/13638.png"
+      src={`https://global-harem.waifusion.sexy/v1/ETH_WAIFU/${id}.png`}
     />
   </Container>
 );

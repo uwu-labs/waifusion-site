@@ -1,8 +1,10 @@
 import { combineReducers, createStore } from "@reduxjs/toolkit";
 import userReducer from "./reducers/user";
+import waifusReducer from "./reducers/waifus";
 
 export const reducers = combineReducers({
   user: userReducer,
+  waifus: waifusReducer,
 });
 
 export const store = createStore(
