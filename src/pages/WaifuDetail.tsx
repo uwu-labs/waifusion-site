@@ -238,6 +238,8 @@ type ParamProps = {
   id: string;
 };
 
+// Test
+
 const WaifuDetail: React.FC = () => {
   const { id } = useParams<ParamProps>();
 
