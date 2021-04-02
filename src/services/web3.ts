@@ -1,4 +1,5 @@
 import Web3 from "web3";
+import BN from "bn.js";
 
 declare global {
   interface Window {
@@ -6,9 +7,12 @@ declare global {
   }
 }
 
-const initWeb3 = (): void => {
+export const initWeb3 = (): void => {
   if (!window.web3) return;
   window.web3 = new Web3(window.web3.currentProvider);
 };
 
-export default { initWeb3 };
+export const toEthUnit = (wei: BN) => {
+  if (!window.web3) return;
+  return Web3.utils.fromWei(wei);
+};
