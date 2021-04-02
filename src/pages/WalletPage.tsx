@@ -2,13 +2,26 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { PageContentWrapper } from "../components/CommonLayout";
 import Header from "../components/Header";
+import WaifuCard from "../components/WaifuCard";
 import { ContractHelper } from "../services/contract";
 import { selectUsersWaifus, setWaifuIndexes } from "../state/reducers/user";
 import { addWaifu, selectWaifus } from "../state/reducers/waifus";
 import { Waifu } from "../types/waifusion";
 
-const StyledWalletPage = styled.div``;
+const StyledWalletPage = styled(PageContentWrapper)`
+  display: flex;
+  flex-direction: column;
+`;
+
+const WaifuContainer = styled.div`
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-gap: 2rem;
+  margin: 3rem auto;
+`;
 
 const WalletPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -34,9 +47,11 @@ const WalletPage: React.FC = () => {
   return (
     <StyledWalletPage>
       <Header text={t("headers.wallet")} />
-      {usersWaifus.map((waifu: Waifu) => (
-        <p>{waifu.id}</p>
-      ))}
+      <WaifuContainer>
+        {usersWaifus.map((waifu: Waifu) => (
+          <WaifuCard waifu={waifu} />
+        ))}
+      </WaifuContainer>
     </StyledWalletPage>
   );
 };
