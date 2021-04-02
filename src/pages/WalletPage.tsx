@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Header from "../components/Header";
-import { ContractHelper, getAddress } from "../services/contract";
+import { ContractHelper } from "../services/contract";
 import { selectUsersWaifus, setWaifuIndexes } from "../state/reducers/user";
 import { addWaifu, selectWaifus } from "../state/reducers/waifus";
 import { Waifu } from "../types/waifusion";
@@ -17,8 +17,8 @@ const WalletPage: React.FC = () => {
   const [t] = useTranslation();
 
   const loadOwnedWaifus = async () => {
-    const address = await getAddress();
-    const contractHelper = new ContractHelper(address);
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
     const _ownedWaifus = await contractHelper.getWaifus();
     dispatch(setWaifuIndexes(_ownedWaifus.map((waifu: Waifu) => waifu.id)));
     _ownedWaifus.forEach((ownedWaifu: Waifu) => {

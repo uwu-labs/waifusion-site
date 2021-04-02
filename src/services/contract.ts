@@ -10,22 +10,21 @@ import DUNGEONBSC from "../contracts/DungeonBSC.json";
 import GLOBALS from "./globals";
 import { Waifu } from "../types/waifusion";
 
-export const getAddress = async (): Promise<string> => {
-  if ((window as any).ethereum) {
-    (window as any).web3 = new Web3((window as any).ethereum);
-    (window as any).ethereum.enable();
-    const defaultAccount = (await (window as any).web3.eth.getAccounts())[0];
-    return defaultAccount;
-  }
-  return "";
-};
-
 export class ContractHelper {
   address: string;
 
-  constructor(address: string) {
-    this.address = address;
+  constructor() {
+    this.address = "";
   }
+
+  init = async () => {
+    if ((window as any).ethereum) {
+      (window as any).web3 = new Web3((window as any).ethereum);
+      (window as any).ethereum.enable();
+      const addressList = await (window as any).web3.eth.getAccounts();
+      [this.address] = addressList;
+    }
+  };
 
   // Contracts
   getDungeonContract = async () => {
