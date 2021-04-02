@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import ClaimWet from "../components/ClaimWet";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Header from "../components/Header";
 import WaifuCard from "../components/WaifuCard";
@@ -13,6 +14,13 @@ import { Waifu } from "../types/waifusion";
 const StyledWalletPage = styled(PageContentWrapper)`
   display: flex;
   flex-direction: column;
+`;
+
+const HeaderContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const WaifuContainer = styled.div`
@@ -46,7 +54,10 @@ const WalletPage: React.FC = () => {
 
   return (
     <StyledWalletPage>
-      <Header text={t("headers.wallet")} />
+      <HeaderContainer>
+        <Header text={t("headers.wallet")} />
+        <ClaimWet />
+      </HeaderContainer>
       <WaifuContainer>
         {usersWaifus.map((waifu: Waifu) => (
           <WaifuCard waifu={waifu} />
