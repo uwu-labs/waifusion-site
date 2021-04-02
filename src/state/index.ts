@@ -1,8 +1,8 @@
-import { combineReducers, createStore } from "redux";
-import user from "./reducers/user";
+import { combineReducers, createStore } from "@reduxjs/toolkit";
+import userReducer from "./reducers/user";
 
-const reducers = combineReducers({
-  user,
+export const reducers = combineReducers({
+  user: userReducer,
 });
 
 export const store = createStore(
@@ -11,3 +11,5 @@ export const store = createStore(
     (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
     (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+export type RootState = ReturnType<typeof store.getState>;

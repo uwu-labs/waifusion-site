@@ -7,6 +7,7 @@ import { ChevronDownIcon, DungeonIcon, SearchIcon, WalletIcon } from "./Icons";
 import Button from "./Button";
 import Logo from "./Logo";
 import Underline from "./Underline";
+import Address from "./Address";
 
 const StyledNavbar = styled.div`
   display: flex;
@@ -103,10 +104,7 @@ const Navbar: React.FC = () => {
             </LinkableItem>
           </Item>
           <Item>
-            <SignedInAddressContainer primary small>
-              0xd...3AF
-              <ChevronDownIcon />
-            </SignedInAddressContainer>
+            <Address />
           </Item>
         </NavItemsWrapper>
       </Container>
