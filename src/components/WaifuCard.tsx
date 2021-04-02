@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Waifu } from "../types/waifusion";
 import { ArrowRightIcon } from "./Icons";
 
-const Container = styled.div`
+const Container = styled(Link)`
   width: 220px;
   border-radius: 1rem;
   border: 2px solid var(--plain-shadow);
@@ -72,7 +73,7 @@ type Props = {
 
 const WaifuCard: React.FC<Props> = ({ waifu }) => {
   return (
-    <Container>
+    <Container to={`/waifu/${waifu.id}`}>
       <DetailHeader>
         <span>{waifu.name}</span> <span>#{waifu.id}</span>
       </DetailHeader>
