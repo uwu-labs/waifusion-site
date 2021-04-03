@@ -6,6 +6,8 @@ import bscProvenance from "../assets/bsc_provenance.json";
 import ethProvenance from "../assets/eth_provenance.json";
 import GLOBALS from "../services/globals";
 import { PageContentWrapper } from "../components/CommonLayout";
+import Input from "../components/Input";
+import Button from "../components/Button";
 
 type ProvenanceType = {
   hash: string;
@@ -16,6 +18,16 @@ type ProvenanceType = {
 const StyledProvenancePage = styled(PageContentWrapper)`
   display: flex;
   flex-direction: column;
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 3rem auto;
+
+  * {
+    margin: 0 1rem;
+  }
 `;
 
 const Items = styled.div`
@@ -31,6 +43,10 @@ const Item = styled.a`
   padding: 1rem 2rem;
   cursor: pointer;
   transition: all 0.3s;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   :hover {
     box-shadow: 0 0.3rem 0 0 var(--plain-shadow);
@@ -41,10 +57,6 @@ const Item = styled.a`
     box-shadow: 0 0 0 0 var(--plain-shadow);
     transform: translateY(0.2rem);
   }
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
 
 const Text = styled.div`
@@ -62,9 +74,13 @@ const ProvenancePage: React.FC = () => {
     <StyledProvenancePage>
       <Header text={t("headers.provenance")} />
 
+      <SearchContainer>
+        <Input placeholder="search id" />
+        <Button secondary>Search</Button>
+      </SearchContainer>
       <Items>
         {provenance.map((prov: ProvenanceType) => (
-          <Item href={prov.link} target="_blank">
+          <Item href={prov.link} target="_blank" key={prov.index}>
             <Text>{`ID: ${prov.index}`}</Text>
             <Text>{`Hash: ${prov.hash}`}</Text>
           </Item>
