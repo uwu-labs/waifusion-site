@@ -34,6 +34,8 @@ const Image = styled.img`
   object-fit: contain;
   width: 100%;
   transform: scale(1.1);
+  user-drag: none;
+  user-select: none;
 `;
 
 const DetailHeader = styled.div`
