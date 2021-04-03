@@ -71,6 +71,7 @@ const Text = styled.div`
 const ProvenancePage: React.FC = () => {
   const [t] = useTranslation();
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState<number | null>(null);
   const provenance: ProvenanceType[] =
     GLOBALS.WAIFU_VERSION === "bsc" ? bscProvenance : ethProvenance;
 
@@ -79,12 +80,15 @@ const ProvenancePage: React.FC = () => {
       <Header text={t("headers.provenance")} />
 
       <SearchContainer>
-        <Input placeholder={t("provenance.placeholder")} />
-        <Button secondary>{t("buttons.search")}</Button>
+        <Input
+          placeholder={t("provenance.placeholder")}
+          onChange={(event) => setSearch(Number(event.target.value))}
+        />
       </SearchContainer>
       <Items>
         {provenance
           .filter((prov: ProvenanceType) => {
+            if (search) return prov.index === search;
             if (prov.index < (page - 1) * PROVENANCE_PER_PAGE) return false;
             if (prov.index > page * PROVENANCE_PER_PAGE) return false;
             return true;
