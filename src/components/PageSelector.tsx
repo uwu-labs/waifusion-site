@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import Button from "./Button";
 
 const StyledPageSelector = styled.div`
   display: flex;
   margin-bottom: 3rem;
   position: relative;
   align-items: center;
+  margin: auto;
 `;
 
 type ArrowProps = {
@@ -36,23 +38,26 @@ type Props = {
 const PageSelector: React.FC<Props> = ({ page, setPage, pages }) => {
   return (
     <StyledPageSelector>
-      <Arrow
-        onClick={() => {
-          if (page !== 1) setPage(page - 1);
-        }}
-        left
-        disabled={page === 1}
-      >
-        {"<"}
+      <Arrow disabled={page === 1}>
+        <Button
+          onClick={() => {
+            if (page !== 1) setPage(page - 1);
+          }}
+          small
+        >
+          {"<"}
+        </Button>
       </Arrow>
       <PageIndicator>{`${page}/${pages}`}</PageIndicator>
-      <Arrow
-        onClick={() => {
-          if (page !== pages) setPage(page + 1);
-        }}
-        disabled={page === pages}
-      >
-        {">"}
+      <Arrow disabled={page === pages}>
+        <Button
+          onClick={() => {
+            if (page !== 1) setPage(page - 1);
+          }}
+          small
+        >
+          {">"}
+        </Button>
       </Arrow>
     </StyledPageSelector>
   );
