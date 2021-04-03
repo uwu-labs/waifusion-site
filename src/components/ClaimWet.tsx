@@ -1,12 +1,43 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
-import { selectTotalAccumulated } from "../state/reducers/user";
+import {
+  selectAddress,
+  selectTotalAccumulated,
+  selectUserWaifuIds,
+  setAddress,
+} from "../state/reducers/user";
+import { ContractHelper, getAddress } from "../services/contract";
 
 const ClaimWet: React.FC = () => {
+  const dispatch = useDispatch();
   const accumulated = useSelector(selectTotalAccumulated);
+  const address = useSelector(selectAddress);
+  const waifuIds = useSelector(selectUserWaifuIds);
+  const [loading, setLoading] = useState(false);
 
-  return <Button secondary>{`Claim ${accumulated.toFixed(0)} WET`}</Button>;
+  const click = async (): Promise<void> => {
+    if (loading) return;
+
+    setLoading(true);
+    if (!address) {
+      const _address = await getAddress();
+      dispatch(setAddress(_address));
+    } else {
+      const contractHelper = new ContractHelper();
+      await contractHelper.init();
+      await contractHelper.claimWET(waifuIds);
+    }
+    setLoading(false);
+  };
+
+  return (
+    <Button secondary onClick={() => click()}>
+      {loading && "Loading"}
+      {!loading && !address && "Connect"}
+      {!loading && address && `Claim ${accumulated.toFixed(0)} WET`}
+    </Button>
+  );
 };
 
 export default ClaimWet;
