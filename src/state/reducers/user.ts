@@ -28,7 +28,7 @@ export const userSlice = createSlice({
 export const { setAddress, setWaifuIndexes } = userSlice.actions;
 
 export const selectAddress = (state: RootState): string => state.user.address;
-export const selectWaifuIds = (state: RootState): number[] =>
+export const selectUserWaifuIds = (state: RootState): number[] =>
   state.user.waifuIndexes;
 export const selectUsersWaifus = (state: RootState): Waifu[] => {
   return state.waifus.waifus.filter(
