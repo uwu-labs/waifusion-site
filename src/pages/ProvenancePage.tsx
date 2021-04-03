@@ -95,8 +95,8 @@ const ProvenancePage: React.FC = () => {
           })
           .map((prov: ProvenanceType) => (
             <Item href={prov.link} target="_blank" key={prov.index}>
-              <Text>{`ID: ${prov.index}`}</Text>
-              <Text>{`Hash: ${prov.hash}`}</Text>
+              <Text>{`${t("provenance.id")} ${prov.index}`}</Text>
+              <Text>{`${t("provenance.hash")} ${prov.hash}`}</Text>
             </Item>
           ))}
       </Items>
