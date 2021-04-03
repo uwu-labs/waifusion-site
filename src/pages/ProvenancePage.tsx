@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import bscProvenance from "../assets/bsc_provenance.json";
 import ethProvenance from "../assets/eth_provenance.json";
 import GLOBALS from "../services/globals";
+import { PageContentWrapper } from "../components/CommonLayout";
 
 type ProvenanceType = {
   hash: string;
@@ -12,7 +13,45 @@ type ProvenanceType = {
   index: number;
 };
 
-const StyledProvenancePage = styled.div``;
+const StyledProvenancePage = styled(PageContentWrapper)`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Items = styled.div`
+  width: 1200px;
+  margin: 3rem auto;
+`;
+
+const Item = styled.a`
+  width: 100%;
+  border-radius: 1rem;
+  border: 2px solid var(--plain-shadow);
+  box-shadow: 0 0.2rem 0 0 var(--plain-shadow);
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  :hover {
+    box-shadow: 0 0.3rem 0 0 var(--plain-shadow);
+    transform: translateY(-0.1rem);
+  }
+
+  :active {
+    box-shadow: 0 0 0 0 var(--plain-shadow);
+    transform: translateY(0.2rem);
+  }
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Text = styled.div`
+  font-size: 15pt;
+  font-weight: 500;
+  color: var(--text-secondary);
+`;
 
 const ProvenancePage: React.FC = () => {
   const [t] = useTranslation();
@@ -22,9 +61,15 @@ const ProvenancePage: React.FC = () => {
   return (
     <StyledProvenancePage>
       <Header text={t("headers.provenance")} />
-      {provenance.map((prov: ProvenanceType) => (
-        <p>{prov.index}</p>
-      ))}
+
+      <Items>
+        {provenance.map((prov: ProvenanceType) => (
+          <Item href={prov.link} target="_blank">
+            <Text>{`ID: ${prov.index}`}</Text>
+            <Text>{`Hash: ${prov.hash}`}</Text>
+          </Item>
+        ))}
+      </Items>
     </StyledProvenancePage>
   );
 };
