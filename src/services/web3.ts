@@ -12,7 +12,7 @@ export const initWeb3 = (): void => {
   window.web3 = new Web3(window.web3.currentProvider);
 };
 
-export const toEthUnit = (wei: BN) => {
-  if (!window.web3) return;
+export const toEthUnit = (wei: BN): string => {
+  if (!window.web3) return "";
   return Web3.utils.fromWei(wei);
 };

@@ -27,13 +27,13 @@ export const userSlice = createSlice({
 
 export const { setAddress, setWaifuIndexes } = userSlice.actions;
 
-export const selectAddress = (state: RootState) => state.user.address;
-export const selectUsersWaifus = (state: RootState) => {
+export const selectAddress = (state: RootState): string => state.user.address;
+export const selectUsersWaifus = (state: RootState): Waifu[] => {
   return state.waifus.waifus.filter(
     (waifu: Waifu) => state.user.waifuIndexes.indexOf(waifu.id) > -1
   );
 };
-export const selectTotalAccumulated = (state: RootState) => {
+export const selectTotalAccumulated = (state: RootState): number => {
   return state.waifus.waifus
     .filter((waifu: Waifu) => state.user.waifuIndexes.indexOf(waifu.id) > -1)
     .reduce((a: number, b: Waifu) => a + (b.accumulatedWet || 0), 0);
