@@ -75,8 +75,8 @@ const ProvenancePage: React.FC = () => {
       <Header text={t("headers.provenance")} />
 
       <SearchContainer>
-        <Input placeholder="search id" />
-        <Button secondary>Search</Button>
+        <Input placeholder={t("provenance.placeholder")} />
+        <Button secondary>{t("buttons.search")}</Button>
       </SearchContainer>
       <Items>
         {provenance.map((prov: ProvenanceType) => (
