@@ -25,8 +25,12 @@ const Arrow = styled.div`
 `;
 
 const PageIndicator = styled.div`
-  font-size: 2.4rem;
-  margin: 0 2rem;
+  font-size: 1.8rem;
+  margin: 0 1.3rem;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 type Props = {
@@ -52,7 +56,7 @@ const PageSelector: React.FC<Props> = ({ page, setPage, pages }) => {
       <Arrow disabled={page === pages}>
         <Button
           onClick={() => {
-            if (page !== 1) setPage(page - 1);
+            if (page !== pages) setPage(page + 1);
           }}
           small
         >
