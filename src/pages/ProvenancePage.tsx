@@ -23,7 +23,7 @@ const StyledProvenancePage = styled(PageContentWrapper)`
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
-  margin: 3rem auto;
+  margin: 3rem auto 0 auto;
 
   * {
     margin: 0 1rem;
