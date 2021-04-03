@@ -22,6 +22,6 @@ export const waifusSlice = createSlice({
 
 export const { addWaifu } = waifusSlice.actions;
 
-export const selectWaifus = (state: RootState) => state.waifus.waifus;
+export const selectWaifus = (state: RootState): Waifu[] => state.waifus.waifus;
 
 export default waifusSlice.reducer;
