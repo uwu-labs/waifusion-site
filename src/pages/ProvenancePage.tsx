@@ -100,11 +100,13 @@ const ProvenancePage: React.FC = () => {
             </Item>
           ))}
       </Items>
-      <PageSelector
-        page={page}
-        setPage={(number: number) => setPage(number)}
-        pages={Math.ceil(provenance.length / PROVENANCE_PER_PAGE)}
-      />
+      {!search && (
+        <PageSelector
+          page={page}
+          setPage={(number: number) => setPage(number)}
+          pages={Math.ceil(provenance.length / PROVENANCE_PER_PAGE)}
+        />
+      )}
     </StyledProvenancePage>
   );
 };
