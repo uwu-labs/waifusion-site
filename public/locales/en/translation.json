@@ -2,9 +2,10 @@
   "name": "Waifusion",
   "tagline": "No Waifu, No Laifu",
   "description": "Waifusion is a digital Waifu collection. There are 16,384 guaranteed-unique Waifusion NFTs. They’re just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifuis wholly unique and yours forever... unless you sell them... Baka.",
-  "footer": "Made with 💜 by the Waifusion comunity",
-  "history": "History",
-  "provenance": "Provenance",
+  "footer": {
+    "team": "Made with 💜 by the Waifusion comunity",
+    "provenance": "Provenance"
+  },
   "contact": {
     "twitter": "Twitter",
     "discord": "Discord",
@@ -15,7 +16,8 @@
     "getWaifus": "Get Waifus",
     "getWet": "Get WET",
     "buyWaifu": "Buy Waifu",
-    "burnWaifu": "Burn Waifu"
+    "burnWaifu": "Burn Waifu",
+    "search": "Search"
   },
   "headers": {
     "browse": "Browse Waifus",
@@ -41,5 +43,8 @@
       "Burning an undesirable Waifu in exchange for a new Waifu from the Dungeon"
     ],
     "detail": "Waifus passively generate WET tokens just by holding them! Each Waifu will generate 3,660 WET per year. You can claim your WET tokens in the wallet page. To change the name of a Waifu, you need to send 1,830 WET. To burn a Waifu you need to send a Waifu and 5,490 WET to the Waifusion contract, they will disappear forever..."
+  },
+  "provenance": {
+    "placeholder": "search id"
   }
 }

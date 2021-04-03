@@ -59,9 +59,9 @@ const Footer: React.FC = () => {
       <Underline />
       <Container>
         <Section>
-          <InternalLink to="/provenance">{t("provenance")}</InternalLink>
+          <InternalLink to="/provenance">{t("footer.provenance")}</InternalLink>
         </Section>
-        <AbsoluteCenterSection>{t("footer")}</AbsoluteCenterSection>
+        <AbsoluteCenterSection>{t("footer.team")}</AbsoluteCenterSection>
         <Section>
           <ExternalLink
             href="https://twitter.com/waifusion"
