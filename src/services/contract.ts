@@ -18,6 +18,16 @@ export type AccoomulateWaifu = {
   accumulatedWETNumber: number;
 };
 
+export const getAddress = async (): Promise<string> => {
+  if ((window as any).ethereum) {
+    (window as any).web3 = new Web3((window as any).ethereum);
+    (window as any).ethereum.enable();
+    const addressList = await (window as any).web3.eth.getAccounts();
+    return addressList[0];
+  }
+  return "";
+};
+
 export class ContractHelper {
   address: string;
 
@@ -26,12 +36,7 @@ export class ContractHelper {
   }
 
   init = async (): Promise<void> => {
-    if ((window as any).ethereum) {
-      (window as any).web3 = new Web3((window as any).ethereum);
-      (window as any).ethereum.enable();
-      const addressList = await (window as any).web3.eth.getAccounts();
-      [this.address] = addressList;
-    }
+    this.address = await getAddress();
   };
 
   // Contracts
