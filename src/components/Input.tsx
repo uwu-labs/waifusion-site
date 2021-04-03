@@ -7,6 +7,7 @@ const Input = styled.input`
   padding: 1rem 2rem;
   font-size: 1.1rem;
   font-weight: 600;
+  outline: none;
 
   ::placeholder {
     color: var(--text-secondary);
