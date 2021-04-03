@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import Header from "../components/Header";
@@ -8,6 +8,9 @@ import GLOBALS from "../services/globals";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import PageSelector from "../components/PageSelector";
+
+const PROVENANCE_PER_PAGE = 20;
 
 type ProvenanceType = {
   hash: string;
@@ -32,7 +35,7 @@ const SearchContainer = styled.div`
 
 const Items = styled.div`
   width: 1200px;
-  margin: 3rem auto;
+  margin: 3rem auto 1rem auto;
 `;
 
 const Item = styled.a`
@@ -67,6 +70,7 @@ const Text = styled.div`
 
 const ProvenancePage: React.FC = () => {
   const [t] = useTranslation();
+  const [page, setPage] = useState(1);
   const provenance: ProvenanceType[] =
     GLOBALS.WAIFU_VERSION === "bsc" ? bscProvenance : ethProvenance;
 
@@ -79,13 +83,24 @@ const ProvenancePage: React.FC = () => {
         <Button secondary>{t("buttons.search")}</Button>
       </SearchContainer>
       <Items>
-        {provenance.map((prov: ProvenanceType) => (
-          <Item href={prov.link} target="_blank" key={prov.index}>
-            <Text>{`ID: ${prov.index}`}</Text>
-            <Text>{`Hash: ${prov.hash}`}</Text>
-          </Item>
-        ))}
+        {provenance
+          .filter((prov: ProvenanceType) => {
+            if (prov.index < (page - 1) * PROVENANCE_PER_PAGE) return false;
+            if (prov.index > page * PROVENANCE_PER_PAGE) return false;
+            return true;
+          })
+          .map((prov: ProvenanceType) => (
+            <Item href={prov.link} target="_blank" key={prov.index}>
+              <Text>{`ID: ${prov.index}`}</Text>
+              <Text>{`Hash: ${prov.hash}`}</Text>
+            </Item>
+          ))}
       </Items>
+      <PageSelector
+        page={page}
+        setPage={(number: number) => setPage(number)}
+        pages={Math.ceil(provenance.length / PROVENANCE_PER_PAGE)}
+      />
     </StyledProvenancePage>
   );
 };
