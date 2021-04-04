@@ -63,7 +63,7 @@ const BrowsePage: React.FC = () => {
       alert(response.error?.code);
       return;
     }
-    const _waifus: Waifu[] = response.data;
+    const _waifus: Waifu[] = response.data.results;
     setWaifus(_waifus);
     setLoading(false);
   };
