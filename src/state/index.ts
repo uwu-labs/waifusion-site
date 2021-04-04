@@ -1,6 +1,15 @@
-import { combineReducers, createStore } from "@reduxjs/toolkit";
+import {
+  applyMiddleware,
+  combineReducers,
+  createStore,
+} from "@reduxjs/toolkit";
+import createSagaMiddleware from "redux-saga";
+import { composeWithDevTools } from "redux-devtools-extension";
+import rootSaga from "./sagas";
 import userReducer from "./reducers/user";
 import waifusReducer from "./reducers/waifus";
+
+const sagaMiddleware = createSagaMiddleware();
 
 export const reducers = combineReducers({
   user: userReducer,
@@ -9,9 +18,9 @@ export const reducers = combineReducers({
 
 export const store = createStore(
   reducers,
-  process.env.NODE_ENV !== "production" &&
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
+
+sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
