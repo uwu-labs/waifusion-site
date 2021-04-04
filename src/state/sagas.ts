@@ -23,6 +23,6 @@ function* loadWaifusAction() {
   }
 }
 
-export default function* rootSaga() {
+export default function* rootSaga(): any {
   yield all([watchLoadWaifus()]);
 }
