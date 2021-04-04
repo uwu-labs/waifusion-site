@@ -1,7 +1,11 @@
 import { put, takeEvery, all, select } from "redux-saga/effects";
 import { ContractHelper } from "../services/contract";
 import { Waifu } from "../types/waifusion";
-import { loadWaifus, setWaifuIndexes } from "./reducers/user";
+import {
+  completeLoadWaifus,
+  loadWaifus,
+  setWaifuIndexes,
+} from "./reducers/user";
 import { addWaifu, selectWaifus } from "./reducers/waifus";
 
 /* WATCHERS */
@@ -21,6 +25,7 @@ function* loadWaifusAction() {
     if (waifuIds.indexOf(_ownedWaifus[i].id) === -1)
       yield put(addWaifu(_ownedWaifus[i]));
   }
+  yield put(completeLoadWaifus());
 }
 
 export default function* rootSaga(): any {
