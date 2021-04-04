@@ -9,6 +9,11 @@ import traits, { Trait } from "../data/traits";
 import { makeRequest } from "../services/api";
 import { Waifu } from "../types/waifusion";
 
+type FilterType = {
+  id: string;
+  value: string;
+};
+
 const StyledBrowsePage = styled(PageContentWrapper)`
   display: flex;
   flex-direction: column;
@@ -41,16 +46,25 @@ const BrowsePage: React.FC = () => {
   const [t] = useTranslation();
   const [loading, setLoading] = useState(true);
   const [waifus, setWaifus] = useState<Waifu[]>([]);
+  const defaultFilters: FilterType[] = traits.map((trait: Trait) => {
+    return {
+      id: trait.id,
+      value: "All",
+    };
+  });
+  const [filters, setFilters] = useState<FilterType[]>(defaultFilters);
 
   const loadWaifus = async () => {
     setLoading(true);
-    const response = await makeRequest(
-      "waifus/filter?limit=50&page=1&Top=catgirl",
-      {
-        method: "GET",
-        body: null,
-      }
-    );
+    const filterString = filters
+      .filter((filter: FilterType) => filter.value !== "All")
+      .map((filter: FilterType) => `&${filter.id}=${filter.value}`)
+      .reduce((a: string, b: string) => a + b, "");
+    const requestString = `waifus/filter?limit=50&page=1${filterString}`;
+    const response = await makeRequest(requestString, {
+      method: "GET",
+      body: null,
+    });
     if (!response.success) {
       alert(response.error?.code);
       return;
@@ -78,7 +92,17 @@ const BrowsePage: React.FC = () => {
         )}
         <Filters>
           {traits.map((trait: Trait) => (
-            <Filter trait={trait} setValue={(value: string) => console.log()} />
+            <Filter
+              trait={trait}
+              setValue={async (value: string) => {
+                const newFilters = [...filters];
+                newFilters.filter(
+                  (newFilter: FilterType) => newFilter.id === trait.id
+                )[0].value = value;
+                await setFilters(newFilters);
+                await loadWaifus();
+              }}
+            />
           ))}
         </Filters>
       </Content>
