@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { Trait } from "../data/traits";
 
@@ -64,15 +64,23 @@ const Option = styled.option`
 
 type Props = {
   trait: Trait;
+  setValue: (value: string) => void;
 };
 
 const Filter: React.FC<Props> = (props) => {
+  const [value, setValue] = useState("All");
+
   return (
-    <Background>
+    <Background rainbow={value !== "All"}>
       <StyledFilter key={props.trait.id}>
         <FilterLabel>{props.trait.id}</FilterLabel>
-        <Select onChange={(event) => console.log(event.target.value)}>
-          <Option value="">All</Option>
+        <Select
+          onChange={(event) => {
+            props.setValue(event.target.value);
+            setValue(event.target.value);
+          }}
+        >
+          <Option value="All">All</Option>
           {props.trait.values.map((value: string) => (
             <Option value={value}>{value}</Option>
           ))}
