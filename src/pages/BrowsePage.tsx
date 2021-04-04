@@ -17,19 +17,23 @@ const Content = styled.div`
   position: relative;
   width: 100%;
   display: flex;
+  margin: 3rem auto;
+  justify-content: space-between;
 `;
 
 const Waifus = styled.div`
+  position: relative;
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  grid-gap: 2rem;
-  margin: 3rem auto;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-row-gap: 2rem;
+  margin: 0 3rem;
 `;
 
 const Filters = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 0 1rem;
 `;
 
 const Filter = styled.div`
