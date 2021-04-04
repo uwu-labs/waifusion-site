@@ -64,7 +64,7 @@ const Option = styled.option`
 
 type Props = {
   trait: Trait;
-  setValue: (value: string) => Promise<void>;
+  setValue: (value: string) => void;
 };
 
 const Filter: React.FC<Props> = (props) => {

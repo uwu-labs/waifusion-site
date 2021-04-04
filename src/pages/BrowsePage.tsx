@@ -8,6 +8,7 @@ import Filter from "../components/Filter";
 import traits, { Trait } from "../data/traits";
 import { makeRequest } from "../services/api";
 import { Waifu } from "../types/waifusion";
+import PageSelector from "../components/PageSelector";
 
 type FilterType = {
   id: string;
@@ -53,6 +54,8 @@ const BrowsePage: React.FC = () => {
     };
   });
   const [filters, setFilters] = useState<FilterType[]>(defaultFilters);
+  const [page, setPage] = useState(1);
+  const [pages, setPages] = useState(1);
 
   const loadWaifus = async () => {
     setLoading(true);
@@ -60,7 +63,7 @@ const BrowsePage: React.FC = () => {
       .filter((filter: FilterType) => filter.value !== "All")
       .map((filter: FilterType) => `&${filter.id}=${filter.value}`)
       .reduce((a: string, b: string) => a + b, "");
-    const requestString = `waifus/filter?limit=50&page=1${filterString}`;
+    const requestString = `waifus/filter?limit=50&page=${page}${filterString}`;
     const response = await makeRequest(requestString, {
       method: "GET",
       body: null,
@@ -69,6 +72,7 @@ const BrowsePage: React.FC = () => {
       alert(response.error?.code);
       return;
     }
+    setPages(response.data.maxPage);
     const _waifus: Waifu[] = response.data.results;
     setWaifus(_waifus);
     setLoading(false);
@@ -94,18 +98,27 @@ const BrowsePage: React.FC = () => {
           {traits.map((trait: Trait) => (
             <Filter
               trait={trait}
-              setValue={async (value: string) => {
+              setValue={(value: string) => {
                 const newFilters = [...filters];
                 newFilters.filter(
                   (newFilter: FilterType) => newFilter.id === trait.id
                 )[0].value = value;
-                await setFilters(newFilters);
-                await loadWaifus();
+                setFilters(newFilters);
+                setPage(1);
+                loadWaifus();
               }}
             />
           ))}
         </Filters>
       </Content>
+      <PageSelector
+        page={page}
+        pages={pages}
+        setPage={(number: number) => {
+          setPage(number);
+          loadWaifus();
+        }}
+      />
     </StyledBrowsePage>
   );
 };
