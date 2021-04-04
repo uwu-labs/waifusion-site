@@ -31,7 +31,7 @@ const Animation = styled.img`
   filter: contrast(1.02);
 `;
 
-const Loading = () => {
+const Loading: React.FC = () => {
   const [size, setSize] = useState("0");
 
   useEffect(() => {
