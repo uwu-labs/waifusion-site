@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import Button from "./Button";
 import {
   loadWaifus,
@@ -11,6 +12,7 @@ import {
 import { ContractHelper, getAddress } from "../services/contract";
 
 const ClaimWet: React.FC = () => {
+  const [t] = useTranslation();
   const dispatch = useDispatch();
   const accumulated = useSelector(selectTotalAccumulated);
   const address = useSelector(selectAddress);
@@ -35,9 +37,11 @@ const ClaimWet: React.FC = () => {
 
   return (
     <Button secondary onClick={() => click()}>
-      {loading && "Loading"}
-      {!loading && !address && "Connect"}
-      {!loading && address && `Claim ${accumulated.toFixed(0)} WET`}
+      {loading && t("loading")}
+      {!loading && !address && t("connect")}
+      {!loading &&
+        address &&
+        `${t("wallet.claim")} ${accumulated.toFixed(0)} WET`}
     </Button>
   );
 };
