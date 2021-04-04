@@ -41,12 +41,14 @@ const StyledFilter = styled.div`
   flex-direction: column;
   background-color: white;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 0.7rem 1rem;
 `;
 
 const FilterLabel = styled.div`
   font-size: 1.2rem;
-  font-weight: 400;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
 `;
 
 const Select = styled.select`
@@ -68,7 +70,7 @@ const Filter: React.FC<Props> = (props) => {
   return (
     <Background>
       <StyledFilter key={props.trait.id}>
-        <FilterLabel>{`${props.trait.id}:`}</FilterLabel>
+        <FilterLabel>{props.trait.id}</FilterLabel>
         <Select onChange={(event) => console.log(event.target.value)}>
           <Option value="">All</Option>
           {props.trait.values.map((value: string) => (
