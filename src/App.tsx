@@ -32,7 +32,6 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    // TODO: Make proper loading view
     <Suspense fallback={<Loading />}>
       <Wrapper>
         <GlobalStyle />
