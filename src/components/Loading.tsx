@@ -29,6 +29,8 @@ const Animation = styled.img`
   width: 300px;
   height: 300px;
   filter: contrast(1.02);
+  user-drag: none;
+  user-select: none;
 `;
 
 const Loading: React.FC = () => {
