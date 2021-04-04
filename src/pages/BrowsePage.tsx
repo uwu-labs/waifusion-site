@@ -33,7 +33,7 @@ const Waifus = styled.div`
 const Filters = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 1rem;
+  margin-right: 3rem;
 `;
 
 const FilterLabel = styled.div`
