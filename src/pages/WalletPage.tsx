@@ -46,7 +46,7 @@ const WalletPage: React.FC = () => {
       </HeaderContainer>
       <WaifuContainer>
         {usersWaifus.map((waifu: Waifu) => (
-          <WaifuCard waifu={waifu} />
+          <WaifuCard waifu={waifu} key={waifu.id} />
         ))}
       </WaifuContainer>
     </StyledWalletPage>
