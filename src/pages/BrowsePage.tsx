@@ -84,7 +84,7 @@ const BrowsePage: React.FC = () => {
         {!loading && (
           <Waifus>
             {waifus.map((waifu: Waifu) => (
-              <WaifuCard waifu={waifu} />
+              <WaifuCard waifu={waifu} key={waifu.id} />
             ))}
           </Waifus>
         )}
