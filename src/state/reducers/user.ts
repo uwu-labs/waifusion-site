@@ -5,11 +5,13 @@ import { RootState } from "../index";
 interface UserState {
   address: string;
   waifuIndexes: number[];
+  loadingWafius: boolean;
 }
 
 const initialState: UserState = {
   address: "",
   waifuIndexes: [],
+  loadingWafius: false,
 };
 
 export const userSlice = createSlice({
@@ -22,11 +24,24 @@ export const userSlice = createSlice({
     setWaifuIndexes: (state, action: PayloadAction<number[]>) => {
       state.waifuIndexes = action.payload;
     },
+    loadWaifus: (state) => {
+      state.loadingWafius = true;
+    },
+    completeLoadWaifus: (state) => {
+      state.loadingWafius = false;
+    },
   },
 });
 
-export const { setAddress, setWaifuIndexes } = userSlice.actions;
+export const {
+  setAddress,
+  setWaifuIndexes,
+  loadWaifus,
+  completeLoadWaifus,
+} = userSlice.actions;
 
+export const selectLoadingWaifus = (state: RootState): boolean =>
+  state.user.loadingWafius;
 export const selectAddress = (state: RootState): string => state.user.address;
 export const selectUserWaifuIds = (state: RootState): number[] =>
   state.user.waifuIndexes;

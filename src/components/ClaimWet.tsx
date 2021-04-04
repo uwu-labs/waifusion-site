@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import {
+  loadWaifus,
   selectAddress,
   selectTotalAccumulated,
   selectUserWaifuIds,
@@ -27,6 +28,7 @@ const ClaimWet: React.FC = () => {
       const contractHelper = new ContractHelper();
       await contractHelper.init();
       await contractHelper.claimWET(waifuIds);
+      dispatch(loadWaifus());
     }
     setLoading(false);
   };

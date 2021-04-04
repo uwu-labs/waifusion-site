@@ -6,9 +6,7 @@ import ClaimWet from "../components/ClaimWet";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Header from "../components/Header";
 import WaifuCard from "../components/WaifuCard";
-import { ContractHelper } from "../services/contract";
-import { selectUsersWaifus, setWaifuIndexes } from "../state/reducers/user";
-import { addWaifu, selectWaifus } from "../state/reducers/waifus";
+import { loadWaifus, selectUsersWaifus } from "../state/reducers/user";
 import { Waifu } from "../types/waifusion";
 
 const StyledWalletPage = styled(PageContentWrapper)`
@@ -34,22 +32,10 @@ const WaifuContainer = styled.div`
 const WalletPage: React.FC = () => {
   const dispatch = useDispatch();
   const usersWaifus = useSelector(selectUsersWaifus);
-  const waifus = useSelector(selectWaifus);
   const [t] = useTranslation();
 
-  const loadOwnedWaifus = async () => {
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
-    const _ownedWaifus = await contractHelper.getWaifus();
-    dispatch(setWaifuIndexes(_ownedWaifus.map((waifu: Waifu) => waifu.id)));
-    _ownedWaifus.forEach((ownedWaifu: Waifu) => {
-      if (waifus.map((waifu: Waifu) => waifu.id).indexOf(ownedWaifu.id) === -1)
-        dispatch(addWaifu(ownedWaifu));
-    });
-  };
-
   useEffect(() => {
-    loadOwnedWaifus();
+    dispatch(loadWaifus());
   }, []);
 
   return (
