@@ -5,7 +5,7 @@ import { PageContentWrapper } from "../components/CommonLayout";
 import Header from "../components/Header";
 import WaifuCard from "../components/WaifuCard";
 import traits, { Trait } from "../data/traits";
-import { selectLoadingWaifus } from "../state/reducers/user";
+import { makeRequest } from "../services/api";
 import { Waifu } from "../types/waifusion";
 
 const StyledBrowsePage = styled(PageContentWrapper)`
@@ -52,10 +52,18 @@ const BrowsePage: React.FC = () => {
 
   const loadWaifus = async () => {
     setLoading(true);
-    const response = await fetch(
-      "https://api.waifusion.sexy/v1/waifus/filter?limit=50&page=1&Top=catgirl"
+    const response = await makeRequest(
+      "waifus/filter?limit=50&page=1&Top=catgirl",
+      {
+        method: "GET",
+        body: null,
+      }
     );
-    const _waifus: Waifu[] = await response.json();
+    if (!response.success) {
+      alert(response.error?.code);
+      return;
+    }
+    const _waifus: Waifu[] = response.data;
     setWaifus(_waifus);
     setLoading(false);
   };
