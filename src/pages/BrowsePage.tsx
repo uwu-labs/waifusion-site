@@ -36,15 +36,15 @@ const Filters = styled.div`
   margin-right: 3rem;
 `;
 
-const FilterLabel = styled.div`
-  font-size: 1.2rem;
-  font-weight: 400;
-  margin-top: 1.3rem;
-`;
-
 const Filter = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 1.3rem;
+`;
+
+const FilterLabel = styled.div`
+  font-size: 1.2rem;
+  font-weight: 400;
 `;
 
 const Select = styled.select`
@@ -97,17 +97,15 @@ const BrowsePage: React.FC = () => {
         )}
         <Filters>
           {traits.map((trait: Trait) => (
-            <>
+            <Filter key={trait.id}>
               <FilterLabel>{`${trait.id}:`}</FilterLabel>
-              <Filter key={trait.id}>
-                <Select onChange={(event) => console.log(event.target.value)}>
-                  <Option value="">All</Option>
-                  {trait.values.map((value: string) => (
-                    <Option value={value}>{value}</Option>
-                  ))}
-                </Select>
-              </Filter>
-            </>
+              <Select onChange={(event) => console.log(event.target.value)}>
+                <Option value="">All</Option>
+                {trait.values.map((value: string) => (
+                  <Option value={value}>{value}</Option>
+                ))}
+              </Select>
+            </Filter>
           ))}
         </Filters>
       </Content>
