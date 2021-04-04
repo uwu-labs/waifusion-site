@@ -3,7 +3,7 @@ import styled from "styled-components";
 import loading from "../assets/loading.gif";
 
 const StyledLoading = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -28,6 +28,7 @@ const Animation = styled.img`
   transform: translate(-50%, -40%);
   width: 300px;
   height: 300px;
+  filter: contrast(1.02);
 `;
 
 const Loading = () => {
