@@ -16,3 +16,8 @@ export const toEthUnit = (wei: BN): string => {
   if (!window.web3) return "";
   return Web3.utils.fromWei(wei);
 };
+
+export const toWeiUnit = (eth: string): string => {
+  if (!window.web3) return "";
+  return Web3.utils.toWei(eth);
+};
