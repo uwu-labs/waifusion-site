@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import BN from "bn.js";
 import { ContractHelper } from "../services/contract";
 import Input from "./Input";
 import Popup from "./Popup";
-import BN from "bn.js";
 import { toWeiUnit } from "../services/web3";
 import GLOBALS from "../services/globals";
 import LoadingPurchase from "./LoadingPurchase";
