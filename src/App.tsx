@@ -12,12 +12,14 @@ import ProvenancePage from "./pages/ProvenancePage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { initWeb3 } from "./services/web3";
+import Loading from "./components/Loading";
 
 const Wrapper = styled.div`
   color: #29252a;
 `;
 
 const ContentWrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -30,8 +32,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    // TODO: Make proper loading view
-    <Suspense fallback={<h1>Loading</h1>}>
+    <Suspense fallback={<Loading />}>
       <Wrapper>
         <GlobalStyle />
         <Router>
@@ -44,6 +45,7 @@ const App: React.FC = () => {
               <Route path="/wallet" component={WalletPage} />
               <Route path="/dungeon" component={DungeonPage} />
               <Route path="/provenance" component={ProvenancePage} />
+              <Route path="/loading" component={Loading} />
               <Route exact path="/" component={HomePage} />
               <Route path="*" component={NotFoundPage} />
             </Switch>

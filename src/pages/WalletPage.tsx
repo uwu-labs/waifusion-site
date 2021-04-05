@@ -5,8 +5,13 @@ import styled from "styled-components";
 import ClaimWet from "../components/ClaimWet";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Header from "../components/Header";
+import Loading from "../components/Loading";
 import WaifuCard from "../components/WaifuCard";
-import { loadWaifus, selectUsersWaifus } from "../state/reducers/user";
+import {
+  loadWaifus,
+  selectLoadingWaifus,
+  selectUsersWaifus,
+} from "../state/reducers/user";
 import { Waifu } from "../types/waifusion";
 
 const StyledWalletPage = styled(PageContentWrapper)`
@@ -22,6 +27,7 @@ const HeaderContainer = styled.div`
 `;
 
 const WaifuContainer = styled.div`
+  position: relative;
   max-width: 1400px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -32,6 +38,7 @@ const WaifuContainer = styled.div`
 const WalletPage: React.FC = () => {
   const dispatch = useDispatch();
   const usersWaifus = useSelector(selectUsersWaifus);
+  const loading = useSelector(selectLoadingWaifus);
   const [t] = useTranslation();
 
   useEffect(() => {
@@ -45,9 +52,11 @@ const WalletPage: React.FC = () => {
         <ClaimWet />
       </HeaderContainer>
       <WaifuContainer>
-        {usersWaifus.map((waifu: Waifu) => (
-          <WaifuCard waifu={waifu} key={waifu.id} />
-        ))}
+        {loading && <Loading />}
+        {!loading &&
+          usersWaifus.map((waifu: Waifu) => (
+            <WaifuCard waifu={waifu} key={waifu.id} />
+          ))}
       </WaifuContainer>
     </StyledWalletPage>
   );
