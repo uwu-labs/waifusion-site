@@ -48,7 +48,11 @@ const BuyWaifu: React.FC<Props> = (props) => {
   return (
     <Popup
       show={props.show}
-      close={() => props.close()}
+      close={() => {
+        setError("");
+        setCount("");
+        props.close();
+      }}
       content={
         <Content>
           <Input
