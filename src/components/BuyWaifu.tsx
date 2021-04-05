@@ -32,12 +32,7 @@ const BuyWaifu: React.FC<Props> = (props) => {
   const [committed, setCommited] = useState(false);
   const [commitComplete, setCommitComplete] = useState(false);
 
-  const reset = () => {
-    setError("");
-    setCount("");
-    setCommited(false);
-    setCommitComplete(false);
-  };
+  if (!props.show) return null;
 
   const buy = async () => {
     setError("");
@@ -88,10 +83,7 @@ const BuyWaifu: React.FC<Props> = (props) => {
     <>
       <Popup
         show={props.show && !committed}
-        close={() => {
-          reset();
-          props.close();
-        }}
+        close={() => props.close()}
         content={
           <Content>
             <Input
@@ -112,10 +104,7 @@ const BuyWaifu: React.FC<Props> = (props) => {
       />
       <LoadingPurchase
         show={committed}
-        close={() => {
-          reset();
-          props.close();
-        }}
+        close={() => props.close()}
         loading={!commitComplete}
       />
     </>
