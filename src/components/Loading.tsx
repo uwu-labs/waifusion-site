@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import loading from "../assets/loading.gif";
+import styled, { keyframes } from "styled-components";
+import loading from "../assets/loading-icon.png";
 
 const StyledLoading = styled.div`
   position: absolute;
@@ -14,39 +14,32 @@ const StyledLoading = styled.div`
   align-items: center;
 `;
 
-const Circle = styled.div`
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
-  transition: all 0.6s;
+const rotate = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 `;
 
 const Animation = styled.img`
+  border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -40%);
-  width: 300px;
-  height: 300px;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
   filter: contrast(1.02);
-  user-drag: none;
   user-select: none;
+  animation: ${rotate} 2s linear 0s infinite;
 `;
 
 const Loading: React.FC = () => {
-  const [size, setSize] = useState("0");
-
-  useEffect(() => {
-    setTimeout(() => {
-      setSize("200px");
-    }, 500);
-  }, []);
-
   return (
     <StyledLoading>
-      <Circle style={{ width: size, height: size }}>
-        <Animation src={loading} />
-      </Circle>
+      <Animation src={loading} />
     </StyledLoading>
   );
 };
