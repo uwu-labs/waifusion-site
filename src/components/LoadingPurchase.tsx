@@ -29,7 +29,7 @@ const LoadingPurchase: React.FC<Props> = (props) => {
         setRevealed(true);
       })
       .on("error", (err: any) => {
-        alert("Error: " + err.message);
+        alert(`Error: ${err.message}`);
       });
   };
 
