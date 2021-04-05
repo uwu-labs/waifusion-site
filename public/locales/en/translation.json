@@ -20,7 +20,9 @@
     "buyWaifu": "Buy Waifu",
     "burnWaifu": "Burn Waifu",
     "search": "Search",
-    "buy": "Buy"
+    "buy": "Buy",
+    "loading": "Loading",
+    "reveal": "Reveal"
   },
   "headers": {
     "browse": "Browse Waifus",
@@ -40,8 +42,18 @@
   },
   "dungeon": {
     "description": "Oh no... Many of our beloved waifus have been enslaved in the Dungeon! Be a hero and save your beloved Waifus by buying thier freedom for 0.7 ETH to get a random Waifu. Or burn a Waifu and pay 5,490 WET to free another random one from the Dungeon.",
-    "buyHeader": "Buy Waifu",
-    "buyBody": "Select the number of Waifus that you would like to buy"
+    "exitWarning": "Reveal Waifus before exiting or you can lose them forever",
+    "headers": {
+      "buy": "Buy Waifu",
+      "loadingPurchase": "Loading Purchase",
+      "loadingReveal": "Loading Reveal",
+      "revealReady": "Ready to Reveal"
+    },
+    "bodys": {
+      "buy": "Select the number of Waifus that you would like to buy",
+      "loadingPurchase": "When purchase is complete you must reveal immediately or risk losing your Waifus forever",
+      "revealReady": "Your Waifus have been purchased! Click Reveal below to see what you got"
+    }
   },
   "wet": {
     "header": "WET Token",
@@ -62,5 +74,8 @@
     "placeholder": "search id",
     "id": "ID: ",
     "hash": "Hash: "
+  },
+  "prefixes": {
+    "error": "Error: "
   }
 }

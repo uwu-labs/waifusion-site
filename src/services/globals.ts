@@ -1,4 +1,4 @@
-const TEST_MODE = false;
+const TEST_MODE = true;
 
 type Globals = {
   WAIFU_VERSION: string;

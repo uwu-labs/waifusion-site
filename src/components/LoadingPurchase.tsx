@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { ContractHelper } from "../services/contract";
 import Loading from "./Loading";
@@ -18,6 +19,8 @@ type Props = {
 };
 
 const LoadingPurchase: React.FC<Props> = (props) => {
+  const [t] = useTranslation();
+
   const [loading, setLoading] = useState(false);
   const [revealed, setRevealed] = useState(false);
 
@@ -36,7 +39,7 @@ const LoadingPurchase: React.FC<Props> = (props) => {
         setRevealed(true);
       })
       .on("error", (err: any) => {
-        alert(`Error: ${err.message}`);
+        alert(`${t("prefixes.error")}${err.message}`);
       });
   };
 
@@ -44,22 +47,20 @@ const LoadingPurchase: React.FC<Props> = (props) => {
     <>
       <Popup
         show={props.show && !revealed}
-        close={() =>
-          alert("Reveal Waifus before exiting or you can lose them forever")
-        }
+        close={() => alert(t("dungeon.exitWarning"))}
         header={
           props.loading
-            ? "Loading Purchase"
+            ? t("dungeon.headers.loadingPurchase")
             : loading
-            ? "Loading Reveal"
-            : "Ready to Reveal"
+            ? t("dungeon.headers.loadingReveal")
+            : t("dungeon.headers.revealReady")
         }
         body={
           props.loading
-            ? "When purchase is complete you must reveal immediately or risk losing your Waifus forever"
+            ? t("dungeon.bodys.loadingPurchase")
             : loading
             ? ""
-            : "Your Waifus have been purchased! Click Reveal below to see what you got"
+            : t("dungeon.bodys.revealReady")
         }
         content={
           props.loading || loading ? (
@@ -72,7 +73,9 @@ const LoadingPurchase: React.FC<Props> = (props) => {
           if (props.loading || loading) return;
           reveal();
         }}
-        buttonText={props.loading || loading ? "Loading" : "Reveal"}
+        buttonText={
+          props.loading || loading ? t("buttons.loading") : t("buttons.reveal")
+        }
       />
       <RevealComplete show={revealed} close={() => props.close()} />
     </>
