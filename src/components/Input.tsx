@@ -8,6 +8,7 @@ const Input = styled.input`
   font-size: 1.1rem;
   font-weight: 600;
   outline: none;
+  color: var(--text-primary);
 
   ::placeholder {
     color: var(--text-secondary);
