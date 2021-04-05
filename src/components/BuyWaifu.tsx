@@ -97,7 +97,7 @@ const BuyWaifu: React.FC<Props> = (props) => {
           </Content>
         }
         header={t("dungeon.headers.buy")}
-        body={t("dungeon.bodyes.buy")}
+        body={t("dungeon.bodys.buy")}
         buttonAction={() => {
           buy();
         }}
