@@ -22,7 +22,7 @@ const BuyWaifu: React.FC<Props> = (props) => {
       close={() => props.close()}
       content={
         <Content>
-          <Input type="number" />
+          <Input type="number" placeholder="1" />
         </Content>
       }
       header="Buy Waifu"
