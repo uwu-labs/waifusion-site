@@ -17,10 +17,13 @@ export const waifusSlice = createSlice({
     addWaifu: (state, action: PayloadAction<Waifu>) => {
       state.waifus.push(action.payload);
     },
+    setWaifus: (state, action: PayloadAction<Waifu[]>) => {
+      state.waifus = action.payload;
+    },
   },
 });
 
-export const { addWaifu } = waifusSlice.actions;
+export const { addWaifu, setWaifus } = waifusSlice.actions;
 
 export const selectWaifus = (state: RootState): Waifu[] => state.waifus.waifus;
 
