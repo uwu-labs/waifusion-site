@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import waifuImage from "../assets/dungeon-waifu.png";
 import barsImage from "../assets/bars.png";
 import Popup from "../components/Popup";
+import BuyWaifu from "../components/BuyWaifu";
 
 const StyledDungeonPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -130,11 +131,7 @@ const DungeonPage: React.FC = () => {
           </DungeonCard>
         </DropShadow>
       </Content>
-      <Popup
-        show={buying}
-        close={() => setBuying(false)}
-        content={<p>meow</p>}
-      />
+      <BuyWaifu show={buying} close={() => setBuying(false)} />
     </StyledDungeonPage>
   );
 };
