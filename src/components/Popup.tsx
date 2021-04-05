@@ -44,10 +44,18 @@ const Container = styled.div`
   }
 `;
 
-const Header = styled.div`
+const Header = styled.h3`
   font-size: 3rem;
   font-weight: 600;
   margin-bottom: 1rem;
+  color: var(--plain-dark);
+`;
+
+const Body = styled.p`
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  text-align: center;
   color: var(--plain-dark);
 `;
 
@@ -69,6 +77,7 @@ const Popup: React.FC<Props> = (props) => {
       <Background onClick={() => props.close()} />
       <Container>
         {props.header && <Header>{props.header}</Header>}
+        {props.body && <Body>{props.body}</Body>}
         {props.content}
         {props.buttonAction && props.buttonText && (
           <Button
