@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import BN from "bn.js";
+import { useTranslation } from "react-i18next";
 import { ContractHelper } from "../services/contract";
 import Input from "./Input";
 import Popup from "./Popup";
@@ -29,6 +30,7 @@ type Props = {
 const BuyWaifu: React.FC<Props> = (props) => {
   if (!props.show) return null;
 
+  const [t] = useTranslation();
   const [count, setCount] = useState<string>("1");
   const [error, setError] = useState("");
   const [committed, setCommited] = useState(false);
@@ -40,19 +42,19 @@ const BuyWaifu: React.FC<Props> = (props) => {
     try {
       amount = Number(count);
     } catch {
-      setError("Not a valid number");
+      setError(t("errors.valid"));
       return;
     }
     if (!Number.isInteger(amount)) {
-      setError("Must be a whole number");
+      setError(t("errors.whole"));
       return;
     }
     if (amount > 20) {
-      setError("Maximum of 20 allowed");
+      setError(t("errors.maximum"));
       return;
     }
     if (amount <= 0) {
-      setError("Minimum of 1 allowed");
+      setError(t("errors.minimum"));
       return;
     }
 
@@ -94,12 +96,12 @@ const BuyWaifu: React.FC<Props> = (props) => {
             {error && <Error>{error}</Error>}
           </Content>
         }
-        header="Buy Waifu"
-        body="Select the number of Waifus that you would like to buy"
+        header={t("dungeon.buyHeader")}
+        body={t("dungeon.buyBody")}
         buttonAction={() => {
           buy();
         }}
-        buttonText="Buy"
+        buttonText={t("buttons.buy")}
       />
       <LoadingPurchase
         show={committed}
