@@ -11,7 +11,7 @@ const RevealComplete: React.FC<Props> = (props) => {
   return (
     <Popup
       show={props.show}
-      close={() => props.close}
+      close={() => props.close()}
       header="Waifus Revealed!"
       buttonAction={() => props.close()}
       buttonText="Close"
