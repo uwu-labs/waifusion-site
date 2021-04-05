@@ -52,7 +52,7 @@ const BuyWaifu: React.FC<Props> = (props) => {
       return;
     }
     if (amount <= 0) {
-      setError("Number of Waifus cannot be 0 or negative");
+      setError("Minimum of 1 allowed");
       return;
     }
 
