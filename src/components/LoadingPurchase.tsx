@@ -8,7 +8,7 @@ import RevealComplete from "./RevealComplete";
 const LoadingContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 200px;
 `;
 
 type Props = {
