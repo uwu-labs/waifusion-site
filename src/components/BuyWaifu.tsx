@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { ContractHelper } from "../services/contract";
 import Input from "./Input";
 import Popup from "./Popup";
+import BN from "bn.js";
+import { toWeiUnit } from "../services/web3";
+import GLOBALS from "../services/globals";
+import LoadingPurchase from "./LoadingPurchase";
 
 const Content = styled.div`
   width: 100%;
@@ -24,8 +29,17 @@ type Props = {
 const BuyWaifu: React.FC<Props> = (props) => {
   const [count, setCount] = useState<string>("");
   const [error, setError] = useState("");
+  const [committed, setCommited] = useState(false);
+  const [commitComplete, setCommitComplete] = useState(false);
 
-  const validate = () => {
+  const reset = () => {
+    setError("");
+    setCount("");
+    setCommited(false);
+    setCommitComplete(false);
+  };
+
+  const buy = async () => {
     setError("");
     let amount = 0;
     try {
@@ -36,42 +50,75 @@ const BuyWaifu: React.FC<Props> = (props) => {
     }
     if (!Number.isInteger(amount)) {
       setError("Must be a whole number");
+      return;
     }
     if (amount > 20) {
       setError("Maximum of 20 allowed");
+      return;
     }
     if (amount <= 0) {
       setError("Number of Waifus cannot be 0 or negative");
+      return;
     }
+
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
+    const dungeonContract = await contractHelper.getDungeonContract();
+    const estimatedGas = 200000 * amount;
+    dungeonContract.methods
+      .commitBuyWaifus(amount)
+      .send({
+        value: new BN(toWeiUnit(GLOBALS.BUY_PRICE)).mul(new BN(amount)),
+        gas: estimatedGas,
+      })
+      .on("transactionHash", (hash: any) => {
+        setCommited(true);
+        setCommitComplete(false);
+      })
+      .on("receipt", (receipt: any) => {
+        setCommitComplete(true);
+      })
+      .on("error", (err: any) => {
+        setCommited(false);
+        console.log("error: ", err.message);
+      });
   };
 
   return (
-    <Popup
-      show={props.show}
-      close={() => {
-        setError("");
-        setCount("");
-        props.close();
-      }}
-      content={
-        <Content>
-          <Input
-            value={count}
-            type="number"
-            placeholder="1"
-            onChange={(event) => setCount(event.target.value)}
-          />
-          {error && <Error>{error}</Error>}
-        </Content>
-      }
-      header="Buy Waifu"
-      body="Select the number of Waifus that you would like to buy"
-      buttonAction={() => {
-        validate();
-        alert("Not implmented yet");
-      }}
-      buttonText="Buy"
-    />
+    <>
+      <Popup
+        show={props.show && !committed}
+        close={() => {
+          reset();
+          props.close();
+        }}
+        content={
+          <Content>
+            <Input
+              value={count}
+              type="number"
+              placeholder="1"
+              onChange={(event) => setCount(event.target.value)}
+            />
+            {error && <Error>{error}</Error>}
+          </Content>
+        }
+        header="Buy Waifu"
+        body="Select the number of Waifus that you would like to buy"
+        buttonAction={() => {
+          buy();
+        }}
+        buttonText="Buy"
+      />
+      <LoadingPurchase
+        show={committed}
+        close={() => {
+          reset();
+          props.close();
+        }}
+        loading={!commitComplete}
+      />
+    </>
   );
 };
 
