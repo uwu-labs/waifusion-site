@@ -27,7 +27,7 @@ type Props = {
 };
 
 const BuyWaifu: React.FC<Props> = (props) => {
-  const [count, setCount] = useState<string>("");
+  const [count, setCount] = useState<string>("1");
   const [error, setError] = useState("");
   const [committed, setCommited] = useState(false);
   const [commitComplete, setCommitComplete] = useState(false);
@@ -89,7 +89,6 @@ const BuyWaifu: React.FC<Props> = (props) => {
             <Input
               value={count}
               type="number"
-              placeholder="1"
               onChange={(event) => setCount(event.target.value)}
             />
             {error && <Error>{error}</Error>}
