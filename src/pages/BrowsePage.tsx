@@ -9,6 +9,7 @@ import traits, { Trait } from "../data/traits";
 import { makeRequest } from "../services/api";
 import { Waifu } from "../types/waifusion";
 import PageSelector from "../components/PageSelector";
+import Loading from "../components/Loading";
 
 type FilterType = {
   id: string;
@@ -26,6 +27,12 @@ const Content = styled.div`
   display: flex;
   margin: 3rem auto;
   justify-content: space-between;
+`;
+
+const LoadingContainer = styled.div`
+  position: relative;
+  flex: 1;
+  height: 63.2vh;
 `;
 
 const Waifus = styled.div`
@@ -86,7 +93,11 @@ const BrowsePage: React.FC = () => {
     <StyledBrowsePage>
       <Header text={t("headers.browse")} />
       <Content>
-        {loading && <p>loading</p>}
+        {loading && (
+          <LoadingContainer>
+            <Loading />
+          </LoadingContainer>
+        )}
         {!loading && (
           <Waifus>
             {waifus.map((waifu: Waifu) => (

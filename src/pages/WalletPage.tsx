@@ -17,6 +17,7 @@ import { Waifu } from "../types/waifusion";
 const StyledWalletPage = styled(PageContentWrapper)`
   display: flex;
   flex-direction: column;
+  min-height: 83.2vh;
 `;
 
 const HeaderContainer = styled.div`
@@ -26,8 +27,13 @@ const HeaderContainer = styled.div`
   align-items: center;
 `;
 
-const WaifuContainer = styled.div`
+const Content = styled.div`
   position: relative;
+  width: 100%;
+  flex: 1;
+`;
+
+const WaifuContainer = styled.div`
   max-width: 1400px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -51,13 +57,16 @@ const WalletPage: React.FC = () => {
         <Header text={t("headers.wallet")} />
         <ClaimWet />
       </HeaderContainer>
-      <WaifuContainer>
+      <Content>
         {loading && <Loading />}
-        {!loading &&
-          usersWaifus.map((waifu: Waifu) => (
-            <WaifuCard waifu={waifu} key={waifu.id} />
-          ))}
-      </WaifuContainer>
+        {!loading && (
+          <WaifuContainer>
+            {usersWaifus.map((waifu: Waifu) => (
+              <WaifuCard waifu={waifu} key={waifu.id} />
+            ))}
+          </WaifuContainer>
+        )}
+      </Content>
     </StyledWalletPage>
   );
 };
