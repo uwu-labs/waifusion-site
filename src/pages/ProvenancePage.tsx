@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import Header from "../components/Header";
-import bscProvenance from "../assets/bsc_provenance.json";
-import ethProvenance from "../assets/eth_provenance.json";
+import bscProvenance from "../data/bsc_provenance.json";
+import ethProvenance from "../data/eth_provenance.json";
 import GLOBALS from "../services/globals";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Input from "../components/Input";
-import Button from "../components/Button";
 import PageSelector from "../components/PageSelector";
 
 const PROVENANCE_PER_PAGE = 20;

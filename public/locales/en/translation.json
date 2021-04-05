@@ -2,6 +2,8 @@
   "name": "Waifusion",
   "tagline": "No Waifu, No Laifu",
   "description": "Waifusion is a digital Waifu collection. There are 16,384 guaranteed-unique Waifusion NFTs. They’re just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifuis wholly unique and yours forever... unless you sell them... Baka.",
+  "loading": "Loading",
+  "conntect": "Connect",
   "footer": {
     "team": "Made with 💜 by the Waifusion comunity",
     "provenance": "Provenance"
@@ -31,6 +33,9 @@
     "browse": "Browse",
     "wallet": "Wallet",
     "dungeon": "Dungeon"
+  },
+  "wallet": {
+    "claim": "Claim"
   },
   "dungeon": {
     "description": "Oh no... Many of our beloved waifus have been enslaved in the Dungeon! Be a hero and save your beloved Waifus by buying thier freedom for 0.7 ETH to get a random Waifu. Or burn a Waifu and pay 5,490 WET to free another random one from the Dungeon."
