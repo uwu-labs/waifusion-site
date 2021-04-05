@@ -27,12 +27,12 @@ type Props = {
 };
 
 const BuyWaifu: React.FC<Props> = (props) => {
+  if (!props.show) return null;
+
   const [count, setCount] = useState<string>("1");
   const [error, setError] = useState("");
   const [committed, setCommited] = useState(false);
   const [commitComplete, setCommitComplete] = useState(false);
-
-  if (!props.show) return null;
 
   const buy = async () => {
     setError("");
