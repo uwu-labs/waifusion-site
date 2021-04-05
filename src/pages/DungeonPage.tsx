@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled, { keyframes } from "styled-components";
 import Card from "../components/Card";
@@ -6,6 +6,7 @@ import { PageContentWrapper } from "../components/CommonLayout";
 import Header from "../components/Header";
 import waifuImage from "../assets/dungeon-waifu.png";
 import barsImage from "../assets/bars.png";
+import Popup from "../components/Popup";
 
 const StyledDungeonPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -107,6 +108,7 @@ const BarsImage = styled.img`
 
 const DungeonPage: React.FC = () => {
   const [t] = useTranslation();
+  const [buying, setBuying] = useState(false);
 
   return (
     <StyledDungeonPage>
@@ -115,7 +117,7 @@ const DungeonPage: React.FC = () => {
         <CardContainer>
           <Card
             text={t("dungeon.description")}
-            buttonAction={() => alert("Not implemented yet")}
+            buttonAction={() => setBuying(true)}
             buttonText={t("buttons.buyWaifu")}
             secondButtonAction={() => alert("Not implemented yet")}
             secondButtonText={t("buttons.burnWaifu")}
@@ -128,6 +130,11 @@ const DungeonPage: React.FC = () => {
           </DungeonCard>
         </DropShadow>
       </Content>
+      <Popup
+        show={buying}
+        close={() => setBuying(false)}
+        content={<p>meow</p>}
+      />
     </StyledDungeonPage>
   );
 };
