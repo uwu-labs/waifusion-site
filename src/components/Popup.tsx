@@ -39,11 +39,19 @@ const Container = styled.div`
   align-items: center;
 `;
 
+const Header = styled.div`
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--plain-dark);
+`;
+
 type Props = {
   show: boolean;
   close: () => void;
-  content: JSX.Element;
   header?: string;
+  body?: string;
+  content: JSX.Element;
   buttonAction?: () => void;
   buttonText?: string;
 };
@@ -54,7 +62,11 @@ const Popup: React.FC<Props> = (props) => {
   return (
     <StyledPopup>
       <Background onClick={() => props.close()} />
-      <Container>{props.content}</Container>
+      <Container>
+        {props.header && <Header>{props.header}</Header>}
+
+        {props.content}
+      </Container>
     </StyledPopup>
   );
 };
