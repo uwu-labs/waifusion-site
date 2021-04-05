@@ -10,7 +10,8 @@ const StyledPopup = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
   z-index: 1;
 `;
 
@@ -20,7 +21,6 @@ const Background = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  filter: blur(20px);
 `;
 
 const Container = styled.div`
