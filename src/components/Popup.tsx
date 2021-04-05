@@ -64,7 +64,7 @@ type Props = {
   close: () => void;
   header?: string;
   body?: string;
-  content: JSX.Element;
+  content?: JSX.Element;
   buttonAction?: () => void;
   buttonText?: string;
 };
@@ -78,7 +78,7 @@ const Popup: React.FC<Props> = (props) => {
       <Container>
         {props.header && <Header>{props.header}</Header>}
         {props.body && <Body>{props.body}</Body>}
-        {props.content}
+        {props.content && props.content}
         {props.buttonAction && props.buttonText && (
           <Button
             primary
