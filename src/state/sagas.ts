@@ -2,7 +2,7 @@ import { put, takeEvery, all, select } from "redux-saga/effects";
 import { ContractHelper } from "../services/contract";
 import { Waifu } from "../types/waifusion";
 import { loadWaifus, setWaifuIndexes } from "./reducers/user";
-import { addWaifu, selectWaifus } from "./reducers/waifus";
+import { addWaifu, selectWaifus, setWaifus } from "./reducers/waifus";
 
 /* WATCHERS */
 function* watchLoadWaifus() {
@@ -12,6 +12,7 @@ function* watchLoadWaifus() {
 /* ACTIONS */
 function* loadWaifusAction() {
   const waifus: Waifu[] = yield select(selectWaifus);
+  const waifusCopy = [...waifus];
   const contractHelper = new ContractHelper();
   yield contractHelper.init();
   const _ownedWaifus: Waifu[] = yield contractHelper.getWaifus();
@@ -19,8 +20,10 @@ function* loadWaifusAction() {
   for (let i = 0; i < _ownedWaifus.length; i++) {
     const waifuIds = waifus.map((waifu: Waifu) => waifu.id);
     if (waifuIds.indexOf(_ownedWaifus[i].id) === -1)
-      yield put(addWaifu(_ownedWaifus[i]));
+      waifusCopy.push(_ownedWaifus[i]);
+    else waifusCopy[i] = _ownedWaifus[i];
   }
+  yield put(setWaifus(waifusCopy));
 }
 
 export default function* rootSaga(): any {
