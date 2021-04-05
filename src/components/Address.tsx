@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import { selectAddress, setAddress } from "../state/reducers/user";
 import { ChevronDownIcon } from "./Icons";
 import Button from "./Button";
@@ -18,6 +19,7 @@ const SignedInAddressContainer = styled(Button)`
 `;
 
 const Address: React.FC = () => {
+  const [t] = useTranslation();
   const dispatch = useDispatch();
   const address = useSelector(selectAddress);
   const formattedAddress = () => {
@@ -36,7 +38,7 @@ const Address: React.FC = () => {
 
   return (
     <SignedInAddressContainer primary small onClick={() => updateAddress()}>
-      {!address && "Connect"}
+      {!address && t("conntect")}
       {address && (
         <>
           {formattedAddress()}

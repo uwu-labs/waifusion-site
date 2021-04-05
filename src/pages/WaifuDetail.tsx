@@ -13,7 +13,7 @@ import {
   SwimsuitTraitIcon,
 } from "../components/Icons";
 import LargeWaifuCard from "../components/LargeWaifuCard";
-import { ContractHelper } from "../services/contract";
+import { makeRequest } from "../services/api";
 import { addWaifu, selectWaifus } from "../state/reducers/waifus";
 import { Waifu } from "../types/waifusion";
 
@@ -249,14 +249,18 @@ const WaifuDetail: React.FC = () => {
   const waifu = waifus.filter((w: Waifu) => Number(w.id) === Number(id))[0];
 
   const getWaifu = async () => {
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
-    const owner = await contractHelper.getWaifuOwner(Number(id));
-    const _waifus = await contractHelper.getWaifusOfAddress(owner);
-    _waifus.forEach((_waifu: Waifu) => {
-      if (waifus.map((w: Waifu) => w.id).indexOf(_waifu.id) === -1)
-        dispatch(addWaifu(_waifu));
+    const response = await makeRequest(`waifus/${id}`, {
+      method: "GET",
+      body: null,
     });
+    if (!response.success) {
+      console.log(response.error?.code);
+      return;
+    }
+    const _waifu: Waifu = response.data;
+
+    if (waifus.map((w: Waifu) => w.id).indexOf(_waifu.id) === -1)
+      dispatch(addWaifu(_waifu));
   };
 
   useEffect(() => {

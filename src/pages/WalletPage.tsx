@@ -54,7 +54,9 @@ const WalletPage: React.FC = () => {
       <WaifuContainer>
         {loading && <Loading />}
         {!loading &&
-          usersWaifus.map((waifu: Waifu) => <WaifuCard waifu={waifu} />)}
+          usersWaifus.map((waifu: Waifu) => (
+            <WaifuCard waifu={waifu} key={waifu.id} />
+          ))}
       </WaifuContainer>
     </StyledWalletPage>
   );
