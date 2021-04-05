@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Button from "./Button";
 
 const StyledPopup = styled.div`
   position: fixed;
@@ -37,6 +38,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  button {
+    margin-top: 3rem;
+  }
 `;
 
 const Header = styled.div`
@@ -64,8 +69,17 @@ const Popup: React.FC<Props> = (props) => {
       <Background onClick={() => props.close()} />
       <Container>
         {props.header && <Header>{props.header}</Header>}
-
         {props.content}
+        {props.buttonAction && props.buttonText && (
+          <Button
+            primary
+            onClick={() => {
+              if (props.buttonAction) props.buttonAction();
+            }}
+          >
+            {props.buttonText}
+          </Button>
+        )}
       </Container>
     </StyledPopup>
   );
