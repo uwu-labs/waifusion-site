@@ -69,7 +69,7 @@ const BrowsePage: React.FC = () => {
       body: null,
     });
     if (!response.success) {
-      alert(response.error?.code);
+      console.log(response.error?.code);
       return;
     }
     setPages(response.data.maxPage);
