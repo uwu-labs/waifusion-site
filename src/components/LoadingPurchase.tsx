@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { ContractHelper } from "../services/contract";
+import Loading from "./Loading";
 import Popup from "./Popup";
 import RevealComplete from "./RevealComplete";
+
+const LoadingContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 400px;
+`;
 
 type Props = {
   show: boolean;
@@ -40,10 +47,29 @@ const LoadingPurchase: React.FC<Props> = (props) => {
         close={() =>
           alert("Reveal Waifus before exiting or you can lose them forever")
         }
-        header="Loading Purchase"
-        body="When purchase is complete you must reveal immediately or risk losing your Waifus forever"
+        header={
+          props.loading
+            ? "Loading Purchase"
+            : loading
+            ? "Loading Reveal"
+            : "Ready to Reveal"
+        }
+        body={
+          props.loading
+            ? "When purchase is complete you must reveal immediately or risk losing your Waifus forever"
+            : loading
+            ? ""
+            : "Your Waifus have been purchased! Click Reveal below to see what you got"
+        }
+        content={
+          props.loading || loading ? (
+            <LoadingContainer>
+              <Loading />
+            </LoadingContainer>
+          ) : undefined
+        }
         buttonAction={() => {
-          if (props.loading) return;
+          if (props.loading || loading) return;
           reveal();
         }}
         buttonText={props.loading || loading ? "Loading" : "Reveal"}
