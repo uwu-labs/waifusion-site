@@ -27,6 +27,8 @@ const BuyWaifu: React.FC<Props> = (props) => {
       }
       header="Buy Waifu"
       body="Select the number of Waifus that you would like to buy"
+      buttonAction={() => alert("Not implmented yet")}
+      buttonText="Buy"
     />
   );
 };
