@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 import Popup from "./Popup";
 
 type Props = {
@@ -8,13 +8,15 @@ type Props = {
 };
 
 const RevealComplete: React.FC<Props> = (props) => {
+  const [t] = useTranslation();
+
   return (
     <Popup
       show={props.show}
       close={() => props.close()}
-      header="Waifus Revealed!"
+      header={t("dungeon.headers.revealed")}
       buttonAction={() => props.close()}
-      buttonText="Close"
+      buttonText={t("buttons.close")}
     />
   );
 };

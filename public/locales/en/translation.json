@@ -22,7 +22,8 @@
     "search": "Search",
     "buy": "Buy",
     "loading": "Loading",
-    "reveal": "Reveal"
+    "reveal": "Reveal",
+    "close": "Close"
   },
   "headers": {
     "browse": "Browse Waifus",
@@ -47,7 +48,8 @@
       "buy": "Buy Waifu",
       "loadingPurchase": "Loading Purchase",
       "loadingReveal": "Loading Reveal",
-      "revealReady": "Ready to Reveal"
+      "revealReady": "Ready to Reveal",
+      "revealed": "Waifus Revealed!"
     },
     "bodys": {
       "buy": "Select the number of Waifus that you would like to buy",
