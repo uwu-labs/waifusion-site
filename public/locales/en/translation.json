@@ -58,7 +58,7 @@
     },
     "bodys": {
       "buy": "Select the number of Waifus that you would like to buy",
-      "burn": "Select the Waifus you would like to burn",
+      "burn": "Enter the IDs of the Waifus you would like to burn",
       "loadingPurchase": "When purchase is complete you must reveal immediately or risk losing your Waifus forever",
       "revealReady": "Your Waifus have been purchased! Click Reveal below to see what you got"
     }
