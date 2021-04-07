@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import waifuImage from "../assets/dungeon-waifu.png";
 import barsImage from "../assets/bars.png";
 import BuyWaifu from "../components/BuyWaifu";
+import BurnWaifu from "../components/BurnWaifu";
 
 const StyledDungeonPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -109,6 +110,7 @@ const BarsImage = styled.img`
 const DungeonPage: React.FC = () => {
   const [t] = useTranslation();
   const [buying, setBuying] = useState(false);
+  const [burning, setBurning] = useState(false);
 
   return (
     <StyledDungeonPage>
@@ -119,7 +121,7 @@ const DungeonPage: React.FC = () => {
             text={t("dungeon.description")}
             buttonAction={() => setBuying(true)}
             buttonText={t("buttons.buyWaifu")}
-            secondButtonAction={() => alert("Not implemented yet")}
+            secondButtonAction={() => setBurning(true)}
             secondButtonText={t("buttons.burnWaifu")}
           />
         </CardContainer>
@@ -131,6 +133,7 @@ const DungeonPage: React.FC = () => {
         </DropShadow>
       </Content>
       <BuyWaifu show={buying} close={() => setBuying(false)} />
+      <BurnWaifu show={burning} close={() => setBurning(false)} />
     </StyledDungeonPage>
   );
 };
