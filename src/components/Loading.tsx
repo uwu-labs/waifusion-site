@@ -26,16 +26,16 @@ const Circle = styled.div`
   }
 `;
 
-const Loading: React.FC = () => {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: loadingData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: loadingData,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
+const Loading: React.FC = () => {
   return (
     <StyledLoading>
       <Circle>
