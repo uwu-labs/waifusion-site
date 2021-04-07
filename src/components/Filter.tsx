@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import styled, { keyframes } from "styled-components";
 import { Trait } from "../data/traits";
 
@@ -68,21 +69,24 @@ type Props = {
 };
 
 const Filter: React.FC<Props> = (props) => {
+  const [t] = useTranslation();
   const [value, setValue] = useState("All");
 
   return (
     <Background rainbow={value !== "All"}>
       <StyledFilter key={props.trait.id}>
-        <FilterLabel>{props.trait.id}</FilterLabel>
+        <FilterLabel>{t(`traits.${props.trait.id}.name`)}</FilterLabel>
         <Select
           onChange={(event) => {
             props.setValue(event.target.value);
             setValue(event.target.value);
           }}
         >
-          <Option value="All">All</Option>
+          <Option value="All">{t("traits.all")}</Option>
           {props.trait.values.map((value: string) => (
-            <Option value={value}>{value}</Option>
+            <Option value={value}>
+              {t(`traits.${props.trait.id}.values.${value}`)}
+            </Option>
           ))}
         </Select>
       </StyledFilter>
