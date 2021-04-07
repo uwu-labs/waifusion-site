@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { useHistory } from "react-router";
 import ClaimWet from "../components/ClaimWet";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Header from "../components/Header";
@@ -13,6 +14,8 @@ import {
   selectUsersWaifus,
 } from "../state/reducers/user";
 import { Waifu } from "../types/waifusion";
+import noWaifus from "../assets/no-waifus.png";
+import Button from "../components/Button";
 
 const StyledWalletPage = styled(PageContentWrapper)`
   display: flex;
@@ -41,11 +44,40 @@ const WaifuContainer = styled.div`
   margin: 3rem auto;
 `;
 
+const NoWaifusContainer = styled.div`
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const NoWaifusImage = styled.img`
+  height: 25vh;
+  margin-bottom: 2rem;
+  filter: saturate(1) brightness(1.1) contrast(1.07);
+`;
+
+const NoWaifusText = styled.p`
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  width: 20rem;
+  text-align: center;
+  margin-bottom: 0.2rem;
+`;
+
+const NoWaifuButton = styled(Button)`
+  margin-top: 1rem;
+`;
+
 const WalletPage: React.FC = () => {
+  const [t] = useTranslation();
+  const history = useHistory();
   const dispatch = useDispatch();
   const usersWaifus = useSelector(selectUsersWaifus);
   const loading = useSelector(selectLoadingWaifus);
-  const [t] = useTranslation();
 
   useEffect(() => {
     dispatch(loadWaifus());
@@ -59,12 +91,22 @@ const WalletPage: React.FC = () => {
       </HeaderContainer>
       <Content>
         {loading && <Loading />}
-        {!loading && (
+        {!loading && usersWaifus.length > 0 && (
           <WaifuContainer>
             {usersWaifus.map((waifu: Waifu) => (
               <WaifuCard waifu={waifu} key={waifu.id} />
             ))}
           </WaifuContainer>
+        )}
+        {!loading && usersWaifus.length === 0 && (
+          <NoWaifusContainer>
+            <NoWaifusImage src={noWaifus} />
+            <NoWaifusText>{t("wallet.noWaifusMain")}</NoWaifusText>
+            <NoWaifusText>{t("wallet.noWaifusSecondary")}</NoWaifusText>
+            <NoWaifuButton highlight onClick={() => history.push("/dungeon")}>
+              {t("buttons.getWaifus")}
+            </NoWaifuButton>
+          </NoWaifusContainer>
         )}
       </Content>
     </StyledWalletPage>
