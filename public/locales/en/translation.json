@@ -81,7 +81,7 @@
     "error": "Error: "
   },
   "traits": {
-    "All": "All",
+    "all": "All",
     "HeadAccessory": {
       "name": "Head Accessory",
       "values": {
