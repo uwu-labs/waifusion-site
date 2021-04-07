@@ -38,7 +38,7 @@ const BurnWaifu: React.FC<Props> = (props) => {
 
   const dispatch = useDispatch();
   const [t] = useTranslation();
-  const [count, setCount] = useState<string>("1");
+  const [waifuIds, setWaifuIds] = useState<string>("");
   const [error, setError] = useState("");
   const [approving, setApproving] = useState(false);
   const [committed, setCommited] = useState(false);
@@ -105,11 +105,28 @@ const BurnWaifu: React.FC<Props> = (props) => {
   };
 
   const burn = async () => {
+    setError("");
+    let waifuIdList: number[] = [];
+    try {
+      const stripped = waifuIds.replace(/\s/g, "");
+      const split = stripped.split(",");
+      waifuIdList = split.map((s: string) => Number(s));
+    } catch {
+      setError(t("errors.valid"));
+      return;
+    }
+    for (let i = 0; i < waifuIdList.length; i++) {
+      if (!Number.isInteger(waifuIdList[i])) {
+        setError(t("errors.whole"));
+        return;
+      }
+    }
+
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const dungeonContract = await contractHelper.getDungeonContract();
     dungeonContract.methods
-      .commitSwapWaifus([1])
+      .commitSwapWaifus(waifuIdList)
       .send()
       .on("transactionHash", (hash: any) => {
         setCommited(true);
@@ -131,9 +148,9 @@ const BurnWaifu: React.FC<Props> = (props) => {
         content={
           <Content>
             <Input
-              value={count}
-              type="number"
-              onChange={(event) => setCount(event.target.value)}
+              value={waifuIds}
+              placeholder="e.g. 1423, 121, 1102"
+              onChange={(event) => setWaifuIds(event.target.value)}
             />
             {error && <Error>{error}</Error>}
           </Content>
