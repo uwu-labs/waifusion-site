@@ -196,10 +196,7 @@ const WaifuDetail: React.FC = () => {
             {waifu.bio && (
               <>
                 <h2>Bio</h2>
-                <p>
-                  Kaitlyn is a cute catgirl who loves to swim. She is also very
-                  shy and is currently learning how to speak Japanese.
-                </p>
+                <p>{waifu.bio}</p>
               </>
             )}
 
