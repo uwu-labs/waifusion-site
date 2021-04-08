@@ -58,7 +58,6 @@ const traits: Trait[] = [
       "bunny",
     ],
   },
-   
   {
     id: "Hairstyle",
     values: [
