@@ -9,6 +9,7 @@ import { HashIcon } from "../components/Icons";
 import LargeWaifuCard from "../components/LargeWaifuCard";
 import Loading from "../components/Loading";
 import TraitTag from "../components/TraitTag";
+import WaifuOwner from "../components/WaifuOwner";
 import { makeRequest } from "../services/api";
 import { selectAddress, selectUserWaifuIds } from "../state/reducers/user";
 import { addWaifu, selectWaifus } from "../state/reducers/waifus";
@@ -189,19 +190,7 @@ const WaifuDetail: React.FC = () => {
                 </MetaRow>
               </PrimaryInfo>
 
-              {waifu.waifuOwner && (
-                <WaifuOwnerContainer>
-                  <WaifuOwnerInfo>
-                    <h3>{waifu.waifuOwner.name}</h3>
-                    <label>Owner</label>
-                  </WaifuOwnerInfo>
-                  {waifu.waifuOwner.icon && (
-                    <WaifuOwnerIconWrapper>
-                      <WaifuOwnerIcon src={waifu.waifuOwner.icon} />
-                    </WaifuOwnerIconWrapper>
-                  )}
-                </WaifuOwnerContainer>
-              )}
+              {waifu.waifuOwner && <WaifuOwner owner={waifu.waifuOwner} />}
             </Header>
 
             {waifu.bio && (
@@ -219,7 +208,7 @@ const WaifuDetail: React.FC = () => {
                 <h2>Traits</h2>
                 <TraitsContainer>
                   {waifu.attributes.map((trait: Attribute) => (
-                    <TraitTag attribute={trait} />
+                    <TraitTag key={trait.trait_type} attribute={trait} />
                   ))}
                 </TraitsContainer>
               </>
