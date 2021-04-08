@@ -8,6 +8,7 @@ import { PageContentWrapper } from "../components/CommonLayout";
 import { HashIcon } from "../components/Icons";
 import LargeWaifuCard from "../components/LargeWaifuCard";
 import Loading from "../components/Loading";
+import TraitTag from "../components/TraitTag";
 import { makeRequest } from "../services/api";
 import { selectAddress, selectUserWaifuIds } from "../state/reducers/user";
 import { addWaifu, selectWaifus } from "../state/reducers/waifus";
@@ -135,48 +136,6 @@ const TraitsContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const TraitTag = styled.div<{ colorTrait?: string }>`
-  width: 50%;
-  background-color: var(--plain);
-  border: 2px solid var(--plain-shadow);
-  border-radius: 100px;
-  padding: 0.5rem 1.2rem;
-  font-weight: 500;
-  width: fit-content;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-
-  svg {
-    height: 18pt;
-    width: 18pt;
-    margin-right: 0.5rem;
-    color: ${(props) =>
-      props.colorTrait ? props.colorTrait : "var(--text-secondary)"};
-    color: var(--plain-dark);
-  }
-
-  path {
-    color: var(--plain-dark);
-  }
-
-  h3 {
-    margin: 0;
-    color: var(--plain-dark);
-  }
-
-  label {
-    color: var(--plain-dark);
-  }
-`;
-
-const TraitDetail = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 type ParamProps = {
   id: string;
 };
@@ -260,12 +219,7 @@ const WaifuDetail: React.FC = () => {
                 <h2>Traits</h2>
                 <TraitsContainer>
                   {waifu.attributes.map((trait: Attribute) => (
-                    <TraitTag>
-                      <TraitDetail>
-                        <h3>{trait.trait_type}</h3>
-                        <label>{trait.value}</label>
-                      </TraitDetail>
-                    </TraitTag>
+                    <TraitTag attribute={trait} />
                   ))}
                 </TraitsContainer>
               </>
