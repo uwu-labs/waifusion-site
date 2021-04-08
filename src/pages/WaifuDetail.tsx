@@ -175,69 +175,6 @@ const TraitDetail = styled.div`
   flex-direction: column;
 `;
 
-const exampleTraits = [
-  {
-    trait_type: "HeadAccessory",
-    value: "catgirl",
-  },
-  {
-    trait_type: "headaccessoryStyle",
-    value: "tabby",
-  },
-  {
-    trait_type: "Top",
-    value: "swimsuit",
-  },
-  {
-    trait_type: "Bottom",
-    value: "schoolgirl",
-  },
-  {
-    trait_type: "BottomColor",
-    value: "brown",
-  },
-  {
-    trait_type: "Skintone",
-    value: "light",
-  },
-  {
-    trait_type: "BodySize",
-    value: "petite",
-  },
-  {
-    trait_type: "Background",
-    value: "classroom",
-  },
-  {
-    trait_type: "BackgroundStyle",
-    value: "normie",
-  },
-  {
-    trait_type: "Face",
-    value: "opensmile",
-  },
-  {
-    trait_type: "Hairstyle",
-    value: "long",
-  },
-  {
-    trait_type: "HairColor",
-    value: "black",
-  },
-  {
-    trait_type: "Eyes",
-    value: "brown",
-  },
-  {
-    trait_type: "Socks",
-    value: "schoolgirl",
-  },
-  {
-    trait_type: "SocksColor",
-    value: "brown",
-  },
-];
-
 type ParamProps = {
   id: string;
 };
