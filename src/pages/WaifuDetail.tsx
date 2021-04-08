@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import styled from "styled-components";
 import Button from "../components/Button";
+import ChangeName from "../components/ChangeName";
 import { PageContentWrapper } from "../components/CommonLayout";
 import { HashIcon } from "../components/Icons";
 import LargeWaifuCard from "../components/LargeWaifuCard";
@@ -107,6 +108,7 @@ type ParamProps = {
 
 const WaifuDetail: React.FC = () => {
   const dispatch = useDispatch();
+  const [changingName, setChangingName] = useState(false);
   const { id } = useParams<ParamProps>();
   const waifus = useSelector(selectWaifus);
   const waifu = waifus.filter((w: Waifu) => Number(w.id) === Number(id))[0];
@@ -189,12 +191,19 @@ const WaifuDetail: React.FC = () => {
                   address.toUpperCase())) && (
               <>
                 <h2>Tools</h2>
-                <Button>Change Name</Button>
+                <Button onClick={() => setChangingName(true)}>
+                  Change Name
+                </Button>
               </>
             )}
           </Content>
         </Wrapper>
       )}
+      <ChangeName
+        show={changingName}
+        close={() => setChangingName(false)}
+        waifu={waifu}
+      />
     </PageContentWrapper>
   );
 };
