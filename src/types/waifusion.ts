@@ -1,4 +1,4 @@
-export interface WaifuOwner {
+export interface WaifuOwnerType {
   address: string;
   name?: string;
   icon?: string;
@@ -13,7 +13,7 @@ export interface Waifu {
   id: number;
   name?: string;
   bio?: string;
-  waifuOwner?: WaifuOwner;
+  waifuOwner?: WaifuOwnerType;
   accumulatedWet?: number;
   attributes?: Attribute[];
 }

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
 import styled from "styled-components";
-import { WaifuOwner } from "../types/waifusion";
+import { WaifuOwnerType } from "../types/waifusion";
 
 const PrimaryInfo = styled.div`
   display: flex;
@@ -45,7 +45,7 @@ const WaifuOwnerContainer = styled.div`
 `;
 
 type Props = {
-  owner: WaifuOwner;
+  owner: WaifuOwnerType;
 };
 
 const WaifuOwner: React.FC<Props> = ({ owner }) => {
