@@ -87,7 +87,7 @@ const ChangeName: React.FC<Props> = (props) => {
         }
         buttonAction={() => {
           if (loading) return;
-          else if (complete) props.close();
+          if (complete) props.close();
           else changeName();
         }}
         buttonText={
