@@ -63,10 +63,12 @@ const ChangeName: React.FC<Props> = (props) => {
         close={() => props.close()}
         content={
           <Content>
-            <Input
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-            />
+            {!loading && !complete && (
+              <Input
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            )}
             {error && <Error>{error}</Error>}
           </Content>
         }
