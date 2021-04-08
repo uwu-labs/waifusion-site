@@ -67,35 +67,6 @@ const PrimaryInfo = styled.div`
   flex-direction: column;
 `;
 
-const WaifuOwnerInfo = styled(PrimaryInfo)`
-  text-align: right;
-
-  h3 {
-    font-weight: 500;
-    margin: 0;
-  }
-
-  label {
-    color: #9c9b9c;
-    font-weight: 500;
-  }
-`;
-
-const WaifuOwnerIconWrapper = styled.div`
-  margin-left: 1rem;
-  border: 2px dotted #817d82;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-`;
-
-const WaifuOwnerIcon = styled.img`
-  border: 2px solid var(--background-primary);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-`;
-
 const MetaRow = styled.div`
   display: flex;
   flex-direction: row;
@@ -122,13 +93,6 @@ const MetaItem = styled.div`
   label {
     color: var(--text-secondary);
   }
-`;
-
-const WaifuOwnerContainer = styled.div`
-  margin-left: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
 `;
 
 const TraitsContainer = styled.div`
