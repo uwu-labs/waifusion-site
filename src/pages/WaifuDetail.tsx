@@ -5,18 +5,13 @@ import { useParams } from "react-router";
 import styled from "styled-components";
 import Button from "../components/Button";
 import { PageContentWrapper } from "../components/CommonLayout";
-import {
-  CatgirlTraitIcon,
-  EyesTraitIcon,
-  HashIcon,
-  SchoolgirlTraitIcon,
-  SwimsuitTraitIcon,
-} from "../components/Icons";
+import { HashIcon } from "../components/Icons";
 import LargeWaifuCard from "../components/LargeWaifuCard";
 import Loading from "../components/Loading";
 import { makeRequest } from "../services/api";
+import { selectAddress, selectUserWaifuIds } from "../state/reducers/user";
 import { addWaifu, selectWaifus } from "../state/reducers/waifus";
-import { Waifu } from "../types/waifusion";
+import { Waifu, Attribute } from "../types/waifusion";
 
 const LoadingContainer = styled.div`
   position: relative;
@@ -191,6 +186,8 @@ const WaifuDetail: React.FC = () => {
   const { id } = useParams<ParamProps>();
   const waifus = useSelector(selectWaifus);
   const waifu = waifus.filter((w: Waifu) => Number(w.id) === Number(id))[0];
+  const userWafuIds = useSelector(selectUserWaifuIds);
+  const address = useSelector(selectAddress);
 
   const getWaifu = async () => {
     const response = await makeRequest(`waifus/${id}`, {
@@ -233,58 +230,55 @@ const WaifuDetail: React.FC = () => {
                 </MetaRow>
               </PrimaryInfo>
 
-              <WaifuOwnerContainer>
-                <WaifuOwnerInfo>
-                  <h3>Phineas</h3>
-                  <label>Owner</label>
-                </WaifuOwnerInfo>
-                <WaifuOwnerIconWrapper>
-                  <WaifuOwnerIcon src="https://avatars.githubusercontent.com/u/6209808?v=4" />
-                </WaifuOwnerIconWrapper>
-              </WaifuOwnerContainer>
+              {waifu.waifuOwner && (
+                <WaifuOwnerContainer>
+                  <WaifuOwnerInfo>
+                    <h3>{waifu.waifuOwner.name}</h3>
+                    <label>Owner</label>
+                  </WaifuOwnerInfo>
+                  {waifu.waifuOwner.icon && (
+                    <WaifuOwnerIconWrapper>
+                      <WaifuOwnerIcon src={waifu.waifuOwner.icon} />
+                    </WaifuOwnerIconWrapper>
+                  )}
+                </WaifuOwnerContainer>
+              )}
             </Header>
 
-            <h2>Bio</h2>
-            <p>
-              Kaitlyn is a cute catgirl who loves to swim. She is also very shy
-              and is currently learning how to speak Japanese.
-            </p>
+            {waifu.bio && (
+              <>
+                <h2>Bio</h2>
+                <p>
+                  Kaitlyn is a cute catgirl who loves to swim. She is also very
+                  shy and is currently learning how to speak Japanese.
+                </p>
+              </>
+            )}
 
-            <h2>Traits</h2>
-            <TraitsContainer>
-              <TraitTag>
-                <CatgirlTraitIcon />
-                <TraitDetail>
-                  <h3>Catgirl</h3>
-                  <label>HeadAccessory</label>
-                </TraitDetail>
-              </TraitTag>
-              <TraitTag>
-                <SchoolgirlTraitIcon />
-                <TraitDetail>
-                  <h3>Schoolgirl</h3>
-                  <label>Bottom</label>
-                </TraitDetail>
-              </TraitTag>
-              <TraitTag>
-                <SwimsuitTraitIcon />
-                <TraitDetail>
-                  <h3>Swimsuit</h3>
-                  <label>Top</label>
-                </TraitDetail>
-              </TraitTag>
-              <TraitTag colorTrait="#98614b">
-                <EyesTraitIcon />
-                <TraitDetail>
-                  <h3>Brown</h3>
-                  <label>Eyes</label>
-                </TraitDetail>
-              </TraitTag>
-            </TraitsContainer>
+            {waifu.attributes && (
+              <>
+                <h2>Traits</h2>
+                <TraitsContainer>
+                  {waifu.attributes.map((trait: Attribute) => (
+                    <TraitTag>
+                      <TraitDetail>
+                        <h3>{trait.trait_type}</h3>
+                        <label>{trait.value}</label>
+                      </TraitDetail>
+                    </TraitTag>
+                  ))}
+                </TraitsContainer>
+              </>
+            )}
 
-            <h2>Tools</h2>
-            <Button>Change Name</Button>
-            <Button danger>Burn Waifu</Button>
+            {(userWafuIds.indexOf(waifu.id) > -1 ||
+              (waifu.waifuOwner && waifu.waifuOwner.address === address)) && (
+              <>
+                <h2>Tools</h2>
+                <Button>Change Name</Button>
+                <Button danger>Burn Waifu</Button>
+              </>
+            )}
           </Content>
         </Wrapper>
       )}
