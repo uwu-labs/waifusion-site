@@ -1,0 +1,399 @@
+{
+    "name": "Waifusion",
+    "tagline": "Pas de Waifu, pas de Laifu",
+    "description": "Waifusion est une collection digital Waifu. Il existe 16 384 NFT Waifusion uniques garantis. Ils sont comme vous, une belle œuvre d'art, mais en 2D et donc, supérieure, Anon-kun. Chaque Waifuis est totalement unique et le vôtre pour toujours... à moins que vous ne les vendiez... Baka.",
+    "loading": "Chargement",
+    "conntect": "Se connecter",
+    "footer": {
+        "team": "Fabriqué avec 💜 par la communauté Waifusion",
+        "provenance": "Provenance"
+    },
+    "contact": {
+        "twitter": "Twitter",
+        "discord": "Discord",
+        "telegram": "Telegram",
+        "contact": "Contact"
+    },
+    "buttons": {
+        "getWaifus": "Obtenez des Waifus",
+        "getWet": "Obtenez des WET",
+        "buyWaifu": "Acheter un Waifu",
+        "burnWaifu": "Bruler un Waifu",
+        "search": "Chercher",
+        "buy": "Acheter",
+        "loading": "Chargement",
+        "reveal": "Révéler",
+        "close": "Fermer",
+        "approveWet": "Approuver ce WET",
+        "approveWaifus": "Approuver ces Waifus",
+        "changeName": "Changer de nom"
+    },
+    "headers": {
+        "browse": "Parcourir les Waifus",
+        "dungeon": "Le donjon",
+        "history": "Votre historique",
+        "notFound": "404 Page non trouvée",
+        "provenance": "Provenance",
+        "wallet": "Votre portefeuille"
+    },
+    "navigation": {
+        "browse": "Parcourir",
+        "wallet": "Portefeuille",
+        "dungeon": "Donjon"
+    },
+    "wallet": {
+        "claim": "Réclamer",
+        "noWaifusMain": "Tu n'as pas de waifus baka",
+        "noWaifusSecondary": " Obtenez votre premier maintenant!"
+    },
+    "dungeon": {
+        "description": "Oh no... Many of our beloved waifus have been enslaved in the Dungeon! Be a hero and save your beloved Waifus by buying thier freedom for 0.7 ETH to get a random Waifu. Or burn a Waifu and pay 5,490 WET to free another random one from the Dungeon.",
+        "exitWarning": "Révélez les Waifus avant de quitter ou vous pouvez les perdre pour toujours",
+        "headers": {
+            "buy": "Acheter un Waifu",
+            "burn": "Bruler des Waifus",
+            "loadingPurchase": "Chargement de l'achat",
+            "loadingReveal": "Chargement de la révélation",
+            "revealReady": "Prêt à révéler",
+            "revealed": "Waifus révélés!"
+        },
+        "bodys": {
+            "buy": "Sélectionnez le nombre de Waifus que vous souhaitez acheter",
+            "burn": "Entrez les identifiants des Waifus que vous souhaitez bruler",
+            "loadingPurchase": "Lorsque l'achat est terminé, vous devez les révéler immédiatement ou vous risquerez de perdre vos Waifus pour toujours",
+            "revealReady": "Vos Waifus on été achetés! Cliquez sur révéler ci-dessous pour voir ce que vous avez"
+        }
+    },
+    "wet": {
+        "header": "Jeton WET",
+        "overview": "Le jeton d'amélioration de Waifu (WET) est un jeton exclusif du harem mondial de Waifusion. Il existe deux utilisations du jeton WET:",
+        "use": [
+            "Renommer votre Waifu avec un nouveau nom stocké en permanence sur la blockchain Ethereum",
+            "Brûler un Waifu indésirable en échange d'un nouveau Waifu du donjon"
+        ],
+        "detail": "Waifus génère passivement des jetons WET simplement en les tenant! Chaque Waifu générera 3 660 WET par an. Vous pouvez réclamer vos jetons WET sur la page du portefeuille. Pour changer le nom d'un Waifu, vous devez envoyer 1 830 WET. Pour brûler un Waifu, vous devez envoyer un Waifu et 5490 WET au contrat Waifusion, et celui ci disparaîtra à jamais..."
+    },
+    "waifuDetail": {
+        "changeName": {
+            "header": {
+                "main": "Changer le nom du Waifus",
+                "loading": "Mise à jour du nom",
+                "complete": "Mise à jour du nom terminé"
+            },
+            "body": {
+                "main": "Entrez un nouveau nom pour votre Waifu"
+            }
+        }
+    },
+    "errors": {
+        "valid": "Ce n'est pas un numéro valide",
+        "whole": "Doit être un nombre entier",
+        "maximum": "Maximum de 20 autorisés",
+        "minimum": "Minimum de 1 autorisé",
+        "short": "Nom trop court",
+        "long": "Nom trop long"
+    },
+    "provenance": {
+        "placeholder": "identifiant de recherche",
+        "id": "ID: ",
+        "hash": "Hash: "
+    },
+    "prefixes": {
+        "error": "Erreur: "
+    },
+    "traits": {
+        "all": "Tous",
+        "HeadAccessory": {
+            "name": "Accessoire de tête",
+            "values": {
+                "mask": "Masque",
+                "hairclip": "Pince à cheveux",
+                "hairbow": "Noeud papillon",
+                "covidmask": "Masque Covid",
+                "catgirl": "Fille chat",
+                "maidhat": "Chapeau de femme de chambre",
+                "dogemask": "Masque de Doge",
+                "ears": "Oreilles de lapin",
+                "fox": "Renard",
+                "topdogehat": "Casquette Top Doge",
+                "wojakwacdonaldshat": "Casquette Wacdonalds"
+            }
+        },
+        "headaccessoryStyle": {
+            "name": "Style d'accessoire de tête",
+            "values": {
+                "stonks": "Stonks",
+                "btc": "BTC",
+                "pink": "Pink",
+                "eth": "ETH",
+                "uni": "UNI",
+                "white": "White",
+                "sushi": "Sushi",
+                "black": "Black",
+                "doge": "Doge",
+                "nyancat": "Nyan Cat",
+                "blue": "Blue",
+                "tabby": "Tabby",
+                "smug": "Smug",
+                "bunny": "Bunny"
+            }
+        },
+        "Top": {
+            "name": "Top",
+            "values": {
+                "gym": "Gym",
+                "90soutfit": "90s Outfit",
+                "schoolgirl": "School Girl",
+                "90s": "90s",
+                "lingerie": "Lingerie",
+                "punk": "Punk",
+                "swimsuit": "Swimsuit",
+                "catgirl": "Cat Girl",
+                "pjs": "PJs",
+                "kimono": "Kimono",
+                "vampire": "Vampire",
+                "maid": "Maid",
+                "wacdonalds": "Wacdonalds",
+                "bunny": "Bunny",
+                "overalls": "Overalls",
+                "plugsuit": "Plagsuit"
+            }
+        },
+        "Bottom": {
+            "name": "Bottom",
+            "values": {
+                "schoolgirl": "School Girl",
+                "punk": "Punk",
+                "catgirl": "Cat Girl",
+                "90soutfit": "90s Outfit",
+                "kimono": "Kimono",
+                "lingerie": "Lingerie",
+                "maid": "Maid",
+                "wacdonalds": "Wacdonalds"
+            }
+        },
+        "BottomColor": {
+            "name": "Bottom Color",
+            "values": {
+                "brown": "Brown",
+                "pastel": "Pastel",
+                "tabby": "Tabby",
+                "blue": "Blue",
+                "white": "White",
+                "red": "Red",
+                "black": "Black",
+                "yellow": "Yellow"
+            }
+        },
+        "Skintone": {
+            "name": "Skin Tone",
+            "values": {
+                "light": "Light",
+                "mid": "Mid",
+                "dark": "Dark",
+                "void": "Void"
+            }
+        },
+        "BodySize": {
+            "name": "Body Size",
+            "values": {
+                "petite": "Petite",
+                "busty": "Busty"
+            }
+        },
+        "Background": {
+            "name": "Background",
+            "values": {
+                "classroom": "Classroom",
+                "cherryblossom": "Cherry Blossom",
+                "cleanbedroom": "Clean Bedroom",
+                "house": "House",
+                "pool": "Pool",
+                "nature": "Nature",
+                "messybedroom": "Messy Bedroom",
+                "void": "Void"
+            }
+        },
+        "BackgroundStyle": {
+            "name": "Background Style",
+            "values": {
+                "normie": "Normie",
+                "sunset": "Sunset",
+                "meme": "Meme",
+                "day": "Day",
+                "redwick": "Red Wick"
+            }
+        },
+        "Face": {
+            "name": "Face",
+            "values": {
+                "sinister": "Sinister",
+                "opensmile": "Open Smile",
+                "surprised": "Surprised",
+                "cat": "Cat",
+                "sad": "Sad",
+                "doki": "Doki",
+                "neutral": "Neutral",
+                "angry": "Angry",
+                "pouty": "Pouty",
+                "araara": "Ara Ara",
+                "smug": "Smug",
+                "ahegao": "Ahegao",
+                "yandere": "Yandere"
+            }
+        },
+        "Hairstyle": {
+            "name": "Hair Style",
+            "values": {
+                "twintails": "Twin Tails",
+                "bob": "Bob",
+                "curly": "Curly",
+                "buns": "Buns",
+                "pixie": "Pixie",
+                "afro": "Afro",
+                "long": "Long",
+                "plait": "Plait",
+                "drills": "Drills",
+                "afrobuns": "Afro Buns"
+            }
+        },
+        "HairColor": {
+            "name": "Hair Color",
+            "values": {
+                "black": "Black",
+                "blonde": "Blonde",
+                "pink": "Pink",
+                "white": "White",
+                "green": "Green",
+                "blue": "Blue",
+                "special": "Special",
+                "coral": "Coral",
+                "brown": "Brown"
+            }
+        },
+        "Eyes": {
+            "name": "Eyes",
+            "values": {
+                "yellow": "Yellow",
+                "green": "Green",
+                "brown": "Brown",
+                "blue": "Blue",
+                "pink": "Pink",
+                "heterochromia": "Heterochromia"
+            }
+        },
+        "SpeechBubble": {
+            "name": "Speech Bubble",
+            "values": {
+                "baka": "Baka",
+                "senpai": "Senpai",
+                "oniisama": "Oniisama",
+                "daisuki": "Daisuki",
+                "anonkun": "Anonkun",
+                "pogchamp": "Pogchamp"
+            }
+        },
+        "Socks": {
+            "name": "Socks",
+            "values": {
+                "schoolgirl": "School Girl",
+                "punkoutfit": "Punk Outfit",
+                "bunny": "Bunny",
+                "lingerie": "Lingerie"
+            }
+        },
+        "SocksColor": {
+            "name": "Socks Color",
+            "values": {
+                "white": "White",
+                "red": "Red",
+                "black": "Black",
+                "brown": "Brown",
+                "pastel": "Pastel"
+            }
+        },
+        "TopColor": {
+            "name": "Top Color",
+            "values": {
+                "red": "Red",
+                "black": "Black",
+                "blue": "Blue",
+                "navy": "Navy",
+                "tabby": "Tabby",
+                "brown": "Brown",
+                "pastel": "Pastel",
+                "pink": "Pink",
+                "white": "White",
+                "solojazz": "Solo Jazz",
+                "yellow": "Yellow"
+            }
+        },
+        "Tail": {
+            "name": "Tail",
+            "values": {
+                "catgirl": "Cat Girl",
+                "fox": "Fox"
+            }
+        },
+        "TailColor": {
+            "name": "Tail Color",
+            "values": {
+                "tabby": "Tabby",
+                "white": "White",
+                "black": "Black"
+            }
+        },
+        "HandAccessory": {
+            "name": "Hand Accessory",
+            "values": {
+                "pepebag": "Pepe Bag",
+                "katana": "Katana",
+                "nunchucks": "Nunchucks",
+                "sushibag": "Sushi Bag",
+                "unifan": "UNI Fan",
+                "hand": "Hand",
+                "pocky": "Pocky",
+                "pepedoll": "Pepe Doll",
+                "leek": "Leek"
+            }
+        },
+        "NeckAccessory": {
+            "name": "NeckAccessory",
+            "values": {
+                "chokerpunk": "Choker Punk",
+                "catgirl": "Cat Girl",
+                "hairclip": "Hair Clip"
+            }
+        },
+        "NeckAccessoryColor": {
+            "name": "NeckAccessoryColor",
+            "values": {
+                "black": "Black",
+                "tabby": "Tabby",
+                "white": "White",
+                "eth": "ETH"
+            }
+        },
+        "Wings": {
+            "name": "Wings",
+            "values": {
+                "angelwings": "Angel Wings",
+                "fairywings": "Fairy Wings",
+                "mech": "Mech"
+            }
+        },
+        "WingsColor": {
+            "name": "WingsColor",
+            "values": {
+                "black": "Black",
+                "white": "White"
+            }
+        },
+        "Tattoo": {
+            "name": "Tattoo",
+            "values": {
+                "rocket": "Rocket"
+            }
+        }
+    }
+}
