@@ -39,8 +39,8 @@ const ChangeName: React.FC<Props> = (props) => {
 
     const contractHelper = new ContractHelper();
     await contractHelper.init();
-    const dungeonContract = await contractHelper.getDungeonContract();
-    dungeonContract.methods
+    const waifuContract = await contractHelper.getWaifuContract();
+    waifuContract.methods
       .changeName(props.waifu.id, name)
       .send()
       .on("transactionHash", (hash: any) => {
