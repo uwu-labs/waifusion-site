@@ -36,6 +36,14 @@ const ChangeName: React.FC<Props> = (props) => {
 
   const changeName = async () => {
     setError("");
+    if (name.length === 0) {
+      setError(t("errors.short"));
+      return;
+    }
+    if (name.length > 25) {
+      setError(t("errors.long"));
+      return;
+    }
 
     const contractHelper = new ContractHelper();
     await contractHelper.init();
