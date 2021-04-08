@@ -190,7 +190,6 @@ const WaifuDetail: React.FC = () => {
               <>
                 <h2>Tools</h2>
                 <Button>Change Name</Button>
-                <Button danger>Burn Waifu</Button>
               </>
             )}
           </Content>
