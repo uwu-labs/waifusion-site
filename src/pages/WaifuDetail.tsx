@@ -154,7 +154,7 @@ const WaifuDetail: React.FC = () => {
                 </MetaRow>
               </PrimaryInfo>
 
-              {waifu.waifuOwner && <WaifuOwner owner={waifu.waifuOwner} />}
+              {waifu.owner && <WaifuOwner owner={waifu.owner} />}
             </Header>
 
             {waifu.bio && (
@@ -176,7 +176,7 @@ const WaifuDetail: React.FC = () => {
             )}
 
             {(userWafuIds.indexOf(waifu.id) > -1 ||
-              (waifu.waifuOwner && waifu.waifuOwner.address === address)) && (
+              (waifu.owner && waifu.owner.address === address)) && (
               <>
                 <h2>Tools</h2>
                 <Button>Change Name</Button>
