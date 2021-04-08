@@ -23,7 +23,9 @@
     "buy": "Buy",
     "loading": "Loading",
     "reveal": "Reveal",
-    "close": "Close"
+    "close": "Close",
+    "approveWet": "Approve WET",
+    "approveWaifus": "Approve Waifus"
   },
   "headers": {
     "browse": "Browse Waifus",
@@ -48,6 +50,7 @@
     "exitWarning": "Reveal Waifus before exiting or you can lose them forever",
     "headers": {
       "buy": "Buy Waifu",
+      "burn": "Burn Waifus",
       "loadingPurchase": "Loading Purchase",
       "loadingReveal": "Loading Reveal",
       "revealReady": "Ready to Reveal",
@@ -55,6 +58,7 @@
     },
     "bodys": {
       "buy": "Select the number of Waifus that you would like to buy",
+      "burn": "Enter the IDs of the Waifus you would like to burn",
       "loadingPurchase": "When purchase is complete you must reveal immediately or risk losing your Waifus forever",
       "revealReady": "Your Waifus have been purchased! Click Reveal below to see what you got"
     }

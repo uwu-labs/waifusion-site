@@ -6,12 +6,16 @@ interface UserState {
   address: string;
   waifuIndexes: number[];
   loadingWafius: boolean;
+  wetApproved: boolean;
+  waifusApproved: boolean;
 }
 
 const initialState: UserState = {
   address: "",
   waifuIndexes: [],
   loadingWafius: false,
+  wetApproved: false,
+  waifusApproved: false,
 };
 
 export const userSlice = createSlice({
@@ -30,6 +34,12 @@ export const userSlice = createSlice({
     completeLoadWaifus: (state) => {
       state.loadingWafius = false;
     },
+    setWetApproved: (state, action: PayloadAction<boolean>) => {
+      state.wetApproved = action.payload;
+    },
+    setWaifusApproved: (state, action: PayloadAction<boolean>) => {
+      state.waifusApproved = action.payload;
+    },
   },
 });
 
@@ -38,6 +48,8 @@ export const {
   setWaifuIndexes,
   loadWaifus,
   completeLoadWaifus,
+  setWetApproved,
+  setWaifusApproved,
 } = userSlice.actions;
 
 export const selectLoadingWaifus = (state: RootState): boolean =>
@@ -55,5 +67,9 @@ export const selectTotalAccumulated = (state: RootState): number => {
     .filter((waifu: Waifu) => state.user.waifuIndexes.indexOf(waifu.id) > -1)
     .reduce((a: number, b: Waifu) => a + (b.accumulatedWet || 0), 0);
 };
+export const selectWetApproved = (state: RootState): boolean =>
+  state.user.wetApproved;
+export const selectWaifusApproved = (state: RootState): boolean =>
+  state.user.waifusApproved;
 
 export default userSlice.reducer;
