@@ -81,5 +81,300 @@
   },
   "prefixes": {
     "error": "Error: "
+  },
+  "traits": {
+    "all": "All",
+    "HeadAccessory": {
+      "name": "Head Accessory",
+      "values": {
+        "mask": "Mask",
+        "hairclip": "Hair Clip",
+        "hairbow": "Hair Bow",
+        "covidmask": "Covid Mask",
+        "catgirl": "Cat Girl",
+        "maidhat": "Maid Hat",
+        "dogemask": "Doge Hat",
+        "ears": "Bunny Ears",
+        "fox": "Fox",
+        "topdogehat": "Top Doge Hat",
+        "wojakwacdonaldshat": "Wacdonalds Hat"
+      }
+    },
+    "headaccessoryStyle": {
+      "name": "Head Accessory Style",
+      "values": {
+        "stonks": "Stonks",
+        "btc": "BTC",
+        "pink": "Pink",
+        "eth": "ETH",
+        "uni": "UNI",
+        "white": "White",
+        "sushi": "Sushi",
+        "black": "Black",
+        "doge": "Doge",
+        "nyancat": "Nyan Cat",
+        "blue": "Blue",
+        "tabby": "Tabby",
+        "smug": "Smug",
+        "bunny": "Bunny"
+      }
+    },
+    "Top": {
+      "name": "Top",
+      "values": {
+        "gym": "Gym",
+        "90soutfit": "90s Outfit",
+        "schoolgirl": "School Girl",
+        "90s": "90s",
+        "lingerie": "Lingerie",
+        "punk": "Punk",
+        "swimsuit": "Swimsuit",
+        "catgirl": "Cat Girl",
+        "pjs": "PJs",
+        "kimono": "Kimono",
+        "vampire": "Vampire",
+        "maid": "Maid",
+        "wacdonalds": "Wacdonalds",
+        "bunny": "Bunny",
+        "overalls": "Overalls",
+        "plugsuit": "Plagsuit"
+      }
+    },
+    "Bottom": {
+      "name": "Bottom",
+      "values": {
+        "schoolgirl": "School Girl",
+        "punk": "Punk",
+        "catgirl": "Cat Girl",
+        "90soutfit": "90s Outfit",
+        "kimono": "Kimono",
+        "lingerie": "Lingerie",
+        "maid": "Maid",
+        "wacdonalds": "Wacdonalds"
+      }
+    },
+    "BottomColor": {
+      "name": "Bottom Color",
+      "values": {
+        "brown": "Brown",
+        "pastel": "Pastel",
+        "tabby": "Tabby",
+        "blue": "Blue",
+        "white": "White",
+        "red": "Red",
+        "black": "Black",
+        "yellow": "Yellow"
+      }
+    },
+    "Skintone": {
+      "name": "Skin Tone",
+      "values": {
+        "light": "Light",
+        "mid": "Mid",
+        "dark": "Dark",
+        "void": "Void"
+      }
+    },
+    "BodySize": {
+      "name": "Body Size",
+      "values": {
+        "petite": "Petite",
+        "busty": "Busty"
+      }
+    },
+    "Background": {
+      "name": "Background",
+      "values": {
+        "classroom": "Classroom",
+        "cherryblossom": "Cherry Blossom",
+        "cleanbedroom": "Clean Bedroom",
+        "house": "House",
+        "pool": "Pool",
+        "nature": "Nature",
+        "messybedroom": "Messy Bedroom",
+        "void": "Void"
+      }
+    },
+    "BackgroundStyle": {
+      "name": "Background Style",
+      "values": {
+        "normie": "Normie",
+        "sunset": "Sunset",
+        "meme": "Meme",
+        "day": "Day",
+        "redwick": "Red Wick"
+      }
+    },
+    "Face": {
+      "name": "Face",
+      "values": {
+        "sinister": "Sinister",
+        "opensmile": "Open Smile",
+        "surprised": "Surprised",
+        "cat": "Cat",
+        "sad": "Sad",
+        "doki": "Doki",
+        "neutral": "Neutral",
+        "angry": "Angry",
+        "pouty": "Pouty",
+        "araara": "Ara Ara",
+        "smug": "Smug",
+        "ahegao": "Ahegao",
+        "yandere": "Yandere"
+      }
+    },
+    "Hairstyle": {
+      "name": "Hair Style",
+      "values": {
+        "twintails": "Twin Tails",
+        "bob": "Bob",
+        "curly": "Curly",
+        "buns": "Buns",
+        "pixie": "Pixie",
+        "afro": "Afro",
+        "long": "Long",
+        "plait": "Plait",
+        "drills": "Drills",
+        "afrobuns": "Afro Buns"
+      }
+    },
+    "HairColor": {
+      "name": "Hair Color",
+      "values": {
+        "black": "Black",
+        "blonde": "Blonde",
+        "pink": "Pink",
+        "white": "White",
+        "green": "Green",
+        "blue": "Blue",
+        "special": "Special",
+        "coral": "Coral",
+        "brown": "Brown"
+      }
+    },
+    "Eyes": {
+      "name": "Eyes",
+      "values": {
+        "yellow": "Yellow",
+        "green": "Green",
+        "brown": "Brown",
+        "blue": "Blue",
+        "pink": "Pink",
+        "heterochromia": "Heterochromia"
+      }
+    },
+    "SpeechBubble": {
+      "name": "Speech Bubble",
+      "values": {
+        "baka": "Baka",
+        "senpai": "Senpai",
+        "oniisama": "Oniisama",
+        "daisuki": "Daisuki",
+        "anonkun": "Anonkun",
+        "pogchamp": "Pogchamp"
+      }
+    },
+    "Socks": {
+      "name": "Socks",
+      "values": {
+        "schoolgirl": "School Girl",
+        "punkoutfit": "Punk Outfit",
+        "bunny": "Bunny",
+        "lingerie": "Lingerie"
+      }
+    },
+    "SocksColor": {
+      "name": "Socks Color",
+      "values": {
+        "white": "White",
+        "red": "Red",
+        "black": "Black",
+        "brown": "Brown",
+        "pastel": "Pastel"
+      }
+    },
+    "TopColor": {
+      "name": "Top Color",
+      "values": {
+        "red": "Red",
+        "black": "Black",
+        "blue": "Blue",
+        "navy": "Navy",
+        "tabby": "Tabby",
+        "brown": "Brown",
+        "pastel": "Pastel",
+        "pink": "Pink",
+        "white": "White",
+        "solojazz": "Solo Jazz",
+        "yellow": "Yellow"
+      }
+    },
+    "Tail": {
+      "name": "Tail",
+      "values": {
+        "catgirl": "Cat Girl",
+        "fox": "Fox"
+      }
+    },
+    "TailColor": {
+      "name": "Tail Color",
+      "values": {
+        "tabby": "Tabby",
+        "white": "White",
+        "black": "Black"
+      }
+    },
+    "HandAccessory": {
+      "name": "Hand Accessory",
+      "values": {
+        "pepebag": "Pepe Bag",
+        "katana": "Katana",
+        "nunchucks": "Nunchucks",
+        "sushibag": "Sushi Bag",
+        "unifan": "UNI Fan",
+        "hand": "Hand",
+        "pocky": "Pocky",
+        "pepedoll": "Pepe Doll",
+        "leek": "Leek"
+      }
+    },
+    "NeckAccessory": {
+      "name": "NeckAccessory",
+      "values": {
+        "chokerpunk": "Choker Punk",
+        "catgirl": "Cat Girl",
+        "hairclip": "Hair Clip"
+      }
+    },
+    "NeckAccessoryColor": {
+      "name": "NeckAccessoryColor",
+      "values": {
+        "black": "Black",
+        "tabby": "Tabby",
+        "white": "White",
+        "eth": "ETH"
+      }
+    },
+    "Wings": {
+      "name": "Wings",
+      "values": {
+        "angelwings": "Angel Wings",
+        "fairywings": "Fairy Wings",
+        "mech": "Mech"
+      }
+    },
+    "WingsColor": {
+      "name": "WingsColor",
+      "values": {
+        "black": "Black",
+        "white": "White"
+      }
+    },
+    "Tattoo": {
+      "name": "Tattoo",
+      "values": {
+        "rocket": "Rocket"
+      }
+    }
   }
 }
