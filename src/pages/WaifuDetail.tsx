@@ -12,7 +12,7 @@ import TraitTag from "../components/TraitTag";
 import WaifuOwner from "../components/WaifuOwner";
 import { makeRequest } from "../services/api";
 import { selectAddress, selectUserWaifuIds } from "../state/reducers/user";
-import { addWaifu, selectWaifus } from "../state/reducers/waifus";
+import { addWaifu, selectWaifus, setWaifus } from "../state/reducers/waifus";
 import { Waifu, Attribute } from "../types/waifusion";
 
 const LoadingContainer = styled.div`
@@ -124,8 +124,16 @@ const WaifuDetail: React.FC = () => {
     }
     const _waifu: Waifu = response.data;
 
-    if (waifus.map((w: Waifu) => w.id).indexOf(_waifu.id) === -1)
+    if (waifus.map((w: Waifu) => w.id).indexOf(_waifu.id) === -1) {
       dispatch(addWaifu(_waifu));
+    } else {
+      const newWaifus: Waifu[] = [];
+      waifus.forEach((w: Waifu) => {
+        if (w.id !== _waifu.id) newWaifus.push(w);
+        else newWaifus.push(_waifu);
+      });
+      dispatch(setWaifus(newWaifus));
+    }
   };
 
   useEffect(() => {
