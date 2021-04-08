@@ -176,7 +176,9 @@ const WaifuDetail: React.FC = () => {
             )}
 
             {(userWafuIds.indexOf(waifu.id) > -1 ||
-              (waifu.owner && waifu.owner.address === address)) && (
+              (waifu.owner &&
+                waifu.owner.address.toUpperCase() ===
+                  address.toUpperCase())) && (
               <>
                 <h2>Tools</h2>
                 <Button>Change Name</Button>
