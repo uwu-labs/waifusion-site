@@ -13,9 +13,16 @@ import {
   SwimsuitTraitIcon,
 } from "../components/Icons";
 import LargeWaifuCard from "../components/LargeWaifuCard";
+import Loading from "../components/Loading";
 import { makeRequest } from "../services/api";
 import { addWaifu, selectWaifus } from "../state/reducers/waifus";
 import { Waifu } from "../types/waifusion";
+
+const LoadingContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 70vh;
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -206,7 +213,11 @@ const WaifuDetail: React.FC = () => {
 
   return (
     <PageContentWrapper>
-      {!waifu && <p>Loading...</p>}
+      {!waifu && (
+        <LoadingContainer>
+          <Loading />
+        </LoadingContainer>
+      )}
       {waifu && (
         <Wrapper>
           <LargeWaifuCard id={Number(waifu.id)} />
