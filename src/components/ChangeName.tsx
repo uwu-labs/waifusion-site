@@ -60,7 +60,10 @@ const ChangeName: React.FC<Props> = (props) => {
     <>
       <Popup
         show={props.show}
-        close={() => props.close()}
+        close={() => {
+          if (loading) return;
+          props.close();
+        }}
         content={
           <Content>
             {!loading && !complete && (
@@ -83,7 +86,9 @@ const ChangeName: React.FC<Props> = (props) => {
           loading ? "" : complete ? "" : t("waifuDetail.changeName.body.main")
         }
         buttonAction={() => {
-          changeName();
+          if (loading) return;
+          else if (complete) props.close();
+          else changeName();
         }}
         buttonText={
           loading
