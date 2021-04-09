@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import styled from "styled-components";
@@ -107,6 +108,7 @@ type ParamProps = {
 };
 
 const WaifuDetail: React.FC = () => {
+  const [t] = useTranslation();
   const dispatch = useDispatch();
   const [changingName, setChangingName] = useState(false);
   const { id } = useParams<ParamProps>();
@@ -169,14 +171,14 @@ const WaifuDetail: React.FC = () => {
 
             {waifu.bio && (
               <>
-                <h2>Bio</h2>
+                <h2> {t("waifuDetail.bio")}</h2>
                 <p>{waifu.bio}</p>
               </>
             )}
 
             {waifu.attributes && (
               <>
-                <h2>Traits</h2>
+                <h2> {t("waifuDetail.traits")}</h2>
                 <TraitsContainer>
                   {waifu.attributes.map((trait: Attribute) => (
                     <TraitTag key={trait.trait_type} attribute={trait} />
@@ -190,9 +192,9 @@ const WaifuDetail: React.FC = () => {
                 waifu.owner.address.toUpperCase() ===
                   address.toUpperCase())) && (
               <>
-                <h2>Tools</h2>
+                <h2> {t("waifuDetail.tools")}</h2>
                 <Button onClick={() => setChangingName(true)}>
-                  Change Name
+                  {t("buttons.changeName")}
                 </Button>
               </>
             )}
