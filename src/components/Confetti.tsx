@@ -77,8 +77,9 @@ const Confetti: React.FC = () => {
 
   return (
     <StyledConfetti>
-      {confetti.map((conf: ConfettiType) => (
+      {confetti.map((conf: ConfettiType, index: number) => (
         <FallingAnimation
+          key={index}
           style={{
             left: `${conf.left}%`,
             top: `${conf.top}%`,
