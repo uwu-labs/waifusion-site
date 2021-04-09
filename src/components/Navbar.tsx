@@ -1,13 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { ChevronDownIcon, DungeonIcon, SearchIcon, WalletIcon } from "./Icons";
-import Button from "./Button";
+import { useHistory } from "react-router";
 import Logo from "./Logo";
 import Underline from "./Underline";
-import Address from "./Address";
+import NavItems from "./NavItems";
+import Popup from "./Popup";
 
 const StyledNavbar = styled.div`
   display: flex;
@@ -16,97 +14,68 @@ const StyledNavbar = styled.div`
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   box-sizing: border-box;
   padding: 10px 32px;
+
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+  }
 `;
 
-const NavItemsWrapper = styled.ul`
-  flex: 1;
+const NavItemsContainer = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const Hamburger = styled.button`
   display: flex;
-  justify-content: flex-end;
-  flex-direction: row;
-  align-items: center;
-`;
+  flex-direction: column;
+  width: 1.5rem;
+  height: 1.2rem;
+  justify-content: space-between;
+  border: none;
+  background: none;
+  outline: none;
 
-const Item = styled.li`
-  margin-left: 30px;
-  display: flex;
-  flex-direction: row;
-  cursor: pointer;
-`;
-
-const LinkableItem = styled(Link)`
-  text-decoration: none;
-  display: flex;
-  flex-wrap: nowrap;
-  font-weight: 500;
-  align-items: center;
-  font-size: 15pt;
-  cursor: pointer;
-  transition: all 0.3s;
-
-  * {
-    color: var(--text-secondary);
-  }
-
-  :hover {
-    * {
-      color: var(--primary-shadow);
-    }
-  }
-
-  svg {
-    height: 14pt;
-    margin-right: 7px;
-  }
-
-  label {
-    cursor: pointer;
+  @media (min-width: 769px) {
+    display: none;
   }
 `;
 
-const SignedInAddressContainer = styled(Button)`
-  svg {
-    margin-left: 5px;
-    vertical-align: middle;
-  }
-  path {
-    color: var(--primary-dark);
-  }
+const Line = styled.div`
+  width: 100%;
+  height: 0.1rem;
+  background-color: var(--text-primary);
 `;
 
 const Navbar: React.FC = () => {
-  const [t] = useTranslation();
+  const [navOpen, setNavOpen] = useState(false);
+  const history = useHistory();
+
+  history.listen(() => {
+    setNavOpen(false);
+  });
 
   return (
     <StyledNavbar>
       <Container>
         <Logo />
-        <NavItemsWrapper>
-          <Item>
-            <LinkableItem to="/browse">
-              <SearchIcon />
-              <label>{t("navigation.browse")}</label>
-            </LinkableItem>
-          </Item>
-          <Item>
-            <LinkableItem to="/wallet">
-              <WalletIcon />
-              <label>{t("navigation.wallet")}</label>
-            </LinkableItem>
-          </Item>
-          <Item>
-            <LinkableItem to="/dungeon">
-              <DungeonIcon />
-              <label>{t("navigation.dungeon")}</label>
-            </LinkableItem>
-          </Item>
-          <Item>
-            <Address />
-          </Item>
-        </NavItemsWrapper>
+        <NavItemsContainer>
+          <NavItems />
+        </NavItemsContainer>
+        <Hamburger onClick={() => setNavOpen(true)}>
+          <Line />
+          <Line />
+          <Line />
+        </Hamburger>
+        <Popup
+          show={navOpen}
+          close={() => setNavOpen(false)}
+          content={<NavItems />}
+        />
       </Container>
       <Underline />
     </StyledNavbar>

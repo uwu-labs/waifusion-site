@@ -84,7 +84,7 @@ const Filter: React.FC<Props> = (props) => {
         >
           <Option value="All">{t("traits.all")}</Option>
           {props.trait.values.map((value: string) => (
-            <Option value={value}>
+            <Option key={props.trait.id} value={value}>
               {t(`traits.${props.trait.id}.values.${value}`)}
             </Option>
           ))}

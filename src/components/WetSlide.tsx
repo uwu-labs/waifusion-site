@@ -44,6 +44,10 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 90vw;
+  }
 `;
 
 const Header = styled.h2`
@@ -53,7 +57,7 @@ const Header = styled.h2`
   color: var(--plain-dark);
 `;
 
-const Body = styled.p`
+const Body = styled.div`
   font-size: 1.4rem;
   font-weight: 500;
   margin-bottom: 2rem;
@@ -82,9 +86,11 @@ const WetSlide: React.FC = () => {
         <Body>
           {t("wet.overview")}
           <List>
-            {(t("wet.use", { returnObjects: true }) as string[]).map((use) => (
-              <Item>{use}</Item>
-            ))}
+            {(t("wet.use", { returnObjects: true }) as string[]).map(
+              (use, index: number) => (
+                <Item key={index}>{use}</Item>
+              )
+            )}
           </List>
           {t("wet.detail")}
         </Body>

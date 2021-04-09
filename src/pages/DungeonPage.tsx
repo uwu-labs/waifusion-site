@@ -11,6 +11,10 @@ import BurnWaifu from "../components/BurnWaifu";
 
 const StyledDungeonPage = styled(PageContentWrapper)`
   height: 70vh;
+
+  @media (max-width: 768px) {
+    height: auto;
+  }
 `;
 
 const Content = styled.div`
@@ -19,10 +23,19 @@ const Content = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin-top: 3rem;
+  }
 `;
 
 const CardContainer = styled.div`
   width: 50vw;
+
+  @media (max-width: 768px) {
+    width: 90vw;
+  }
 `;
 
 const rotate = keyframes`
@@ -37,6 +50,11 @@ const rotate = keyframes`
 const DropShadow = styled.div`
   box-shadow: 0px 4px 20px 20px rgba(0, 0, 0, 0.04);
   border-radius: 1rem;
+
+  @media (max-width: 768px) {
+    width: 90vw;
+    margin-top: 2rem;
+  }
 `;
 
 const DungeonCard = styled.div`

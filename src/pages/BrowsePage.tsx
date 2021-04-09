@@ -42,12 +42,22 @@ const Waifus = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-row-gap: 2rem;
   margin: 0 3rem;
+
+  @media (max-width: 768px) {
+    margin: auto;
+    align-items: center;
+    justify-items: center;
+  }
 `;
 
 const Filters = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 3rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const BrowsePage: React.FC = () => {
@@ -108,6 +118,7 @@ const BrowsePage: React.FC = () => {
         <Filters>
           {traits.map((trait: Trait) => (
             <Filter
+              key={trait.id}
               trait={trait}
               setValue={(value: string) => {
                 const newFilters = [...filters];

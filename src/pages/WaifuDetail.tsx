@@ -27,6 +27,11 @@ const Wrapper = styled.div`
   flex-direction: row;
   max-width: 1200px;
   margin: auto;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 const Content = styled.div`
