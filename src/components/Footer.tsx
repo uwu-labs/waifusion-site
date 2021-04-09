@@ -21,6 +21,11 @@ const Container = styled.footer`
 const Section = styled.div`
   display: flex;
   font-weight: 500;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const InternalLink = styled(Link)`
@@ -43,12 +48,21 @@ const ExternalLink = styled.a`
   }
 `;
 
-const AbsoluteCenterSection = styled(Section)`
+const AbsoluteCenterSection = styled.div`
+  display: flex;
+  font-weight: 500;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: var(--text-secondary);
+
+  @media (max-width: 768px) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const Footer: React.FC = () => {
