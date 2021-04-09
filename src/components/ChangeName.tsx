@@ -34,17 +34,19 @@ const ChangeName: React.FC<Props> = (props) => {
   const [loading, setLoading] = useState(false);
   const [complete, setComplete] = useState(false);
 
-  const changeName = async () => {
-    setError("");
-    if (name.length === 0) {
+  const validate = (newName: string) => {
+    if (newName.length === 0) {
       setError(t("errors.short"));
       return;
     }
-    if (name.length > 25) {
+    if (newName.length > 25) {
       setError(t("errors.long"));
       return;
     }
+    setError("");
+  };
 
+  const changeName = async () => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const waifuContract = await contractHelper.getWaifuContract();
@@ -77,7 +79,10 @@ const ChangeName: React.FC<Props> = (props) => {
             {!loading && !complete && (
               <Input
                 value={name}
-                onChange={(event) => setName(event.target.value)}
+                onChange={(event) => {
+                  setName(event.target.value);
+                  validate(event.target.value);
+                }}
               />
             )}
             {error && <Error>{error}</Error>}
