@@ -171,14 +171,14 @@ const WaifuDetail: React.FC = () => {
 
             {waifu.bio && (
               <>
-                <h2> {t("waifuDetail.bio")}</h2>
+                <h2>{t("waifuDetail.bio")}</h2>
                 <p>{waifu.bio}</p>
               </>
             )}
 
             {waifu.attributes && (
               <>
-                <h2> {t("waifuDetail.traits")}</h2>
+                <h2>{t("waifuDetail.traits")}</h2>
                 <TraitsContainer>
                   {waifu.attributes.map((trait: Attribute) => (
                     <TraitTag key={trait.trait_type} attribute={trait} />
@@ -192,7 +192,7 @@ const WaifuDetail: React.FC = () => {
                 waifu.owner.address.toUpperCase() ===
                   address.toUpperCase())) && (
               <>
-                <h2> {t("waifuDetail.tools")}</h2>
+                <h2>{t("waifuDetail.tools")}</h2>
                 <Button onClick={() => setChangingName(true)}>
                   {t("buttons.changeName")}
                 </Button>
