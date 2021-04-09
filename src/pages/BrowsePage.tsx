@@ -108,7 +108,7 @@ const BrowsePage: React.FC = () => {
         <Filters>
           {traits.map((trait: Trait) => (
             <Filter
-              key={trait}
+              key={trait.id}
               trait={trait}
               setValue={(value: string) => {
                 const newFilters = [...filters];
