@@ -96,7 +96,8 @@
     "alphanumeric": "Name can only contain alphanumeric characters",
     "consecutiveSpaces": "Name cannot contain consecutive spaces",
     "trailingSpace": "Name cannot contain trailing spaces",
-    "leadingSpace": "Name cannot contain leading spaces"
+    "leadingSpace": "Name cannot contain leading spaces",
+    "taken": "Name already taken"
   },
   "provenance": {
     "placeholder": "search id",

@@ -64,9 +64,18 @@ const ChangeName: React.FC<Props> = (props) => {
   };
 
   const changeName = async () => {
+    setError("");
+
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const waifuContract = await contractHelper.getWaifuContract();
+
+    const nameTaken = await contractHelper.isNameReserved(name);
+    if (nameTaken) {
+      setError(t("errors.taken"));
+      return;
+    }
+
     waifuContract.methods
       .changeName(props.waifu.id, name)
       .send()

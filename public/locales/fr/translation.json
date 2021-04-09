@@ -96,7 +96,8 @@
     "alphanumeric": "TODO",
     "consecutiveSpaces": "TODO",
     "trailingSpace": "TODO",
-    "leadingSpace": "TODO"
+    "leadingSpace": "TODO",
+    "taken": "TODO"
   },
   "provenance": {
     "placeholder": "identifiant de recherche",
