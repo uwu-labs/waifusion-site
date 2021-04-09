@@ -67,16 +67,6 @@ const LinkableItem = styled(Link)`
   }
 `;
 
-const SignedInAddressContainer = styled(Button)`
-  svg {
-    margin-left: 5px;
-    vertical-align: middle;
-  }
-  path {
-    color: var(--primary-dark);
-  }
-`;
-
 const Navbar: React.FC = () => {
   const [t] = useTranslation();
 
