@@ -55,6 +55,14 @@ const ButtonContainer = styled.div`
   button {
     margin: 0 1rem;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    button {
+      margin: 1rem 0;
+    }
+  }
 `;
 
 type Props = {
