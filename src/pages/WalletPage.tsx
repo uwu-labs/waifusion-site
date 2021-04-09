@@ -28,6 +28,15 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+
+    button {
+      margin-top: 2rem;
+    }
+  }
 `;
 
 const Content = styled.div`
@@ -42,6 +51,11 @@ const WaifuContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   grid-gap: 2rem;
   margin: 3rem auto;
+
+  @media (max-width: 768px) {
+    align-items: center;
+    justify-items: center;
+  }
 `;
 
 const NoWaifusContainer = styled.div`
