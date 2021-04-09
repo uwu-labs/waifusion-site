@@ -53,7 +53,7 @@ const Header = styled.h2`
   color: var(--plain-dark);
 `;
 
-const Body = styled.p`
+const Body = styled.div`
   font-size: 1.4rem;
   font-weight: 500;
   margin-bottom: 2rem;
