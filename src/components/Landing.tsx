@@ -32,10 +32,18 @@ const SubHeader = styled.div`
 
 const Image = styled.img`
   width: 50vw;
+
+  @media (max-width: 768px) {
+    width: 85vw;
+  }
 `;
 
 const CardContainer = styled.div`
   width: 60vw;
+
+  @media (max-width: 768px) {
+    width: 90vw;
+  }
 `;
 
 const Landing: React.FC = () => {
