@@ -93,7 +93,10 @@
     "minimum": "Minimum de 1 autorisé",
     "short": "Nom trop court",
     "long": "Nom trop long",
-    "alphanumeric": "TODO"
+    "alphanumeric": "TODO",
+    "consecutiveSpaces": "TODO",
+    "trailingSpace": "TODO",
+    "leadingSpace": "TODO"
   },
   "provenance": {
     "placeholder": "identifiant de recherche",

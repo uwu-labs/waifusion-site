@@ -35,9 +35,21 @@ const ChangeName: React.FC<Props> = (props) => {
   const [complete, setComplete] = useState(false);
 
   const validate = (newName: string) => {
-    const regex = RegExp("^[a-zA-Z0-9 ]*$");
-    if (!regex.test(newName)) {
+    const alphanumericRegex = RegExp("^[a-zA-Z0-9 ]*$");
+    if (!alphanumericRegex.test(newName)) {
       setError(t("errors.alphanumeric"));
+      return;
+    }
+    if (/\s{2,}/.test(newName)) {
+      setError(t("errors.consecutiveSpaces"));
+      return;
+    }
+    if (newName[0] === " ") {
+      setError(t("errors.leadingSpace"));
+      return;
+    }
+    if (newName[newName.length - 1] === " ") {
+      setError(t("errors.trailingSpace"));
       return;
     }
     if (newName.length === 0) {
