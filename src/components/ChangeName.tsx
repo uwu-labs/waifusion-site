@@ -35,6 +35,11 @@ const ChangeName: React.FC<Props> = (props) => {
   const [complete, setComplete] = useState(false);
 
   const validate = (newName: string) => {
+    const regex = RegExp("^[a-zA-Z0-9 ]*$");
+    if (!regex.test(newName)) {
+      setError(t("errors.alphanumeric"));
+      return;
+    }
     if (newName.length === 0) {
       setError(t("errors.short"));
       return;
