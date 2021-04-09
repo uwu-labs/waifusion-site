@@ -6,7 +6,7 @@ i18n
   .use(initReactI18next)
   .use(Backend)
   .init({
-    lng: "en",
+    lng: "fr",
     interpolation: {
       escapeValue: false,
     },
