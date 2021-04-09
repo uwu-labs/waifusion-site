@@ -4,6 +4,10 @@ import styled from "styled-components";
 const Container = styled.div`
   position: relative;
   width: 500px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Image = styled.img`
