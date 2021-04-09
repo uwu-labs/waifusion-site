@@ -39,7 +39,7 @@ const Preview: React.FC = () => {
       something.
       <WaifuWrapper>
         {previewWaifusTemp.map((waifu) => (
-          <WaifuCard waifu={waifu} />
+          <WaifuCard key={waifu.id} waifu={waifu} />
         ))}
       </WaifuWrapper>
     </StyledPreview>
