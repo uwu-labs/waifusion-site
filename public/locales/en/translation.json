@@ -3,15 +3,16 @@
   "tagline": "No Waifu, No Laifu",
   "description": "Waifusion is a digital Waifu collection. There are 16,384 guaranteed-unique Waifusion NFTs. They’re just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifuis wholly unique and yours forever... unless you sell them... Baka.",
   "loading": "Loading",
-  "conntect": "Connect",
+  "connect": "Connect",
   "footer": {
-    "team": "Made with 💜 by the Waifusion comunity",
+    "team": "Made with 💜 by the Waifusion community",
     "provenance": "Provenance"
   },
   "contact": {
     "twitter": "Twitter",
     "discord": "Discord",
     "telegram": "Telegram",
+    "github": "GitHub",
     "contact": "Contact"
   },
   "buttons": {
@@ -25,7 +26,8 @@
     "reveal": "Reveal",
     "close": "Close",
     "approveWet": "Approve WET",
-    "approveWaifus": "Approve Waifus"
+    "approveWaifus": "Approve Waifus",
+    "changeName": "Change Name"
   },
   "headers": {
     "browse": "Browse Waifus",
@@ -72,11 +74,30 @@
     ],
     "detail": "Waifus passively generate WET tokens just by holding them! Each Waifu will generate 3,660 WET per year. You can claim your WET tokens in the wallet page. To change the name of a Waifu, you need to send 1,830 WET. To burn a Waifu you need to send a Waifu and 5,490 WET to the Waifusion contract, they will disappear forever..."
   },
+  "waifuDetail": {
+    "changeName": {
+      "header": {
+        "main": "Change Waifus Name",
+        "loading": "Name Updating",
+        "complete": "Name Update Complete"
+      },
+      "body": {
+        "main": "Enter a new name for your Waifu"
+      }
+    }
+  },
   "errors": {
     "valid": "Not a valid number",
     "whole": "Must be a whole number",
     "maximum": "Maximum of 20 allowed",
-    "minimum": "Minimum of 1 allowed"
+    "minimum": "Minimum of 1 allowed",
+    "short": "Name too short",
+    "long": "Name too long",
+    "alphanumeric": "Name can only contain alphanumeric characters",
+    "consecutiveSpaces": "Name cannot contain consecutive spaces",
+    "trailingSpace": "Name cannot contain trailing spaces",
+    "leadingSpace": "Name cannot contain leading spaces",
+    "taken": "Name already taken"
   },
   "provenance": {
     "placeholder": "search id",

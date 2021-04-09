@@ -85,6 +85,13 @@ const Footer: React.FC = () => {
             {t("contact.telegram")}
           </ExternalLink>
           <ExternalLink
+            href="http://github.com/waifusion"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t("contact.github")}
+          </ExternalLink>
+          <ExternalLink
             href="mailto: waifusiongovernance@gmail.com"
             target="_blank"
             rel="noreferrer"
