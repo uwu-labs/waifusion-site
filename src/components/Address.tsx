@@ -38,7 +38,7 @@ const Address: React.FC = () => {
 
   return (
     <SignedInAddressContainer primary small onClick={() => updateAddress()}>
-      {!address && t("conntect")}
+      {!address && t("connect")}
       {address && (
         <>
           {formattedAddress()}
