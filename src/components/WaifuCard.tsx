@@ -12,6 +12,10 @@ const Container = styled(Link)`
   padding: 0.5rem;
   cursor: pointer;
   transition: all 0.3s;
+  height: 22.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   :hover {
     box-shadow: 0 0.3rem 0 0 var(--plain-shadow);
