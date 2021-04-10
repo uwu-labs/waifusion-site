@@ -71,7 +71,7 @@ const Preview: React.FC = () => {
 
   return (
     <StyledPreview>
-      <Header>Some Available Waifus</Header>
+      <Header>{t("headers.available")}</Header>
       <WaifuWrapper>
         {waifus.map((waifu: Waifu) => (
           <WaifuCard key={waifu.id} waifu={waifu} />
