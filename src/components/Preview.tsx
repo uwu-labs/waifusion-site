@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router";
+import styled, { keyframes } from "styled-components";
 import { ContractHelper } from "../services/contract";
 import GLOBALS from "../services/globals";
 import { Waifu } from "../types/waifusion";
+import Button from "./Button";
 import WaifuCard from "./WaifuCard";
 
-const WAIU_COUNT = 5;
+const WAIU_COUNT = 6;
 
 const StyledPreview = styled.div`
   width: 100%;
@@ -13,9 +16,10 @@ const StyledPreview = styled.div`
 `;
 
 const Header = styled.h2`
-  color: var(--text-secondary);
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--plain-dark);
   text-align: center;
   margin-bottom: 2rem;
 `;
@@ -29,8 +33,17 @@ const WaifuWrapper = styled.div`
   margin: 0 3rem;
 `;
 
+const ButtonContainer = styled.div`
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Preview: React.FC = () => {
   const [waifus, setWaifus] = useState<Waifu[]>([]);
+  const history = useHistory();
+  const [t] = useTranslation();
 
   const getDungeonPreview = async () => {
     const _waifus: Waifu[] = [];
@@ -40,7 +53,7 @@ const Preview: React.FC = () => {
 
     const count = await contractHelper.waifuBalanceOfAddress(dungeonAddress);
 
-    await Array.from(Array(10).keys()).forEach(async (i: number) => {
+    const promises = Array.from(Array(WAIU_COUNT).keys()).map(async () => {
       const index = Math.floor(Math.random() * count);
       const id = await contractHelper.tokenOfAddressByIndex(
         index,
@@ -48,7 +61,7 @@ const Preview: React.FC = () => {
       );
       _waifus.push({ id });
     });
-    console.log(_waifus);
+    await Promise.all(promises);
     setWaifus(_waifus);
   };
 
@@ -58,12 +71,17 @@ const Preview: React.FC = () => {
 
   return (
     <StyledPreview>
-      <Header>Available Waifus</Header>
+      <Header>Some Available Waifus</Header>
       <WaifuWrapper>
         {waifus.map((waifu: Waifu) => (
           <WaifuCard key={waifu.id} waifu={waifu} />
         ))}
       </WaifuWrapper>
+      <ButtonContainer>
+        <Button primary onClick={() => history.push("/dungeon")}>
+          {t("buttons.getWaifus")}
+        </Button>
+      </ButtonContainer>
     </StyledPreview>
   );
 };
