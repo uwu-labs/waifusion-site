@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled, { keyframes } from "styled-components";
-import loading from "../assets/loading-icon.png";
+import Lottie from "react-lottie";
+import loadingData from "../assets/loading.json";
 
 const StyledLoading = styled.div`
   position: absolute;
@@ -14,28 +15,32 @@ const StyledLoading = styled.div`
   align-items: center;
 `;
 
-const rotate = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
+const Circle = styled.div`
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  div {
+    transform: scale(1.3) translateY(20px);
   }
 `;
 
-const Animation = styled.img`
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  filter: contrast(1.02);
-  user-select: none;
-  animation: ${rotate} 2s linear 0s infinite;
-`;
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: loadingData,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
 const Loading: React.FC = () => {
   return (
     <StyledLoading>
-      <Animation src={loading} />
+      <Circle>
+        <Lottie options={defaultOptions} height={200} width={200} />
+      </Circle>
     </StyledLoading>
   );
 };
