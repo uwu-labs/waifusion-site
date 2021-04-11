@@ -56,7 +56,8 @@
       "loadingPurchase": "Chargement de l'achat",
       "loadingReveal": "Chargement de la révélation",
       "revealReady": "Prêt à révéler",
-      "revealed": "Waifus révélés!"
+      "revealed": "Waifus révélés!",
+      "available": "TODO"
     },
     "bodys": {
       "buy": "Sélectionnez le nombre de Waifus que vous souhaitez acheter",

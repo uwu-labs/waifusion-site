@@ -1,47 +1,87 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router";
+import styled, { keyframes } from "styled-components";
+import { ContractHelper } from "../services/contract";
+import GLOBALS from "../services/globals";
 import { Waifu } from "../types/waifusion";
+import Button from "./Button";
 import WaifuCard from "./WaifuCard";
+
+const WAIU_COUNT = 6;
 
 const StyledPreview = styled.div`
   width: 100%;
-  padding: 3rem;
+  padding: 4rem;
+`;
+
+const Header = styled.h2`
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--plain-dark);
+  text-align: center;
+  margin-bottom: 2rem;
 `;
 
 const WaifuWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  > div {
-    margin-right: 1rem;
-  }
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-row-gap: 2rem;
+  margin: 0 3rem;
 `;
 
-const previewWaifusTemp: Waifu[] = [
-  {
-    id: 2043,
-    name: "Kaitlyn",
-  },
-  {
-    id: 5458,
-    name: "Tabby Catgirl",
-  },
-  {
-    id: 6941,
-    name: undefined,
-  },
-];
+const ButtonContainer = styled.div`
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Preview: React.FC = () => {
+  const [waifus, setWaifus] = useState<Waifu[]>([]);
+  const history = useHistory();
+  const [t] = useTranslation();
+
+  const getDungeonPreview = async () => {
+    const _waifus: Waifu[] = [];
+    const dungeonAddress = GLOBALS.DUNGEON_CONTRACT_ADDRESS;
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
+
+    const count = await contractHelper.waifuBalanceOfAddress(dungeonAddress);
+
+    const promises = Array.from(Array(WAIU_COUNT).keys()).map(async () => {
+      const index = Math.floor(Math.random() * count);
+      const id = await contractHelper.tokenOfAddressByIndex(
+        index,
+        dungeonAddress
+      );
+      _waifus.push({ id });
+    });
+    await Promise.all(promises);
+    setWaifus(_waifus);
+  };
+
+  useEffect(() => {
+    getDungeonPreview();
+  }, []);
+
   return (
     <StyledPreview>
-      This could be an example of some waifus maybe? Recently sold ones or
-      something.
+      <Header>{t("headers.available")}</Header>
       <WaifuWrapper>
-        {previewWaifusTemp.map((waifu) => (
+        {waifus.map((waifu: Waifu) => (
           <WaifuCard key={waifu.id} waifu={waifu} />
         ))}
       </WaifuWrapper>
+      <ButtonContainer>
+        <Button primary onClick={() => history.push("/dungeon")}>
+          {t("buttons.getWaifus")}
+        </Button>
+      </ButtonContainer>
     </StyledPreview>
   );
 };

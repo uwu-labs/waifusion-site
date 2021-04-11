@@ -35,7 +35,8 @@
     "history": "Your History",
     "notFound": "404 Page not Found",
     "provenance": "Provenance",
-    "wallet": "Your Wallet"
+    "wallet": "Your Wallet",
+    "available": "Some Available Waifus"
   },
   "navigation": {
     "browse": "Browse",
