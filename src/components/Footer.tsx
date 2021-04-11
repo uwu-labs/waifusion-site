@@ -74,6 +74,13 @@ const Footer: React.FC = () => {
       <Container>
         <Section>
           <InternalLink to="/provenance">{t("footer.provenance")}</InternalLink>
+          <ExternalLink
+            href="https://opensea.io/assets/waifusion"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t("footer.opensea")}
+          </ExternalLink>
         </Section>
         <AbsoluteCenterSection>{t("footer.team")}</AbsoluteCenterSection>
         <Section>
