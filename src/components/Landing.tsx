@@ -62,6 +62,12 @@ const Landing: React.FC = () => {
             text={t("description")}
             buttonAction={() => history.push("/dungeon")}
             buttonText={t("buttons.getWaifus")}
+            secondButtonAction={() => {
+              (window as any)
+                .open("https://opensea.io/assets/waifusion", "_blank")
+                .focus();
+            }}
+            secondButtonText={t("buttons.tradeWaifus")}
           />
         </CardContainer>
       </Content>

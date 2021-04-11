@@ -1,12 +1,13 @@
 {
   "name": "Waifusion",
-  "tagline": "No Waifu, No Laifu",
+  "tagline": "The #1 Traded Waifu NFTs on OpenSea!",
   "description": "Waifusion is a digital Waifu collection. There are 16,384 guaranteed-unique Waifusion NFTs. They’re just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
   "loading": "Loading",
   "connect": "Connect",
   "footer": {
     "team": "Made with 💜 by the Waifusion community",
-    "provenance": "Provenance"
+    "provenance": "Provenance",
+    "opensea": "OpenSea"
   },
   "contact": {
     "twitter": "Twitter",
@@ -16,7 +17,8 @@
     "contact": "Contact"
   },
   "buttons": {
-    "getWaifus": "Get Waifus",
+    "getWaifus": "Buy Waifus",
+    "tradeWaifus": "Trade Waifus",
     "getWet": "Get WET",
     "buyWaifu": "Buy Waifu",
     "burnWaifu": "Burn Waifu",
@@ -27,7 +29,8 @@
     "close": "Close",
     "approveWet": "Approve WET",
     "approveWaifus": "Approve Waifus",
-    "changeName": "Change Name"
+    "changeName": "Change Name",
+    "free": "Free from dungeon"
   },
   "headers": {
     "browse": "Browse Waifus",
@@ -36,7 +39,7 @@
     "notFound": "404 Page not Found",
     "provenance": "Provenance",
     "wallet": "Your Wallet",
-    "available": "Some Available Waifus"
+    "available": "Free These Waifus"
   },
   "navigation": {
     "browse": "Browse",

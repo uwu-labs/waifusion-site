@@ -79,7 +79,7 @@ const Preview: React.FC = () => {
       </WaifuWrapper>
       <ButtonContainer>
         <Button primary onClick={() => history.push("/dungeon")}>
-          {t("buttons.getWaifus")}
+          {t("buttons.free")}
         </Button>
       </ButtonContainer>
     </StyledPreview>
