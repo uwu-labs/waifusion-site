@@ -27,7 +27,8 @@
     "close": "Close",
     "approveWet": "Approve WET",
     "approveWaifus": "Approve Waifus",
-    "changeName": "Change Name"
+    "changeName": "Change Name",
+    "free": "Free from dungeon"
   },
   "headers": {
     "browse": "Browse Waifus",
