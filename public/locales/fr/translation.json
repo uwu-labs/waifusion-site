@@ -1,7 +1,7 @@
 {
   "name": "Waifusion",
   "tagline": "Pas de Waifu, pas de Laifu",
-  "description": "Waifusion est une collection digital Waifu. Il existe 16 384 NFT Waifusion uniques garantis. Ils sont comme vous, une belle œuvre d'art, mais en 2D et donc, supérieure, Anon-kun. Chaque Waifuis est totalement unique et le vôtre pour toujours... à moins que vous ne les vendiez... Baka.",
+  "description": "Waifusion est une collection digitale de Waifu. Il existe 16 384 NFT Waifusion uniques garantis. Elles sont comme vous, une belle œuvre d'art, mais en 2D et donc, supérieure, Anon-kun. Chaque Waifu est totalement unique et le vôtre pour toujours... à moins que vous ne les vendiez... Baka.",
   "loading": "Chargement",
   "connect": "Connexion",
   "footer": {
@@ -19,8 +19,8 @@
     "getWaifus": "Obtenez des Waifus",
     "tradeWaifus": "TODO",
     "getWet": "Obtenez des WET",
-    "buyWaifu": "Acheter un Waifu",
-    "burnWaifu": "Bruler un Waifu",
+    "buyWaifu": "Acheter une Waifu",
+    "burnWaifu": "Bruler une Waifu",
     "search": "Chercher",
     "buy": "Acheter",
     "loading": "Chargement",
@@ -52,7 +52,7 @@
     "description": "Oh no... Many of our beloved waifus have been enslaved in the Dungeon! Be a hero and save your beloved Waifus by buying thier freedom for 0.7 ETH to get a random Waifu. Or burn a Waifu and pay 5,490 WET to free another random one from the Dungeon.",
     "exitWarning": "Révélez les Waifus avant de quitter ou vous pouvez les perdre pour toujours",
     "headers": {
-      "buy": "Acheter un Waifu",
+      "buy": "Acheter une Waifu",
       "burn": "Bruler des Waifus",
       "loadingPurchase": "Chargement de l'achat",
       "loadingReveal": "Chargement de la révélation",
@@ -72,9 +72,9 @@
     "overview": "Le jeton d'amélioration de Waifu (WET) est un jeton exclusif du harem mondial de Waifusion. Il existe deux utilisations du jeton WET:",
     "use": [
       "Renommer votre Waifu avec un nouveau nom stocké en permanence sur la blockchain Ethereum",
-      "Brûler un Waifu indésirable en échange d'un nouveau Waifu du donjon"
+      "Brûler une Waifu indésirable en échange d'un nouveau Waifu du donjon"
     ],
-    "detail": "Waifus génère passivement des jetons WET simplement en les tenant! Chaque Waifu générera 3 660 WET par an. Vous pouvez réclamer vos jetons WET sur la page du portefeuille. Pour changer le nom d'un Waifu, vous devez envoyer 1 830 WET. Pour brûler un Waifu, vous devez envoyer un Waifu et 5490 WET au contrat Waifusion, et celui ci disparaîtra à jamais..."
+    "detail": "Les Waifus génère passivement des jetons WET simplement en les tenant! Chaque Waifu générera 3 660 WET par an. Vous pouvez réclamer vos jetons WET sur la page du portefeuille. Pour changer le nom d'une Waifu, vous devez envoyer 1 830 WET. Pour brûler une Waifu, vous devez envoyer une Waifu et 5490 WET au contrat Waifusion, et celui ci disparaîtra à jamais..."
   },
   "waifuDetail": {
     "bio": "TODO",
