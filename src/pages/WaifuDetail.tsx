@@ -147,7 +147,7 @@ const WaifuDetail: React.FC = () => {
 
   useEffect(() => {
     getWaifu();
-  });
+  }, []);
 
   return (
     <PageContentWrapper>
