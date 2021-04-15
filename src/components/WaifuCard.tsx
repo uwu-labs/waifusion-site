@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Waifu } from "../types/waifusion";
@@ -86,6 +86,7 @@ const WaifuCard: React.FC<Props> = ({ waifu }) => {
       <ImageContainer>
         <Image
           src={`https://global-harem.waifusion.sexy/v1/ETH_WAIFU/${waifu.id}.png`}
+          loading="lazy"
         />
       </ImageContainer>
       <ActionRow>
@@ -96,4 +97,4 @@ const WaifuCard: React.FC<Props> = ({ waifu }) => {
   );
 };
 
-export default WaifuCard;
+export default memo(WaifuCard);
