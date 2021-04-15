@@ -16,6 +16,7 @@ type Globals = {
   BUY_PRICE: string;
   CURRENCY: string;
   IMAGE_API: string;
+  WAIFU_API: string;
 };
 
 const waifuVersion =
@@ -58,6 +59,7 @@ const GLOBALS: Globals = {
     waifuVersion === "eth"
       ? "https://global-harem.waifusion.sexy/v1/ETH_WAIFU/"
       : "https://global-harem.waifusion.sexy/v1/BSC_WAIFU/",
+  WAIFU_API: waifuVersion === "eth" ? "waifus/" : "waifus/bsc/",
 };
 
 export default GLOBALS;
