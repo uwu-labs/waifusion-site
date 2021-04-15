@@ -10,6 +10,7 @@ import traits, { Trait } from "../data/traits";
 import { makeRequest } from "../services/api";
 import { Waifu } from "../types/waifusion";
 import PageSelector from "../components/PageSelector";
+import GLOBALS from "../services/globals";
 
 type FilterType = {
   id: string;
@@ -74,7 +75,7 @@ const BrowsePage: React.FC = () => {
       .filter((filter: FilterType) => filter.value !== "All")
       .map((filter: FilterType) => `&${filter.id}=${filter.value}`)
       .reduce((a: string, b: string) => a + b, "");
-    const requestString = `waifus/filter?limit=50&page=${page}${filterString}`;
+    const requestString = `${GLOBALS.WAIFU_API}/filter?limit=50&page=${page}${filterString}`;
     const response = await makeRequest(requestString, {
       method: "GET",
       body: null,
