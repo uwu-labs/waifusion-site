@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import GLOBALS from "../services/globals";
 import { Waifu } from "../types/waifusion";
 import { ArrowRightIcon } from "./Icons";
 
@@ -84,10 +85,7 @@ const WaifuCard: React.FC<Props> = ({ waifu }) => {
         <span>{waifu.name}</span> <span>#{waifu.id}</span>
       </DetailHeader>
       <ImageContainer>
-        <Image
-          src={`https://global-harem.waifusion.sexy/v1/ETH_WAIFU/${waifu.id}.png`}
-          loading="lazy"
-        />
+        <Image src={`${GLOBALS.IMAGE_API}${waifu.id}.png`} loading="lazy" />
       </ImageContainer>
       <ActionRow>
         <span>View profile</span>
