@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import GLOBALS from "../services/globals";
 
 const Container = styled.div`
   position: relative;
@@ -23,7 +24,8 @@ const LargeWaifuCard: React.FC<Props> = ({ id }) => (
   <Container>
     <Image
       draggable={false}
-      src={`https://global-harem.waifusion.sexy/v1/ETH_WAIFU/${id}.png`}
+      src={`${GLOBALS.IMAGE_API}${id}.png`}
+      loading="lazy"
     />
   </Container>
 );
