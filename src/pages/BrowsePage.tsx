@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { PageContentWrapper } from "../components/CommonLayout";
@@ -68,7 +68,7 @@ const BrowsePage: React.FC = () => {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
 
-  const loadWaifus = async () => {
+  const loadWaifus = useCallback(async () => {
     setLoading(true);
     const filterString = filters
       .filter((filter: FilterType) => filter.value !== "All")
@@ -87,7 +87,7 @@ const BrowsePage: React.FC = () => {
     const _waifus: Waifu[] = response.data.results;
     setWaifus(_waifus);
     setLoading(false);
-  };
+  }, []);
 
   useEffect(() => {
     loadWaifus();
