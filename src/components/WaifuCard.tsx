@@ -86,6 +86,7 @@ const WaifuCard: React.FC<Props> = ({ waifu }) => {
       <ImageContainer>
         <Image
           src={`https://global-harem.waifusion.sexy/v1/ETH_WAIFU/${waifu.id}.png`}
+          loading="lazy"
         />
       </ImageContainer>
       <ActionRow>
