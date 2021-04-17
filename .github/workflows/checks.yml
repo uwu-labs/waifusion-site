@@ -51,3 +51,25 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Run ESLint
         run: yarn lint --fix=false
+
+  Build:
+    name: Compiling React source code
+    runs-on: ubuntu-latest
+    if: "!contains(needs.pre_ci.outputs.commit_message, '[skip ci]')"
+    needs: pre_ci
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v2
+      - name: Use Node.js 15
+        uses: actions/setup-node@v2
+        with:
+          node-version: 15
+      - name: Restore NodeJS Cache
+        uses: actions/cache@v2.1.4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-15-${{ hashFiles('**/yarn.lock') }}
+      - name: Install Dependencies
+        run: yarn --frozen-lockfile
+      - name: Compiling React source code
+        run: yarn build
