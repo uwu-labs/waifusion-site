@@ -51,4 +51,3 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Run ESLint
         run: yarn lint --fix=false
-
