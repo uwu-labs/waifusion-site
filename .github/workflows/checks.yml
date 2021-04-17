@@ -27,6 +27,7 @@ jobs:
       - name: Add problem matchers
         run: |
           echo "::add-matcher::.github/problemMatchers/eslint-stylish.json"
+          echo "::add-matcher::.github/problemMatchers/tsc.json"
     outputs:
       commit_message: $( [ -z "${{ steps.pr_get_commit_message.outputs.pr_commit_message }}" ] && echo "${{ steps.push_get_commit_message.outputs.push_commit_message }}" || echo "${{ steps.pr_get_commit_message.outputs.pr_commit_message }}" )
 
