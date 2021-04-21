@@ -4,6 +4,7 @@ import styled from "styled-components";
 import GLOBALS from "../services/globals";
 import { Waifu } from "../types/waifusion";
 import { ArrowRightIcon } from "./Icons";
+import WaifuCardImage from "./WaifuCardImage";
 
 const Container = styled(Link)`
   width: 220px;
@@ -33,14 +34,6 @@ const ImageContainer = styled.div`
   overflow: hidden;
   width: 100%;
   border-radius: 0.8rem;
-`;
-
-const Image = styled.img`
-  object-fit: contain;
-  width: 100%;
-  transform: scale(1.1);
-  user-drag: none;
-  user-select: none;
 `;
 
 const DetailHeader = styled.div`
@@ -85,7 +78,10 @@ const WaifuCard: React.FC<Props> = ({ waifu }) => {
         <span>{waifu.name}</span> <span>#{waifu.id}</span>
       </DetailHeader>
       <ImageContainer>
-        <Image src={`${GLOBALS.IMAGE_API}${waifu.id}.png`} loading="lazy" />
+        <WaifuCardImage
+          src={`${GLOBALS.IMAGE_API}${waifu.id}.png`}
+          alt={`Waifu ${waifu.name} #${waifu.id}`}
+        />
       </ImageContainer>
       <ActionRow>
         <span>View profile</span>
