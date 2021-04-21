@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { ArrowRightIcon } from "./Icons";
 
 const Container = styled.div`
   width: 220px;
