@@ -2,8 +2,6 @@ const TEST_MODE = false;
 
 type Globals = {
   WAIFU_VERSION: string;
-  WALLET_TYPE_WALLETCONNECT: string;
-  WALLET_TYPE_METAMASK: string;
   WAIFU_CONTRACT_ADDRESS: string;
   WET_CONTRACT_ADDRESS: string;
   ACCOOMULATOR_CONTRACT_ADDRESS: string;
@@ -28,8 +26,6 @@ const waifuVersion =
 
 const GLOBALS: Globals = {
   WAIFU_VERSION: waifuVersion,
-  WALLET_TYPE_WALLETCONNECT: "walletconnect",
-  WALLET_TYPE_METAMASK: "metamask",
   WAIFU_CONTRACT_ADDRESS: TEST_MODE
     ? "0xdb5b6d8058a8B3514c603B997Ee1810cD788ddeE"
     : "0x2216d47494E516d8206B70FCa8585820eD3C4946",
