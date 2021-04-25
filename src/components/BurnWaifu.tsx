@@ -3,6 +3,7 @@ import styled from "styled-components";
 import BN from "bn.js";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import { Contract } from "web3-eth-contract";
 import { ContractHelper } from "../services/contract";
 import Input from "./Input";
 import Popup from "./Popup";
@@ -36,6 +37,8 @@ type Props = {
 const BurnWaifu: React.FC<Props> = (props) => {
   if (!props.show) return null;
 
+  let contractHelper: ContractHelper;
+
   const dispatch = useDispatch();
   const [t] = useTranslation();
   const [waifuIds, setWaifuIds] = useState<string>("");
@@ -50,10 +53,13 @@ const BurnWaifu: React.FC<Props> = (props) => {
   const globals = useSelector(selectGlobalsData);
   const isEth = useSelector(selectIsEth);
 
+  const initContractHelper = async () => {
+    contractHelper = new ContractHelper();
+    await contractHelper.init();
+  };
+
   const updateApprovals = async () => {
     setApproving(true);
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
     const _wetApproved = await contractHelper.getDungeonAllowance();
     dispatch(
       setWetApproved(new BN(_wetApproved) > new BN("9999999999999999999999999"))
@@ -64,15 +70,12 @@ const BurnWaifu: React.FC<Props> = (props) => {
   };
 
   useEffect(() => {
-    updateApprovals();
+    initContractHelper().then(() => updateApprovals());
   }, []);
 
-  const approveWet = async () => {
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
-    const wetContract = await contractHelper.getWetContract();
-    wetContract.methods
-      .approve(globals.dungeonAddress, new BN("9999999999999999999999999999"))
+  const approve = async (tokenContract: Contract, approveAddress: string) => {
+    tokenContract.methods
+      .approve(approveAddress, new BN("9999999999999999999999999999"))
       .send()
       .on("transactionHash", (hash: any) => {
         setApproving(true);
@@ -86,23 +89,14 @@ const BurnWaifu: React.FC<Props> = (props) => {
       });
   };
 
+  const approveWet = async () => {
+    const wetContract = await contractHelper.getWetContract();
+    await approve(wetContract, globals.dungeonAddress);
+  };
+
   const approveWaifus = async () => {
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
     const waifuContract = await contractHelper.getWaifuContract();
-    waifuContract.methods
-      .setApprovalForAll(globals.dungeonAddress, true)
-      .send()
-      .on("transactionHash", (hash: any) => {
-        setApproving(true);
-      })
-      .on("receipt", (receipt: any) => {
-        updateApprovals().then(() => setApproving(false));
-      })
-      .on("error", (err: any) => {
-        console.log(`Error: ${err}`);
-        setApproving(false);
-      });
+    await approve(waifuContract, globals.dungeonAddress);
   };
 
   const burn = async () => {
@@ -123,8 +117,6 @@ const BurnWaifu: React.FC<Props> = (props) => {
       }
     }
 
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
     const dungeonContract = await contractHelper.getDungeonContract();
     dungeonContract.methods
       .commitSwapWaifus(waifuIdList)
