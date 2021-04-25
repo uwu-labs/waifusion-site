@@ -9,7 +9,6 @@ type Globals = {
   NFTX_WRAPPER: string;
   STARTING_INDEX: number;
   TOTAL_WAIFUS: number;
-  APPROVE_AMOUNT: string;
   BUY_PRICE: string;
   CURRENCY: string;
   IMAGE_API: string;
@@ -45,7 +44,6 @@ const GLOBALS: Globals = {
     : "0xa862351f459ec386aa23e752d5435d268de2ef04",
   STARTING_INDEX: waifuVersion === "eth" ? 11595 : 11936,
   TOTAL_WAIFUS: 16384,
-  APPROVE_AMOUNT: "16470000000000000000000",
   BUY_PRICE: TEST_MODE ? "0.07" : waifuVersion === "eth" ? "0.7" : "1.8",
   CURRENCY: waifuVersion === "eth" ? "ETH" : "BNB",
   IMAGE_API:
