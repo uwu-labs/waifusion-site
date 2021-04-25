@@ -28,7 +28,9 @@
     "close": "Fermer",
     "approveWet": "Approuver ce WET",
     "approveWaifus": "Approuver ces Waifus",
-    "changeName": "Changer de nom"
+    "changeName": "Changer de nom",
+    "waifuNft": "TODO",
+    "nftxWaifu": "TODO"
   },
   "headers": {
     "browse": "Parcourir les Waifus",
@@ -58,13 +60,15 @@
       "loadingReveal": "Chargement de la révélation",
       "revealReady": "Prêt à révéler",
       "revealed": "Waifus révélés!",
-      "available": "TODO"
+      "available": "TODO",
+      "burnMethod": "TODO"
     },
     "bodys": {
       "buy": "Sélectionnez le nombre de Waifus que vous souhaitez acheter",
       "burn": "Entrez les identifiants des Waifus que vous souhaitez bruler",
       "loadingPurchase": "Lorsque l'achat est terminé, vous devez les révéler immédiatement ou vous risquerez de perdre vos Waifus pour toujours",
-      "revealReady": "Vos Waifus on été achetés! Cliquez sur révéler ci-dessous pour voir ce que vous avez"
+      "revealReady": "Vos Waifus on été achetés! Cliquez sur révéler ci-dessous pour voir ce que vous avez",
+      "burnMethod": "TODO"
     }
   },
   "wet": {
