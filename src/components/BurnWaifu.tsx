@@ -60,10 +60,8 @@ const BurnWaifu: React.FC<Props> = (props) => {
 
   const updateApprovals = async () => {
     setApproving(true);
-    const _wetApproved = await contractHelper.getDungeonAllowance();
-    dispatch(
-      setWetApproved(new BN(_wetApproved) > new BN("9999999999999999999999999"))
-    );
+    const _wetApproved = await contractHelper.isWetApprovedForDungeon();
+    dispatch(setWetApproved(_wetApproved));
     const _waifusApproved = await contractHelper.isDungeonApprovedForAll();
     dispatch(setWaifusApproved(_waifusApproved));
     setApproving(false);
