@@ -18,6 +18,7 @@ type Globals = {
   CURRENCY: string;
   IMAGE_API: string;
   WAIFU_API: string;
+  WET_TRADE_LINK: string;
 };
 
 const waifuVersion =
@@ -66,6 +67,10 @@ const GLOBALS: Globals = {
       ? "https://global-harem.waifusion.sexy/v1/ETH_WAIFU/"
       : "https://global-harem.waifusion.sexy/v1/BSC_WAIFU/",
   WAIFU_API: waifuVersion === "eth" ? "waifus/" : "waifus/bsc/",
+  WET_TRADE_LINK:
+    waifuVersion === "eth"
+      ? "https://app.sushi.com/swap?inputCurrency=eth&outputCurrency=0x76280af9d18a868a0af3dca95b57dde816c1aaf2"
+      : "https://exchange.pancakeswap.finance/#/swap?inputCurrency=bnb&outputCurrency=0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
 };
 
 export default GLOBALS;
