@@ -94,6 +94,11 @@ export class ContractHelper {
     return approvedForAll;
   };
 
+  isWetApprovedForDungeon = async (): Promise<boolean> => {
+    const dungeonAllowance = await this.getDungeonAllowance();
+    return new BN(dungeonAllowance) > new BN("9999999999999999999999999");
+  };
+
   getDungeonAllowance = async (): Promise<number> => {
     const wetContract = await this.getWetContract();
     const currentAllowance = await wetContract.methods
