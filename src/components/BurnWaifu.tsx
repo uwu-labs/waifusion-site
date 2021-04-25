@@ -41,8 +41,6 @@ type Props = {
 const BurnWaifu: React.FC<Props> = (props) => {
   if (!props.show) return null;
 
-  let contractHelper: ContractHelper;
-
   const dispatch = useDispatch();
   const [t] = useTranslation();
   const [waifuIds, setWaifuIds] = useState("");
@@ -60,13 +58,10 @@ const BurnWaifu: React.FC<Props> = (props) => {
   const globals = useSelector(selectGlobalsData);
   const isEth = useSelector(selectIsEth);
 
-  const initContractHelper = async () => {
-    contractHelper = new ContractHelper();
-    await contractHelper.init();
-  };
-
   const updateApprovals = async () => {
     setApproving(true);
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
     const _wetApprovedForDungeon = await contractHelper.isWetApprovedForDungeon();
     dispatch(setWetApprovedForDungeon(_wetApprovedForDungeon));
     const _waifusApprovedForDungeon = await contractHelper.isWaifuApprovedForDungeon();
@@ -79,7 +74,7 @@ const BurnWaifu: React.FC<Props> = (props) => {
   };
 
   useEffect(() => {
-    initContractHelper().then(() => updateApprovals());
+    updateApprovals();
   }, []);
 
   const approve = async (tokenContract: Contract, approveAddress: string) => {
@@ -99,23 +94,31 @@ const BurnWaifu: React.FC<Props> = (props) => {
   };
 
   const approveWetForDungeon = async () => {
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
     const wetContract = await contractHelper.getWetContract();
     await approve(wetContract, globals.dungeonAddress);
   };
 
   const approveWetForWrapper = async () => {
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
     const wetContract = await contractHelper.getWetContract();
     await approve(wetContract, globals.wrapperAddress);
   };
 
   const approveWaifusForDungeon = async () => {
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
     const waifuContract = await contractHelper.getWaifuContract();
     await approve(waifuContract, globals.dungeonAddress);
   };
 
   const approveNftxForWrapper = async () => {
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
     const nftxContract = await contractHelper.getNftxContract();
-    await approve(nftxContract, globals.dungeonAddress);
+    await approve(nftxContract, globals.wrapperAddress);
   };
 
   const burnWaifu = async () => {
@@ -136,6 +139,8 @@ const BurnWaifu: React.FC<Props> = (props) => {
       }
     }
 
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
     const dungeonContract = await contractHelper.getDungeonContract();
     dungeonContract.methods
       .commitSwapWaifus(waifuIdList)
@@ -167,6 +172,8 @@ const BurnWaifu: React.FC<Props> = (props) => {
   const burnNftx = async () => {
     if (error) return;
 
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
     const wrapperContract = await contractHelper.getWrapperContract();
     wrapperContract.methods
       .commitWaifusWithNFTX(nftxCount)
