@@ -29,7 +29,8 @@ export const selectNetwork = (state: RootState): Network =>
 export const selectIsTest = (state: RootState): boolean =>
   state.globals.data.network === Network.TEST;
 export const selectIsEth = (state: RootState): boolean =>
-  state.globals.data.network === Network.ETH;
+  state.globals.data.network === Network.ETH ||
+  state.globals.data.network === Network.TEST;
 export const selectIsBsc = (state: RootState): boolean =>
   state.globals.data.network === Network.BSC;
 export const selectBuyPrice = (state: RootState): string =>
