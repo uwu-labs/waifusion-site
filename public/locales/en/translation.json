@@ -30,7 +30,9 @@
     "approveWet": "Approve WET",
     "approveWaifus": "Approve Waifus",
     "changeName": "Change Name",
-    "free": "Free from dungeon"
+    "free": "Free from dungeon",
+    "waifuNft": "Waifu NFT",
+    "nftxWaifu": "NFTX WAIFU"
   },
   "headers": {
     "browse": "Browse Waifus",
@@ -60,13 +62,15 @@
       "loadingPurchase": "Loading Purchase",
       "loadingReveal": "Loading Reveal",
       "revealReady": "Ready to Reveal",
-      "revealed": "Waifus Revealed!"
+      "revealed": "Waifus Revealed!",
+      "burnMethod": "Select Burn Method"
     },
     "bodys": {
       "buy": "Select the number of Waifus that you would like to buy",
       "burn": "Enter the IDs of the Waifus you would like to burn",
       "loadingPurchase": "When purchase is complete you must reveal immediately or risk losing your Waifus forever",
-      "revealReady": "Your Waifus have been purchased! Click Reveal below to see what you got"
+      "revealReady": "Your Waifus have been purchased! Click Reveal below to see what you got",
+      "burnMethod": "You can burn either Waifusion NFTs or NFTX WAIFU Tokens, select your preference."
     }
   },
   "wet": {
