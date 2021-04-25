@@ -67,10 +67,10 @@ const ButtonContainer = styled.div`
 
 type Props = {
   text: string;
-  buttonAction?: () => void;
   buttonText?: string;
-  secondButtonAction?: () => void;
+  buttonAction?: () => void;
   secondButtonText?: string;
+  secondButtonAction?: () => void;
 };
 
 const Card: React.FC<Props> = (props) => {
