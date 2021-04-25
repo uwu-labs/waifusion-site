@@ -217,8 +217,8 @@ export class ContractHelper {
   getWaifusOfAddress = async (address: string): Promise<Waifu[]> => {
     const waifus: Waifu[] = [];
 
-    const t = await this.accoomulateOfAddress(address);
-    await t.forEach(async (token: any) => {
+    const tokens = await this.accoomulateOfAddress(address);
+    tokens.forEach((token: any) => {
       const accumulated = new BN(token.wetAccumulated);
       const accumulatedWETNumber = Number(toEthUnit(accumulated));
       waifus.push({
