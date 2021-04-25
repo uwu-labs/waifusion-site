@@ -1,6 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import GLOBALS from "../services/globals";
+import { selectImageApi } from "../state/reducers/globals";
 
 const Container = styled.div`
   position: relative;
@@ -20,14 +21,14 @@ type Props = {
   id: number;
 };
 
-const LargeWaifuCard: React.FC<Props> = ({ id }) => (
-  <Container>
-    <Image
-      draggable={false}
-      src={`${GLOBALS.IMAGE_API}${id}.png`}
-      loading="lazy"
-    />
-  </Container>
-);
+const LargeWaifuCard: React.FC<Props> = ({ id }) => {
+  const imageApi = useSelector(selectImageApi);
+
+  return (
+    <Container>
+      <Image draggable={false} src={`${imageApi}${id}.png`} loading="lazy" />
+    </Container>
+  );
+};
 
 export default LargeWaifuCard;

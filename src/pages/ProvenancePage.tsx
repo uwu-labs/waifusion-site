@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import Header from "../components/Header";
 import bscProvenance from "../data/bsc_provenance.json";
 import ethProvenance from "../data/eth_provenance.json";
-import GLOBALS from "../services/globals";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Input from "../components/Input";
 import PageSelector from "../components/PageSelector";
+import { selectIsEth } from "../state/reducers/globals";
 
 const PROVENANCE_PER_PAGE = 20;
 
@@ -71,8 +72,8 @@ const ProvenancePage: React.FC = () => {
   const [t] = useTranslation();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState<number | null>(null);
-  const provenance: ProvenanceType[] =
-    GLOBALS.WAIFU_VERSION === "bsc" ? bscProvenance : ethProvenance;
+  const isEth = useSelector(selectIsEth);
+  const provenance: ProvenanceType[] = isEth ? ethProvenance : bscProvenance;
 
   return (
     <StyledProvenancePage>

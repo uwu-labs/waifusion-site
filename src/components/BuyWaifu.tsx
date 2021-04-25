@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import BN from "bn.js";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { ContractHelper } from "../services/contract";
 import Input from "./Input";
 import Popup from "./Popup";
 import { toWeiUnit } from "../services/web3";
-import GLOBALS from "../services/globals";
 import LoadingPurchase from "./LoadingPurchase";
+import { selectBuyPrice } from "../state/reducers/globals";
 
 const Content = styled.div`
   width: 100%;
@@ -35,6 +36,7 @@ const BuyWaifu: React.FC<Props> = (props) => {
   const [error, setError] = useState("");
   const [committed, setCommited] = useState(false);
   const [commitComplete, setCommitComplete] = useState(false);
+  const buyPrice = useSelector(selectBuyPrice);
 
   const buy = async () => {
     setError("");
@@ -65,7 +67,7 @@ const BuyWaifu: React.FC<Props> = (props) => {
     dungeonContract.methods
       .commitBuyWaifus(amount)
       .send({
-        value: new BN(toWeiUnit(GLOBALS.BUY_PRICE)).mul(new BN(amount)),
+        value: new BN(toWeiUnit(buyPrice)).mul(new BN(amount)),
         gas: estimatedGas,
       })
       .on("transactionHash", (hash: any) => {

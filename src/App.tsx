@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect } from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Navbar from "./components/Navbar";
 import WaifuDetail from "./pages/WaifuDetail";
 import Footer from "./components/Footer";
@@ -13,6 +14,8 @@ import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { initWeb3 } from "./services/web3";
 import Loading from "./components/Loading";
+import { setGlobals } from "./state/reducers/globals";
+import { getGlobals } from "./services/globals";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -27,8 +30,17 @@ const ContentWrapper = styled.div`
 `;
 
 const App: React.FC = () => {
-  useEffect(() => {
+  const dispatch = useDispatch();
+
+  const init = async () => {
     initWeb3();
+
+    const globals = await getGlobals();
+    dispatch(setGlobals(globals));
+  };
+
+  useEffect(() => {
+    init();
   }, []);
 
   return (

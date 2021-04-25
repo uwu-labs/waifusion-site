@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { ContractHelper } from "../services/contract";
-import GLOBALS from "../services/globals";
+import { getGlobals } from "../services/globals";
 import { Waifu } from "../types/waifusion";
 import Button from "./Button";
 import WaifuCard from "./WaifuCard";
@@ -46,18 +46,21 @@ const Preview: React.FC = () => {
   const [t] = useTranslation();
 
   const getDungeonPreview = async () => {
+    const globals = await getGlobals();
+
     const _waifus: Waifu[] = [];
-    const dungeonAddress = GLOBALS.DUNGEON_CONTRACT_ADDRESS;
     const contractHelper = new ContractHelper();
     await contractHelper.init();
 
-    const count = await contractHelper.waifuBalanceOfAddress(dungeonAddress);
+    const count = await contractHelper.waifuBalanceOfAddress(
+      globals.dungeonAddress
+    );
 
     const promises = Array.from(Array(WAIU_COUNT).keys()).map(async () => {
       const index = Math.floor(Math.random() * count);
       const id = await contractHelper.tokenOfAddressByIndex(
         index,
-        dungeonAddress
+        globals.dungeonAddress
       );
       _waifus.push({ id });
     });

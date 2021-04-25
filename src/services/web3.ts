@@ -12,6 +12,11 @@ export const initWeb3 = (): void => {
   window.web3 = new Web3(window.web3.currentProvider);
 };
 
+export const getNetwork = async (): Promise<number> => {
+  if (!window.web3) return 1;
+  return window.web3.eth.net.getId();
+};
+
 export const toEthUnit = (wei: BN): string => {
   if (!window.web3) return "";
   return Web3.utils.fromWei(wei);
