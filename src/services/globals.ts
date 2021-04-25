@@ -48,9 +48,7 @@ const GLOBALS: Globals = {
     : "0x21d2cf043937dcbaeff1feff75776f526b0c83d9",
   NFTX_WRAPPER: TEST_MODE
     ? "0x2966F786133f39e1b75c57Ce17eB1B32335ea560"
-    : waifuVersion === "eth"
-    ? "0xa862351f459ec386aa23e752d5435d268de2ef04"
-    : "",
+    : "0xa862351f459ec386aa23e752d5435d268de2ef04",
   INFURA_API:
     waifuVersion === "bsc"
       ? "https://bsc-dataseed.binance.org/"
