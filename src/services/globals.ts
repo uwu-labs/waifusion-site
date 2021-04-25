@@ -12,6 +12,7 @@ export type GlobalsData = {
   wetAddress: string;
   accoomulatorAddress: string;
   dungeonAddress: string;
+  wrapperAddress: string;
   nftxAddress: string;
   startingIndex: number;
   buyPrice: string;
@@ -27,7 +28,8 @@ export const TEST_GLOBALS: GlobalsData = {
   wetAddress: "0x38047BF7642f7fcD13ff53316AE2b698c8dE243C",
   accoomulatorAddress: "0x496099939A7a384b80c8380c4Cc36132fE8970aD",
   dungeonAddress: "0xfFA01A6F5c530157a2e639798F93D44009AA069a",
-  nftxAddress: "0x2966F786133f39e1b75c57Ce17eB1B32335ea560",
+  wrapperAddress: "0x2966F786133f39e1b75c57Ce17eB1B32335ea560",
+  nftxAddress: "0x245f0dd9142c5b3d52373127ee2fe3a87080ad06",
   startingIndex: 11595,
   buyPrice: "0.07",
   currency: "ETH",
@@ -43,7 +45,8 @@ export const ETH_GLOBALS: GlobalsData = {
   wetAddress: "0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
   accoomulatorAddress: "0x5cEB3ec62f8151628a6A645da52F0ba7e6d6de26",
   dungeonAddress: "0xB291984262259BcFe6Aa02b66a06e9769C5c1eF3",
-  nftxAddress: "0xa862351f459ec386aa23e752d5435d268de2ef04",
+  wrapperAddress: "0xa862351f459ec386aa23e752d5435d268de2ef04",
+  nftxAddress: "0x0F10E6ec76346c2362897BFe948c8011BB72880F",
   startingIndex: 11595,
   buyPrice: "0.7",
   currency: "ETH",
@@ -59,7 +62,8 @@ export const BSC_GLOBALS: GlobalsData = {
   wetAddress: "0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
   accoomulatorAddress: "0xe21580d17708b29455a42602B3A964B9a1BFBCCa",
   dungeonAddress: "0x21d2cf043937dcbaeff1feff75776f526b0c83d9",
-  nftxAddress: "0xa862351f459ec386aa23e752d5435d268de2ef04",
+  wrapperAddress: "",
+  nftxAddress: "",
   startingIndex: 11936,
   buyPrice: "1.8",
   currency: "BNB",
