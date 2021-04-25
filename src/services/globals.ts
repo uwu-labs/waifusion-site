@@ -7,7 +7,6 @@ type Globals = {
   ACCOOMULATOR_CONTRACT_ADDRESS: string;
   DUNGEON_CONTRACT_ADDRESS: string;
   NFTX_WRAPPER: string;
-  INFURA_API: string;
   STARTING_INDEX: number;
   TOTAL_WAIFUS: number;
   NAME_CHANGE_PRICE: number;
@@ -45,10 +44,6 @@ const GLOBALS: Globals = {
   NFTX_WRAPPER: TEST_MODE
     ? "0x2966F786133f39e1b75c57Ce17eB1B32335ea560"
     : "0xa862351f459ec386aa23e752d5435d268de2ef04",
-  INFURA_API:
-    waifuVersion === "bsc"
-      ? "https://bsc-dataseed.binance.org/"
-      : `https://mainnet.infura.io/v3/b732460c3da849bca6067e7bb72f4bee`,
   STARTING_INDEX: waifuVersion === "eth" ? 11595 : 11936,
   TOTAL_WAIFUS: 16384,
   NAME_CHANGE_PRICE: 1830000000000000000000,
