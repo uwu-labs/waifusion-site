@@ -36,5 +36,7 @@ export const selectBuyPrice = (state: RootState): string =>
   state.globals.data.buyPrice;
 export const selectImageApi = (state: RootState): string =>
   state.globals.data.imageApi;
+export const selectWetTradeLink = (state: RootState): string =>
+  state.globals.data.wetTradeLink;
 
 export default globalsSlice.reducer;

@@ -1,7 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import styled, { keyframes } from "styled-components";
-import GLOBALS from "../services/globals";
+import { selectWetTradeLink } from "../state/reducers/globals";
 import Button from "./Button";
 
 const rotate = keyframes`
@@ -79,6 +80,7 @@ const Item = styled.li`
 
 const WetSlide: React.FC = () => {
   const [t] = useTranslation();
+  const wetTradeLink = useSelector(selectWetTradeLink);
 
   return (
     <StyledSlide>
@@ -98,7 +100,7 @@ const WetSlide: React.FC = () => {
         <Button
           secondary
           onClick={() => {
-            (window as any).open(GLOBALS.WET_TRADE_LINK, "_blank").focus();
+            (window as any).open(wetTradeLink, "_blank").focus();
           }}
         >
           {t("buttons.getWet")}
