@@ -13,7 +13,7 @@ import {
   setWaifusApproved,
   setWetApproved,
 } from "../state/reducers/user";
-import { selectGlobalsData } from "../state/reducers/globals";
+import { selectGlobalsData, selectIsEth } from "../state/reducers/globals";
 
 const Content = styled.div`
   width: 100%;
@@ -43,9 +43,12 @@ const BurnWaifu: React.FC<Props> = (props) => {
   const [approving, setApproving] = useState(false);
   const [committed, setCommited] = useState(false);
   const [commitComplete, setCommitComplete] = useState(false);
+  const [isWaifuBurn, setIsWaifuBurn] = useState(false);
+  const [isNftxBurn, setIsNftxBurn] = useState(false);
   const wetApproved = useSelector(selectWetApproved);
   const waifusApproved = useSelector(selectWaifusApproved);
   const globals = useSelector(selectGlobalsData);
+  const isEth = useSelector(selectIsEth);
 
   const updateApprovals = async () => {
     setApproving(true);
@@ -141,7 +144,17 @@ const BurnWaifu: React.FC<Props> = (props) => {
   return (
     <>
       <Popup
-        show={props.show && !committed}
+        show={isEth && !isWaifuBurn && !isNftxBurn}
+        close={() => props.close()}
+        header={t("dungeon.headers.burnMethod")}
+        body={t("dungeon.bodys.burnMethod")}
+        buttonText={t("buttons.waifuNft")}
+        buttonAction={() => setIsWaifuBurn(true)}
+        secondButtonText={t("buttons.nftxWaifu")}
+        secondButtonAction={() => setIsNftxBurn(true)}
+      />
+      <Popup
+        show={props.show && !committed && (!isEth || isWaifuBurn || isNftxBurn)}
         close={() => props.close()}
         content={
           <Content>
