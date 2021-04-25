@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import styled, { keyframes } from "styled-components";
+import GLOBALS from "../services/globals";
 import Button from "./Button";
 
 const rotate = keyframes`
@@ -94,7 +95,14 @@ const WetSlide: React.FC = () => {
           </List>
           {t("wet.detail")}
         </Body>
-        <Button secondary>{t("buttons.getWet")}</Button>
+        <Button
+          secondary
+          onClick={() => {
+            (window as any).open(GLOBALS.WET_TRADE_LINK, "_blank").focus();
+          }}
+        >
+          {t("buttons.getWet")}
+        </Button>
       </Card>
     </StyledSlide>
   );

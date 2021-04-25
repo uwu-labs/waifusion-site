@@ -18,6 +18,7 @@ export type GlobalsData = {
   currency: string;
   imageApi: string;
   waifuApi: string;
+  wetTradeLink: string;
 };
 
 export const TEST_GLOBALS: GlobalsData = {
@@ -32,6 +33,8 @@ export const TEST_GLOBALS: GlobalsData = {
   currency: "ETH",
   imageApi: "https://global-harem.waifusion.sexy/v1/ETH_WAIFU/",
   waifuApi: "waifus/",
+  wetTradeLink:
+    "https://app.sushi.com/swap?inputCurrency=eth&outputCurrency=0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
 };
 
 export const ETH_GLOBALS: GlobalsData = {
@@ -46,6 +49,8 @@ export const ETH_GLOBALS: GlobalsData = {
   currency: "ETH",
   imageApi: "https://global-harem.waifusion.sexy/v1/ETH_WAIFU/",
   waifuApi: "waifus/",
+  wetTradeLink:
+    "https://app.sushi.com/swap?inputCurrency=eth&outputCurrency=0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
 };
 
 export const BSC_GLOBALS: GlobalsData = {
@@ -60,6 +65,8 @@ export const BSC_GLOBALS: GlobalsData = {
   currency: "BNB",
   imageApi: "https://global-harem.waifusion.sexy/v1/BSC_WAIFU/",
   waifuApi: "waifus/bsc/",
+  wetTradeLink:
+    "https://exchange.pancakeswap.finance/#/swap?inputCurrency=bnb&outputCurrency=0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
 };
 
 export const getGlobals = async (): Promise<GlobalsData> => {
