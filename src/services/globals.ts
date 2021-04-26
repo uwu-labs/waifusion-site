@@ -1,76 +1,77 @@
-const TEST_MODE = false;
+import { getNetwork } from "./web3";
 
-type Globals = {
-  WAIFU_VERSION: string;
-  WALLET_TYPE_WALLETCONNECT: string;
-  WALLET_TYPE_METAMASK: string;
-  WAIFU_CONTRACT_ADDRESS: string;
-  WET_CONTRACT_ADDRESS: string;
-  ACCOOMULATOR_CONTRACT_ADDRESS: string;
-  DUNGEON_CONTRACT_ADDRESS: string;
-  NFTX_WRAPPER: string;
-  INFURA_API: string;
-  STARTING_INDEX: number;
-  TOTAL_WAIFUS: number;
-  NAME_CHANGE_PRICE: number;
-  APPROVE_AMOUNT: string;
-  BUY_PRICE: string;
-  CURRENCY: string;
-  IMAGE_API: string;
-  WAIFU_API: string;
-  WET_TRADE_LINK: string;
+export enum Network {
+  ETH,
+  TEST,
+  BSC,
+}
+
+export type GlobalsData = {
+  network: Network;
+  waifuAddress: string;
+  wetAddress: string;
+  accoomulatorAddress: string;
+  dungeonAddress: string;
+  nftxAddress: string;
+  startingIndex: number;
+  buyPrice: string;
+  currency: string;
+  imageApi: string;
+  waifuApi: string;
+  wetTradeLink: string;
 };
 
-const waifuVersion =
-  typeof window !== "undefined" &&
-  window.location.hostname === "waifusionbsc.sexy"
-    ? "bsc"
-    : "eth";
-
-const GLOBALS: Globals = {
-  WAIFU_VERSION: waifuVersion,
-  WALLET_TYPE_WALLETCONNECT: "walletconnect",
-  WALLET_TYPE_METAMASK: "metamask",
-  WAIFU_CONTRACT_ADDRESS: TEST_MODE
-    ? "0xdb5b6d8058a8B3514c603B997Ee1810cD788ddeE"
-    : "0x2216d47494E516d8206B70FCa8585820eD3C4946",
-  WET_CONTRACT_ADDRESS: TEST_MODE
-    ? "0x38047BF7642f7fcD13ff53316AE2b698c8dE243C"
-    : "0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
-  ACCOOMULATOR_CONTRACT_ADDRESS: TEST_MODE
-    ? "0x8b086258BA3d4Cf5eebE628c5Ad82AC6A0320A87"
-    : waifuVersion === "eth"
-    ? "0x5cEB3ec62f8151628a6A645da52F0ba7e6d6de26"
-    : "0xe21580d17708b29455a42602B3A964B9a1BFBCCa",
-  DUNGEON_CONTRACT_ADDRESS: TEST_MODE
-    ? "0xfFA01A6F5c530157a2e639798F93D44009AA069a"
-    : waifuVersion === "eth"
-    ? "0xB291984262259BcFe6Aa02b66a06e9769C5c1eF3"
-    : "0x21d2cf043937dcbaeff1feff75776f526b0c83d9",
-  NFTX_WRAPPER: TEST_MODE
-    ? "0x2966F786133f39e1b75c57Ce17eB1B32335ea560"
-    : waifuVersion === "eth"
-    ? "0xa862351f459ec386aa23e752d5435d268de2ef04"
-    : "",
-  INFURA_API:
-    waifuVersion === "bsc"
-      ? "https://bsc-dataseed.binance.org/"
-      : `https://mainnet.infura.io/v3/b732460c3da849bca6067e7bb72f4bee`,
-  STARTING_INDEX: waifuVersion === "eth" ? 11595 : 11936,
-  TOTAL_WAIFUS: 16384,
-  NAME_CHANGE_PRICE: 1830000000000000000000,
-  APPROVE_AMOUNT: "16470000000000000000000",
-  BUY_PRICE: TEST_MODE ? "0.07" : waifuVersion === "eth" ? "0.7" : "1.8",
-  CURRENCY: waifuVersion === "eth" ? "ETH" : "BNB",
-  IMAGE_API:
-    waifuVersion === "eth"
-      ? "https://global-harem.waifusion.sexy/v1/ETH_WAIFU/"
-      : "https://global-harem.waifusion.sexy/v1/BSC_WAIFU/",
-  WAIFU_API: waifuVersion === "eth" ? "waifus/" : "waifus/bsc/",
-  WET_TRADE_LINK:
-    waifuVersion === "eth"
-      ? "https://app.sushi.com/swap?inputCurrency=eth&outputCurrency=0x76280af9d18a868a0af3dca95b57dde816c1aaf2"
-      : "https://exchange.pancakeswap.finance/#/swap?inputCurrency=bnb&outputCurrency=0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
+export const TEST_GLOBALS: GlobalsData = {
+  network: Network.TEST,
+  waifuAddress: "0xdb5b6d8058a8B3514c603B997Ee1810cD788ddeE",
+  wetAddress: "0x38047BF7642f7fcD13ff53316AE2b698c8dE243C",
+  accoomulatorAddress: "0x496099939A7a384b80c8380c4Cc36132fE8970aD",
+  dungeonAddress: "0xfFA01A6F5c530157a2e639798F93D44009AA069a",
+  nftxAddress: "0x2966F786133f39e1b75c57Ce17eB1B32335ea560",
+  startingIndex: 11595,
+  buyPrice: "0.07",
+  currency: "ETH",
+  imageApi: "https://global-harem.waifusion.sexy/v1/ETH_WAIFU/",
+  waifuApi: "waifus/",
+  wetTradeLink:
+    "https://app.sushi.com/swap?inputCurrency=eth&outputCurrency=0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
 };
 
-export default GLOBALS;
+export const ETH_GLOBALS: GlobalsData = {
+  network: Network.ETH,
+  waifuAddress: "0x2216d47494E516d8206B70FCa8585820eD3C4946",
+  wetAddress: "0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
+  accoomulatorAddress: "0x5cEB3ec62f8151628a6A645da52F0ba7e6d6de26",
+  dungeonAddress: "0xB291984262259BcFe6Aa02b66a06e9769C5c1eF3",
+  nftxAddress: "0xa862351f459ec386aa23e752d5435d268de2ef04",
+  startingIndex: 11595,
+  buyPrice: "0.7",
+  currency: "ETH",
+  imageApi: "https://global-harem.waifusion.sexy/v1/ETH_WAIFU/",
+  waifuApi: "waifus/",
+  wetTradeLink:
+    "https://app.sushi.com/swap?inputCurrency=eth&outputCurrency=0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
+};
+
+export const BSC_GLOBALS: GlobalsData = {
+  network: Network.BSC,
+  waifuAddress: "0x2216d47494E516d8206B70FCa8585820eD3C4946",
+  wetAddress: "0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
+  accoomulatorAddress: "0xe21580d17708b29455a42602B3A964B9a1BFBCCa",
+  dungeonAddress: "0x21d2cf043937dcbaeff1feff75776f526b0c83d9",
+  nftxAddress: "0xa862351f459ec386aa23e752d5435d268de2ef04",
+  startingIndex: 11936,
+  buyPrice: "1.8",
+  currency: "BNB",
+  imageApi: "https://global-harem.waifusion.sexy/v1/BSC_WAIFU/",
+  waifuApi: "waifus/bsc/",
+  wetTradeLink:
+    "https://exchange.pancakeswap.finance/#/swap?inputCurrency=bnb&outputCurrency=0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
+};
+
+export const getGlobals = async (): Promise<GlobalsData> => {
+  const networkId = await getNetwork();
+  if (networkId === 1) return ETH_GLOBALS;
+  if (networkId === 4) return TEST_GLOBALS;
+  return BSC_GLOBALS;
+};

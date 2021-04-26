@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { ContractHelper } from "../services/contract";
 import Input from "./Input";
 import Popup from "./Popup";
-import GLOBALS from "../services/globals";
 import LoadingPurchase from "./LoadingPurchase";
 import {
   selectWaifusApproved,
@@ -14,6 +13,7 @@ import {
   setWaifusApproved,
   setWetApproved,
 } from "../state/reducers/user";
+import { selectGlobalsData } from "../state/reducers/globals";
 
 const Content = styled.div`
   width: 100%;
@@ -45,6 +45,7 @@ const BurnWaifu: React.FC<Props> = (props) => {
   const [commitComplete, setCommitComplete] = useState(false);
   const wetApproved = useSelector(selectWetApproved);
   const waifusApproved = useSelector(selectWaifusApproved);
+  const globals = useSelector(selectGlobalsData);
 
   const updateApprovals = async () => {
     setApproving(true);
@@ -68,10 +69,7 @@ const BurnWaifu: React.FC<Props> = (props) => {
     await contractHelper.init();
     const wetContract = await contractHelper.getWetContract();
     wetContract.methods
-      .approve(
-        GLOBALS.DUNGEON_CONTRACT_ADDRESS,
-        new BN("9999999999999999999999999999")
-      )
+      .approve(globals.dungeonAddress, new BN("9999999999999999999999999999"))
       .send()
       .on("transactionHash", (hash: any) => {
         setApproving(true);
@@ -90,7 +88,7 @@ const BurnWaifu: React.FC<Props> = (props) => {
     await contractHelper.init();
     const waifuContract = await contractHelper.getWaifuContract();
     waifuContract.methods
-      .setApprovalForAll(GLOBALS.DUNGEON_CONTRACT_ADDRESS, true)
+      .setApprovalForAll(globals.dungeonAddress, true)
       .send()
       .on("transactionHash", (hash: any) => {
         setApproving(true);

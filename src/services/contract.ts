@@ -5,11 +5,11 @@ import { toEthUnit } from "./web3";
 
 import WaifuABI from "../contracts/ERC721.json";
 import WETABI from "../contracts/ERC20.json";
-import ACCOOMULATORABI from "../contracts/Accoomulator.json";
-import DUNGEON from "../contracts/Dungeon.json";
-import DUNGEONBSC from "../contracts/DungeonBSC.json";
-import GLOBALS from "./globals";
+import accomulatorAbi from "../contracts/Accoomulator.json";
+import dungeonAbi from "../contracts/Dungeon.json";
+
 import { Waifu } from "../types/waifusion";
+import { getGlobals, GlobalsData } from "./globals";
 
 export type AccoomulateWaifu = {
   wetAccumulate: string;
@@ -31,19 +31,24 @@ export const getAddress = async (): Promise<string> => {
 export class ContractHelper {
   address: string;
 
+  globals: GlobalsData | undefined;
+
   constructor() {
     this.address = "";
   }
 
   init = async (): Promise<void> => {
     this.address = await getAddress();
+
+    const _globals = await getGlobals();
+    this.globals = _globals;
   };
 
   // Contracts
   getDungeonContract = async (): Promise<Contract> => {
     return new (window as any).web3.eth.Contract(
-      GLOBALS.WAIFU_VERSION === "eth" ? DUNGEON : DUNGEONBSC,
-      GLOBALS.DUNGEON_CONTRACT_ADDRESS,
+      dungeonAbi,
+      this.globals?.dungeonAddress,
       {
         from: this.address,
       }
@@ -53,7 +58,7 @@ export class ContractHelper {
   getWaifuContract = async (): Promise<Contract> => {
     return new (window as any).web3.eth.Contract(
       WaifuABI,
-      GLOBALS.WAIFU_CONTRACT_ADDRESS,
+      this.globals?.waifuAddress,
       {
         from: this.address,
       }
@@ -63,7 +68,7 @@ export class ContractHelper {
   getWetContract = async (): Promise<Contract> => {
     return new (window as any).web3.eth.Contract(
       WETABI,
-      GLOBALS.WET_CONTRACT_ADDRESS,
+      this.globals?.wetAddress,
       {
         from: this.address,
       }
@@ -72,8 +77,8 @@ export class ContractHelper {
 
   getAccoomulateContract = async (): Promise<Contract> => {
     return new (window as any).web3.eth.Contract(
-      ACCOOMULATORABI,
-      GLOBALS.ACCOOMULATOR_CONTRACT_ADDRESS,
+      accomulatorAbi,
+      this.globals?.accoomulatorAddress,
       {
         from: this.address,
       }
@@ -84,7 +89,7 @@ export class ContractHelper {
   isDungeonApprovedForAll = async (): Promise<boolean> => {
     const waifuContract = await this.getWaifuContract();
     const approvedForAll = await waifuContract.methods
-      .isApprovedForAll(this.address, GLOBALS.DUNGEON_CONTRACT_ADDRESS)
+      .isApprovedForAll(this.address, this.globals?.dungeonAddress)
       .call();
     return approvedForAll;
   };
@@ -92,7 +97,7 @@ export class ContractHelper {
   getDungeonAllowance = async (): Promise<number> => {
     const wetContract = await this.getWetContract();
     const currentAllowance = await wetContract.methods
-      .allowance(this.address, GLOBALS.DUNGEON_CONTRACT_ADDRESS)
+      .allowance(this.address, this.globals?.dungeonAddress)
       .call();
     return currentAllowance;
   };
@@ -108,7 +113,7 @@ export class ContractHelper {
   getAllowance = async (): Promise<number> => {
     const wetContract = await this.getWetContract();
     const currentAllowance = await wetContract.methods
-      .allowance(this.address, GLOBALS.WAIFU_CONTRACT_ADDRESS)
+      .allowance(this.address, this.globals?.waifuAddress)
       .call();
     return currentAllowance;
   };
@@ -217,8 +222,8 @@ export class ContractHelper {
   getWaifusOfAddress = async (address: string): Promise<Waifu[]> => {
     const waifus: Waifu[] = [];
 
-    const t = await this.accoomulateOfAddress(address);
-    await t.forEach(async (token: any) => {
+    const tokens = await this.accoomulateOfAddress(address);
+    tokens.forEach((token: any) => {
       const accumulated = new BN(token.wetAccumulated);
       const accumulatedWETNumber = Number(toEthUnit(accumulated));
       waifus.push({

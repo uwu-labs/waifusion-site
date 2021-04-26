@@ -13,7 +13,7 @@ import Loading from "../components/Loading";
 import TraitTag from "../components/TraitTag";
 import WaifuOwner from "../components/WaifuOwner";
 import { makeRequest } from "../services/api";
-import GLOBALS from "../services/globals";
+import { getGlobals } from "../services/globals";
 import { selectAddress, selectUserWaifuIds } from "../state/reducers/user";
 import { addWaifu, selectWaifus, setWaifus } from "../state/reducers/waifus";
 import { Waifu, Attribute } from "../types/waifusion";
@@ -124,7 +124,8 @@ const WaifuDetail: React.FC = () => {
   const address = useSelector(selectAddress);
 
   const getWaifu = async () => {
-    const response = await makeRequest(`${GLOBALS.WAIFU_API}/${id}`, {
+    const globals = await getGlobals();
+    const response = await makeRequest(`${globals.waifuApi}/${id}`, {
       method: "GET",
       body: null,
     });

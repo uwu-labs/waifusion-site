@@ -1,7 +1,8 @@
 import React, { memo } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import GLOBALS from "../services/globals";
+import { selectImageApi } from "../state/reducers/globals";
 import { Waifu } from "../types/waifusion";
 import { ArrowRightIcon } from "./Icons";
 import WaifuCardImage from "./WaifuCardImage";
@@ -72,6 +73,8 @@ type Props = {
 };
 
 const WaifuCard: React.FC<Props> = ({ waifu }) => {
+  const imageApi = useSelector(selectImageApi);
+
   return (
     <Container to={`/waifu/${waifu.id}`}>
       <DetailHeader>
@@ -79,7 +82,7 @@ const WaifuCard: React.FC<Props> = ({ waifu }) => {
       </DetailHeader>
       <ImageContainer>
         <WaifuCardImage
-          src={`${GLOBALS.IMAGE_API}${waifu.id}.png`}
+          src={`${imageApi}${waifu.id}.png`}
           alt={`Waifu ${waifu.name} #${waifu.id}`}
         />
       </ImageContainer>
