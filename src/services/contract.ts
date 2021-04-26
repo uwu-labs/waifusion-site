@@ -107,6 +107,11 @@ export class ContractHelper {
   };
 
   // Functions
+  getUserWrapperAddress = async (): Promise<string> => {
+    const wrapperContract = await this.getWrapperContract();
+    return wrapperContract.methods.userWrapperAddr(this.address).call();
+  };
+
   isWaifuApprovedForDungeon = async (): Promise<boolean> => {
     const waifuContract = await this.getWaifuContract();
     const approvedForAll = await waifuContract.methods
@@ -122,16 +127,18 @@ export class ContractHelper {
 
   isWetApprovedForWrapper = async (): Promise<boolean> => {
     const wetContract = await this.getWetContract();
+    const userWrapperAddress = await this.getUserWrapperAddress();
     const allowance = await wetContract.methods
-      .allowance(this.address, this.globals?.wrapperAddress)
+      .allowance(this.address, userWrapperAddress)
       .call();
     return new BN(allowance) > new BN("9999999999999999999999999");
   };
 
   isNftxApprovedForWrapper = async (): Promise<boolean> => {
     const nftxContract = await this.getNftxContract();
+    const userWrapperAddress = await this.getUserWrapperAddress();
     const allowance = await nftxContract.methods
-      .allowance(this.address, this.globals?.wrapperAddress)
+      .allowance(this.address, userWrapperAddress)
       .call();
     return new BN(allowance) > new BN("9999999999999999999999999");
   };
@@ -149,8 +156,6 @@ export class ContractHelper {
     const commits = await dungeonContract.methods.commits(this.address).call();
     return commits.block > 0;
   };
-
-  // Other Functions
 
   getAllowance = async (): Promise<number> => {
     const wetContract = await this.getWetContract();

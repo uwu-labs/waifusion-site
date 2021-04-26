@@ -104,7 +104,8 @@ const BurnWaifu: React.FC<Props> = (props) => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const wetContract = await contractHelper.getWetContract();
-    await approve(wetContract, globals.wrapperAddress);
+    const userWrapperAddress = await contractHelper.getUserWrapperAddress();
+    await approve(wetContract, userWrapperAddress);
   };
 
   const approveWaifusForDungeon = async () => {
@@ -118,7 +119,8 @@ const BurnWaifu: React.FC<Props> = (props) => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const nftxContract = await contractHelper.getNftxContract();
-    await approve(nftxContract, globals.wrapperAddress);
+    const userWrapperAddress = await contractHelper.getUserWrapperAddress();
+    await approve(nftxContract, userWrapperAddress);
   };
 
   const burnWaifu = async () => {
