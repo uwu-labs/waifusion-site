@@ -3,10 +3,11 @@ import Web3 from "web3";
 import BN from "bn.js";
 import { toEthUnit } from "./web3";
 
-import WaifuABI from "../contracts/ERC721.json";
-import WETABI from "../contracts/ERC20.json";
+import waifuAbi from "../contracts/ERC721.json";
+import erc20Abi from "../contracts/ERC20.json";
 import accomulatorAbi from "../contracts/Accoomulator.json";
 import dungeonAbi from "../contracts/Dungeon.json";
+import wrapperAbi from "../contracts/NFTXWrapper.json";
 
 import { Waifu } from "../types/waifusion";
 import { getGlobals, GlobalsData } from "./globals";
@@ -57,7 +58,7 @@ export class ContractHelper {
 
   getWaifuContract = async (): Promise<Contract> => {
     return new (window as any).web3.eth.Contract(
-      WaifuABI,
+      waifuAbi,
       this.globals?.waifuAddress,
       {
         from: this.address,
@@ -67,8 +68,28 @@ export class ContractHelper {
 
   getWetContract = async (): Promise<Contract> => {
     return new (window as any).web3.eth.Contract(
-      WETABI,
+      erc20Abi,
       this.globals?.wetAddress,
+      {
+        from: this.address,
+      }
+    );
+  };
+
+  getNftxContract = async (): Promise<Contract> => {
+    return new (window as any).web3.eth.Contract(
+      erc20Abi,
+      this.globals?.nftxAddress,
+      {
+        from: this.address,
+      }
+    );
+  };
+
+  getWrapperContract = async (): Promise<Contract> => {
+    return new (window as any).web3.eth.Contract(
+      wrapperAbi,
+      this.globals?.wrapperAddress,
       {
         from: this.address,
       }
@@ -86,12 +107,40 @@ export class ContractHelper {
   };
 
   // Functions
-  isDungeonApprovedForAll = async (): Promise<boolean> => {
+  getUserWrapperAddress = async (): Promise<string> => {
+    const wrapperContract = await this.getWrapperContract();
+    return wrapperContract.methods.userWrapperAddr(this.address).call();
+  };
+
+  isWaifuApprovedForDungeon = async (): Promise<boolean> => {
     const waifuContract = await this.getWaifuContract();
     const approvedForAll = await waifuContract.methods
       .isApprovedForAll(this.address, this.globals?.dungeonAddress)
       .call();
     return approvedForAll;
+  };
+
+  isWetApprovedForDungeon = async (): Promise<boolean> => {
+    const dungeonAllowance = await this.getDungeonAllowance();
+    return new BN(dungeonAllowance) > new BN("9999999999999999999999999");
+  };
+
+  isWetApprovedForWrapper = async (): Promise<boolean> => {
+    const wetContract = await this.getWetContract();
+    const userWrapperAddress = await this.getUserWrapperAddress();
+    const allowance = await wetContract.methods
+      .allowance(this.address, userWrapperAddress)
+      .call();
+    return new BN(allowance) > new BN("9999999999999999999999999");
+  };
+
+  isNftxApprovedForWrapper = async (): Promise<boolean> => {
+    const nftxContract = await this.getNftxContract();
+    const userWrapperAddress = await this.getUserWrapperAddress();
+    const allowance = await nftxContract.methods
+      .allowance(this.address, userWrapperAddress)
+      .call();
+    return new BN(allowance) > new BN("9999999999999999999999999");
   };
 
   getDungeonAllowance = async (): Promise<number> => {
@@ -107,8 +156,6 @@ export class ContractHelper {
     const commits = await dungeonContract.methods.commits(this.address).call();
     return commits.block > 0;
   };
-
-  // Other Functions
 
   getAllowance = async (): Promise<number> => {
     const wetContract = await this.getWetContract();

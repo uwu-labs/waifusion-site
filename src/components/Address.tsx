@@ -7,6 +7,8 @@ import { selectAddress, setAddress } from "../state/reducers/user";
 import { ChevronDownIcon } from "./Icons";
 import Button from "./Button";
 import { getAddress } from "../services/contract";
+import { getGlobals } from "../services/globals";
+import { setGlobals } from "../state/reducers/globals";
 
 const SignedInAddressContainer = styled(Button)`
   svg {
@@ -30,6 +32,9 @@ const Address: React.FC = () => {
   const updateAddress = async (): Promise<void> => {
     const _address = await getAddress();
     dispatch(setAddress(_address));
+
+    const globals = await getGlobals();
+    dispatch(setGlobals(globals));
   };
 
   useEffect(() => {

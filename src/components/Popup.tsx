@@ -63,14 +63,33 @@ const Body = styled.p`
   color: var(--plain-dark);
 `;
 
+const ButtonContainer = styled.div`
+  margin-top: 2rem;
+  display: flex;
+
+  button {
+    margin: 0 1rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    button {
+      margin: 1rem 0;
+    }
+  }
+`;
+
 type Props = {
   show: boolean;
   close: () => void;
   header?: string;
   body?: string;
   content?: JSX.Element;
-  buttonAction?: () => void;
   buttonText?: string;
+  buttonAction?: () => void;
+  secondButtonText?: string;
+  secondButtonAction?: () => void;
 };
 
 const Popup: React.FC<Props> = (props) => {
@@ -83,15 +102,29 @@ const Popup: React.FC<Props> = (props) => {
         {props.header && <Header>{props.header}</Header>}
         {props.body && <Body>{props.body}</Body>}
         {props.content && props.content}
-        {props.buttonAction && props.buttonText && (
-          <Button
-            primary
-            onClick={() => {
-              if (props.buttonAction) props.buttonAction();
-            }}
-          >
-            {props.buttonText}
-          </Button>
+        {(props.buttonText || props.secondButtonText) && (
+          <ButtonContainer>
+            {props.buttonText && (
+              <Button
+                primary
+                onClick={() => {
+                  if (props.buttonAction) props.buttonAction();
+                }}
+              >
+                {props.buttonText}
+              </Button>
+            )}
+            {props.secondButtonText && (
+              <Button
+                secondary
+                onClick={() => {
+                  if (props.secondButtonAction) props.secondButtonAction();
+                }}
+              >
+                {props.secondButtonText}
+              </Button>
+            )}
+          </ButtonContainer>
         )}
       </Container>
     </StyledPopup>

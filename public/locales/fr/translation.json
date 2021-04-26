@@ -21,6 +21,7 @@
     "getWet": "Obtenez des WET",
     "buyWaifu": "Acheter une Waifu",
     "burnWaifu": "Bruler une Waifu",
+    "burnNftx": "TODO",
     "search": "Chercher",
     "buy": "Acheter",
     "loading": "Chargement",
@@ -28,7 +29,10 @@
     "close": "Fermer",
     "approveWet": "Approuver ce WET",
     "approveWaifus": "Approuver ces Waifus",
-    "changeName": "Changer de nom"
+    "approveNftx": "TODO",
+    "changeName": "Changer de nom",
+    "waifuNft": "TODO",
+    "nftxWaifu": "TODO"
   },
   "headers": {
     "browse": "Parcourir les Waifus",
@@ -54,17 +58,21 @@
     "headers": {
       "buy": "Acheter une Waifu",
       "burn": "Bruler des Waifus",
+      "burnNftx": "TODO",
       "loadingPurchase": "Chargement de l'achat",
       "loadingReveal": "Chargement de la révélation",
       "revealReady": "Prêt à révéler",
       "revealed": "Waifus révélés!",
-      "available": "TODO"
+      "available": "TODO",
+      "burnMethod": "TODO"
     },
     "bodys": {
       "buy": "Sélectionnez le nombre de Waifus que vous souhaitez acheter",
       "burn": "Entrez les identifiants des Waifus que vous souhaitez bruler",
+      "burnNftx": "TODO",
       "loadingPurchase": "Lorsque l'achat est terminé, vous devez les révéler immédiatement ou vous risquerez de perdre vos Waifus pour toujours",
-      "revealReady": "Vos Waifus on été achetés! Cliquez sur révéler ci-dessous pour voir ce que vous avez"
+      "revealReady": "Vos Waifus on été achetés! Cliquez sur révéler ci-dessous pour voir ce que vous avez",
+      "burnMethod": "TODO"
     }
   },
   "wet": {
@@ -95,6 +103,7 @@
     "valid": "Ce n'est pas un numéro valide",
     "whole": "Doit être un nombre entier",
     "maximum": "Maximum de 20 autorisés",
+    "maximumNftx": "TODO",
     "minimum": "Minimum de 1 autorisé",
     "short": "Nom trop court",
     "long": "Nom trop long",

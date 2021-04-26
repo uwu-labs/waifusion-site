@@ -6,16 +6,20 @@ interface UserState {
   address: string;
   waifuIndexes: number[];
   loadingWafius: boolean;
-  wetApproved: boolean;
-  waifusApproved: boolean;
+  wetApprovedForDungeon: boolean;
+  waifusApprovedForDungeon: boolean;
+  wetApprovedForWrapper: boolean;
+  nftxApprovedForWrapper: boolean;
 }
 
 const initialState: UserState = {
   address: "",
   waifuIndexes: [],
   loadingWafius: false,
-  wetApproved: false,
-  waifusApproved: false,
+  wetApprovedForDungeon: false,
+  waifusApprovedForDungeon: false,
+  wetApprovedForWrapper: false,
+  nftxApprovedForWrapper: false,
 };
 
 export const userSlice = createSlice({
@@ -34,11 +38,17 @@ export const userSlice = createSlice({
     completeLoadWaifus: (state) => {
       state.loadingWafius = false;
     },
-    setWetApproved: (state, action: PayloadAction<boolean>) => {
-      state.wetApproved = action.payload;
+    setWetApprovedForDungeon: (state, action: PayloadAction<boolean>) => {
+      state.wetApprovedForDungeon = action.payload;
     },
-    setWaifusApproved: (state, action: PayloadAction<boolean>) => {
-      state.waifusApproved = action.payload;
+    setWaifusApprovedForDungeon: (state, action: PayloadAction<boolean>) => {
+      state.waifusApprovedForDungeon = action.payload;
+    },
+    setWetApprovedForWrapper: (state, action: PayloadAction<boolean>) => {
+      state.wetApprovedForWrapper = action.payload;
+    },
+    setNftxApprovedForWrapper: (state, action: PayloadAction<boolean>) => {
+      state.nftxApprovedForWrapper = action.payload;
     },
   },
 });
@@ -48,8 +58,10 @@ export const {
   setWaifuIndexes,
   loadWaifus,
   completeLoadWaifus,
-  setWetApproved,
-  setWaifusApproved,
+  setWetApprovedForDungeon,
+  setWaifusApprovedForDungeon,
+  setWetApprovedForWrapper,
+  setNftxApprovedForWrapper,
 } = userSlice.actions;
 
 export const selectLoadingWaifus = (state: RootState): boolean =>
@@ -67,9 +79,13 @@ export const selectTotalAccumulated = (state: RootState): number => {
     .filter((waifu: Waifu) => state.user.waifuIndexes.indexOf(waifu.id) > -1)
     .reduce((a: number, b: Waifu) => a + (b.accumulatedWet || 0), 0);
 };
-export const selectWetApproved = (state: RootState): boolean =>
-  state.user.wetApproved;
-export const selectWaifusApproved = (state: RootState): boolean =>
-  state.user.waifusApproved;
+export const selectWetApprovedForDungeon = (state: RootState): boolean =>
+  state.user.wetApprovedForDungeon;
+export const selectWaifusApprovedForDungeon = (state: RootState): boolean =>
+  state.user.waifusApprovedForDungeon;
+export const selectWetApprovedForWrapper = (state: RootState): boolean =>
+  state.user.wetApprovedForWrapper;
+export const selectNftxApprovedForWrapper = (state: RootState): boolean =>
+  state.user.nftxApprovedForWrapper;
 
 export default userSlice.reducer;
