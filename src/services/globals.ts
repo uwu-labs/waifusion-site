@@ -45,7 +45,7 @@ export const ETH_GLOBALS: GlobalsData = {
   wetAddress: "0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
   accoomulatorAddress: "0x5cEB3ec62f8151628a6A645da52F0ba7e6d6de26",
   dungeonAddress: "0xB291984262259BcFe6Aa02b66a06e9769C5c1eF3",
-  wrapperAddress: "0xa862351f459ec386aa23e752d5435d268de2ef04",
+  wrapperAddress: "0x0dc79a38f2fDFD6df40F69d9784d2a869b58A137",
   nftxAddress: "0x0F10E6ec76346c2362897BFe948c8011BB72880F",
   startingIndex: 11595,
   buyPrice: "0.7",
