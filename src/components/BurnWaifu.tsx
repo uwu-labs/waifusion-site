@@ -77,7 +77,10 @@ const BurnWaifu: React.FC<Props> = (props) => {
     updateApprovals();
   }, []);
 
-  const approve = async (tokenContract: Contract, approveAddress: string) => {
+  const tokenApprove = async (
+    tokenContract: Contract,
+    approveAddress: string
+  ) => {
     tokenContract.methods
       .approve(approveAddress, new BN("9999999999999999999999999999"))
       .send()
@@ -97,7 +100,7 @@ const BurnWaifu: React.FC<Props> = (props) => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const wetContract = await contractHelper.getWetContract();
-    await approve(wetContract, globals.dungeonAddress);
+    await tokenApprove(wetContract, globals.dungeonAddress);
   };
 
   const approveWetForWrapper = async () => {
@@ -105,14 +108,26 @@ const BurnWaifu: React.FC<Props> = (props) => {
     await contractHelper.init();
     const wetContract = await contractHelper.getWetContract();
     const userWrapperAddress = await contractHelper.getUserWrapperAddress();
-    await approve(wetContract, userWrapperAddress);
+    await tokenApprove(wetContract, userWrapperAddress);
   };
 
   const approveWaifusForDungeon = async () => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const waifuContract = await contractHelper.getWaifuContract();
-    await approve(waifuContract, globals.dungeonAddress);
+    waifuContract.methods
+      .setApprovalForAll(globals.dungeonAddress, true)
+      .send()
+      .on("transactionHash", (hash: any) => {
+        setApproving(true);
+      })
+      .on("receipt", (receipt: any) => {
+        updateApprovals().then(() => setApproving(false));
+      })
+      .on("error", (err: any) => {
+        console.log(`Error: ${err}`);
+        setApproving(false);
+      });
   };
 
   const approveNftxForWrapper = async () => {
@@ -120,7 +135,7 @@ const BurnWaifu: React.FC<Props> = (props) => {
     await contractHelper.init();
     const nftxContract = await contractHelper.getNftxContract();
     const userWrapperAddress = await contractHelper.getUserWrapperAddress();
-    await approve(nftxContract, userWrapperAddress);
+    await tokenApprove(nftxContract, userWrapperAddress);
   };
 
   const burnWaifu = async () => {
