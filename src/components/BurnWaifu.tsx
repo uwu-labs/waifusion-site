@@ -192,9 +192,10 @@ const BurnWaifu: React.FC<Props> = (props) => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const wrapperContract = await contractHelper.getWrapperContract();
+    const estimatedGas = 150_000 + 550_000 * Number(nftxCount);
     wrapperContract.methods
       .commitWaifusWithNFTX(nftxCount)
-      .send()
+      .send({ gas: estimatedGas })
       .on("transactionHash", (hash: any) => {
         setCommited(true);
       })
@@ -288,6 +289,7 @@ const BurnWaifu: React.FC<Props> = (props) => {
         close={() => props.close()}
         loading={!commitComplete}
         isNftx={isNftxBurn}
+        nftxCount={Number(nftxCount)}
       />
     </>
   );

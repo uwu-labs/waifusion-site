@@ -17,6 +17,7 @@ type Props = {
   close: () => void;
   loading: boolean;
   isNftx?: boolean;
+  nftxCount?: number;
 };
 
 const LoadingPurchase: React.FC<Props> = (props) => {
@@ -48,9 +49,10 @@ const LoadingPurchase: React.FC<Props> = (props) => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const wrapperContract = await contractHelper.getWrapperContract();
+    const estimatedGas = 300_000 * (props.nftxCount || 1);
     wrapperContract.methods
       .revealWaifusWithNFTX()
-      .send()
+      .send({ gas: estimatedGas })
       .on("transactionHash", (hash: any) => {
         setLoading(true);
       })
