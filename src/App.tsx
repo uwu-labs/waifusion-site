@@ -32,11 +32,18 @@ const ContentWrapper = styled.div`
 const App: React.FC = () => {
   const dispatch = useDispatch();
 
-  const init = async () => {
-    initWeb3();
-
+  const updateGlobals = async () => {
     const globals = await getGlobals();
     dispatch(setGlobals(globals));
+  };
+
+  const init = async () => {
+    initWeb3();
+    (window as any).ethereum.enable();
+    (window as any).ethereum.on("networkChanged", async () => {
+      await updateGlobals();
+    });
+    await updateGlobals();
   };
 
   useEffect(() => {
