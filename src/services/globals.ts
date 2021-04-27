@@ -78,7 +78,7 @@ export const BSC_GLOBALS: GlobalsData = {
   waifuApi: "waifus/bsc/",
   wetTradeLink:
     "https://exchange.pancakeswap.finance/#/swap?inputCurrency=bnb&outputCurrency=0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
-  waifuTradeLink: "https://whalecrate.com/browse/waifus",
+  waifuTradeLink: "https://nftkey.app/collections/waifusion/bsc/",
 };
 
 export const getGlobals = async (): Promise<GlobalsData> => {
