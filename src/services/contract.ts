@@ -283,4 +283,25 @@ export class ContractHelper {
 
     return waifus;
   };
+
+  // Views
+  getBuyPrice = async (): Promise<string> => {
+    const dungeonContract = await this.getDungeonContract();
+    if (this.globals?.network === Network.ETH)
+      return toEthUnit(await dungeonContract.methods.buyCost().call());
+    return toEthUnit(await dungeonContract.methods.buyCost().call());
+  };
+
+  getWetBurnPrice = async (): Promise<string> => {
+    const contract = await this.getDungeonContract();
+    if (this.globals?.network === Network.ETH)
+      return toEthUnit(await contract.methods.swapCost().call());
+    return toEthUnit(await contract.methods.swapWETCost().call());
+  };
+
+  getBnbBurnPrice = async (): Promise<string> => {
+    const contract = await this.getDungeonContract();
+    if (this.globals?.network === Network.ETH) return "";
+    return toEthUnit(await contract.methods.swapETHCost().call());
+  };
 }

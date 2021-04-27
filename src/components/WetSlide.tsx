@@ -2,7 +2,10 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import styled, { keyframes } from "styled-components";
-import { selectWetTradeLink } from "../state/reducers/globals";
+import {
+  selectWetBurnPrice,
+  selectWetTradeLink,
+} from "../state/reducers/globals";
 import Button from "./Button";
 
 const rotate = keyframes`
@@ -81,6 +84,9 @@ const Item = styled.li`
 const WetSlide: React.FC = () => {
   const [t] = useTranslation();
   const wetTradeLink = useSelector(selectWetTradeLink);
+  const wetBurnPrice = useSelector(selectWetBurnPrice);
+
+  const wetDetail = t("wet.detail").replace("[[WET_BURN_PRICE]]", wetBurnPrice);
 
   return (
     <StyledSlide>
@@ -95,7 +101,7 @@ const WetSlide: React.FC = () => {
               )
             )}
           </List>
-          {t("wet.detail")}
+          {wetDetail}
         </Body>
         <Button
           secondary

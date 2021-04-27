@@ -15,8 +15,6 @@ export type GlobalsData = {
   wrapperAddress: string;
   nftxAddress: string;
   startingIndex: number;
-  buyPrice: string;
-  burnPrice: string;
   currency: string;
   imageApi: string;
   waifuApi: string;
@@ -33,8 +31,6 @@ export const TEST_GLOBALS: GlobalsData = {
   wrapperAddress: "0x2966F786133f39e1b75c57Ce17eB1B32335ea560",
   nftxAddress: "0x245f0dd9142c5b3d52373127ee2fe3a87080ad06",
   startingIndex: 11595,
-  buyPrice: "0.07",
-  burnPrice: "0",
   currency: "ETH",
   imageApi: "https://global-harem.waifusion.sexy/v1/ETH_WAIFU/",
   waifuApi: "waifus/",
@@ -52,8 +48,6 @@ export const ETH_GLOBALS: GlobalsData = {
   wrapperAddress: "0x0dc79a38f2fDFD6df40F69d9784d2a869b58A137",
   nftxAddress: "0x0F10E6ec76346c2362897BFe948c8011BB72880F",
   startingIndex: 11595,
-  buyPrice: "0.7",
-  burnPrice: "0",
   currency: "ETH",
   imageApi: "https://global-harem.waifusion.sexy/v1/ETH_WAIFU/",
   waifuApi: "waifus/",
@@ -71,8 +65,6 @@ export const BSC_GLOBALS: GlobalsData = {
   wrapperAddress: "",
   nftxAddress: "",
   startingIndex: 11936,
-  buyPrice: "1.8",
-  burnPrice: "0.25",
   currency: "BNB",
   imageApi: "https://global-harem.waifusion.sexy/v1/BSC_WAIFU/",
   waifuApi: "waifus/bsc/",

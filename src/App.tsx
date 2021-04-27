@@ -14,8 +14,14 @@ import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { initWeb3 } from "./services/web3";
 import Loading from "./components/Loading";
-import { setGlobals } from "./state/reducers/globals";
+import {
+  setBnbBurnPrice,
+  setBuyPrice,
+  setGlobals,
+  setWetBurnPrice,
+} from "./state/reducers/globals";
 import { getGlobals } from "./services/globals";
+import { ContractHelper } from "./services/contract";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -32,11 +38,27 @@ const ContentWrapper = styled.div`
 const App: React.FC = () => {
   const dispatch = useDispatch();
 
-  const init = async () => {
-    initWeb3();
-
+  const updateGlobals = async () => {
     const globals = await getGlobals();
     dispatch(setGlobals(globals));
+
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
+    const buyPrice = await contractHelper.getBuyPrice();
+    dispatch(setBuyPrice(buyPrice));
+    const wetBurnPrice = await contractHelper.getWetBurnPrice();
+    dispatch(setWetBurnPrice(wetBurnPrice));
+    const bnbBurnPrice = await contractHelper.getBnbBurnPrice();
+    dispatch(setBnbBurnPrice(bnbBurnPrice));
+  };
+
+  const init = async () => {
+    initWeb3();
+    (window as any).ethereum.enable();
+    (window as any).ethereum.on("networkChanged", async () => {
+      await updateGlobals();
+    });
+    await updateGlobals();
   };
 
   useEffect(() => {

@@ -18,7 +18,11 @@ import {
   setWetApprovedForWrapper,
   setNftxApprovedForWrapper,
 } from "../state/reducers/user";
-import { selectGlobalsData, selectIsEth } from "../state/reducers/globals";
+import {
+  selectBnbBurnPrice,
+  selectGlobalsData,
+  selectIsEth,
+} from "../state/reducers/globals";
 import { toWeiUnit } from "../services/web3";
 
 const Content = styled.div`
@@ -60,6 +64,7 @@ const BurnWaifu: React.FC<Props> = (props) => {
   const nftxApprovedForWrapper = useSelector(selectNftxApprovedForWrapper);
   const globals = useSelector(selectGlobalsData);
   const isEth = useSelector(selectIsEth);
+  const bnbBurnPrice = useSelector(selectBnbBurnPrice);
 
   const updateApprovals = async () => {
     setApproving(true);
@@ -168,7 +173,7 @@ const BurnWaifu: React.FC<Props> = (props) => {
       dungeonContract.methods
         .commitSwapWaifusWithETH(waifuIdList)
         .send({
-          value: new BN(toWeiUnit(globals.burnPrice)).mul(
+          value: new BN(toWeiUnit(bnbBurnPrice)).mul(
             new BN(waifuIdList.length)
           ),
         })
