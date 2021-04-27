@@ -21,6 +21,7 @@ export type GlobalsData = {
   imageApi: string;
   waifuApi: string;
   wetTradeLink: string;
+  waifuTradeLink: string;
 };
 
 export const TEST_GLOBALS: GlobalsData = {
@@ -39,6 +40,7 @@ export const TEST_GLOBALS: GlobalsData = {
   waifuApi: "waifus/",
   wetTradeLink:
     "https://app.sushi.com/swap?inputCurrency=eth&outputCurrency=0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
+  waifuTradeLink: "https://opensea.io/assets/waifusion",
 };
 
 export const ETH_GLOBALS: GlobalsData = {
@@ -57,6 +59,7 @@ export const ETH_GLOBALS: GlobalsData = {
   waifuApi: "waifus/",
   wetTradeLink:
     "https://app.sushi.com/swap?inputCurrency=eth&outputCurrency=0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
+  waifuTradeLink: "https://opensea.io/assets/waifusion",
 };
 
 export const BSC_GLOBALS: GlobalsData = {
@@ -75,6 +78,7 @@ export const BSC_GLOBALS: GlobalsData = {
   waifuApi: "waifus/bsc/",
   wetTradeLink:
     "https://exchange.pancakeswap.finance/#/swap?inputCurrency=bnb&outputCurrency=0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
+  waifuTradeLink: "https://whalecrate.com/browse/waifus",
 };
 
 export const getGlobals = async (): Promise<GlobalsData> => {
