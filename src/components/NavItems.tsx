@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { DungeonIcon, SearchIcon, WalletIcon } from "./Icons";
 import Address from "./Address";
+import NetworkIndicator from "./NetworkIndicator";
 
 const NavItemsWrapper = styled.ul`
   display: flex;
@@ -82,6 +83,7 @@ const NavItems: React.FC = () => {
       <Item>
         <Address />
       </Item>
+      <NetworkIndicator />
     </NavItemsWrapper>
   );
 };
