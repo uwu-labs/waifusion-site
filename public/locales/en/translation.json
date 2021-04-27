@@ -34,7 +34,9 @@
     "changeName": "Change Name",
     "free": "Free from dungeon",
     "waifuNft": "Waifu NFT",
-    "nftxWaifu": "NFTX WAIFU"
+    "nftxWaifu": "NFTX WAIFU",
+    "useBnb": "Use BNB",
+    "useWet": "Use WET"
   },
   "headers": {
     "browse": "Browse Waifus",
@@ -74,7 +76,8 @@
       "burnNftx": "Select the number of WAIFU Tokens you would like to burn",
       "loadingPurchase": "When purchase is complete you must reveal immediately or risk losing your Waifus forever",
       "revealReady": "Your Waifus have been purchased! Click Reveal below to see what you got",
-      "burnMethod": "You can burn either Waifusion NFTs or NFTX WAIFU Tokens, select your preference"
+      "burnMethod": "You can burn either Waifusion NFTs or NFTX WAIFU Tokens, select your preference",
+      "burnMethodBsc": "You can burn Waifus with BNB or BSC, select your preference"
     }
   },
   "wet": {

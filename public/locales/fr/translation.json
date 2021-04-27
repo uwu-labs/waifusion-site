@@ -32,7 +32,9 @@
     "approveNftx": "TODO",
     "changeName": "Changer de nom",
     "waifuNft": "TODO",
-    "nftxWaifu": "TODO"
+    "nftxWaifu": "TODO",
+    "useBnb": "TODO",
+    "useWet": "TODO"
   },
   "headers": {
     "browse": "Parcourir les Waifus",
@@ -72,7 +74,8 @@
       "burnNftx": "TODO",
       "loadingPurchase": "Lorsque l'achat est terminé, vous devez les révéler immédiatement ou vous risquerez de perdre vos Waifus pour toujours",
       "revealReady": "Vos Waifus on été achetés! Cliquez sur révéler ci-dessous pour voir ce que vous avez",
-      "burnMethod": "TODO"
+      "burnMethod": "TODO",
+      "burnMethodBsc": "TODO"
     }
   },
   "wet": {
