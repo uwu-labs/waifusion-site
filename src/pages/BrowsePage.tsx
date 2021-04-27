@@ -69,7 +69,7 @@ const BrowsePage: React.FC = () => {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
 
-  const loadWaifus = useCallback(async () => {
+  const loadWaifus = useCallback(async (page: number) => {
     const globals = await getGlobals();
 
     setLoading(true);
@@ -93,7 +93,7 @@ const BrowsePage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    loadWaifus();
+    loadWaifus(1);
   }, []);
 
   return (
@@ -126,7 +126,7 @@ const BrowsePage: React.FC = () => {
                 )[0].value = value;
                 setFilters(newFilters);
                 setPage(1);
-                loadWaifus();
+                loadWaifus(1);
               }}
             />
           ))}
@@ -137,7 +137,7 @@ const BrowsePage: React.FC = () => {
         pages={pages}
         setPage={(number: number) => {
           setPage(number);
-          loadWaifus();
+          loadWaifus(number);
         }}
       />
     </StyledBrowsePage>
