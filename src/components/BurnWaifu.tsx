@@ -19,6 +19,7 @@ import {
   setNftxApprovedForWrapper,
 } from "../state/reducers/user";
 import { selectGlobalsData, selectIsEth } from "../state/reducers/globals";
+import { toWeiUnit } from "../services/web3";
 
 const Content = styled.div`
   width: 100%;
@@ -51,6 +52,8 @@ const BurnWaifu: React.FC<Props> = (props) => {
   const [commitComplete, setCommitComplete] = useState(false);
   const [isWaifuBurn, setIsWaifuBurn] = useState(false);
   const [isNftxBurn, setIsNftxBurn] = useState(false);
+  const [isBnbBurn, setIsBnbBurn] = useState(false);
+  const [isWetBurn, setIsWetBurn] = useState(false);
   const wetApprovedForDungeon = useSelector(selectWetApprovedForDungeon);
   const waifusApprovedForDungeon = useSelector(selectWaifusApprovedForDungeon);
   const wetApprovedForWrapper = useSelector(selectWetApprovedForWrapper);
@@ -66,10 +69,12 @@ const BurnWaifu: React.FC<Props> = (props) => {
     dispatch(setWetApprovedForDungeon(_wetApprovedForDungeon));
     const _waifusApprovedForDungeon = await contractHelper.isWaifuApprovedForDungeon();
     dispatch(setWaifusApprovedForDungeon(_waifusApprovedForDungeon));
-    const _wetApprovedForWrapper = await contractHelper.isWetApprovedForWrapper();
-    dispatch(setWetApprovedForWrapper(_wetApprovedForWrapper));
-    const _nftxApprovedForWrapper = await contractHelper.isNftxApprovedForWrapper();
-    dispatch(setNftxApprovedForWrapper(_nftxApprovedForWrapper));
+    if (isEth) {
+      const _wetApprovedForWrapper = await contractHelper.isWetApprovedForWrapper();
+      dispatch(setWetApprovedForWrapper(_wetApprovedForWrapper));
+      const _nftxApprovedForWrapper = await contractHelper.isNftxApprovedForWrapper();
+      dispatch(setNftxApprovedForWrapper(_nftxApprovedForWrapper));
+    }
     setApproving(false);
   };
 
@@ -159,19 +164,39 @@ const BurnWaifu: React.FC<Props> = (props) => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const dungeonContract = await contractHelper.getDungeonContract();
-    dungeonContract.methods
-      .commitSwapWaifus(waifuIdList)
-      .send()
-      .on("transactionHash", (hash: any) => {
-        setCommited(true);
-      })
-      .on("receipt", (receipt: any) => {
-        setCommitComplete(true);
-      })
-      .on("error", (err: any) => {
-        console.log("error: ", err.message);
-        setCommited(false);
-      });
+    if (!isEth && isBnbBurn) {
+      dungeonContract.methods
+        .commitSwapWaifusWithETH(waifuIdList)
+        .send({
+          value: new BN(toWeiUnit(globals.burnPrice)).mul(
+            new BN(waifuIdList.length)
+          ),
+        })
+        .on("transactionHash", (hash: any) => {
+          setCommited(true);
+        })
+        .on("receipt", (receipt: any) => {
+          setCommitComplete(true);
+        })
+        .on("error", (err: any) => {
+          console.log("error: ", err.message);
+          setCommited(false);
+        });
+    } else {
+      dungeonContract.methods
+        .commitSwapWaifus(waifuIdList)
+        .send()
+        .on("transactionHash", (hash: any) => {
+          setCommited(true);
+        })
+        .on("receipt", (receipt: any) => {
+          setCommitComplete(true);
+        })
+        .on("error", (err: any) => {
+          console.log("error: ", err.message);
+          setCommited(false);
+        });
+    }
   };
 
   const validateNftx = (value: string) => {
@@ -221,7 +246,21 @@ const BurnWaifu: React.FC<Props> = (props) => {
         secondButtonAction={() => setIsNftxBurn(true)}
       />
       <Popup
-        show={!committed && (!isEth || isWaifuBurn)}
+        show={!isEth && !isBnbBurn && !isWetBurn}
+        close={() => props.close()}
+        header={t("dungeon.headers.burnMethod")}
+        body={t("dungeon.bodys.burnMethodBsc")}
+        buttonText={t("buttons.useBnb")}
+        buttonAction={() => setIsBnbBurn(true)}
+        secondButtonText={t("buttons.useWet")}
+        secondButtonAction={() => setIsWetBurn(true)}
+      />
+      <Popup
+        show={
+          !committed &&
+          (!isEth || isWaifuBurn) &&
+          (isEth || isWetBurn || isBnbBurn)
+        }
         close={() => props.close()}
         content={
           <Content>
@@ -236,14 +275,15 @@ const BurnWaifu: React.FC<Props> = (props) => {
         header={t("dungeon.headers.burn")}
         body={t("dungeon.bodys.burn")}
         buttonAction={() => {
-          if (!wetApprovedForDungeon) approveWetForDungeon();
+          if (!wetApprovedForDungeon && (isEth || isWetBurn))
+            approveWetForDungeon();
           else if (!waifusApprovedForDungeon) approveWaifusForDungeon();
           else burnWaifu();
         }}
         buttonText={
           approving
             ? t("loading")
-            : !wetApprovedForDungeon
+            : !wetApprovedForDungeon && (isEth || isWetBurn)
             ? t("buttons.approveWet")
             : !waifusApprovedForDungeon
             ? t("buttons.approveWaifus")

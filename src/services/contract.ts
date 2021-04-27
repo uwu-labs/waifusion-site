@@ -123,7 +123,7 @@ export class ContractHelper {
 
   isWetApprovedForDungeon = async (): Promise<boolean> => {
     const dungeonAllowance = await this.getDungeonAllowance();
-    return new BN(dungeonAllowance) > new BN("9999999999999999999999999");
+    return new BN(dungeonAllowance).gt(new BN("9999999999999999999999999"));
   };
 
   isWetApprovedForWrapper = async (): Promise<boolean> => {
@@ -132,7 +132,7 @@ export class ContractHelper {
     const allowance = await wetContract.methods
       .allowance(this.address, userWrapperAddress)
       .call();
-    return new BN(allowance) > new BN("9999999999999999999999999");
+    return new BN(allowance).gt(new BN("9999999999999999999999999"));
   };
 
   isNftxApprovedForWrapper = async (): Promise<boolean> => {
@@ -141,7 +141,7 @@ export class ContractHelper {
     const allowance = await nftxContract.methods
       .allowance(this.address, userWrapperAddress)
       .call();
-    return new BN(allowance) > new BN("9999999999999999999999999");
+    return new BN(allowance).gt(new BN("9999999999999999999999999"));
   };
 
   getDungeonAllowance = async (): Promise<number> => {
