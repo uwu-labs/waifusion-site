@@ -12,9 +12,10 @@ const StyledNetworkIndicator = styled.div`
   border: solid 2px var(--highlight);
   border-radius: 50%;
   padding: 0.3rem;
-  margin-left: 20px;
+  margin-left: 12px;
   transform: translateY(1px);
 `;
+
 const Network = styled.img`
   width: 1.3rem;
 `;
