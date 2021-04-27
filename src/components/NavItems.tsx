@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { DungeonIcon, SearchIcon, WalletIcon } from "./Icons";
 import Address from "./Address";
+import NetworkIndicator from "./NetworkIndicator";
 import { selectIsEth } from "../state/reducers/globals";
 
 const NavItemsWrapper = styled.ul`
@@ -87,6 +88,7 @@ const NavItems: React.FC = () => {
       <Item>
         <Address />
       </Item>
+      <NetworkIndicator />
     </NavItemsWrapper>
   );
 };
