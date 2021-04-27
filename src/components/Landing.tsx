@@ -6,6 +6,8 @@ import Header from "./Header";
 import landing from "../assets/landing.png";
 import Confetti from "./Confetti";
 import Card from "./Card";
+import { useSelector } from "react-redux";
+import { selectGlobalsData } from "../state/reducers/globals";
 
 const StyledLanding = styled.div`
   position: relative;
@@ -49,6 +51,7 @@ const CardContainer = styled.div`
 const Landing: React.FC = () => {
   const [t] = useTranslation();
   const history = useHistory();
+  const globals = useSelector(selectGlobalsData);
 
   return (
     <StyledLanding>
@@ -63,9 +66,7 @@ const Landing: React.FC = () => {
             buttonAction={() => history.push("/dungeon")}
             buttonText={t("buttons.getWaifus")}
             secondButtonAction={() => {
-              (window as any)
-                .open("https://opensea.io/assets/waifusion", "_blank")
-                .focus();
+              (window as any).open(globals.waifuTradeLink, "_blank").focus();
             }}
             secondButtonText={t("buttons.tradeWaifus")}
           />
