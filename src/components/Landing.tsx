@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 import Header from "./Header";
 import landing from "../assets/landing.png";
 import Confetti from "./Confetti";
 import Card from "./Card";
-import { useSelector } from "react-redux";
 import { selectGlobalsData } from "../state/reducers/globals";
 
 const StyledLanding = styled.div`
