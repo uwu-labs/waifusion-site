@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled, { keyframes } from "styled-components";
+import { useSelector } from "react-redux";
 import Card from "../components/Card";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Header from "../components/Header";
@@ -8,6 +9,7 @@ import waifuImage from "../assets/dungeon-waifu.png";
 import barsImage from "../assets/bars.png";
 import BuyWaifu from "../components/BuyWaifu";
 import BurnWaifu from "../components/BurnWaifu";
+import { selectBuyPrice } from "../state/reducers/globals";
 
 const StyledDungeonPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -129,6 +131,10 @@ const DungeonPage: React.FC = () => {
   const [t] = useTranslation();
   const [buying, setBuying] = useState(false);
   const [burning, setBurning] = useState(false);
+  const buyPrice = useSelector(selectBuyPrice);
+
+  const dungeonBody = t("dungeon.description");
+  const replacedBody = dungeonBody.replace("[[BUY_PRICE]]", buyPrice);
 
   return (
     <StyledDungeonPage>
@@ -136,7 +142,7 @@ const DungeonPage: React.FC = () => {
       <Content>
         <CardContainer>
           <Card
-            text={t("dungeon.description")}
+            text={replacedBody}
             buttonAction={() => setBuying(true)}
             buttonText={t("buttons.buyWaifu")}
             secondButtonAction={() => setBurning(true)}
