@@ -55,7 +55,8 @@
     "noWaifusSecondary": " Obtenez votre premier maintenant!"
   },
   "dungeon": {
-    "description": "Oh no... Many of our beloved waifus have been enslaved in the Dungeon! Be a hero and save your beloved Waifus by buying thier freedom for [[BUY_PRICE]] ETH to get a random Waifu. Or burn a Waifu and pay [[WET_BURN_PRICE]] WET to free another random one from the Dungeon.",
+    "description": "TODO",
+    "descriptionBsc": "TODO",
     "exitWarning": "Révélez les Waifus avant de quitter ou vous pouvez les perdre pour toujours",
     "headers": {
       "buy": "Acheter une Waifu",
