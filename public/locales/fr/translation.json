@@ -83,7 +83,7 @@
     "header": "Jeton WET",
     "overview": "Le jeton d'amélioration de Waifu (WET) est un jeton exclusif du harem mondial de Waifusion. Il existe deux utilisations du jeton WET:",
     "use": [
-      "Renommer votre Waifu avec un nouveau nom stocké en permanence sur la blockchain Ethereum",
+      "Renommer votre Waifu avec un nouveau nom stocké en permanence sur la blockchain",
       "Brûler une Waifu indésirable en échange d'un nouveau Waifu du donjon"
     ],
     "detail": "Les Waifus génère passivement des jetons WET simplement en les tenant! Chaque Waifu générera 3 660 WET par an. Vous pouvez réclamer vos jetons WET sur la page du portefeuille. Pour changer le nom d'une Waifu, vous devez envoyer 1 830 WET. Pour brûler une Waifu, vous devez envoyer une Waifu et [[WET_BURN_PRICE]] WET au contrat Waifusion, et celui ci disparaîtra à jamais..."
