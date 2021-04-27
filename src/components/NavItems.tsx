@@ -3,8 +3,10 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { DungeonIcon, SearchIcon, WalletIcon } from "./Icons";
 import Address from "./Address";
+import { selectIsEth } from "../state/reducers/globals";
 
 const NavItemsWrapper = styled.ul`
   display: flex;
@@ -58,15 +60,18 @@ const LinkableItem = styled(Link)`
 
 const NavItems: React.FC = () => {
   const [t] = useTranslation();
+  const isEth = useSelector(selectIsEth);
 
   return (
     <NavItemsWrapper>
-      <Item>
-        <LinkableItem to="/browse">
-          <SearchIcon />
-          <label>{t("navigation.browse")}</label>
-        </LinkableItem>
-      </Item>
+      {isEth && (
+        <Item>
+          <LinkableItem to="/browse">
+            <SearchIcon />
+            <label>{t("navigation.browse")}</label>
+          </LinkableItem>
+        </Item>
+      )}
       <Item>
         <LinkableItem to="/wallet">
           <WalletIcon />
