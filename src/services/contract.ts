@@ -7,10 +7,11 @@ import waifuAbi from "../contracts/ERC721.json";
 import erc20Abi from "../contracts/ERC20.json";
 import accomulatorAbi from "../contracts/Accoomulator.json";
 import dungeonAbi from "../contracts/Dungeon.json";
+import dungeonBscAbi from "../contracts/DungeonBSC.json";
 import wrapperAbi from "../contracts/NFTXWrapper.json";
 
 import { Waifu } from "../types/waifusion";
-import { getGlobals, GlobalsData } from "./globals";
+import { getGlobals, GlobalsData, Network } from "./globals";
 
 export type AccoomulateWaifu = {
   wetAccumulate: string;
@@ -48,7 +49,7 @@ export class ContractHelper {
   // Contracts
   getDungeonContract = async (): Promise<Contract> => {
     return new (window as any).web3.eth.Contract(
-      dungeonAbi,
+      this.globals?.network === Network.BSC ? dungeonBscAbi : dungeonAbi,
       this.globals?.dungeonAddress,
       {
         from: this.address,
