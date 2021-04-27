@@ -27,6 +27,7 @@ function* loadWaifusAction() {
       waifusCopy.push(_ownedWaifus[i]);
     else waifusCopy[i] = _ownedWaifus[i];
   }
+  waifusCopy.reverse();
   yield put(setWaifus(waifusCopy));
   yield put(completeLoadWaifus());
 }
