@@ -9,7 +9,12 @@ import waifuImage from "../assets/dungeon-waifu.png";
 import barsImage from "../assets/bars.png";
 import BuyWaifu from "../components/BuyWaifu";
 import BurnWaifu from "../components/BurnWaifu";
-import { selectBuyPrice, selectWetBurnPrice } from "../state/reducers/globals";
+import {
+  selectBnbBurnPrice,
+  selectBuyPrice,
+  selectIsEth,
+  selectWetBurnPrice,
+} from "../state/reducers/globals";
 
 const StyledDungeonPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -133,10 +138,17 @@ const DungeonPage: React.FC = () => {
   const [burning, setBurning] = useState(false);
   const buyPrice = useSelector(selectBuyPrice);
   const wetBurnPrice = useSelector(selectWetBurnPrice);
+  const bnbBurnPrice = useSelector(selectBnbBurnPrice);
+  const isEth = useSelector(selectIsEth);
 
-  const dungeonBody = t("dungeon.description")
-    .replace("[[BUY_PRICE]]", buyPrice)
-    .replace("[[WET_BURN_PRICE]]", wetBurnPrice);
+  const dungeonBody = isEth
+    ? t("dungeon.description")
+        .replace("[[BUY_PRICE]]", buyPrice)
+        .replace("[[WET_BURN_PRICE]]", wetBurnPrice)
+    : t("dungeon.descriptionBsc")
+        .replace("[[BUY_PRICE]]", buyPrice)
+        .replace("[[WET_BURN_PRICE]]", wetBurnPrice)
+        .replace("[[BNB_BURN_PRICE]]", bnbBurnPrice);
 
   return (
     <StyledDungeonPage>
