@@ -58,8 +58,8 @@
     "noWaifusSecondary": " Get your first one now!"
   },
   "dungeon": {
-    "description": "Oh no... Many of our beloved waifus have been enslaved in the Dungeon! Be a hero and save your beloved Waifus by buying thier freedom for [[BUY_PRICE]] ETH to get a random Waifu. Or burn a Waifu and pay [[WET_BURN_PRICE]] WET to free another random one from the Dungeon.",
-    "descriptionBsc": "Oh no... Many of our beloved waifus have been enslaved in the Dungeon! Be a hero and save your beloved Waifus by buying thier freedom for [[BUY_PRICE]] BNB to get a random Waifu. Or burn a Waifu and pay [[WET_BURN_PRICE]] WET or [[BNB_BURN_PRICE]] BNB to free another random one from the Dungeon.",
+    "description": "Oh no... Many of our beloved waifus have been enslaved in the Dungeon! Be a hero and save your beloved Waifus by buying their freedom for [[BUY_PRICE]] ETH to get a random Waifu. Or burn a Waifu and pay [[WET_BURN_PRICE]] WET to free another random one from the Dungeon.",
+    "descriptionBsc": "Oh no... Many of our beloved waifus have been enslaved in the Dungeon! Be a hero and save your beloved Waifus by buying their freedom for [[BUY_PRICE]] BNB to get a random Waifu. Or burn a Waifu and pay [[WET_BURN_PRICE]] WET or [[BNB_BURN_PRICE]] BNB to free another random one from the Dungeon.",
     "exitWarning": "Reveal Waifus before exiting or you can lose them forever",
     "headers": {
       "buy": "Buy Waifu",
