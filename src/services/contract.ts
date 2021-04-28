@@ -287,8 +287,6 @@ export class ContractHelper {
   // Views
   getBuyPrice = async (): Promise<string> => {
     const dungeonContract = await this.getDungeonContract();
-    if (this.globals?.network !== Network.BSC)
-      return toEthUnit(await dungeonContract.methods.buyCost().call());
     return toEthUnit(await dungeonContract.methods.buyCost().call());
   };
 
