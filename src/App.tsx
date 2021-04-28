@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -22,6 +22,7 @@ import {
 } from "./state/reducers/globals";
 import { getGlobals } from "./services/globals";
 import { ContractHelper } from "./services/contract";
+import LoadingPurchase from "./components/LoadingPurchase";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -37,6 +38,7 @@ const ContentWrapper = styled.div`
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
+  const [hasPendingReveal, setHasPendingReveal] = useState(false);
 
   const updateGlobals = async () => {
     const globals = await getGlobals();
@@ -50,6 +52,8 @@ const App: React.FC = () => {
     dispatch(setWetBurnPrice(wetBurnPrice));
     const bnbBurnPrice = await contractHelper.getBnbBurnPrice();
     dispatch(setBnbBurnPrice(bnbBurnPrice));
+    const revealPending = await contractHelper.revealPending();
+    setHasPendingReveal(revealPending);
   };
 
   const init = async () => {
@@ -88,6 +92,11 @@ const App: React.FC = () => {
           <Footer />
         </Router>
       </Wrapper>
+      <LoadingPurchase
+        show={hasPendingReveal}
+        loading={false}
+        close={() => setHasPendingReveal(false)}
+      />
     </Suspense>
   );
 };
