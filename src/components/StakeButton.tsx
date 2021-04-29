@@ -11,6 +11,7 @@ import Button from "../components/Button";
 
 type Props = {
   refresh: () => Promise<void>;
+  approved: boolean;
 };
 
 const StakeButton: React.FC<Props> = (props) => {
@@ -61,8 +62,15 @@ const StakeButton: React.FC<Props> = (props) => {
   };
 
   return (
-    <Button primary onClick={() => stake()}>
-      {loading ? "Loading" : "Stake LP"}
+    <Button
+      primary
+      onClick={() => {
+        if (loading) return;
+        if (!props.approved) approve();
+        stake();
+      }}
+    >
+      {loading ? "Loading" : props.approved ? "Approve WET" : "Stake LP"}
     </Button>
   );
 };
