@@ -121,12 +121,12 @@ const FarmPage: React.FC = () => {
 
     const _address = await getAddress();
     const farmContract = await contractHelper.getFarmContract();
-    const wetContract = await contractHelper.getWetContract();
+    const lpContract = await contractHelper.getLpContract();
 
     setAddress(_address);
     setLpApproved(await contractHelper.isLpApprovedForFarm());
     setStakingBalance(await farmContract.methods.balanceOf(_address).call());
-    setWetBalance(await wetContract.methods.balanceOf(_address).call());
+    setWetBalance(await lpContract.methods.balanceOf(_address).call());
     setRewardBalance(await farmContract.methods.earned(_address).call());
   };
 
