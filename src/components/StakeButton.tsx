@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import BN from "bn.js";
@@ -7,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ContractHelper } from "../services/contract";
 import { selectGlobalsData } from "../state/reducers/globals";
 import { selectAddress } from "../state/reducers/user";
-import Button from "../components/Button";
+import Button from "./Button";
 
 type Props = {
   refresh: () => Promise<void>;
@@ -70,7 +69,11 @@ const StakeButton: React.FC<Props> = (props) => {
         stake();
       }}
     >
-      {loading ? "Loading" : props.approved ? "Approve WET" : "Stake LP"}
+      {loading
+        ? t("loading")
+        : props.approved
+        ? t("buttons.approveWet")
+        : t("buttons.stakeWet")}
     </Button>
   );
 };
