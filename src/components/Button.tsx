@@ -74,6 +74,14 @@ const Button = styled.button<{
       }};
     transform: translateY(0.2rem);
   }
+
+  :disabled {
+    cursor: not-allowed;
+    background-color: var(--plain);
+    color: var(--plain-dark);
+    border: 2px solid var(--plain-shadow);
+    box-shadow: 0 0.2rem 0 0 var(--plain-shadow);
+  }
 `;
 
 export default Button;
