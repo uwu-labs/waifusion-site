@@ -21,6 +21,7 @@ const PopupContent = styled.div`
 type Props = {
   refresh: () => Promise<void>;
   approved: boolean;
+  balance: string;
 };
 
 const StakeButton: React.FC<Props> = (props) => {
@@ -109,6 +110,7 @@ const StakeButton: React.FC<Props> = (props) => {
             <Input
               value={amount}
               update={(value: string) => setAmount(value)}
+              max={props.balance}
             />
           </PopupContent>
         }

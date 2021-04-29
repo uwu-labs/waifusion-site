@@ -167,7 +167,11 @@ const FarmPage: React.FC = () => {
               </Button>
             </Horizontal>
             <Horizontal spaceEvenly>
-              <StakeButton refresh={async () => init()} approved={lpApproved} />
+              <StakeButton
+                refresh={async () => init()}
+                approved={lpApproved}
+                balance={lp}
+              />
               <UnstakeButton refresh={async () => init()} balance={staking} />
             </Horizontal>
             <Horizontal>
