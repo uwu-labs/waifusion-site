@@ -53,10 +53,10 @@
     "dungeon": "Donjon"
   },
   "farm": {
-    "wetEarned": "WET Earned",
-    "claimWet": "Claim WET",
-    "wetStaked": "WET Staked:",
-    "apr": "APY:"
+    "wetEarned": "TODO",
+    "claimWet": "TODO",
+    "wetStaked": "TODO",
+    "apr": "TODO"
   },
   "wallet": {
     "claim": "Réclamer",

@@ -37,7 +37,7 @@
     "nftxWaifu": "NFTX WAIFU",
     "useBnb": "Use BNB",
     "useWet": "Use WET",
-    "stakeWet": "Stake WET"
+    "stakeWet": "Stake LP"
   },
   "headers": {
     "farm": "Farm WET",
@@ -56,9 +56,9 @@
     "dungeon": "Dungeon"
   },
   "farm": {
-    "wetEarned": "TODO",
-    "claimWet": "TODO",
-    "wetStaked": "WET Staked:",
+    "wetEarned": "WET Earned",
+    "claimWet": "Claim WET",
+    "wetStaked": "LP Staked:",
     "apr": "APY:"
   },
   "wallet": {
