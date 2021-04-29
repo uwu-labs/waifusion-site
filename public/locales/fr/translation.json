@@ -37,6 +37,7 @@
     "useWet": "TODO"
   },
   "headers": {
+    "farm": "TODO",
     "browse": "Parcourir les Waifus",
     "dungeon": "Le donjon",
     "history": "Votre historique",

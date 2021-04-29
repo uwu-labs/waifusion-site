@@ -39,6 +39,7 @@
     "useWet": "Use WET"
   },
   "headers": {
+    "farm": "Farm WET",
     "browse": "Browse Waifus",
     "dungeon": "The Dungeon",
     "history": "Your History",
