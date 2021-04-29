@@ -190,7 +190,7 @@ const FarmPage: React.FC = () => {
               </Button>
             </Horizontal>
             <Horizontal spaceEvenly>
-              <StakeButton refresh={() => init()} />
+              <StakeButton refresh={() => init()} approved={wetApproved} />
               <Button
                 secondary
                 disabled={stakingBalance === "0"}
