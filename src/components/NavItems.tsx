@@ -65,6 +65,12 @@ const NavItems: React.FC = () => {
 
   return (
     <NavItemsWrapper>
+      <Item>
+        <LinkableItem to="/farm">
+          <SearchIcon />
+          <label>{t("navigation.farm")}</label>
+        </LinkableItem>
+      </Item>
       {isEth && (
         <Item>
           <LinkableItem to="/browse">
