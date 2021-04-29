@@ -3,10 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled, { keyframes } from "styled-components";
 import BN from "bn.js";
+import { useTranslation } from "react-i18next";
+
 import { PageContentWrapper } from "../components/CommonLayout";
 import { ContractHelper } from "../services/contract";
 import { selectGlobalsData } from "../state/reducers/globals";
 import { selectAddress } from "../state/reducers/user";
+import Header from "../components/Header";
 
 const rotate = keyframes`
     0% {
@@ -51,6 +54,8 @@ const Content = styled.div`
 `;
 
 const FarmPage: React.FC = () => {
+  const [t] = useTranslation();
+
   const globals = useSelector(selectGlobalsData);
   const address = useSelector(selectAddress);
 
@@ -139,6 +144,7 @@ const FarmPage: React.FC = () => {
 
   return (
     <PageContentWrapper>
+      <Header text={t("headers.farm")} />
       <Background>
         <Content>meow</Content>
       </Background>
