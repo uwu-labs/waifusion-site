@@ -55,6 +55,12 @@
     "wallet": "Wallet",
     "dungeon": "Dungeon"
   },
+  "farm": {
+    "wetEarned": "TODO",
+    "claimWet": "TODO",
+    "wetStaked": "WET Staked:",
+    "apr": "APY:"
+  },
   "wallet": {
     "claim": "Claim",
     "noWaifusMain": "You don't have any waifus baka",

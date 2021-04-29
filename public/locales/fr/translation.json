@@ -52,6 +52,12 @@
     "wallet": "Portefeuille",
     "dungeon": "Donjon"
   },
+  "farm": {
+    "wetEarned": "WET Earned",
+    "claimWet": "Claim WET",
+    "wetStaked": "WET Staked:",
+    "apr": "APY:"
+  },
   "wallet": {
     "claim": "Réclamer",
     "noWaifusMain": "Tu n'as pas de waifus baka",
