@@ -109,8 +109,6 @@ const FarmPage: React.FC = () => {
   const [t] = useTranslation();
 
   const [address, setAddress] = useState("");
-  const [loadingUnstake, setLoadingUnstake] = useState(false);
-  const [unstakeAmount, setUnstakeAmount] = useState(false);
   const [lpApproved, setLpApproved] = useState(false);
   const [staking, setStaking] = useState("0");
   const [lp, setLp] = useState("0");
