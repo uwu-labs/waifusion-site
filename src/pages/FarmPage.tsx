@@ -113,7 +113,7 @@ const FarmPage: React.FC = () => {
 
   const [loadingUnstake, setLoadingUnstake] = useState(false);
   const [unstakeAmount, setUnstakeAmount] = useState(false);
-  const [wetApproved, setWetApproved] = useState(false);
+  const [lpApproved, setLpApproved] = useState(false);
   const [stakingBalance, setStakingBalance] = useState("0");
   const [wetBalance, setWetBalance] = useState("0");
   const [rewardBalance, setRewardBalance] = useState("0");
@@ -125,7 +125,7 @@ const FarmPage: React.FC = () => {
     const farmContract = await contractHelper.getFarmContract();
     const wetContract = await contractHelper.getWetContract();
 
-    setWetApproved(await contractHelper.isWetApprovedForFarm());
+    setLpApproved(await contractHelper.isLpApprovedForFarm());
     setStakingBalance(await farmContract.methods.balanceOf(address).call());
     setWetBalance(await wetContract.methods.balanceOf(address).call());
     setRewardBalance(await farmContract.methods.earned(address).call());
@@ -190,7 +190,7 @@ const FarmPage: React.FC = () => {
               </Button>
             </Horizontal>
             <Horizontal spaceEvenly>
-              <StakeButton refresh={() => init()} approved={wetApproved} />
+              <StakeButton refresh={() => init()} approved={lpApproved} />
               <Button
                 secondary
                 disabled={stakingBalance === "0"}

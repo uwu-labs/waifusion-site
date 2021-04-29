@@ -118,6 +118,16 @@ export class ContractHelper {
     );
   };
 
+  getLpContract = async (): Promise<Contract> => {
+    return new (window as any).web3.eth.Contract(
+      erc20Abi,
+      this.globals?.lpAddress,
+      {
+        from: this.address,
+      }
+    );
+  };
+
   // Functions
   getUserWrapperAddress = async (): Promise<string> => {
     const wrapperContract = await this.getWrapperContract();
@@ -137,9 +147,9 @@ export class ContractHelper {
     return new BN(dungeonAllowance).gt(new BN("9999999999999999999999999"));
   };
 
-  isWetApprovedForFarm = async (): Promise<boolean> => {
-    const wetContract = await this.getWetContract();
-    const allowance = await wetContract.methods
+  isLpApprovedForFarm = async (): Promise<boolean> => {
+    const lpContract = await this.getLpContract();
+    const allowance = await lpContract.methods
       .allowance(this.address, this.globals?.farmAddress)
       .call();
     return new BN(allowance).gt(new BN("9999999999999999999999999"));

@@ -36,9 +36,9 @@ const StakeButton: React.FC<Props> = (props) => {
   const approve = async () => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
-    const wetContract = await contractHelper.getWetContract();
+    const lpContract = await contractHelper.getLpContract();
 
-    wetContract.methods
+    lpContract.methods
       .approve(globals.farmAddress, new BN("9999999999999999999999999999"))
       .send()
       .on("transactionHash", (hash: any) => {
