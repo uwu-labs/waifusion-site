@@ -9,6 +9,7 @@ import accomulatorAbi from "../contracts/Accoomulator.json";
 import dungeonAbi from "../contracts/Dungeon.json";
 import dungeonBscAbi from "../contracts/DungeonBSC.json";
 import wrapperAbi from "../contracts/NFTXWrapper.json";
+import farmAbi from "../contracts/Farm.json";
 
 import { Waifu } from "../types/waifusion";
 import { getGlobals, GlobalsData, Network } from "./globals";
@@ -107,6 +108,16 @@ export class ContractHelper {
     );
   };
 
+  getFarmContract = async (): Promise<Contract> => {
+    return new (window as any).web3.eth.Contract(
+      farmAbi,
+      this.globals?.farmAddress,
+      {
+        from: this.address,
+      }
+    );
+  };
+
   // Functions
   getUserWrapperAddress = async (): Promise<string> => {
     const wrapperContract = await this.getWrapperContract();
@@ -124,6 +135,14 @@ export class ContractHelper {
   isWetApprovedForDungeon = async (): Promise<boolean> => {
     const dungeonAllowance = await this.getDungeonAllowance();
     return new BN(dungeonAllowance).gt(new BN("9999999999999999999999999"));
+  };
+
+  isWetApprovedForFarm = async (): Promise<boolean> => {
+    const wetContract = await this.getWetContract();
+    const allowance = await wetContract.methods
+      .allowance(this.address, this.globals?.farmAddress)
+      .call();
+    return new BN(allowance).gt(new BN("9999999999999999999999999"));
   };
 
   isWetApprovedForWrapper = async (): Promise<boolean> => {
