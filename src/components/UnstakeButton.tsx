@@ -57,7 +57,7 @@ const UnstakeButton: React.FC<Props> = (props) => {
   return (
     <div>
       <Button
-        primary
+        secondary
         onClick={() => {
           if (loading) return;
           setPopupOpen(true);
