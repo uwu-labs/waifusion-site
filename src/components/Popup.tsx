@@ -39,10 +39,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  button {
-    margin-top: 3rem;
-  }
-
   @media (max-width: 768px) {
     width: 90vw;
   }
