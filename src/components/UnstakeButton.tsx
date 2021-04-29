@@ -75,6 +75,7 @@ const UnstakeButton: React.FC<Props> = (props) => {
             <Input
               value={amount}
               update={(value: string) => setAmount(value)}
+              max={props.balance}
             />
           </PopupContent>
         }
