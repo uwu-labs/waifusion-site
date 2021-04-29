@@ -10,6 +10,23 @@ import { ContractHelper } from "../services/contract";
 import { selectGlobalsData } from "../state/reducers/globals";
 import { selectAddress } from "../state/reducers/user";
 import Header from "../components/Header";
+import Button from "../components/Button";
+
+const StyledFarmPage = styled(PageContentWrapper)`
+  height: 70vh;
+
+  @media (max-width: 768px) {
+    height: auto;
+  }
+`;
+
+const PageContent = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const rotate = keyframes`
     0% {
@@ -26,7 +43,7 @@ type BackgroundProps = {
 
 const Background = styled.div`
   margin-top: 1.3rem;
-  width: 100%;
+  width: 35rem;
   padding: 2px 2px 6px 2px;
   border-radius: 1.1rem;
   transform: translateY(-0.5rem);
@@ -43,6 +60,7 @@ const Background = styled.div`
   animation: ${rotate} 3s linear 0s infinite;
   background: ${(props: BackgroundProps) =>
     props.rainbow ? "auto" : "var(--plain-shadow)"};
+  margin: auto;
 `;
 
 const Content = styled.div`
@@ -50,7 +68,32 @@ const Content = styled.div`
   flex-direction: column;
   background-color: white;
   border-radius: 1rem;
-  padding: 0.7rem 1rem;
+  padding: 1.5rem 2rem;
+`;
+
+const Horizontal = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Vertical = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Rewards = styled.div`
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+`;
+
+const SubHeader = styled.div`
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
 `;
 
 const FarmPage: React.FC = () => {
@@ -143,12 +186,24 @@ const FarmPage: React.FC = () => {
   };
 
   return (
-    <PageContentWrapper>
+    <StyledFarmPage>
       <Header text={t("headers.farm")} />
-      <Background>
-        <Content>meow</Content>
-      </Background>
-    </PageContentWrapper>
+      <PageContent>
+        <Background rainbow={Number(stakingBalance) > 0}>
+          <Content>
+            <Horizontal>
+              <Vertical>
+                <Rewards>{rewardBalance}</Rewards>
+                <SubHeader>WET Earned</SubHeader>
+              </Vertical>
+              <Button primary small disabled={rewardBalance === "0"}>
+                Claim WET
+              </Button>
+            </Horizontal>
+          </Content>
+        </Background>
+      </PageContent>
+    </StyledFarmPage>
   );
 };
 
