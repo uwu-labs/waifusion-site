@@ -8,6 +8,7 @@ import { ContractHelper, getAddress } from "../services/contract";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import StakeButton from "../components/StakeButton";
+import UnstakeButton from "../components/UnstakeButton";
 
 const StyledFarmPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -111,8 +112,8 @@ const FarmPage: React.FC = () => {
   const [loadingUnstake, setLoadingUnstake] = useState(false);
   const [unstakeAmount, setUnstakeAmount] = useState(false);
   const [lpApproved, setLpApproved] = useState(false);
-  const [stakingBalance, setStakingBalance] = useState("0");
-  const [wetBalance, setWetBalance] = useState("0");
+  const [staking, setStaking] = useState("0");
+  const [lp, setLp] = useState("0");
   const [rewardBalance, setRewardBalance] = useState("0");
 
   const init = async () => {
@@ -125,8 +126,8 @@ const FarmPage: React.FC = () => {
 
     setAddress(_address);
     setLpApproved(await contractHelper.isLpApprovedForFarm());
-    setStakingBalance(await farmContract.methods.balanceOf(_address).call());
-    setWetBalance(await lpContract.methods.balanceOf(_address).call());
+    setStaking(await farmContract.methods.balanceOf(_address).call());
+    setLp(await lpContract.methods.balanceOf(_address).call());
     setRewardBalance(await farmContract.methods.earned(_address).call());
   };
 
@@ -147,32 +148,11 @@ const FarmPage: React.FC = () => {
       });
   };
 
-  const unstake = async () => {
-    if (rewardBalance === "0") return;
-
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
-    const farmContract = await contractHelper.getFarmContract();
-
-    farmContract.methods
-      .exit()
-      .send({ from: address })
-      .on("transactionHash", (hash: any) => {
-        setLoadingUnstake(true);
-      })
-      .on("receipt", (receipt: any) => {
-        setLoadingUnstake(false);
-      })
-      .on("error", (err: any) => {
-        setLoadingUnstake(true);
-      });
-  };
-
   return (
     <StyledFarmPage>
       <Header text={t("headers.farm")} />
       <PageContent>
-        <Background rainbow={Number(stakingBalance) > 0}>
+        <Background rainbow={Number(staking) > 0}>
           <Content>
             <Horizontal>
               <Vertical>
@@ -190,13 +170,7 @@ const FarmPage: React.FC = () => {
             </Horizontal>
             <Horizontal spaceEvenly>
               <StakeButton refresh={async () => init()} approved={lpApproved} />
-              <Button
-                secondary
-                disabled={stakingBalance === "0"}
-                onClick={() => unstake()}
-              >
-                {loadingUnstake ? "Loading" : "Unstake LP"}
-              </Button>
+              <UnstakeButton refresh={async () => init()} balance={staking} />
             </Horizontal>
             <Horizontal>
               <Vertical>
@@ -204,8 +178,8 @@ const FarmPage: React.FC = () => {
                 <SubHeader>{t("farm.apr")}</SubHeader>
               </Vertical>
               <Vertical>
-                <SubHeader right>{stakingBalance}</SubHeader>
-                <SubHeader right>{`${stakingBalance}%`}</SubHeader>
+                <SubHeader right>{staking}</SubHeader>
+                <SubHeader right>{`${staking}%`}</SubHeader>
               </Vertical>
             </Horizontal>
           </Content>
