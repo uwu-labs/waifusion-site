@@ -34,6 +34,8 @@ const StakeButton: React.FC<Props> = (props) => {
   const [amount, setAmount] = useState("0");
 
   const approve = async () => {
+    if (loading) return;
+
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const lpContract = await contractHelper.getLpContract();
@@ -59,6 +61,8 @@ const StakeButton: React.FC<Props> = (props) => {
   };
 
   const stake = async () => {
+    if (loading) return;
+
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const farmContract = await contractHelper.getFarmContract();
@@ -94,7 +98,7 @@ const StakeButton: React.FC<Props> = (props) => {
           ? t("loading")
           : !props.approved
           ? t("buttons.approveLp")
-          : t("buttons.stakeWet")}
+          : t("buttons.stakeLp")}
       </Button>
       <Popup
         show={poupOpen}
@@ -108,7 +112,7 @@ const StakeButton: React.FC<Props> = (props) => {
             />
           </PopupContent>
         }
-        buttonText={loading ? t("loading") : t("buttons.stakeWet")}
+        buttonText={loading ? t("loading") : t("buttons.stakeLp")}
         buttonAction={() => stake()}
       />
     </div>
