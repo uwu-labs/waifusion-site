@@ -45,8 +45,6 @@ const Background = styled.div`
   width: 30rem;
   padding: 2px 2px 6px 2px;
   border-radius: 1.1rem;
-  transform: translateY(-0.5rem);
-  filter: saturate(1.5);
   background: linear-gradient(
       45deg,
       var(--primary) 0%,
