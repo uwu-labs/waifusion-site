@@ -71,7 +71,7 @@ const Text = styled.div`
 const ProvenancePage: React.FC = () => {
   const [t] = useTranslation();
   const [page, setPage] = useState(1);
-  const [search, setSearch] = useState<number | null>(null);
+  const [search, setSearch] = useState("");
   const isEth = useSelector(selectIsEth);
   const provenance: ProvenanceType[] = isEth ? ethProvenance : bscProvenance;
 
@@ -82,13 +82,14 @@ const ProvenancePage: React.FC = () => {
       <SearchContainer>
         <Input
           placeholder={t("provenance.placeholder")}
-          onChange={(event) => setSearch(Number(event.target.value))}
+          value={search}
+          update={(value: string) => setSearch(value)}
         />
       </SearchContainer>
       <Items>
         {provenance
           .filter((prov: ProvenanceType) => {
-            if (search) return prov.index === search;
+            if (search) return prov.index === Number(search);
             if (prov.index < (page - 1) * PROVENANCE_PER_PAGE) return false;
             if (prov.index > page * PROVENANCE_PER_PAGE) return false;
             return true;

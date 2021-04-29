@@ -1,6 +1,7 @@
+import React from "react";
 import styled from "styled-components";
 
-const Input = styled.input`
+const StyledInput = styled.input`
   border-radius: 1rem;
   border: 2px solid var(--plain-shadow);
   box-shadow: 0 0.2rem 0 0 var(--plain-shadow);
@@ -14,5 +15,23 @@ const Input = styled.input`
     color: var(--text-secondary);
   }
 `;
+
+type Props = {
+  value: string;
+  update: (value: string) => void;
+  placeholder?: string;
+  type?: string;
+};
+
+const Input: React.FC<Props> = (props) => {
+  return (
+    <StyledInput
+      value={props.value}
+      type={props.type || "text"}
+      placeholder={props.placeholder}
+      onChange={(event) => props.update(event.target.value)}
+    />
+  );
+};
 
 export default Input;
