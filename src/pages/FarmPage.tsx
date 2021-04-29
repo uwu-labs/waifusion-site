@@ -178,7 +178,7 @@ const FarmPage: React.FC = () => {
             <Horizontal>
               <Vertical>
                 <Rewards>{rewardBalance}</Rewards>
-                <SubHeader>WET Earned</SubHeader>
+                <SubHeader>{t("farm.wetEarned")}</SubHeader>
               </Vertical>
               <Button
                 primary
@@ -186,7 +186,7 @@ const FarmPage: React.FC = () => {
                 disabled={rewardBalance === "0"}
                 onClick={() => claim()}
               >
-                Claim WET
+                {t("farm.claimWet")}
               </Button>
             </Horizontal>
             <Horizontal spaceEvenly>
@@ -201,8 +201,8 @@ const FarmPage: React.FC = () => {
             </Horizontal>
             <Horizontal>
               <Vertical>
-                <SubHeader>WET Staked:</SubHeader>
-                <SubHeader>APR:</SubHeader>
+                <SubHeader>{t("farm.wetStaked")}</SubHeader>
+                <SubHeader>{t("farm.apr")}</SubHeader>
               </Vertical>
               <Vertical>
                 <SubHeader right>{stakingBalance}</SubHeader>
