@@ -36,7 +36,8 @@
     "nftxWaifu": "TODO",
     "useBnb": "TODO",
     "useWet": "TODO",
-    "stakeWet": "TODO"
+    "stakeLp": "TODO",
+    "unstakeLp": "TODO"
   },
   "headers": {
     "farm": "TODO",

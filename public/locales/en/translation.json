@@ -38,7 +38,8 @@
     "nftxWaifu": "NFTX WAIFU",
     "useBnb": "Use BNB",
     "useWet": "Use WET",
-    "stakeWet": "Stake LP"
+    "stakeLp": "Stake LP",
+    "unstakeLp": "Unstake LP"
   },
   "headers": {
     "farm": "Farm WET",
