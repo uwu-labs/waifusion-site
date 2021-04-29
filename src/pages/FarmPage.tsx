@@ -43,7 +43,7 @@ type BackgroundProps = {
 
 const Background = styled.div`
   margin-top: 1.3rem;
-  width: 35rem;
+  width: 30rem;
   padding: 2px 2px 6px 2px;
   border-radius: 1.1rem;
   transform: translateY(-0.5rem);
@@ -71,11 +71,17 @@ const Content = styled.div`
   padding: 1.5rem 2rem;
 `;
 
+type HorizonalProps = {
+  spaceEvenly?: boolean;
+};
+
 const Horizontal = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: ${(props: HorizonalProps) =>
+    props.spaceEvenly ? "space-evenly" : "space-between"};
   align-items: center;
+  margin: 0.5rem 0;
 `;
 
 const Vertical = styled.div`
@@ -90,10 +96,15 @@ const Rewards = styled.div`
   color: var(--text-primary);
 `;
 
+type SubHeaderProps = {
+  right?: boolean;
+};
+
 const SubHeader = styled.div`
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--text-secondary);
+  text-align: ${(props: SubHeaderProps) => (props.right ? "right" : "left")};
 `;
 
 const FarmPage: React.FC = () => {
@@ -219,6 +230,28 @@ const FarmPage: React.FC = () => {
               >
                 Claim WET
               </Button>
+            </Horizontal>
+            <Horizontal spaceEvenly>
+              <Button primary onClick={() => stake()}>
+                {loadingStake ? "Loading" : "Stake LP"}
+              </Button>
+              <Button
+                secondary
+                disabled={stakingBalance === "0"}
+                onClick={() => unstake()}
+              >
+                {loadingUnstake ? "Loading" : "Unstake LP"}
+              </Button>
+            </Horizontal>
+            <Horizontal>
+              <Vertical>
+                <SubHeader>WET Staked:</SubHeader>
+                <SubHeader>APR:</SubHeader>
+              </Vertical>
+              <Vertical>
+                <SubHeader right>{stakingBalance}</SubHeader>
+                <SubHeader right>{`${stakingBalance}%`}</SubHeader>
+              </Vertical>
             </Horizontal>
           </Content>
         </Background>
