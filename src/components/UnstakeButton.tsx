@@ -60,7 +60,7 @@ const UnstakeButton: React.FC<Props> = (props) => {
         primary
         onClick={() => {
           if (loading) return;
-          else setPopupOpen(true);
+          setPopupOpen(true);
         }}
       >
         {loading ? t("loading") : t("buttons.unstakeLp")}
