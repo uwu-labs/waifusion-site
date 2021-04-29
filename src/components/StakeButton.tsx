@@ -105,7 +105,7 @@ const StakeButton: React.FC<Props> = (props) => {
             />
           </PopupContent>
         }
-        buttonText={t("buttons.stakeWet")}
+        buttonText={loading ? t("loading") : t("buttons.stakeWet")}
         buttonAction={() => stake()}
       />
     </div>
