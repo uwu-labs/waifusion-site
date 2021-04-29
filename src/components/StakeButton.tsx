@@ -90,7 +90,7 @@ const StakeButton: React.FC<Props> = (props) => {
       <Popup
         show={poupOpen}
         close={() => setPopupOpen(false)}
-        header="Select WET to Stake"
+        header="LP to Stake"
         content={
           <PopupContent>
             <Input
