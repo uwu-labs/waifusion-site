@@ -2,15 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled, { keyframes } from "styled-components";
-import BN from "bn.js";
 import { useTranslation } from "react-i18next";
 
 import { PageContentWrapper } from "../components/CommonLayout";
 import { ContractHelper } from "../services/contract";
-import { selectGlobalsData } from "../state/reducers/globals";
 import { selectAddress } from "../state/reducers/user";
 import Header from "../components/Header";
 import Button from "../components/Button";
+import StakeButton from "../components/StakeButton";
 
 const StyledFarmPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -110,12 +109,9 @@ const SubHeader = styled.div`
 const FarmPage: React.FC = () => {
   const [t] = useTranslation();
 
-  const globals = useSelector(selectGlobalsData);
   const address = useSelector(selectAddress);
 
-  const [loadingStake, setLoadingStake] = useState(false);
   const [loadingUnstake, setLoadingUnstake] = useState(false);
-  const [stakeAmount, setStakeAmount] = useState(false);
   const [unstakeAmount, setUnstakeAmount] = useState(false);
   const [wetApproved, setWetApproved] = useState(false);
   const [stakingBalance, setStakingBalance] = useState("0");
@@ -138,44 +134,6 @@ const FarmPage: React.FC = () => {
   useEffect(() => {
     init();
   }, []);
-
-  const approve = async () => {
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
-    const wetContract = await contractHelper.getWetContract();
-
-    wetContract.methods
-      .approve(globals.farmAddress, new BN("9999999999999999999999999999"))
-      .send()
-      .on("transactionHash", (hash: any) => {
-        setLoadingStake(true);
-      })
-      .on("receipt", (receipt: any) => {
-        init().then(() => setLoadingStake(false));
-      })
-      .on("error", (err: any) => {
-        setLoadingStake(true);
-      });
-  };
-
-  const stake = async () => {
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
-    const farmContract = await contractHelper.getFarmContract();
-
-    farmContract.methods
-      .stake(stakeAmount)
-      .send({ from: address })
-      .on("transactionHash", (hash: any) => {
-        setLoadingStake(true);
-      })
-      .on("receipt", (receipt: any) => {
-        setLoadingStake(false);
-      })
-      .on("error", (err: any) => {
-        setLoadingStake(true);
-      });
-  };
 
   const claim = async () => {
     const contractHelper = new ContractHelper();
@@ -232,9 +190,7 @@ const FarmPage: React.FC = () => {
               </Button>
             </Horizontal>
             <Horizontal spaceEvenly>
-              <Button primary onClick={() => stake()}>
-                {loadingStake ? "Loading" : "Stake LP"}
-              </Button>
+              <StakeButton refresh={() => init()} />
               <Button
                 secondary
                 disabled={stakingBalance === "0"}
