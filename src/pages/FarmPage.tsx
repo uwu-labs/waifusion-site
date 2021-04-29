@@ -166,7 +166,22 @@ const FarmPage: React.FC = () => {
       });
   };
 
+  const claim = async () => {
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
+    const farmContract = await contractHelper.getFarmContract();
+
+    farmContract.methods
+      .getReward()
+      .send({ from: address })
+      .on("receipt", (receipt: any) => {
+        init();
+      });
+  };
+
   const unstake = async () => {
+    if (rewardBalance === "0") return;
+
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const farmContract = await contractHelper.getFarmContract();
@@ -196,7 +211,12 @@ const FarmPage: React.FC = () => {
                 <Rewards>{rewardBalance}</Rewards>
                 <SubHeader>WET Earned</SubHeader>
               </Vertical>
-              <Button primary small disabled={rewardBalance === "0"}>
+              <Button
+                primary
+                small
+                disabled={rewardBalance === "0"}
+                onClick={() => claim()}
+              >
                 Claim WET
               </Button>
             </Horizontal>
