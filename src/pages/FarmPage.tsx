@@ -9,6 +9,7 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import StakeButton from "../components/StakeButton";
 import UnstakeButton from "../components/UnstakeButton";
+import { toEthUnit } from "../services/web3";
 
 const StyledFarmPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -125,7 +126,7 @@ const FarmPage: React.FC = () => {
     setAddress(_address);
     setLpApproved(await contractHelper.isLpApprovedForFarm());
     setStaking(await farmContract.methods.balanceOf(_address).call());
-    setLp(await lpContract.methods.balanceOf(_address).call());
+    setLp(toEthUnit(await lpContract.methods.balanceOf(_address).call()));
     setRewardBalance(await farmContract.methods.earned(_address).call());
   };
 
