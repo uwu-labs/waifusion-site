@@ -36,7 +36,8 @@
     "waifuNft": "Waifu NFT",
     "nftxWaifu": "NFTX WAIFU",
     "useBnb": "Use BNB",
-    "useWet": "Use WET"
+    "useWet": "Use WET",
+    "stakeWet": "Stake WET"
   },
   "headers": {
     "farm": "Farm WET",
