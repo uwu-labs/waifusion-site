@@ -62,6 +62,7 @@ const UnstakeButton: React.FC<Props> = (props) => {
           if (loading) return;
           setPopupOpen(true);
         }}
+        disabled={props.balance === "0"}
       >
         {loading ? t("loading") : t("buttons.unstakeLp")}
       </Button>
@@ -79,7 +80,6 @@ const UnstakeButton: React.FC<Props> = (props) => {
         }
         buttonText={loading ? t("loading") : t("buttons.unstakeLp")}
         buttonAction={() => unstake()}
-        buttonDisabled={props.balance === "0"}
       />
     </div>
   );

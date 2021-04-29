@@ -88,7 +88,6 @@ type Props = {
   content?: JSX.Element;
   buttonText?: string;
   buttonAction?: () => void;
-  buttonDisabled?: boolean;
   secondButtonText?: string;
   secondButtonAction?: () => void;
 };
@@ -111,7 +110,6 @@ const Popup: React.FC<Props> = (props) => {
                 onClick={() => {
                   if (props.buttonAction) props.buttonAction();
                 }}
-                disabled={props.buttonDisabled}
               >
                 {props.buttonText}
               </Button>
