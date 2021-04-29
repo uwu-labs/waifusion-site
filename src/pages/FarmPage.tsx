@@ -1,12 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import styled, { keyframes } from "styled-components";
 import { useTranslation } from "react-i18next";
 
 import { PageContentWrapper } from "../components/CommonLayout";
-import { ContractHelper } from "../services/contract";
-import { selectAddress } from "../state/reducers/user";
+import { ContractHelper, getAddress } from "../services/contract";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import StakeButton from "../components/StakeButton";
@@ -109,8 +107,7 @@ const SubHeader = styled.div`
 const FarmPage: React.FC = () => {
   const [t] = useTranslation();
 
-  const address = useSelector(selectAddress);
-
+  const [address, setAddress] = useState("");
   const [loadingUnstake, setLoadingUnstake] = useState(false);
   const [unstakeAmount, setUnstakeAmount] = useState(false);
   const [lpApproved, setLpApproved] = useState(false);
@@ -122,13 +119,15 @@ const FarmPage: React.FC = () => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
 
+    const _address = await getAddress();
     const farmContract = await contractHelper.getFarmContract();
     const wetContract = await contractHelper.getWetContract();
 
+    setAddress(_address);
     setLpApproved(await contractHelper.isLpApprovedForFarm());
-    setStakingBalance(await farmContract.methods.balanceOf(address).call());
-    setWetBalance(await wetContract.methods.balanceOf(address).call());
-    setRewardBalance(await farmContract.methods.earned(address).call());
+    setStakingBalance(await farmContract.methods.balanceOf(_address).call());
+    setWetBalance(await wetContract.methods.balanceOf(_address).call());
+    setRewardBalance(await farmContract.methods.earned(_address).call());
   };
 
   useEffect(() => {
