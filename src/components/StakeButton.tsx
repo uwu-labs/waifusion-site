@@ -69,8 +69,11 @@ const StakeButton: React.FC<Props> = (props) => {
       .on("transactionHash", (hash: any) => {
         setLoading(true);
       })
-      .on("receipt", (receipt: any) => {
+      .on("receipt", async (receipt: any) => {
+        await props.refresh();
+        setPopupOpen(false);
         setLoading(false);
+        setAmount("0");
       })
       .on("error", (err: any) => {
         setLoading(true);
