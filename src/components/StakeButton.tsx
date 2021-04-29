@@ -84,7 +84,7 @@ const StakeButton: React.FC<Props> = (props) => {
         {loading
           ? t("loading")
           : !props.approved
-          ? t("buttons.approveWet")
+          ? t("buttons.approveLp")
           : t("buttons.stakeWet")}
       </Button>
       <Popup
