@@ -55,7 +55,8 @@
   "wallet": {
     "claim": "Claim",
     "noWaifusMain": "You don't have any waifus baka",
-    "noWaifusSecondary": " Get your first one now!"
+    "noWaifusSecondary": " Get your first one now!",
+    "wetOwned": "WET Owned:"
   },
   "dungeon": {
     "description": "Oh no... Many of our beloved waifus have been captured and put in the Dungeon! Be a hero and save your beloved Waifus by buying their freedom for [[BUY_PRICE]] ETH to get a random Waifu. Or burn a Waifu and pay [[WET_BURN_PRICE]] WET to free a random one from the Dungeon.",
@@ -78,7 +79,7 @@
       "loadingPurchase": "When purchase is complete you must reveal immediately or risk losing your Waifus forever",
       "revealReady": "Your Waifus have been redeemed! Click Reveal below to see what you got",
       "burnMethod": "You can burn either Waifusion NFTs or NFTX WAIFU Tokens, select your preference",
-      "burnMethodBsc": "You can burn Waifus with BNB or BSC, select your preference"
+      "burnMethodBsc": "You can burn Waifus with WET or BNB, select your preference"
     }
   },
   "wet": {

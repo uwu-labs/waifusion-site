@@ -52,7 +52,8 @@
   "wallet": {
     "claim": "Réclamer",
     "noWaifusMain": "Tu n'as pas de waifus baka",
-    "noWaifusSecondary": " Obtenez votre premier maintenant!"
+    "noWaifusSecondary": " Obtenez votre premier maintenant!",
+    "wetOwned": "TODO"
   },
   "dungeon": {
     "description": "TODO",
