@@ -45,18 +45,13 @@ const StakeButton: React.FC<Props> = (props) => {
       .approve(globals.farmAddress, new BN("9999999999999999999999999999"))
       .send()
       .on("transactionHash", (hash: any) => {
-        console.log("started");
         setLoading(true);
       })
       .on("receipt", async (receipt: any) => {
-        console.log("Okay");
-        console.log(receipt);
         await props.refresh();
         setLoading(false);
       })
       .on("error", (err: any) => {
-        console.log("error");
-        console.log(err);
         setLoading(true);
       });
   };
