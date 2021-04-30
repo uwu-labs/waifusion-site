@@ -57,7 +57,9 @@ const Input: React.FC<Props> = (props) => {
         placeholder={props.placeholder}
         onChange={(event) => props.update(event.target.value)}
       />
-      {props.max && <Max onClick={() => props.update(props.max!)}>max</Max>}
+      {props.max && (
+        <Max onClick={() => props.update(props.max || "0")}>max</Max>
+      )}
     </Container>
   );
 };
