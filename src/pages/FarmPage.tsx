@@ -149,8 +149,10 @@ const FarmPage: React.FC = () => {
     setRewardToken(await contractHelper.getRewardTicker());
     setLpApproved(await contractHelper.isLpApprovedForFarm());
     setStaking(await farmContract.methods.balanceOf(_address).call());
+    setStaking(await farmContract.methods.balanceOf(_address).call());
     setLp(toEthUnit(await lpContract.methods.balanceOf(_address).call()));
-    setRewardBalance(await farmContract.methods.earned(_address).call());
+    const earned = await farmContract.methods.earned(_address).call();
+    setRewardBalance(toEthUnit(earned));
   };
 
   useEffect(() => {
@@ -195,7 +197,14 @@ const FarmPage: React.FC = () => {
           <Content>
             <Horizontal>
               <Vertical>
-                <Rewards>{rewardBalance}</Rewards>
+                <Rewards>
+                  {rewardBalance === "---"
+                    ? "---"
+                    : Number(rewardBalance).toLocaleString(undefined, {
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 4,
+                      })}
+                </Rewards>
                 <SubHeader>{`${rewardToken} ${t("farm.earned")}`}</SubHeader>
               </Vertical>
               <Button
