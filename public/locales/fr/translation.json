@@ -58,8 +58,8 @@
   "farm": {
     "descriptionEth": "TODO",
     "descriptionBsc": "TODO",
-    "wetEarned": "TODO",
-    "claimWet": "TODO",
+    "earned": "TODO",
+    "claim": "TODO",
     "wetStaked": "TODO",
     "apr": "TODO"
   },

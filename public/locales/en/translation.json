@@ -43,7 +43,7 @@
     "unstakeLp": "Unstake LP"
   },
   "headers": {
-    "farm": "Farm WET",
+    "farm": "Farm",
     "browse": "Browse Waifus",
     "dungeon": "The Dungeon",
     "history": "Your History",
@@ -59,10 +59,10 @@
     "dungeon": "Dungeon"
   },
   "farm": {
-    "descriptionEth": "Stake your SushiSwap WET-ETH LP Tokens to Earn WET as Rewards",
-    "descriptionBsc": "Stake your PancakeSwap WET-BNB LP Tokens to Earn WET as Rewards",
-    "wetEarned": "WET Earned",
-    "claimWet": "Claim WET",
+    "descriptionEth": "Stake your SushiSwap WET-ETH LP Tokens to Earn",
+    "descriptionBsc": "Stake your PancakeSwap WET-BNB LP Tokens to Earn",
+    "earned": "Earned",
+    "claim": "Claim",
     "wetStaked": "LP Staked:",
     "apr": "APY:"
   },

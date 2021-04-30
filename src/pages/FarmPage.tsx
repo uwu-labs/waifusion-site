@@ -134,6 +134,7 @@ const FarmPage: React.FC = () => {
   const [lpApproved, setLpApproved] = useState(false);
   const [staking, setStaking] = useState("0");
   const [lp, setLp] = useState("0");
+  const [rewardToken, setRewardToken] = useState("---");
   const [rewardBalance, setRewardBalance] = useState("0");
 
   const init = async () => {
@@ -145,6 +146,7 @@ const FarmPage: React.FC = () => {
     const lpContract = await contractHelper.getLpContract();
 
     setAddress(_address);
+    setRewardToken(await contractHelper.getRewardTicker());
     setLpApproved(await contractHelper.isLpApprovedForFarm());
     setStaking(await farmContract.methods.balanceOf(_address).call());
     setLp(toEthUnit(await lpContract.methods.balanceOf(_address).call()));
@@ -172,9 +174,11 @@ const FarmPage: React.FC = () => {
     <StyledFarmPage>
       <HeaderContainer>
         <HeaderText>
-          <Header text={t("headers.farm")} />
+          <Header text={`${t("headers.farm")} ${rewardToken}`} />
           <Description>
-            {isEth ? t("farm.descriptionEth") : t("farm.descriptionBsc")}
+            {`${
+              isEth ? t("farm.descriptionEth") : t("farm.descriptionBsc")
+            } ${rewardToken}`}
           </Description>
         </HeaderText>
         <Button
@@ -192,7 +196,7 @@ const FarmPage: React.FC = () => {
             <Horizontal>
               <Vertical>
                 <Rewards>{rewardBalance}</Rewards>
-                <SubHeader>{t("farm.wetEarned")}</SubHeader>
+                <SubHeader>{`${rewardToken} ${t("farm.earned")}`}</SubHeader>
               </Vertical>
               <Button
                 primary
@@ -200,7 +204,7 @@ const FarmPage: React.FC = () => {
                 disabled={rewardBalance === "0"}
                 onClick={() => claim()}
               >
-                {t("farm.claimWet")}
+                {`${t("farm.claim")} ${rewardToken}`}
               </Button>
             </Horizontal>
             <Horizontal spaceEvenly>
