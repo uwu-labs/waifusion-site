@@ -214,11 +214,11 @@ const FarmPage: React.FC = () => {
             <Horizontal>
               <Vertical>
                 <SubHeader>{t("farm.wetStaked")}</SubHeader>
-                <SubHeader>{t("farm.apr")}</SubHeader>
+                {/* <SubHeader>{t("farm.apr")}</SubHeader> */}
               </Vertical>
               <Vertical>
                 <SubHeader right>{staking}</SubHeader>
-                <SubHeader right>{`${staking}%`}</SubHeader>
+                {/* <SubHeader right>{`${staking}%`}</SubHeader> */}
               </Vertical>
             </Horizontal>
           </Content>
