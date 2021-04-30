@@ -119,13 +119,11 @@ export class ContractHelper {
   };
 
   getLpContract = async (): Promise<Contract> => {
-    return new (window as any).web3.eth.Contract(
-      erc20Abi,
-      this.globals?.lpAddress,
-      {
-        from: this.address,
-      }
-    );
+    const farmContract = await this.getFarmContract();
+    const lpAddress = await farmContract.methods.stakingToken().call();
+    return new (window as any).web3.eth.Contract(erc20Abi, lpAddress, {
+      from: this.address,
+    });
   };
 
   // Functions
