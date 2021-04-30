@@ -38,6 +38,7 @@
     "nftxWaifu": "NFTX WAIFU",
     "useBnb": "Use BNB",
     "useWet": "Use WET",
+    "getLp": "Get LP Tokens",
     "stakeLp": "Stake LP",
     "unstakeLp": "Unstake LP"
   },
@@ -58,6 +59,8 @@
     "dungeon": "Dungeon"
   },
   "farm": {
+    "descriptionEth": "Stake your SushiSwap WET-ETH LP Tokens to Earn WET as Rewards",
+    "descriptionBsc": "Stake your PancakeSwap WET-BNB LP Tokens to Earn WET as Rewards",
     "wetEarned": "WET Earned",
     "claimWet": "Claim WET",
     "wetStaked": "LP Staked:",
