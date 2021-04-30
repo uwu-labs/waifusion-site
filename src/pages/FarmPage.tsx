@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 import { PageContentWrapper } from "../components/CommonLayout";
 import { ContractHelper, getAddress } from "../services/contract";
@@ -10,6 +11,25 @@ import Button from "../components/Button";
 import StakeButton from "../components/StakeButton";
 import UnstakeButton from "../components/UnstakeButton";
 import { toEthUnit } from "../services/web3";
+import { selectIsEth, selectWetLpLink } from "../state/reducers/globals";
+
+const HeaderContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const HeaderText = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Description = styled.h3`
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+`;
 
 const StyledFarmPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -107,6 +127,9 @@ const SubHeader = styled.div`
 const FarmPage: React.FC = () => {
   const [t] = useTranslation();
 
+  const wetLpLink = useSelector(selectWetLpLink);
+  const isEth = useSelector(selectIsEth);
+
   const [address, setAddress] = useState("");
   const [lpApproved, setLpApproved] = useState(false);
   const [staking, setStaking] = useState("0");
@@ -147,7 +170,22 @@ const FarmPage: React.FC = () => {
 
   return (
     <StyledFarmPage>
-      <Header text={t("headers.farm")} />
+      <HeaderContainer>
+        <HeaderText>
+          <Header text={t("headers.farm")} />
+          <Description>
+            {isEth ? t("farm.descriptionEth") : t("farm.descriptionBsc")}
+          </Description>
+        </HeaderText>
+        <Button
+          secondary
+          onClick={() => {
+            (window as any).open(wetLpLink, "_blank").focus();
+          }}
+        >
+          {t("buttons.getLp")}
+        </Button>
+      </HeaderContainer>
       <PageContent>
         <Background rainbow={Number(staking) > 0}>
           <Content>
