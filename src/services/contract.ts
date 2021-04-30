@@ -126,7 +126,20 @@ export class ContractHelper {
     });
   };
 
+  getRewardContract = async (): Promise<Contract> => {
+    const farmContract = await this.getFarmContract();
+    const rewardToken = await farmContract.methods.rewardToken().call();
+    return new (window as any).web3.eth.Contract(erc20Abi, rewardToken, {
+      from: this.address,
+    });
+  };
+
   // Functions
+  getRewardTicker = async (): Promise<string> => {
+    const rewardContract = await this.getRewardContract();
+    return rewardContract.methods.symbol().call();
+  };
+
   getUserWrapperAddress = async (): Promise<string> => {
     const wrapperContract = await this.getWrapperContract();
     return wrapperContract.methods.userWrapperAddr(this.address).call();
