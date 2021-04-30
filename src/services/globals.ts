@@ -32,7 +32,7 @@ export const TEST_GLOBALS: GlobalsData = {
   dungeonAddress: "0xfFA01A6F5c530157a2e639798F93D44009AA069a",
   wrapperAddress: "0x2966F786133f39e1b75c57Ce17eB1B32335ea560",
   nftxAddress: "0x245f0dd9142c5b3d52373127ee2fe3a87080ad06",
-  farmAddress: "0xE811E9F796c876e1039CF5dA758FB016a3566cDA",
+  farmAddress: "0xd8c0e08b3843393a7c698d47b532c9af0086e78f",
   startingIndex: 11595,
   currency: "ETH",
   imageApi: "https://global-harem.waifusion.sexy/v1/ETH_WAIFU/",
