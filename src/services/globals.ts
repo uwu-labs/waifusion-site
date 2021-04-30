@@ -21,6 +21,7 @@ export type GlobalsData = {
   imageApi: string;
   waifuApi: string;
   wetTradeLink: string;
+  wetLpLink: string;
   waifuTradeLink: string;
 };
 
@@ -40,6 +41,8 @@ export const TEST_GLOBALS: GlobalsData = {
   waifuApi: "waifus/",
   wetTradeLink:
     "https://app.sushi.com/swap?inputCurrency=eth&outputCurrency=0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
+  wetLpLink:
+    "https://app.sushi.com/add/ETH/0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
   waifuTradeLink: "https://opensea.io/assets/waifusion",
 };
 
@@ -59,6 +62,8 @@ export const ETH_GLOBALS: GlobalsData = {
   waifuApi: "waifus/",
   wetTradeLink:
     "https://app.sushi.com/swap?inputCurrency=eth&outputCurrency=0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
+  wetLpLink:
+    "https://app.sushi.com/add/ETH/0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
   waifuTradeLink: "https://opensea.io/assets/waifusion",
 };
 
@@ -78,6 +83,8 @@ export const BSC_GLOBALS: GlobalsData = {
   waifuApi: "waifus/bsc/",
   wetTradeLink:
     "https://exchange.pancakeswap.finance/#/swap?inputCurrency=bnb&outputCurrency=0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
+  wetLpLink:
+    "https://exchange.pancakeswap.finance/#/add/BNB/0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
   waifuTradeLink: "https://nftkey.app/collections/waifusion/bsc/",
 };
 
