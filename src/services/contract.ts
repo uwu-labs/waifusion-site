@@ -342,4 +342,13 @@ export class ContractHelper {
     if (this.globals?.network !== Network.BSC) return "";
     return toEthUnit(await contract.methods.swapETHCost().call());
   };
+
+  getApr = async (): Promise<number> => {
+    const farmContract = await this.getFarmContract();
+    const lpAddress = await farmContract.methods.stakingToken().call();
+    const lpContract = await this.getLpContract();
+    const balance = await window.web3.eth.getBalance(lpAddress);
+    console.log(balance);
+    return Number(balance);
+  };
 }
