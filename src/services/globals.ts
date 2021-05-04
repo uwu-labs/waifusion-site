@@ -72,7 +72,7 @@ export const BSC_GLOBALS: GlobalsData = {
   dungeonAddress: "0x21d2cf043937dcbaeff1feff75776f526b0c83d9",
   wrapperAddress: "",
   nftxAddress: "",
-  farmAddress: "",
+  farmAddress: "0x95ce780b7cc5329f2b6f52004b688b2dc3b50e91",
   startingIndex: 11936,
   currency: "BNB",
   imageApi: "https://global-harem.waifusion.sexy/v1/BSC_WAIFU/",
