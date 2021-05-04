@@ -63,8 +63,9 @@ const StakeButton: React.FC<Props> = (props) => {
     await contractHelper.init();
     const farmContract = await contractHelper.getFarmContract();
 
+    const modifiedBal = new BN(amount.replace(".", ""));
     farmContract.methods
-      .stake(amount)
+      .stake(modifiedBal)
       .send({ from: address })
       .on("transactionHash", (hash: any) => {
         setLoading(true);
