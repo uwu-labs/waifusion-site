@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import BN from "bn.js";
 
 import { PageContentWrapper } from "../components/CommonLayout";
 import { ContractHelper, getAddress } from "../services/contract";
@@ -136,6 +137,7 @@ const FarmPage: React.FC = () => {
   const [lp, setLp] = useState("0");
   const [rewardToken, setRewardToken] = useState("---");
   const [rewardBalance, setRewardBalance] = useState("0");
+  const [apr, setApr] = useState("0");
 
   const init = async () => {
     const contractHelper = new ContractHelper();
@@ -153,6 +155,13 @@ const FarmPage: React.FC = () => {
     setLp(toEthUnit(await lpContract.methods.balanceOf(_address).call()));
     const earned = await farmContract.methods.earned(_address).call();
     setRewardBalance(toEthUnit(earned));
+    const base = new BN(1).mul(new BN(10).pow(new BN(18))); // 1e18
+    const rewardRate = await farmContract.methods.rewardRate().call();
+    const hourly = new BN(rewardRate).mul(new BN(60)).mul(new BN(60)).div(base);
+    const balance = await farmContract.methods.balanceOf(_address).call();
+    const totalSupply = await farmContract.methods.totalSupply().call();
+    const adjustedForBal = hourly.mul(new BN(balance)).div(new BN(totalSupply));
+    setApr(adjustedForBal.toString());
   };
 
   useEffect(() => {
@@ -227,7 +236,7 @@ const FarmPage: React.FC = () => {
             <Horizontal>
               <Vertical>
                 <SubHeader>{t("farm.wetStaked")}</SubHeader>
-                {/* <SubHeader>{t("farm.apr")}</SubHeader> */}
+                <SubHeader>{`(${apr} WET an hour)`}</SubHeader>
               </Vertical>
               <Vertical>
                 <SubHeader right>{staking}</SubHeader>
