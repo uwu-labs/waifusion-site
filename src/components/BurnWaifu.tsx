@@ -272,7 +272,7 @@ const BurnWaifu: React.FC<Props> = (props) => {
             <Input
               value={waifuIds}
               placeholder="e.g. 1423, 121, 1102"
-              onChange={(event) => setWaifuIds(event.target.value)}
+              update={(value: string) => setWaifuIds(value)}
             />
             {error && <Error>{error}</Error>}
           </Content>
@@ -303,9 +303,9 @@ const BurnWaifu: React.FC<Props> = (props) => {
             <Input
               value={nftxCount}
               type="number"
-              onChange={(event) => {
-                setNftxCount(event.target.value);
-                validateNftx(event.target.value);
+              update={(value: string) => {
+                setNftxCount(value);
+                validateNftx(value);
               }}
             />
             {error && <Error>{error}</Error>}

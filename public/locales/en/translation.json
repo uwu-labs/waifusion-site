@@ -31,14 +31,19 @@
     "approveWet": "Approve WET",
     "approveWaifus": "Approve Waifus",
     "approveNftx": "Approve WAIFU",
+    "approveLp": "Approve LP",
     "changeName": "Change Name",
     "free": "Free from dungeon",
     "waifuNft": "Waifu NFT",
     "nftxWaifu": "NFTX WAIFU",
     "useBnb": "Use BNB",
-    "useWet": "Use WET"
+    "useWet": "Use WET",
+    "getLp": "Get LP Tokens",
+    "stakeLp": "Stake LP",
+    "unstakeLp": "Unstake LP"
   },
   "headers": {
+    "farm": "Farm",
     "browse": "Browse Waifus",
     "dungeon": "The Dungeon",
     "history": "Your History",
@@ -48,9 +53,18 @@
     "available": "Free These Waifus"
   },
   "navigation": {
+    "farm": "Farm",
     "browse": "Browse",
     "wallet": "Wallet",
     "dungeon": "Dungeon"
+  },
+  "farm": {
+    "descriptionEth": "Stake your SushiSwap WET-ETH LP Tokens to Earn",
+    "descriptionBsc": "Stake your PancakeSwap WET-BNB LP Tokens to Earn",
+    "earned": "Earned",
+    "claim": "Claim",
+    "wetStaked": "LP Staked:",
+    "apr": "APY:"
   },
   "wallet": {
     "claim": "Claim",

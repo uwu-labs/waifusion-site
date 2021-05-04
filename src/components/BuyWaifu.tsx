@@ -93,7 +93,7 @@ const BuyWaifu: React.FC<Props> = (props) => {
             <Input
               value={count}
               type="number"
-              onChange={(event) => setCount(event.target.value)}
+              update={(value: string) => setCount(value)}
             />
             {error && <Error>{error}</Error>}
           </Content>

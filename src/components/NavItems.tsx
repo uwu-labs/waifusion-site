@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { DungeonIcon, SearchIcon, WalletIcon } from "./Icons";
+import { DungeonIcon, FarmIcon, SearchIcon, WalletIcon } from "./Icons";
 import Address from "./Address";
 import NetworkIndicator from "./NetworkIndicator";
 import { selectIsEth } from "../state/reducers/globals";
@@ -65,6 +65,14 @@ const NavItems: React.FC = () => {
 
   return (
     <NavItemsWrapper>
+      {!isEth && (
+        <Item>
+          <LinkableItem to="/farm">
+            <FarmIcon />
+            <label>{t("navigation.farm")}</label>
+          </LinkableItem>
+        </Item>
+      )}
       {isEth && (
         <Item>
           <LinkableItem to="/browse">

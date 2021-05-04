@@ -63,5 +63,7 @@ export const selectImageApi = (state: RootState): string =>
   state.globals.data.imageApi;
 export const selectWetTradeLink = (state: RootState): string =>
   state.globals.data.wetTradeLink;
+export const selectWetLpLink = (state: RootState): string =>
+  state.globals.data.wetLpLink;
 
 export default globalsSlice.reducer;

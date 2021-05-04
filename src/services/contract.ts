@@ -9,6 +9,7 @@ import accomulatorAbi from "../contracts/Accoomulator.json";
 import dungeonAbi from "../contracts/Dungeon.json";
 import dungeonBscAbi from "../contracts/DungeonBSC.json";
 import wrapperAbi from "../contracts/NFTXWrapper.json";
+import farmAbi from "../contracts/Farm.json";
 
 import { Waifu } from "../types/waifusion";
 import { getGlobals, GlobalsData, Network } from "./globals";
@@ -107,7 +108,38 @@ export class ContractHelper {
     );
   };
 
+  getFarmContract = async (): Promise<Contract> => {
+    return new (window as any).web3.eth.Contract(
+      farmAbi,
+      this.globals?.farmAddress,
+      {
+        from: this.address,
+      }
+    );
+  };
+
+  getLpContract = async (): Promise<Contract> => {
+    const farmContract = await this.getFarmContract();
+    const lpAddress = await farmContract.methods.stakingToken().call();
+    return new (window as any).web3.eth.Contract(erc20Abi, lpAddress, {
+      from: this.address,
+    });
+  };
+
+  getRewardContract = async (): Promise<Contract> => {
+    const farmContract = await this.getFarmContract();
+    const rewardToken = await farmContract.methods.rewardToken().call();
+    return new (window as any).web3.eth.Contract(erc20Abi, rewardToken, {
+      from: this.address,
+    });
+  };
+
   // Functions
+  getRewardTicker = async (): Promise<string> => {
+    const rewardContract = await this.getRewardContract();
+    return rewardContract.methods.symbol().call();
+  };
+
   getUserWrapperAddress = async (): Promise<string> => {
     const wrapperContract = await this.getWrapperContract();
     return wrapperContract.methods.userWrapperAddr(this.address).call();
@@ -124,6 +156,14 @@ export class ContractHelper {
   isWetApprovedForDungeon = async (): Promise<boolean> => {
     const dungeonAllowance = await this.getDungeonAllowance();
     return new BN(dungeonAllowance).gt(new BN("9999999999999999999999999"));
+  };
+
+  isLpApprovedForFarm = async (): Promise<boolean> => {
+    const lpContract = await this.getLpContract();
+    const allowance = await lpContract.methods
+      .allowance(this.address, this.globals?.farmAddress)
+      .call();
+    return new BN(allowance).gt(new BN("9999999999999999999999999"));
   };
 
   isWetApprovedForWrapper = async (): Promise<boolean> => {
@@ -301,5 +341,14 @@ export class ContractHelper {
     const contract = await this.getDungeonContract();
     if (this.globals?.network !== Network.BSC) return "";
     return toEthUnit(await contract.methods.swapETHCost().call());
+  };
+
+  getApr = async (): Promise<number> => {
+    const farmContract = await this.getFarmContract();
+    const lpAddress = await farmContract.methods.stakingToken().call();
+    const lpContract = await this.getLpContract();
+    const balance = await window.web3.eth.getBalance(lpAddress);
+    console.log(balance);
+    return Number(balance);
   };
 }

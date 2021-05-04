@@ -23,6 +23,7 @@ import {
 import { getGlobals } from "./services/globals";
 import { ContractHelper } from "./services/contract";
 import LoadingPurchase from "./components/LoadingPurchase";
+import FarmPage from "./pages/FarmPage";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -83,6 +84,7 @@ const App: React.FC = () => {
               <Route path="/wallet" component={WalletPage} />
               <Route path="/dungeon" component={DungeonPage} />
               <Route path="/provenance" component={ProvenancePage} />
+              <Route path="/farm" component={FarmPage} />
               <Route path="/loading" component={Loading} />
               <Route exact path="/" component={HomePage} />
               <Route path="*" component={NotFoundPage} />

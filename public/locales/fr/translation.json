@@ -30,13 +30,18 @@
     "approveWet": "Approuver ce WET",
     "approveWaifus": "Approuver ces Waifus",
     "approveNftx": "TODO",
+    "approveLp": "TODO",
     "changeName": "Changer de nom",
     "waifuNft": "TODO",
     "nftxWaifu": "TODO",
     "useBnb": "TODO",
-    "useWet": "TODO"
+    "useWet": "TODO",
+    "getLp": "TODO",
+    "stakeLp": "TODO",
+    "unstakeLp": "TODO"
   },
   "headers": {
+    "farm": "TODO",
     "browse": "Parcourir les Waifus",
     "dungeon": "Le donjon",
     "history": "Votre historique",
@@ -45,9 +50,18 @@
     "wallet": "Votre portefeuille"
   },
   "navigation": {
+    "farm": "TODO",
     "browse": "Parcourir",
     "wallet": "Portefeuille",
     "dungeon": "Donjon"
+  },
+  "farm": {
+    "descriptionEth": "TODO",
+    "descriptionBsc": "TODO",
+    "earned": "TODO",
+    "claim": "TODO",
+    "wetStaked": "TODO",
+    "apr": "TODO"
   },
   "wallet": {
     "claim": "Réclamer",

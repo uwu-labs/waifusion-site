@@ -105,9 +105,9 @@ const ChangeName: React.FC<Props> = (props) => {
             {!loading && !complete && (
               <Input
                 value={name}
-                onChange={(event) => {
-                  setName(event.target.value);
-                  validate(event.target.value);
+                update={(value: string) => {
+                  setName(value);
+                  validate(value);
                 }}
               />
             )}
