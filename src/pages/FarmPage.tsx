@@ -150,8 +150,8 @@ const FarmPage: React.FC = () => {
     setAddress(_address);
     setRewardToken(await contractHelper.getRewardTicker());
     setLpApproved(await contractHelper.isLpApprovedForFarm());
-    setStaking(await farmContract.methods.balanceOf(_address).call());
-    setStaking(await farmContract.methods.balanceOf(_address).call());
+    const stakedBal = await farmContract.methods.balanceOf(_address).call();
+    setStaking(toEthUnit(stakedBal).substring(0, 8));
     setLp(toEthUnit(await lpContract.methods.balanceOf(_address).call()));
     const earned = await farmContract.methods.earned(_address).call();
     setRewardBalance(toEthUnit(earned));
