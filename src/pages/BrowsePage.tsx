@@ -11,6 +11,7 @@ import { makeRequest } from "../services/api";
 import { Waifu } from "../types/waifusion";
 import PageSelector from "../components/PageSelector";
 import { getGlobals } from "../services/globals";
+import Head from "../components/Head";
 
 type FilterType = {
   id: string;
@@ -98,6 +99,7 @@ const BrowsePage: React.FC = () => {
 
   return (
     <StyledBrowsePage>
+      <Head title="Browse" />
       <Header text={t("headers.browse")} />
       <Content>
         {loading && (

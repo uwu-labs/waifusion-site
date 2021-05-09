@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Button from "../components/Button";
 import ChangeName from "../components/ChangeName";
 import { PageContentWrapper } from "../components/CommonLayout";
+import Head from "../components/Head";
 import { HashIcon } from "../components/Icons";
 import LargeWaifuCard from "../components/LargeWaifuCard";
 import Loading from "../components/Loading";
@@ -153,6 +154,7 @@ const WaifuDetail: React.FC = () => {
 
   return (
     <PageContentWrapper>
+      <Head title="Waifu" />
       {!waifu && (
         <LoadingContainer>
           <Loading />
@@ -160,6 +162,10 @@ const WaifuDetail: React.FC = () => {
       )}
       {waifu && (
         <Wrapper>
+          <Head
+            title="Waifu"
+            subtitle={`${waifu.name && `${waifu.name} - `}${waifu.id}`}
+          />
           <LargeWaifuCard id={Number(waifu.id)} />
           <Content>
             <Header>

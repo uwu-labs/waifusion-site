@@ -17,6 +17,7 @@ import { Waifu } from "../types/waifusion";
 import noWaifus from "../assets/no-waifus.png";
 import Button from "../components/Button";
 import * as ROUTES from "../constants/routes";
+import Head from "../components/Head";
 
 const StyledWalletPage = styled(PageContentWrapper)`
   display: flex;
@@ -100,6 +101,7 @@ const WalletPage: React.FC = () => {
 
   return (
     <StyledWalletPage>
+      <Head title="Wallet" />
       <HeaderContainer>
         <Header text={t("headers.wallet")} />
         <ClaimWet />
