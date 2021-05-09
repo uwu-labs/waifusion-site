@@ -76,7 +76,7 @@ const NavItems: React.FC = () => {
       )}
       {isEth && (
         <Item>
-          <LinkableItem to={ROUTES.WALLET}>
+          <LinkableItem to={ROUTES.BROWSE}>
             <SearchIcon />
             <label>{t("navigation.browse")}</label>
           </LinkableItem>
