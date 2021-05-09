@@ -16,6 +16,7 @@ import {
 import { Waifu } from "../types/waifusion";
 import noWaifus from "../assets/no-waifus.png";
 import Button from "../components/Button";
+import * as ROUTES from "../constants/routes";
 
 const StyledWalletPage = styled(PageContentWrapper)`
   display: flex;
@@ -117,7 +118,10 @@ const WalletPage: React.FC = () => {
             <NoWaifusImage src={noWaifus} />
             <NoWaifusText>{t("wallet.noWaifusMain")}</NoWaifusText>
             <NoWaifusText>{t("wallet.noWaifusSecondary")}</NoWaifusText>
-            <NoWaifuButton highlight onClick={() => history.push("/dungeon")}>
+            <NoWaifuButton
+              highlight
+              onClick={() => history.push(ROUTES.DUNGEON)}
+            >
               {t("buttons.getWaifus")}
             </NoWaifuButton>
           </NoWaifusContainer>

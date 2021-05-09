@@ -24,6 +24,7 @@ import { getGlobals } from "./services/globals";
 import { ContractHelper } from "./services/contract";
 import LoadingPurchase from "./components/LoadingPurchase";
 import FarmPage from "./pages/FarmPage";
+import * as ROUTES from "./constants/routes";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -79,14 +80,17 @@ const App: React.FC = () => {
 
           <ContentWrapper>
             <Switch>
-              <Route exact path="/waifu/:id" component={WaifuDetail} />
-              <Route path="/browse" component={BrowsePage} />
-              <Route path="/wallet" component={WalletPage} />
-              <Route path="/dungeon" component={DungeonPage} />
-              <Route path="/provenance" component={ProvenancePage} />
-              <Route path="/farm" component={FarmPage} />
-              <Route path="/loading" component={Loading} />
-              <Route exact path="/" component={HomePage} />
+              <Route
+                exact
+                path={`${ROUTES.WAIFU}/:id`}
+                component={WaifuDetail}
+              />
+              <Route path={ROUTES.BROWSE} component={BrowsePage} />
+              <Route path={ROUTES.WALLET} component={WalletPage} />
+              <Route path={ROUTES.DUNGEON} component={DungeonPage} />
+              <Route path={ROUTES.PROVENANCE} component={ProvenancePage} />
+              <Route path={ROUTES.FARM} component={FarmPage} />
+              <Route exact path={ROUTES.HOME} component={HomePage} />
               <Route path="*" component={NotFoundPage} />
             </Switch>
           </ContentWrapper>
