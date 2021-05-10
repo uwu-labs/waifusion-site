@@ -201,7 +201,9 @@ export class ContractHelper {
     const commits = await dungeonContract.methods.commits(this.address).call();
     console.log("commit", commits.block);
     console.log("block", await this.blockNumber());
-    return commits.block + 256 > (await this.blockNumber());
+    const pending = commits.block + 256 > (await this.blockNumber());
+    console.log(pending);
+    return pending;
   };
 
   getAllowance = async (): Promise<number> => {
