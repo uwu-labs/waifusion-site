@@ -199,7 +199,7 @@ export class ContractHelper {
   revealPending = async (): Promise<boolean> => {
     const dungeonContract = await this.getDungeonContract();
     const commits = await dungeonContract.methods.commits(this.address).call();
-    return commits.block + 256 < (await this.blockNumber());
+    return commits.block + 256 > (await this.blockNumber());
   };
 
   getAllowance = async (): Promise<number> => {

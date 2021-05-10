@@ -63,12 +63,12 @@ const Landing: React.FC = () => {
         <CardContainer>
           <Card
             text={t("description")}
-            buttonAction={() => history.push("/dungeon")}
-            buttonText={t("buttons.getWaifus")}
-            secondButtonAction={() => {
+            buttonAction={() => {
               (window as any).open(globals.waifuTradeLink, "_blank").focus();
             }}
-            secondButtonText={t("buttons.tradeWaifus")}
+            buttonText={t("buttons.tradeWaifus")}
+            secondButtonAction={() => history.push("/dungeon")}
+            secondButtonText={t("buttons.getWaifus")}
           />
         </CardContainer>
       </Content>
