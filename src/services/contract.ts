@@ -193,13 +193,13 @@ export class ContractHelper {
   };
 
   blockNumber = async (): Promise<number> => {
-    return new (window as any).web3.eth.getBlockNumber()
+    return (window as any).web3.eth.getBlockNumber();
   };
 
   revealPending = async (): Promise<boolean> => {
     const dungeonContract = await this.getDungeonContract();
     const commits = await dungeonContract.methods.commits(this.address).call();
-    return commits.block + 256 < await this.blockNumber();
+    return commits.block + 256 < (await this.blockNumber());
   };
 
   getAllowance = async (): Promise<number> => {
