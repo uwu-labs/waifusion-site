@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import LogoImg from "../assets/logo-nomask.svg";
 import LogoMaskImg from "../assets/logo-mask.svg";
+import * as ROUTES from "../constants/routes";
 
 const StyledLogo = styled(Link)`
   position: relative;
@@ -28,7 +29,7 @@ const Logo: React.FC = () => {
 
   return (
     <StyledLogo
-      to="/"
+      to={ROUTES.HOME}
       onMouseEnter={() => setLogoHoverActive(true)}
       onMouseLeave={() => setLogoHoverActive(false)}
     >

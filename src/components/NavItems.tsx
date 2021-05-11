@@ -8,6 +8,7 @@ import { DungeonIcon, FarmIcon, SearchIcon, WalletIcon } from "./Icons";
 import Address from "./Address";
 import NetworkIndicator from "./NetworkIndicator";
 import { selectIsEth } from "../state/reducers/globals";
+import * as ROUTES from "../constants/routes";
 
 const NavItemsWrapper = styled.ul`
   display: flex;
@@ -67,7 +68,7 @@ const NavItems: React.FC = () => {
     <NavItemsWrapper>
       {!isEth && (
         <Item>
-          <LinkableItem to="/farm">
+          <LinkableItem to={ROUTES.FARM}>
             <FarmIcon />
             <label>{t("navigation.farm")}</label>
           </LinkableItem>
@@ -75,20 +76,20 @@ const NavItems: React.FC = () => {
       )}
       {isEth && (
         <Item>
-          <LinkableItem to="/browse">
+          <LinkableItem to={ROUTES.BROWSE}>
             <SearchIcon />
             <label>{t("navigation.browse")}</label>
           </LinkableItem>
         </Item>
       )}
       <Item>
-        <LinkableItem to="/wallet">
+        <LinkableItem to={ROUTES.WALLET}>
           <WalletIcon />
           <label>{t("navigation.wallet")}</label>
         </LinkableItem>
       </Item>
       <Item>
-        <LinkableItem to="/dungeon">
+        <LinkableItem to={ROUTES.DUNGEON}>
           <DungeonIcon />
           <label>{t("navigation.dungeon")}</label>
         </LinkableItem>

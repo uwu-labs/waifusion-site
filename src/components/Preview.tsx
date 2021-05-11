@@ -7,6 +7,7 @@ import { getGlobals } from "../services/globals";
 import { Waifu } from "../types/waifusion";
 import Button from "./Button";
 import WaifuCard from "./WaifuCard";
+import * as ROUTES from "../constants/routes";
 
 const WAIU_COUNT = 6;
 
@@ -81,7 +82,7 @@ const Preview: React.FC = () => {
         ))}
       </WaifuWrapper>
       <ButtonContainer>
-        <Button primary onClick={() => history.push("/dungeon")}>
+        <Button primary onClick={() => history.push(ROUTES.DUNGEON)}>
           {t("buttons.free")}
         </Button>
       </ButtonContainer>

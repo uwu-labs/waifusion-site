@@ -13,6 +13,7 @@ import StakeButton from "../components/StakeButton";
 import UnstakeButton from "../components/UnstakeButton";
 import { toEthUnit } from "../services/web3";
 import { selectIsEth, selectWetLpLink } from "../state/reducers/globals";
+import Head from "../components/Head";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -183,6 +184,7 @@ const FarmPage: React.FC = () => {
 
   return (
     <StyledFarmPage>
+      <Head title="Farm" />
       <HeaderContainer>
         <HeaderText>
           <Header text={`${t("headers.farm")} ${rewardToken}`} />

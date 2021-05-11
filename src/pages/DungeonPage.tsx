@@ -15,6 +15,7 @@ import {
   selectIsEth,
   selectWetBurnPrice,
 } from "../state/reducers/globals";
+import Head from "../components/Head";
 
 const StyledDungeonPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -152,6 +153,7 @@ const DungeonPage: React.FC = () => {
 
   return (
     <StyledDungeonPage>
+      <Head title="Dungeon" />
       <Header text={t("headers.dungeon")} />
       <Content>
         <CardContainer>
