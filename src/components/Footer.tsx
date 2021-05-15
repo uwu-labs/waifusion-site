@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Underline from "./Underline";
+import * as ROUTES from "../constants/routes";
 
 const StyledFooter = styled.div`
   display: flex;
@@ -73,7 +74,9 @@ const Footer: React.FC = () => {
       <Underline />
       <Container>
         <Section>
-          <InternalLink to="/provenance">{t("footer.provenance")}</InternalLink>
+          <InternalLink to={ROUTES.PROVENANCE}>
+            {t("footer.provenance")}
+          </InternalLink>
           <ExternalLink
             href="https://opensea.io/assets/waifusion"
             target="_blank"

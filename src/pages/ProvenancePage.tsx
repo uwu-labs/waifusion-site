@@ -9,6 +9,7 @@ import { PageContentWrapper } from "../components/CommonLayout";
 import Input from "../components/Input";
 import PageSelector from "../components/PageSelector";
 import { selectIsEth } from "../state/reducers/globals";
+import Head from "../components/Head";
 
 const PROVENANCE_PER_PAGE = 20;
 
@@ -77,6 +78,7 @@ const ProvenancePage: React.FC = () => {
 
   return (
     <StyledProvenancePage>
+      <Head title="Provenance" />
       <Header text={t("headers.provenance")} />
 
       <SearchContainer>

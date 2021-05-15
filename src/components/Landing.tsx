@@ -8,6 +8,7 @@ import landing from "../assets/landing.png";
 import Confetti from "./Confetti";
 import Card from "./Card";
 import { selectGlobalsData } from "../state/reducers/globals";
+import * as ROUTES from "../constants/routes";
 
 const StyledLanding = styled.div`
   position: relative;
@@ -63,12 +64,12 @@ const Landing: React.FC = () => {
         <CardContainer>
           <Card
             text={t("description")}
-            buttonAction={() => {
+            buttonText={t("buttons.getWaifus")}
+            buttonAction={() => history.push(ROUTES.DUNGEON)}
+            secondButtonText={t("buttons.tradeWaifus")}
+            secondButtonAction={() => {
               (window as any).open(globals.waifuTradeLink, "_blank").focus();
             }}
-            buttonText={t("buttons.tradeWaifus")}
-            secondButtonAction={() => history.push("/dungeon")}
-            secondButtonText={t("buttons.getWaifus")}
           />
         </CardContainer>
       </Content>
