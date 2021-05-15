@@ -199,9 +199,9 @@ export class ContractHelper {
   revealPending = async (): Promise<boolean> => {
     const dungeonContract = await this.getDungeonContract();
     const commits = await dungeonContract.methods.commits(this.address).call();
-    const commitBlock: number = Number(commits.block);
+    const commitBlock = Number(commits.block);
     console.log("commit", commitBlock);
-    const blockNumber: number = Number(await this.blockNumber());
+    const blockNumber = Number(await this.blockNumber());
     console.log("block", blockNumber);
     const pending = commitBlock + 256 > blockNumber;
     console.log(pending);
