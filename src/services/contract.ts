@@ -200,11 +200,8 @@ export class ContractHelper {
     const dungeonContract = await this.getDungeonContract();
     const commits = await dungeonContract.methods.commits(this.address).call();
     const commitBlock = Number(commits.block);
-    console.log("commit", commitBlock);
     const blockNumber = Number(await this.blockNumber());
-    console.log("block", blockNumber);
     const pending = commitBlock + 256 > blockNumber;
-    console.log(pending);
     return pending;
   };
 
