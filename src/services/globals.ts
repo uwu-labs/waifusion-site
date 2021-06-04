@@ -58,9 +58,9 @@ export const ETH_GLOBALS: GlobalsData = {
   imageApi: "https://global-harem.waifusion.sexy/v1/ETH_WAIFU/",
   waifuApi: "waifus/",
   wetTradeLink:
-    "https://app.sushi.com/swap?inputCurrency=eth&outputCurrency=0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
+    "https://info.uniswap.org/#/pools/0xbf190af824a0f79838ae79df738e4086a084a057",
   wetLpLink:
-    "https://app.sushi.com/add/ETH/0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
+    "https://info.uniswap.org/#/pools/0xbf190af824a0f79838ae79df738e4086a084a057",
   waifuTradeLink: "https://opensea.io/assets/waifusion",
 };
 
