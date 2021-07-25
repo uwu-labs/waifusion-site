@@ -104,6 +104,7 @@
     "detail": "Les Waifus génère passivement des jetons WET simplement en les tenant! Chaque Waifu générera 3 660 WET par an. Vous pouvez réclamer vos jetons WET sur la page du portefeuille. Pour changer le nom d'une Waifu, vous devez envoyer 1 830 WET. Pour brûler une Waifu, vous devez envoyer une Waifu et [[WET_BURN_PRICE]] WET au contrat Waifusion, et celui ci disparaîtra à jamais..."
   },
   "waifuDetail": {
+    "viewOnMarketplace": "Voir sur la place de marché",
     "bio": "TODO",
     "traits": "TODO",
     "tools": "TODO",

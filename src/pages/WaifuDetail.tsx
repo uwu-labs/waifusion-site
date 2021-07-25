@@ -13,6 +13,7 @@ import LargeWaifuCard from "../components/LargeWaifuCard";
 import Loading from "../components/Loading";
 import TraitTag from "../components/TraitTag";
 import WaifuOwner from "../components/WaifuOwner";
+import ViewOnMarketplace from "../components/ViewOnMarketplace";
 import { makeRequest } from "../services/api";
 import { getGlobals } from "../services/globals";
 import { selectAddress, selectUserWaifuIds } from "../state/reducers/user";
@@ -59,21 +60,22 @@ const Content = styled.div`
     font-size: 16pt;
     color: var(--text-secondary);
   }
-
-  button {
-    margin-bottom: 1rem;
-  }
 `;
 
 const Header = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const PrimaryInfo = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const AdditionalInfo = styled.div`
+  display: flex;
 `;
 
 const MetaRow = styled.div`
@@ -179,7 +181,10 @@ const WaifuDetail: React.FC = () => {
                 </MetaRow>
               </PrimaryInfo>
 
-              {waifu.owner && <WaifuOwner owner={waifu.owner} />}
+              <AdditionalInfo>
+                {waifu.owner && <WaifuOwner owner={waifu.owner} />}
+                <ViewOnMarketplace />
+              </AdditionalInfo>
             </Header>
 
             {waifu.bio && (

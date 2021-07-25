@@ -38,7 +38,6 @@ const WaifuOwnerIcon = styled.img`
 `;
 
 const WaifuOwnerContainer = styled.div`
-  margin-left: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
