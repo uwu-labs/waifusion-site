@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import Head from "../components/Head";
-import Header from "../components/Header";
 
 const StyledNotFoundPage = styled.div`
   display: flex;
