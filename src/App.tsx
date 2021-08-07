@@ -68,7 +68,7 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    // init();
+    init();
   }, []);
 
   return (
