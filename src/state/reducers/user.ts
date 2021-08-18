@@ -10,6 +10,7 @@ interface UserState {
   waifusApprovedForDungeon: boolean;
   wetApprovedForWrapper: boolean;
   nftxApprovedForWrapper: boolean;
+  tickets: string;
 }
 
 const initialState: UserState = {
@@ -20,6 +21,7 @@ const initialState: UserState = {
   waifusApprovedForDungeon: false,
   wetApprovedForWrapper: false,
   nftxApprovedForWrapper: false,
+  tickets: "--",
 };
 
 export const userSlice = createSlice({
@@ -50,6 +52,9 @@ export const userSlice = createSlice({
     setNftxApprovedForWrapper: (state, action: PayloadAction<boolean>) => {
       state.nftxApprovedForWrapper = action.payload;
     },
+    setTickets: (state, action: PayloadAction<number>) => {
+      state.tickets = action.payload.toString();
+    },
   },
 });
 
@@ -62,6 +67,7 @@ export const {
   setWaifusApprovedForDungeon,
   setWetApprovedForWrapper,
   setNftxApprovedForWrapper,
+  setTickets,
 } = userSlice.actions;
 
 export const selectLoadingWaifus = (state: RootState): boolean =>
@@ -87,5 +93,6 @@ export const selectWetApprovedForWrapper = (state: RootState): boolean =>
   state.user.wetApprovedForWrapper;
 export const selectNftxApprovedForWrapper = (state: RootState): boolean =>
   state.user.nftxApprovedForWrapper;
+export const selectTickets = (state: RootState): string => state.user.tickets;
 
 export default userSlice.reducer;
