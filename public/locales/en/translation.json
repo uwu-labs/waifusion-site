@@ -40,7 +40,8 @@
     "useWet": "Use WET",
     "getLp": "Get LP Tokens",
     "stakeLp": "Stake LP",
-    "unstakeLp": "Unstake LP"
+    "unstakeLp": "Unstake LP",
+    "learnMore": "Lean More"
   },
   "headers": {
     "farm": "Farm",
@@ -50,13 +51,15 @@
     "notFound": "404 Page not Found",
     "provenance": "Provenance",
     "wallet": "Your Wallet",
-    "available": "Free These Waifus"
+    "available": "Free These Waifus",
+    "uwucrew": "Get uwucrew Tickets"
   },
   "navigation": {
     "farm": "Farm",
     "browse": "Browse",
     "wallet": "Wallet",
-    "dungeon": "Dungeon"
+    "dungeon": "Dungeon",
+    "uwucrew": "uwucrew"
   },
   "farm": {
     "descriptionEth": "Stake your SushiSwap WET-ETH LP Tokens to Earn",
@@ -95,6 +98,11 @@
       "burnMethod": "You can burn either Waifusion NFTs or NFTX WAIFU Tokens, select your preference",
       "burnMethodBsc": "You can burn Waifus with WET or BNB, select your preference"
     }
+  },
+  "uwu": {
+    "ethDescription": "uwu tickets are how you can get yourself pre-release access to uwucrew, our new NFT collection! To get an uwu ticket, you can burn a Waifu and pay [[WET_BURN_PRICE]] WET per ticket.",
+    "bscDescription": "uwu tickets are how you can get yourself pre-release access to uwucrew, our new NFT collection! To get an uwu ticket, you can pay [[WET_BURN_PRICE]] WET per ticket.",
+    "getTicket": "Get Tickets"
   },
   "wet": {
     "header": "WET Token",
