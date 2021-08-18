@@ -95,6 +95,12 @@ const NavItems: React.FC = () => {
         </LinkableItem>
       </Item>
       <Item>
+        <LinkableItem to={ROUTES.UWUCREW}>
+          <DungeonIcon />
+          <label>{t("navigation.uwucrew")}</label>
+        </LinkableItem>
+      </Item>
+      <Item>
         <Address />
       </Item>
       <NetworkIndicator />
