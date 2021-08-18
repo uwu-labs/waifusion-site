@@ -22,6 +22,8 @@ export type GlobalsData = {
   wetTradeLink: string;
   wetLpLink: string;
   waifuTradeLink: string;
+  uwuMintContract: string;
+  uwuContract: string;
   getWaifuMarketplaceLink: (waifuId: string) => string;
 };
 
@@ -43,6 +45,8 @@ export const TEST_GLOBALS: GlobalsData = {
   wetLpLink:
     "https://app.sushi.com/add/ETH/0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
   waifuTradeLink: "https://opensea.io/assets/waifusion",
+  uwuMintContract: "0xA2FD69978b98611DE865d09E1813476F4F690d19",
+  uwuContract: "0x0072F5cf0AdF7EaC24225666fBB01961907e696a",
   getWaifuMarketplaceLink(waifuId) {
     return `https://opensea.io/assets/${this.waifuAddress}/${waifuId}`;
   },
@@ -66,6 +70,8 @@ export const ETH_GLOBALS: GlobalsData = {
   wetLpLink:
     "https://info.uniswap.org/#/pools/0xbf190af824a0f79838ae79df738e4086a084a057",
   waifuTradeLink: "https://opensea.io/assets/waifusion",
+  uwuMintContract: "",
+  uwuContract: "",
   getWaifuMarketplaceLink(waifuId) {
     return `https://opensea.io/assets/${this.waifuAddress}/${waifuId}`;
   },
@@ -89,6 +95,8 @@ export const BSC_GLOBALS: GlobalsData = {
   wetLpLink:
     "https://exchange.pancakeswap.finance/#/add/BNB/0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
   waifuTradeLink: "https://nftkey.app/collections/waifusion/bsc/",
+  uwuMintContract: "",
+  uwuContract: "",
   getWaifuMarketplaceLink(waifuId) {
     return `${this.waifuTradeLink}waifu-details/?tokenId=${waifuId}`;
   },
