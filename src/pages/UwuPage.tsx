@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
@@ -11,12 +11,14 @@ import {
   selectBuyPrice,
   selectGlobalsData,
   selectIsEth,
+  selectUwuMintContract,
   selectWetBurnPrice,
 } from "../state/reducers/globals";
 import Head from "../components/Head";
 import ticket from "../assets/ticket.png";
 import Button from "../components/Button";
 import { selectTickets } from "../state/reducers/user";
+import { getUwuSwapPrice } from "../services/uwuHelper";
 
 const StyledUwuPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -92,16 +94,26 @@ const Ticket = styled.img`
 const UwuPage: React.FC = () => {
   const [t] = useTranslation();
   const [burning, setBurning] = useState(false);
-  const buyPrice = useSelector(selectBuyPrice);
-  const wetBurnPrice = useSelector(selectWetBurnPrice);
-  const bnbBurnPrice = useSelector(selectBnbBurnPrice);
+  const [swapPrice, setSwapPrice] = useState("--");
   const isEth = useSelector(selectIsEth);
+  const uwuMintContract = useSelector(selectUwuMintContract);
   const globals = useSelector(selectGlobalsData);
   const tickets = useSelector(selectTickets);
 
-  const dungeonBody = isEth
-    ? t("uwu.ethDescription").replace("[[WET_BURN_PRICE]]", wetBurnPrice)
-    : t("uwu.bscDescription").replace("[[WET_BURN_PRICE]]", wetBurnPrice);
+  const updateSwapPrice = async () => {
+    if (!uwuMintContract) return;
+    const price = await getUwuSwapPrice(uwuMintContract);
+    setSwapPrice(price.toString());
+  };
+
+  useEffect(() => {
+    updateSwapPrice();
+  }, [uwuMintContract]);
+
+  const dungeonBody = (isEth
+    ? t("uwu.ethDescription")
+    : t("uwu.bscDescription")
+  ).replace("[[WET_BURN_PRICE]]", swapPrice);
 
   return (
     <StyledUwuPage>
