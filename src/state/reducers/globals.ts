@@ -65,5 +65,9 @@ export const selectWetTradeLink = (state: RootState): string =>
   state.globals.data.wetTradeLink;
 export const selectWetLpLink = (state: RootState): string =>
   state.globals.data.wetLpLink;
+export const selectUwuContract = (state: RootState): string =>
+  state.globals.data.uwuContract;
+export const selectUwuMintContract = (state: RootState): string =>
+  state.globals.data.uwuMintContract;
 
 export default globalsSlice.reducer;
