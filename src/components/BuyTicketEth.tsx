@@ -2,25 +2,17 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BN from "bn.js";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { Contract } from "web3-eth-contract";
+import { useSelector } from "react-redux";
 import { ContractHelper } from "../services/contract";
 import Input from "./Input";
 import Popup from "./Popup";
-import {
-  selectWaifusApprovedForDungeon,
-  selectWetApprovedForDungeon,
-  setWaifusApprovedForDungeon,
-  setWetApprovedForDungeon,
-  setWetApprovedForWrapper,
-  setNftxApprovedForWrapper,
-} from "../state/reducers/user";
-import {
-  selectBnbBurnPrice,
-  selectGlobalsData,
-  selectIsEth,
-} from "../state/reducers/globals";
+import { selectGlobalsData } from "../state/reducers/globals";
 import { toWeiUnit } from "../services/web3";
+import {
+  getUwuMintContract,
+  isWaifusApproved,
+  isWetApproved,
+} from "../services/uwuHelper";
 
 const Content = styled.div`
   width: 100%;
@@ -44,85 +36,70 @@ type Props = {
 const BuyTicketEth: React.FC<Props> = (props) => {
   if (!props.show) return null;
 
-  const dispatch = useDispatch();
   const [t] = useTranslation();
   const [waifuIds, setWaifuIds] = useState("");
   const [error, setError] = useState("");
-  const [approving, setApproving] = useState(false);
-  const [committed, setCommited] = useState(false);
-  const wetApprovedForDungeon = useSelector(selectWetApprovedForDungeon);
-  const waifusApprovedForDungeon = useSelector(selectWaifusApprovedForDungeon);
   const globals = useSelector(selectGlobalsData);
-  const isEth = useSelector(selectIsEth);
-  const bnbBurnPrice = useSelector(selectBnbBurnPrice);
+  const [loading, setLoading] = useState(false);
+  const [waifusApproved, setWaifusApproved] = useState(false);
+  const [wetApproved, setWetApproved] = useState(false);
 
-  const updateApprovals = async () => {
-    setApproving(true);
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
-    const _wetApprovedForDungeon = await contractHelper.isWetApprovedForDungeon();
-    dispatch(setWetApprovedForDungeon(_wetApprovedForDungeon));
-    const _waifusApprovedForDungeon = await contractHelper.isWaifuApprovedForDungeon();
-    dispatch(setWaifusApprovedForDungeon(_waifusApprovedForDungeon));
-    if (isEth) {
-      const _wetApprovedForWrapper = await contractHelper.isWetApprovedForWrapper();
-      dispatch(setWetApprovedForWrapper(_wetApprovedForWrapper));
-      const _nftxApprovedForWrapper = await contractHelper.isNftxApprovedForWrapper();
-      dispatch(setNftxApprovedForWrapper(_nftxApprovedForWrapper));
-    }
-    setApproving(false);
+  const updateWaifusApproved = async () => {
+    if (!globals) return;
+    const approved = await isWaifusApproved(globals.uwuMintContract);
+    setWaifusApproved(approved);
+  };
+
+  const updateWetApproved = async () => {
+    if (!globals) return;
+    const approved = await isWetApproved(globals.uwuMintContract);
+    setWetApproved(approved);
   };
 
   useEffect(() => {
-    updateApprovals();
-  }, []);
+    updateWaifusApproved();
+    updateWetApproved();
+  }, [globals]);
 
-  const tokenApprove = async (
-    tokenContract: Contract,
-    approveAddress: string
-  ) => {
-    tokenContract.methods
-      .approve(approveAddress, new BN("9999999999999999999999999999"))
-      .send()
-      .on("transactionHash", (hash: any) => {
-        setApproving(true);
-      })
-      .on("receipt", (receipt: any) => {
-        updateApprovals().then(() => setApproving(false));
-      })
-      .on("error", (err: any) => {
-        console.log(`Error: ${err}`);
-        setApproving(false);
-      });
-  };
-
-  const approveWetForDungeon = async () => {
+  const approveWet = async () => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const wetContract = await contractHelper.getWetContract();
-    await tokenApprove(wetContract, globals.dungeonAddress);
+    wetContract.methods
+      .approve(globals.uwuMintContract, new BN("9999999999999999999999999999"))
+      .send()
+      .on("transactionHash", (hash: any) => {
+        setLoading(true);
+      })
+      .on("receipt", (receipt: any) => {
+        updateWetApproved().then(() => setLoading(false));
+      })
+      .on("error", (err: any) => {
+        console.log(`Error: ${err}`);
+        setLoading(false);
+      });
   };
 
-  const approveWaifusForDungeon = async () => {
+  const approveWaifus = async () => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const waifuContract = await contractHelper.getWaifuContract();
     waifuContract.methods
-      .setApprovalForAll(globals.dungeonAddress, true)
+      .setApprovalForAll(globals.uwuMintContract, true)
       .send()
       .on("transactionHash", (hash: any) => {
-        setApproving(true);
+        setLoading(true);
       })
       .on("receipt", (receipt: any) => {
-        updateApprovals().then(() => setApproving(false));
+        updateWaifusApproved().then(() => setLoading(false));
       })
       .on("error", (err: any) => {
         console.log(`Error: ${err}`);
-        setApproving(false);
+        setLoading(false);
       });
   };
 
-  const burnWaifu = async () => {
+  const buyTickets = async () => {
     setError("");
     let waifuIdList: number[] = [];
     try {
@@ -140,23 +117,20 @@ const BuyTicketEth: React.FC<Props> = (props) => {
       }
     }
 
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
-    const dungeonContract = await contractHelper.getDungeonContract();
-    dungeonContract.methods
-      .commitSwapWaifusWithETH(waifuIdList)
-      .send({
-        value: new BN(toWeiUnit(bnbBurnPrice)).mul(new BN(waifuIdList.length)),
-      })
+    const mint = await getUwuMintContract(globals.uwuMintContract);
+    mint.methods
+      .swapWFforUWU(waifuIdList)
+      .send()
       .on("transactionHash", (hash: any) => {
-        setCommited(true);
+        setLoading(true);
       })
       .on("receipt", (receipt: any) => {
-        setCommited(true);
+        setLoading(false);
+        props.close();
       })
       .on("error", (err: any) => {
         console.log("error: ", err.message);
-        setCommited(false);
+        setLoading(false);
       });
   };
 
@@ -178,18 +152,18 @@ const BuyTicketEth: React.FC<Props> = (props) => {
         header={t("uwu.getTicket")}
         body={t("dungeon.bodys.burn")}
         buttonAction={() => {
-          if (!wetApprovedForDungeon) approveWetForDungeon();
-          else if (!waifusApprovedForDungeon) approveWaifusForDungeon();
-          else burnWaifu();
+          if (!wetApproved) approveWet();
+          else if (!waifusApproved) approveWaifus();
+          else buyTickets();
         }}
         buttonText={
-          approving
+          loading
             ? t("loading")
-            : !wetApprovedForDungeon
+            : !wetApproved
             ? t("buttons.approveWet")
-            : !waifusApprovedForDungeon
+            : !waifusApproved
             ? t("buttons.approveWaifus")
-            : t("buttons.burnWaifu")
+            : t("uwu.getTicket")
         }
       />
     </>
