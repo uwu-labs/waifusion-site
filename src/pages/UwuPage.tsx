@@ -168,7 +168,7 @@ const UwuPage: React.FC = () => {
         </CardContainer>
       </Content>
       <BuyTicketEth
-        show={buying}
+        show={isEth && buying}
         close={() => setBuying(false)}
         swapPrice={swapPrice}
       />
