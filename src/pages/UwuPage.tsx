@@ -169,7 +169,10 @@ const UwuPage: React.FC = () => {
       </Content>
       <BuyTicketEth
         show={isEth && buying}
-        close={() => setBuying(false)}
+        close={() => {
+          updateTicketBalance();
+          setBuying(false);
+        }}
         swapPrice={swapPrice}
       />
     </StyledUwuPage>
