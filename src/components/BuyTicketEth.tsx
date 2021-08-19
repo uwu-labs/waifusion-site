@@ -175,7 +175,7 @@ const BuyTicketEth: React.FC<Props> = (props) => {
             {error && <Error>{error}</Error>}
           </Content>
         }
-        header={t("dungeon.headers.burn")}
+        header={t("uwu.getTicket")}
         body={t("dungeon.bodys.burn")}
         buttonAction={() => {
           if (!wetApprovedForDungeon) approveWetForDungeon();
