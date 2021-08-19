@@ -1,4 +1,6 @@
 import Web3 from "web3";
+import { Contract } from "web3-eth-contract";
+
 import uwuAbi from "../contracts/uwucrew.json";
 import uwuMintAbi from "../contracts/uwucrewWaveLockSaleWithMint.json";
 
@@ -12,7 +14,9 @@ export const getAddress = async (): Promise<string> => {
   return "";
 };
 
-export const getUwuMintContract = async (uwuMintContract: string) => {
+export const getUwuMintContract = async (
+  uwuMintContract: string
+): Promise<Contract> => {
   const address = await getAddress();
   return new (window as any).web3.eth.Contract(uwuMintAbi, uwuMintContract, {
     from: address,
@@ -21,7 +25,16 @@ export const getUwuMintContract = async (uwuMintContract: string) => {
 
 export const getUwuSwapPrice = async (
   uwuMintContract: string
-): Promise<number> => {
+): Promise<string> => {
   const contract = await getUwuMintContract(uwuMintContract);
-  return contract.methods.swapPrice().call();
+  const weiPrice = await contract.methods.swapPrice().call();
+  return Web3.utils.fromWei(weiPrice);
+};
+
+export const getTicketBalance = async (
+  uwuMintContract: string
+): Promise<number> => {
+  const address = await getAddress();
+  const contract = await getUwuMintContract(uwuMintContract);
+  return contract.methods.balance(address).call();
 };
