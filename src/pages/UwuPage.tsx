@@ -16,6 +16,7 @@ import ticket from "../assets/ticket.png";
 import Button from "../components/Button";
 import { selectTickets, setTickets } from "../state/reducers/user";
 import { getTicketBalance, getUwuSwapPrice } from "../services/uwuHelper";
+import BuyTicketEth from "../components/BuyTicketEth";
 
 const StyledUwuPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -96,13 +97,13 @@ const UwuPage: React.FC = () => {
   const globals = useSelector(selectGlobalsData);
   const tickets = useSelector(selectTickets);
 
-  const [burning, setBurning] = useState(false);
-  const [swapPrice, setSwapPrice] = useState("--");
+  const [buying, setBuying] = useState(false);
+  const [swapPrice, setSwapPrice] = useState(0);
 
   const updateSwapPrice = async () => {
     if (!uwuMintContract) return;
     const price = await getUwuSwapPrice(uwuMintContract);
-    setSwapPrice(price);
+    setSwapPrice(Number(price));
   };
 
   const updateTicketBalance = async () => {
@@ -119,7 +120,7 @@ const UwuPage: React.FC = () => {
   const dungeonBody = (isEth
     ? t("uwu.ethDescription")
     : t("uwu.bscDescription")
-  ).replace("[[WET_BURN_PRICE]]", swapPrice);
+  ).replace("[[WET_BURN_PRICE]]", swapPrice.toString());
 
   return (
     <StyledUwuPage>
@@ -152,7 +153,7 @@ const UwuPage: React.FC = () => {
         <CardContainer>
           <Card
             text={dungeonBody}
-            buttonAction={() => setBurning(true)}
+            buttonAction={() => setBuying(true)}
             buttonText={t("uwu.getTicket")}
             secondButtonText={t("buttons.learnMore")}
             secondButtonAction={() =>
@@ -166,7 +167,11 @@ const UwuPage: React.FC = () => {
           />
         </CardContainer>
       </Content>
-      <BurnWaifu show={burning} close={() => setBurning(false)} />
+      <BuyTicketEth
+        show={buying}
+        close={() => setBuying(false)}
+        swapPrice={swapPrice}
+      />
     </StyledUwuPage>
   );
 };
