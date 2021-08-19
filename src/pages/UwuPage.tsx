@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/Card";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Header from "../components/Header";
 import BurnWaifu from "../components/BurnWaifu";
 import {
-  selectBnbBurnPrice,
-  selectBuyPrice,
   selectGlobalsData,
   selectIsEth,
   selectUwuMintContract,
-  selectWetBurnPrice,
 } from "../state/reducers/globals";
 import Head from "../components/Head";
 import ticket from "../assets/ticket.png";
 import Button from "../components/Button";
-import { selectTickets } from "../state/reducers/user";
-import { getUwuSwapPrice } from "../services/uwuHelper";
+import { selectTickets, setTickets } from "../state/reducers/user";
+import { getTicketBalance, getUwuSwapPrice } from "../services/uwuHelper";
 
 const StyledUwuPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -93,21 +90,30 @@ const Ticket = styled.img`
 
 const UwuPage: React.FC = () => {
   const [t] = useTranslation();
-  const [burning, setBurning] = useState(false);
-  const [swapPrice, setSwapPrice] = useState("--");
+  const dispatch = useDispatch();
   const isEth = useSelector(selectIsEth);
   const uwuMintContract = useSelector(selectUwuMintContract);
   const globals = useSelector(selectGlobalsData);
   const tickets = useSelector(selectTickets);
 
+  const [burning, setBurning] = useState(false);
+  const [swapPrice, setSwapPrice] = useState("--");
+
   const updateSwapPrice = async () => {
     if (!uwuMintContract) return;
     const price = await getUwuSwapPrice(uwuMintContract);
-    setSwapPrice(price.toString());
+    setSwapPrice(price);
+  };
+
+  const updateTicketBalance = async () => {
+    if (!uwuMintContract) return;
+    const balance = await getTicketBalance(uwuMintContract);
+    dispatch(setTickets(balance));
   };
 
   useEffect(() => {
     updateSwapPrice();
+    updateTicketBalance();
   }, [uwuMintContract]);
 
   const dungeonBody = (isEth
