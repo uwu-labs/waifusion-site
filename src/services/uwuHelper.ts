@@ -1,8 +1,9 @@
+import BN from "bn.js";
 import Web3 from "web3";
 import { Contract } from "web3-eth-contract";
 
-import uwuAbi from "../contracts/uwucrew.json";
 import uwuMintAbi from "../contracts/uwucrewWaveLockSaleWithMint.json";
+import { ContractHelper } from "./contract";
 
 export const getAddress = async (): Promise<string> => {
   if ((window as any).ethereum) {
@@ -37,4 +38,23 @@ export const getTicketBalance = async (
   const address = await getAddress();
   const contract = await getUwuMintContract(uwuMintContract);
   return contract.methods.balance(address).call();
+};
+
+export const isWetApproved = async (uwuMint: string): Promise<boolean> => {
+  const address = await getAddress();
+  const contractHelper = new ContractHelper();
+  await contractHelper.init();
+  const wet = await contractHelper.getWetContract();
+  const allowance = await wet.methods.allowance(address, uwuMint).call();
+  return new BN(allowance).gt(new BN("9999999999999999999999999"));
+};
+
+export const isWaifusApproved = async (
+  uwuMintContract: string
+): Promise<boolean> => {
+  const address = await getAddress();
+  const contractHelper = new ContractHelper();
+  await contractHelper.init();
+  const waifus = await contractHelper.getWaifuContract();
+  return waifus.methods.isApprovedForAll(address, uwuMintContract).call();
 };
