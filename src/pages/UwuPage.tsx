@@ -17,6 +17,7 @@ import Button from "../components/Button";
 import { selectTickets, setTickets } from "../state/reducers/user";
 import { getTicketBalance, getUwuSwapPrice } from "../services/uwuHelper";
 import BuyTicketEth from "../components/BuyTicketEth";
+import BuyTicketBsc from "../components/BuyTicketBsc";
 
 const StyledUwuPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -169,6 +170,14 @@ const UwuPage: React.FC = () => {
       </Content>
       <BuyTicketEth
         show={isEth && buying}
+        close={() => {
+          updateTicketBalance();
+          setBuying(false);
+        }}
+        swapPrice={swapPrice}
+      />
+      <BuyTicketBsc
+        show={!isEth && buying}
         close={() => {
           updateTicketBalance();
           setBuying(false);
