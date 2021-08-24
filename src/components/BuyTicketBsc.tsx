@@ -74,8 +74,7 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
   const updateNextWaveBlock = async () => {
     if (!globals.uwuMintContract) return;
     const contract = await getUwuMintContract(globals.uwuMintContract);
-    //     const _nextWaveBlock = await contract.methods.nextWaveBlock().call();
-    const _nextWaveBlock = await contract.methods.startTime().call();
+    const _nextWaveBlock = await contract.methods.nextWaveBlock().call();
     console.log(_nextWaveBlock);
     setNextWaveBlock(Number(_nextWaveBlock));
   };
