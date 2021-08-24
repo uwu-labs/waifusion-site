@@ -69,3 +69,16 @@ export const isWaifusApproved = async (
   const waifus = await contractHelper.getWaifuContract();
   return waifus.methods.isApprovedForAll(address, uwuMintContract).call();
 };
+
+export const isSoldOut = async (): Promise<boolean> => {
+  const globals = await getGlobals();
+  const contract = await getUwuMintContract(globals.uwuMintContract);
+  if (globals.network === Network.BSC) {
+    const amountForSale = await contract.methods.amountForSale().call();
+    const amountSold = await contract.methods.amountSold().call();
+    return amountForSale === amountSold;
+  }
+  const amountForSale = await contract.methods.amountForSwap().call();
+  const amountSold = await contract.methods.amountSwapped().call();
+  return amountForSale === amountSold;
+};
