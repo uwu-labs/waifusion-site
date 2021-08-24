@@ -15,7 +15,11 @@ import Head from "../components/Head";
 import ticket from "../assets/ticket.png";
 import Button from "../components/Button";
 import { selectTickets, setTickets } from "../state/reducers/user";
-import { getTicketBalance, getUwuSwapPrice } from "../services/uwuHelper";
+import {
+  getTicketBalance,
+  getUwuSwapPrice,
+  isSoldOut,
+} from "../services/uwuHelper";
 import BuyTicketEth from "../components/BuyTicketEth";
 import BuyTicketBsc from "../components/BuyTicketBsc";
 
@@ -100,6 +104,7 @@ const UwuPage: React.FC = () => {
 
   const [buying, setBuying] = useState(false);
   const [swapPrice, setSwapPrice] = useState(0);
+  const [soldOut, setSoldOut] = useState(false);
 
   const updateSwapPrice = async () => {
     if (!uwuMintContract) return;
@@ -113,9 +118,15 @@ const UwuPage: React.FC = () => {
     dispatch(setTickets(balance));
   };
 
+  const updateSoldOut = async () => {
+    const _soldOut = await isSoldOut();
+    setSoldOut(_soldOut);
+  };
+
   useEffect(() => {
     updateSwapPrice();
     updateTicketBalance();
+    updateSoldOut();
   }, [uwuMintContract]);
 
   const dungeonBody = (isEth
@@ -127,7 +138,7 @@ const UwuPage: React.FC = () => {
     <StyledUwuPage>
       <Head title="uwucrew" />
       <HeaderContainer>
-        <Header text={t("headers.uwucrew")} />
+        <Header text={soldOut ? "SOLD OUT" : t("headers.uwucrew")} />
         <ButtonContainer>
           <TicketBalance>{`Owned: ${tickets}`}</TicketBalance>
           <MiniTicket src={ticket} />
@@ -156,6 +167,7 @@ const UwuPage: React.FC = () => {
             text={dungeonBody}
             buttonAction={() => setBuying(true)}
             buttonText={t("uwu.getTicket")}
+            buttonDisabled={soldOut}
             secondButtonText={t("buttons.learnMore")}
             secondButtonAction={() =>
               (window as any)
