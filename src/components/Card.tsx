@@ -69,6 +69,7 @@ type Props = {
   text: string;
   buttonText?: string;
   buttonAction?: () => void;
+  buttonDisabled?: boolean;
   secondButtonText?: string;
   secondButtonAction?: () => void;
 };
@@ -82,6 +83,7 @@ const Card: React.FC<Props> = (props) => {
           <ButtonContainer>
             {props.buttonText && (
               <Button
+                disabled={props.buttonDisabled}
                 primary
                 onClick={() => {
                   if (props.buttonAction) props.buttonAction();
