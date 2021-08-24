@@ -21,7 +21,7 @@ const initialState: UserState = {
   waifusApprovedForDungeon: false,
   wetApprovedForWrapper: false,
   nftxApprovedForWrapper: false,
-  tickets: "--",
+  tickets: "0",
 };
 
 export const userSlice = createSlice({
