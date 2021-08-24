@@ -3,7 +3,9 @@ import Web3 from "web3";
 import { Contract } from "web3-eth-contract";
 
 import uwuMintAbi from "../contracts/uwucrewWaveLockSaleWithMint.json";
+import uwuMintBscAbi from "../contracts/uwucrewBSCWetSale.json";
 import { ContractHelper } from "./contract";
+import { getGlobals, Network } from "./globals";
 
 export const getAddress = async (): Promise<string> => {
   if ((window as any).ethereum) {
@@ -19,16 +21,25 @@ export const getUwuMintContract = async (
   uwuMintContract: string
 ): Promise<Contract> => {
   const address = await getAddress();
-  return new (window as any).web3.eth.Contract(uwuMintAbi, uwuMintContract, {
-    from: address,
-  });
+  const globals = await getGlobals();
+  return new (window as any).web3.eth.Contract(
+    globals.network === Network.BSC ? uwuMintBscAbi : uwuMintAbi,
+    uwuMintContract,
+    {
+      from: address,
+    }
+  );
 };
 
 export const getUwuSwapPrice = async (
   uwuMintContract: string
 ): Promise<string> => {
+  const globals = await getGlobals();
   const contract = await getUwuMintContract(uwuMintContract);
-  const weiPrice = await contract.methods.swapPrice().call();
+  let weiPrice;
+  if (globals.network === Network.BSC)
+    weiPrice = await contract.methods.buyPrice().call();
+  else weiPrice = await contract.methods.swapPrice().call();
   return Web3.utils.fromWei(weiPrice);
 };
 
