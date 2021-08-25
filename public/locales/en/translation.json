@@ -100,8 +100,8 @@
     }
   },
   "uwu": {
-    "ethDescription": "uwu tickets are how you can get yourself pre-release access to uwucrew, our new NFT collection! To get an uwu ticket, you can burn a Waifu and pay [[WET_BURN_PRICE]] WET per ticket.",
-    "bscDescription": "uwu tickets are how you can get yourself pre-release access to uwucrew, our new NFT collection! To get an uwu ticket, you can pay [[WET_BURN_PRICE]] WET per ticket.",
+    "ethDescription": "uwu tickets are how you can get yourself pre-release access to uwucrew, our new NFT collection! To get an uwu ticket, you can burn a Waifu and pay {{price}} WET per ticket. There are {{remaining}} tickets remaining.",
+    "bscDescription": "uwu tickets are how you can get yourself pre-release access to uwucrew, our new NFT collection! To get an uwu ticket, you can pay {{price}} WET per ticket. There are {{remaining}} tickets remaining.",
     "getTicket": "Get Tickets"
   },
   "wet": {

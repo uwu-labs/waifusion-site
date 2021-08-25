@@ -22,6 +22,7 @@ import {
   getUwuMintContract,
   getUwuSwapPrice,
   isSoldOut,
+  ticketsRemaining,
 } from "../services/uwuHelper";
 import BuyTicketEth from "../components/BuyTicketEth";
 import BuyTicketBsc from "../components/BuyTicketBsc";
@@ -109,6 +110,7 @@ const UwuPage: React.FC = () => {
   const [swapPrice, setSwapPrice] = useState(0);
   const [soldOut, setSoldOut] = useState(false);
   const [startTime, setStartTime] = useState<Date | null>(null);
+  const [remaining, setRemaining] = useState(0);
 
   const updateSwapPrice = async () => {
     if (!uwuMintContract) return;
@@ -125,6 +127,11 @@ const UwuPage: React.FC = () => {
   const updateSoldOut = async () => {
     const _soldOut = await isSoldOut();
     setSoldOut(_soldOut);
+  };
+
+  const updateRemaining = async () => {
+    const _remaining = await ticketsRemaining();
+    setRemaining(_remaining);
   };
 
   const updateStartTime = async () => {
@@ -144,16 +151,17 @@ const UwuPage: React.FC = () => {
     updateTicketBalance();
     updateSoldOut();
     updateStartTime();
+    updateRemaining();
   };
 
   useEffect(() => {
     updateAll();
   }, [uwuMintContract]);
 
-  const dungeonBody = (isEth
-    ? t("uwu.ethDescription")
-    : t("uwu.bscDescription")
-  ).replace("[[WET_BURN_PRICE]]", swapPrice.toString());
+  const dungeonBody = t(isEth ? "uwu.ethDescription" : "uwu.bscDescription", {
+    price: swapPrice.toString(),
+    remaining: remaining?.toString(),
+  });
 
   return (
     <StyledUwuPage>
@@ -218,7 +226,7 @@ const UwuPage: React.FC = () => {
       <BuyTicketEth
         show={isEth && buying}
         close={() => {
-          updateTicketBalance();
+          updateAll();
           setBuying(false);
         }}
         swapPrice={swapPrice}
@@ -226,7 +234,7 @@ const UwuPage: React.FC = () => {
       <BuyTicketBsc
         show={!isEth && buying}
         close={() => {
-          updateTicketBalance();
+          updateAll();
           setBuying(false);
         }}
         swapPrice={swapPrice}
