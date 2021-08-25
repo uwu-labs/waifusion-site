@@ -74,9 +74,8 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
   const updateNextWaveBlock = async () => {
     if (!globals.uwuMintContract) return;
     const contract = await getUwuMintContract(globals.uwuMintContract);
-    const _nextWaveBlock = await contract.methods.nextWaveBlock().call();
-    console.log(_nextWaveBlock);
-    setNextWaveBlock(Number(_nextWaveBlock));
+    // const _nextWaveBlock = await contract.methods.nextWaveBlock().call();
+    // setNextWaveBlock(Number(_nextWaveBlock));
   };
 
   const updateEverything = () => {
@@ -168,7 +167,7 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
         header={t("uwu.getTicket")}
         body={`The current wave is ${wave}. You can get ${
           waveMax[wave.toString()] - Number(owned)
-        } more tickets this wave. Next wave is in ${nextWaveBlock}`}
+        } more tickets this wave. Next wave is in ${0}`}
         buttonAction={() => {
           if (!wetApproved) approveWet();
           else buyTickets();
