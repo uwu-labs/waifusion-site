@@ -158,9 +158,6 @@ const UwuPage: React.FC = () => {
     if (!globals.uwuMintContract) return;
     const contract = await getUwuMintContract(globals.uwuMintContract);
     const _startTime = await contract.methods.startTime().call();
-    console.log("Got start timg");
-    console.log(_startTime);
-    console.log("meow");
     const d = new Date(0);
     d.setUTCSeconds(_startTime);
     setStartTime(d);
@@ -216,16 +213,15 @@ const UwuPage: React.FC = () => {
         <CardContainer>
           <Card
             header={
-              soldOut
-                ? "SOLD OUT"
-                : startTime && new Date() >= startTime
-                ? "Available Now!!"
-                : `Available in: ${countdown(
-                    new Date(),
-                    startTime,
-                    countdown.ALL,
-                    2
-                  ).toString()}`
+              soldOut ? "SOLD OUT" : "Available Now!!"
+              // : startTime && new Date() >= startTime
+              // ? "Available Now!!"
+              // : `Available in: ${countdown(
+              //     new Date(),
+              //     startTime,
+              //     countdown.ALL,
+              //     2
+              //   ).toString()}`
             }
             text={dungeonBody}
             buttonAction={() => setBuying(true)}
