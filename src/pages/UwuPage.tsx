@@ -107,7 +107,7 @@ const UwuPage: React.FC = () => {
   const [buying, setBuying] = useState(false);
   const [swapPrice, setSwapPrice] = useState(0);
   const [soldOut, setSoldOut] = useState(false);
-  const [startTime, setStartTime] = useState(0);
+  const [startTime, setStartTime] = useState<Date | null>(null);
 
   const updateSwapPrice = async () => {
     if (!uwuMintContract) return;
@@ -130,7 +130,12 @@ const UwuPage: React.FC = () => {
     if (!globals.uwuMintContract) return;
     const contract = await getUwuMintContract(globals.uwuMintContract);
     const _startTime = await contract.methods.startTime().call();
-    setStartTime(Number(_startTime));
+    console.log("Got start timg");
+    console.log(_startTime);
+    console.log("meow");
+    const d = new Date(0);
+    d.setUTCSeconds(_startTime);
+    setStartTime(d);
   };
 
   const updateAll = () => {
@@ -181,7 +186,7 @@ const UwuPage: React.FC = () => {
           <Card
             header={countdown(
               new Date(),
-              new Date(startTime),
+              startTime,
               countdown.ALL,
               3
             ).toString()}
