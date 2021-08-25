@@ -45,7 +45,7 @@ export const TEST_GLOBALS: GlobalsData = {
   wetLpLink:
     "https://app.sushi.com/add/ETH/0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
   waifuTradeLink: "https://opensea.io/assets/waifusion",
-  uwuMintContract: "0x2318b7CCfbeBF6b11Aba99F395DD8e7751c6a54F",
+  uwuMintContract: "0x6073983371922b54fC5d33EaD9104667b94eaFFC",
   uwuContract: "0x32b08522104cE5FAbFc93A3BB46C599DCC189fC3",
   getWaifuMarketplaceLink(waifuId) {
     return `https://opensea.io/assets/${this.waifuAddress}/${waifuId}`;
