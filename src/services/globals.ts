@@ -95,7 +95,7 @@ export const BSC_GLOBALS: GlobalsData = {
   wetLpLink:
     "https://exchange.pancakeswap.finance/#/add/BNB/0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",
   waifuTradeLink: "https://nftkey.app/collections/waifusion/bsc/",
-  uwuMintContract: "0x828d15daF8893A743c0F1b7498e3Df9d4615eAF1",
+  uwuMintContract: "0x85F1F2A786F6dF886bC5611f8bFcDd85EC7Fff11",
   uwuContract: "",
   getWaifuMarketplaceLink(waifuId) {
     return `${this.waifuTradeLink}waifu-details/?tokenId=${waifuId}`;
