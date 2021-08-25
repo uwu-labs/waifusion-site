@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+
 import Button from "./Button";
 
 const rotate = keyframes`
@@ -41,6 +42,13 @@ const StyledCard = styled.div`
   align-items: center;
 `;
 
+const Header = styled.h2`
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--plain-dark);
+`;
+
 const CardText = styled.p`
   font-size: 1.4rem;
   font-weight: 500;
@@ -67,6 +75,7 @@ const ButtonContainer = styled.div`
 
 type Props = {
   text: string;
+  header?: string;
   buttonText?: string;
   buttonAction?: () => void;
   buttonDisabled?: boolean;
@@ -78,6 +87,7 @@ const Card: React.FC<Props> = (props) => {
   return (
     <Background>
       <StyledCard>
+        {props.header && <Header>{props.header}</Header>}
         <CardText>{props.text}</CardText>
         {(props.buttonText || props.secondButtonText) && (
           <ButtonContainer>
