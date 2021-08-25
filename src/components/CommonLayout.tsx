@@ -5,4 +5,8 @@ export const PageContentWrapper = styled.div`
   padding: 3rem;
   margin: 0 auto;
   max-width: 1800px;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;

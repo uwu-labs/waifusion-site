@@ -44,10 +44,6 @@ const HeaderContainer = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     justify-content: center;
-
-    button {
-      margin-top: 2rem;
-    }
   }
 `;
 
@@ -57,6 +53,25 @@ const ButtonContainer = styled.div`
 
   > button {
     margin-left: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+
+    > button {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+`;
+
+const TicketContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    margin-top: 2rem;
   }
 `;
 
@@ -96,6 +111,11 @@ const CardContainer = styled.div`
 const Ticket = styled.img`
   width: 32vw;
   transform: rotate(-7deg);
+
+  @media (max-width: 768px) {
+    width: 70vw;
+    transform: translateY(-2rem);
+  }
 `;
 
 const UwuPage: React.FC = () => {
@@ -169,8 +189,10 @@ const UwuPage: React.FC = () => {
       <HeaderContainer>
         <Header text={t("headers.uwucrew")} />
         <ButtonContainer>
-          <TicketBalance>{`Owned: ${tickets}`}</TicketBalance>
-          <MiniTicket src={ticketSmall} />
+          <TicketContainer>
+            <TicketBalance>{`Owned: ${tickets}`}</TicketBalance>
+            <MiniTicket src={ticketSmall} />
+          </TicketContainer>
           <Button
             secondary
             onClick={() =>
