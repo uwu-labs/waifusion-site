@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import countdown from "countdown";
+
 import Card from "../components/Card";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Header from "../components/Header";
-import BurnWaifu from "../components/BurnWaifu";
 import {
   selectGlobalsData,
   selectIsEth,
@@ -17,6 +18,7 @@ import Button from "../components/Button";
 import { selectTickets, setTickets } from "../state/reducers/user";
 import {
   getTicketBalance,
+  getUwuMintContract,
   getUwuSwapPrice,
   isSoldOut,
 } from "../services/uwuHelper";
@@ -105,6 +107,7 @@ const UwuPage: React.FC = () => {
   const [buying, setBuying] = useState(false);
   const [swapPrice, setSwapPrice] = useState(0);
   const [soldOut, setSoldOut] = useState(false);
+  const [startTime, setStartTime] = useState(0);
 
   const updateSwapPrice = async () => {
     if (!uwuMintContract) return;
@@ -123,10 +126,22 @@ const UwuPage: React.FC = () => {
     setSoldOut(_soldOut);
   };
 
-  useEffect(() => {
+  const updateStartTime = async () => {
+    if (!globals.uwuMintContract) return;
+    const contract = await getUwuMintContract(globals.uwuMintContract);
+    const _startTime = await contract.methods.startTime().call();
+    setStartTime(Number(_startTime));
+  };
+
+  const updateAll = () => {
     updateSwapPrice();
     updateTicketBalance();
     updateSoldOut();
+    updateStartTime();
+  };
+
+  useEffect(() => {
+    updateAll();
   }, [uwuMintContract]);
 
   const dungeonBody = (isEth
@@ -164,6 +179,12 @@ const UwuPage: React.FC = () => {
         <Ticket src={ticket} />
         <CardContainer>
           <Card
+            header={countdown(
+              new Date(),
+              new Date(startTime),
+              countdown.ALL,
+              3
+            ).toString()}
             text={dungeonBody}
             buttonAction={() => setBuying(true)}
             buttonText={t("uwu.getTicket")}
