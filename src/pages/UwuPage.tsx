@@ -13,7 +13,8 @@ import {
   selectUwuMintContract,
 } from "../state/reducers/globals";
 import Head from "../components/Head";
-import ticket from "../assets/ticket.png";
+import ticketSmall from "../assets/uwu_coin.png";
+import ticketAnimated from "../assets/uwu_coin.gif";
 import Button from "../components/Button";
 import { selectTickets, setTickets } from "../state/reducers/user";
 import {
@@ -59,7 +60,7 @@ const ButtonContainer = styled.div`
 `;
 
 const MiniTicket = styled.img`
-  height: 1rem;
+  height: 1.6rem;
   margin-top: 0.3rem;
 `;
 
@@ -158,10 +159,10 @@ const UwuPage: React.FC = () => {
     <StyledUwuPage>
       <Head title="uwucrew" />
       <HeaderContainer>
-        <Header text={soldOut ? "SOLD OUT" : t("headers.uwucrew")} />
+        <Header text={t("headers.uwucrew")} />
         <ButtonContainer>
           <TicketBalance>{`Owned: ${tickets}`}</TicketBalance>
-          <MiniTicket src={ticket} />
+          <MiniTicket src={ticketSmall} />
           <Button
             secondary
             onClick={() =>
@@ -181,19 +182,27 @@ const UwuPage: React.FC = () => {
         </ButtonContainer>
       </HeaderContainer>
       <Content>
-        <Ticket src={ticket} />
+        <Ticket src={ticketAnimated} />
         <CardContainer>
           <Card
-            header={countdown(
-              new Date(),
-              startTime,
-              countdown.ALL,
-              3
-            ).toString()}
+            header={
+              soldOut
+                ? "SOLD OUT"
+                : startTime && new Date() >= startTime
+                ? "Available Now!!"
+                : `Available in: ${countdown(
+                    new Date(),
+                    startTime,
+                    countdown.ALL,
+                    2
+                  ).toString()}`
+            }
             text={dungeonBody}
             buttonAction={() => setBuying(true)}
             buttonText={t("uwu.getTicket")}
-            buttonDisabled={soldOut}
+            buttonDisabled={
+              soldOut || !(!!startTime && new Date() >= startTime)
+            }
             secondButtonText={t("buttons.learnMore")}
             secondButtonAction={() =>
               (window as any)
