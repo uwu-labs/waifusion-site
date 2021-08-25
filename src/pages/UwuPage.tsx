@@ -77,7 +77,7 @@ const TicketContainer = styled.div`
 
 const MiniTicket = styled.img`
   height: 1.6rem;
-  margin-top: 0.3rem;
+  margin-top: 0.2rem;
 `;
 
 const TicketBalance = styled.div`
