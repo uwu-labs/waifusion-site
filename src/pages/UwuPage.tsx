@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled, { keyframes } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import BN from "bn.js";
 
 import Card from "../components/Card";
 import { PageContentWrapper } from "../components/CommonLayout";
@@ -25,6 +26,8 @@ import {
 } from "../services/uwuHelper";
 import BuyTicketEth from "../components/BuyTicketEth";
 import BuyTicketBsc from "../components/BuyTicketBsc";
+import { ContractHelper } from "../services/contract";
+import { toEthUnit } from "../services/web3";
 
 const StyledUwuPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -115,6 +118,7 @@ const TicketContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const MiniTicket = styled.img`
   height: 1.6rem;
   margin-top: 0.2rem;
@@ -171,6 +175,7 @@ const UwuPage: React.FC = () => {
   const [soldOut, setSoldOut] = useState(false);
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [remaining, setRemaining] = useState(0);
+  const [wetBalance, setWetbalance] = useState(0);
 
   const updateSwapPrice = async () => {
     if (!uwuMintContract) return;
@@ -203,12 +208,20 @@ const UwuPage: React.FC = () => {
     setStartTime(d);
   };
 
+  const updateWetBalance = async () => {
+    const contractHelper = new ContractHelper();
+    await contractHelper.init();
+    const _wetBalance = await contractHelper.getWetBalance();
+    setWetbalance(Math.round(Number(toEthUnit(new BN(_wetBalance)))));
+  };
+
   const updateAll = () => {
     updateSwapPrice();
     updateTicketBalance();
     updateSoldOut();
     updateStartTime();
     updateRemaining();
+    updateWetBalance();
   };
 
   useEffect(() => {
@@ -291,6 +304,7 @@ const UwuPage: React.FC = () => {
           setBuying(false);
         }}
         swapPrice={swapPrice}
+        wetBalance={wetBalance}
       />
       <BuyTicketBsc
         show={!isEth && buying}

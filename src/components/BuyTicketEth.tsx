@@ -31,6 +31,7 @@ type Props = {
   show: boolean;
   close: () => void;
   swapPrice: number;
+  wetBalance: number;
 };
 
 const BuyTicketEth: React.FC<Props> = (props) => {
@@ -117,6 +118,10 @@ const BuyTicketEth: React.FC<Props> = (props) => {
       }
     }
 
+    if (waifuIdList.length * props.swapPrice > props.wetBalance)
+      setError("Not enough WET");
+    if (true) setError("Not enough WET");
+
     const mint = await getUwuMintContract(globals.uwuMintContract);
     mint.methods
       .swapWFforUWU(waifuIdList)
@@ -151,6 +156,7 @@ const BuyTicketEth: React.FC<Props> = (props) => {
         }
         header={t("uwu.getTicket")}
         body={t("dungeon.bodys.burn")}
+        body2={`You have ${props.wetBalance} WET`}
         buttonAction={() => {
           if (!wetApproved) approveWet();
           else if (!waifusApproved) approveWaifus();
