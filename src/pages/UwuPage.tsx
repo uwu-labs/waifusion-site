@@ -289,7 +289,7 @@ const UwuPage: React.FC = () => {
             secondButtonAction={() =>
               (window as any)
                 .open(
-                  "https://waifusioncommunity.medium.com/presenting-uwucrew-by-uwulabs-4fe06b60311a",
+                  "https://medium.com/@uwulabs/public-sale-redemption-announcement-c63636f17dd3",
                   "_blank"
                 )
                 .focus()
