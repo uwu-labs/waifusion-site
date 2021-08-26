@@ -118,9 +118,10 @@ const BuyTicketEth: React.FC<Props> = (props) => {
       }
     }
 
-    if (waifuIdList.length * props.swapPrice > props.wetBalance)
+    if (waifuIdList.length * props.swapPrice > props.wetBalance) {
       setError("Not enough WET");
-    if (true) setError("Not enough WET");
+      return;
+    }
 
     const mint = await getUwuMintContract(globals.uwuMintContract);
     mint.methods
