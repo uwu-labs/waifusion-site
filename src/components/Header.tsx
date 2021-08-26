@@ -11,6 +11,10 @@ const Text = styled.h1`
   font-size: 5rem;
   font-weight: 500;
   color: var(--text-primary);
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
 `;
 
 type Props = {

@@ -40,7 +40,8 @@
     "useWet": "Use WET",
     "getLp": "Get LP Tokens",
     "stakeLp": "Stake LP",
-    "unstakeLp": "Unstake LP"
+    "unstakeLp": "Unstake LP",
+    "learnMore": "Learn More"
   },
   "headers": {
     "farm": "Farm",
@@ -50,13 +51,15 @@
     "notFound": "404 Page not Found",
     "provenance": "Provenance",
     "wallet": "Your Wallet",
-    "available": "Free These Waifus"
+    "available": "Free These Waifus",
+    "uwucrew": "Get uwucrew-tickets"
   },
   "navigation": {
     "farm": "Farm",
     "browse": "Browse",
     "wallet": "Wallet",
-    "dungeon": "Dungeon"
+    "dungeon": "Dungeon",
+    "uwucrew": "uwu-tickets"
   },
   "farm": {
     "descriptionEth": "Stake your SushiSwap WET-ETH LP Tokens to Earn",
@@ -96,12 +99,18 @@
       "burnMethodBsc": "You can burn Waifus with WET or BNB, select your preference"
     }
   },
+  "uwu": {
+    "ethDescription": "uwu-crew tickets are redeemable for uwucrew NFTs! To get an uwu ticket you can burn a Waifu and {{price}} WET. Make sure you click 'Learn More' to understand the full details before you do this! There are {{remaining}} tickets remaining.",
+    "bscDescription": "uwu tickets are how you can get yourself pre-release access to uwucrew, our new NFT collection! To get an uwu ticket, you can pay {{price}} WET per ticket. There are {{remaining}} tickets remaining.",
+    "getTicket": "Get Tickets"
+  },
   "wet": {
     "header": "WET Token",
     "overview": "The Waifu Enhancement Token (WET) is an exclusive token to the Waifusion world wide harem. There are two uses for the WET Token:",
     "use": [
       "Renaming your Waifu to a new name perminantly stored on the Blockchain",
-      "Burning an undesirable Waifu in exchange for a new Waifu from the Dungeon"
+      "Burning an undesirable Waifu in exchange for a new Waifu from the Dungeon",
+      "Burn a Waifu in exchange for an uwucrew NFT"
     ],
     "detail": "Waifus passively generate WET tokens just by holding them! Each Waifu will generate 3,660 WET per year. You can claim your WET tokens in the wallet page. To change the name of a Waifu, you need to burn 1,830 WET. To get a new Waifu from the Dungeon, you need to burn a Waifu and [[WET_BURN_PRICE]] WET, the burned Waifus will disappear forever!"
   },

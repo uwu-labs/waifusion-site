@@ -5,3 +5,4 @@ export const DUNGEON = "/dungeon";
 export const WALLET = "/wallet";
 export const BROWSE = "/browse";
 export const WAIFU = "/waifu";
+export const UWUCREW = "/uwucrew";
