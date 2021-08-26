@@ -229,7 +229,7 @@ export class ContractHelper {
     return currentlyOwned;
   };
 
-  wetBalance = async (): Promise<number> => {
+  getWetBalance = async (): Promise<number> => {
     const wetContract = await this.getWetContract();
     const currentlyOwned = await wetContract.methods
       .balanceOf(this.address)

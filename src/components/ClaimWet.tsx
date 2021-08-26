@@ -39,7 +39,7 @@ const ClaimWet: React.FC = () => {
   const updateBalance = async () => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
-    const _balance = await contractHelper.wetBalance();
+    const _balance = await contractHelper.getWetBalance();
     setBalance(
       Math.round(Number(toEthUnit(new BN(_balance)))).toLocaleString()
     );
