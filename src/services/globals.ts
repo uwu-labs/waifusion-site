@@ -70,8 +70,8 @@ export const ETH_GLOBALS: GlobalsData = {
   wetLpLink:
     "https://info.uniswap.org/#/pools/0xbf190af824a0f79838ae79df738e4086a084a057",
   waifuTradeLink: "https://opensea.io/assets/waifusion",
-  uwuMintContract: "",
-  uwuContract: "",
+  uwuMintContract: "0x5E75Bc35955F9E196e5bb25ddDE09424B476a18D",
+  uwuContract: "0xF75140376D246D8B1E5B8a48E3f00772468b3c0c",
   getWaifuMarketplaceLink(waifuId) {
     return `https://opensea.io/assets/${this.waifuAddress}/${waifuId}`;
   },
