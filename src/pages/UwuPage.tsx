@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import countdown from "countdown";
 
 import Card from "../components/Card";
 import { PageContentWrapper } from "../components/CommonLayout";
@@ -66,15 +65,56 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const TicketContainer = styled.div`
-  display: flex;
-  align-items: center;
+const rotate = keyframes`
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 150% 50%;
+    }
+`;
 
+type BackgroundProps = {
+  rainbow?: boolean;
+};
+
+const TicketContainerBorder = styled.div`
+  box-shadow: 0px 4px 20px 20px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  padding: 2px 2px 6px 2px;
+  border-radius: 1.1rem;
+  /* transform: translateY(-0.5rem); */
+  filter: saturate(1.5);
+  background: linear-gradient(
+      45deg,
+      var(--primary) 0%,
+      var(--secondary) 25%,
+      var(--highlight) 50%,
+      var(--secondary) 75%,
+      var(--primary) 100%
+    )
+    0% 0% / 300% 300%;
+  background: ${(props: BackgroundProps) =>
+    props.rainbow ? "auto" : "var(--plain-shadow)"};
+  animation: ${rotate} 3s linear 0s infinite;
+
+  margin-right: 1rem;
   @media (max-width: 768px) {
+    margin-right: 0;
     margin-top: 2rem;
   }
 `;
 
+const TicketContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: var(--plain);
+  padding: 1rem;
+  border-radius: 1rem;
+
+  display: flex;
+  align-items: center;
+`;
 const MiniTicket = styled.img`
   height: 1.6rem;
   margin-top: 0.2rem;
@@ -186,10 +226,12 @@ const UwuPage: React.FC = () => {
       <HeaderContainer>
         <Header text={t("headers.uwucrew")} />
         <ButtonContainer>
-          <TicketContainer>
-            <TicketBalance>{`Owned: ${tickets}`}</TicketBalance>
-            <MiniTicket src={ticketSmall} />
-          </TicketContainer>
+          <TicketContainerBorder rainbow={Number(tickets) > 0}>
+            <TicketContainer>
+              <TicketBalance>{`Owned: ${tickets}`}</TicketBalance>
+              <MiniTicket src={ticketSmall} />
+            </TicketContainer>
+          </TicketContainerBorder>
           <Button
             secondary
             onClick={() =>
