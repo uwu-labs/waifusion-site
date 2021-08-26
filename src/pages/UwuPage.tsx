@@ -251,7 +251,7 @@ const UwuPage: React.FC = () => {
               (window as any).open(globals.wetTradeLink, "_blank").focus()
             }
           >
-            Get WET
+            Buy WET
           </Button>
           <Button
             primary
