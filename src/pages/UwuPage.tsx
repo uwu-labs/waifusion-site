@@ -227,7 +227,8 @@ const UwuPage: React.FC = () => {
             buttonAction={() => setBuying(true)}
             buttonText={t("uwu.getTicket")}
             buttonDisabled={
-              soldOut || !(!!startTime && new Date() >= startTime)
+              soldOut
+              // || !(!!startTime && new Date() >= startTime)
             }
             secondButtonText={t("buttons.learnMore")}
             secondButtonAction={() =>
