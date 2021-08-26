@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import styled, { keyframes } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import BN from "bn.js";
+import { useHistory } from "react-router";
 
 import Card from "../components/Card";
 import { PageContentWrapper } from "../components/CommonLayout";
@@ -169,6 +170,7 @@ const UwuPage: React.FC = () => {
   const uwuMintContract = useSelector(selectUwuMintContract);
   const globals = useSelector(selectGlobalsData);
   const tickets = useSelector(selectTickets);
+  const history = useHistory();
 
   const [buying, setBuying] = useState(false);
   const [swapPrice, setSwapPrice] = useState(0);
@@ -232,6 +234,8 @@ const UwuPage: React.FC = () => {
     price: swapPrice.toString(),
     remaining: remaining?.toString(),
   });
+
+  if (!isEth) history.push("/");
 
   return (
     <StyledUwuPage>
