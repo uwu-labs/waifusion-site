@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import styled, { keyframes } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import BN from "bn.js";
-import { useHistory } from "react-router";
 import countdown from "countdown";
 
 import Card from "../components/Card";
@@ -172,7 +171,6 @@ const UwuPage: React.FC = () => {
   const uwuMintContract = useSelector(selectUwuMintContract);
   const globals = useSelector(selectGlobalsData);
   const tickets = useSelector(selectTickets);
-  const history = useHistory();
 
   const [buying, setBuying] = useState(false);
   const [swapPrice, setSwapPrice] = useState(0);
