@@ -237,8 +237,6 @@ const UwuPage: React.FC = () => {
     remaining: remaining?.toString(),
   });
 
-  if (!isEth) history.push("/");
-
   return (
     <StyledUwuPage>
       <Head title="uwucrew" />
