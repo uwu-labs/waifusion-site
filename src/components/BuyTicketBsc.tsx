@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import countdown from "countdown";
 
-import { ContractHelper } from "../services/contract";
+import { ContractHelper, getAddress } from "../services/contract";
 import Input from "./Input";
 import Popup from "./Popup";
 import { selectGlobalsData } from "../state/reducers/globals";
@@ -126,8 +126,9 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
     }
 
     const mint = await getUwuMintContract(globals.uwuMintContract);
+    const address = await getAddress();
     mint.methods
-      .buy(tickets)
+      .buy(tickets, address)
       .send()
       .on("transactionHash", (hash: any) => {
         setLoading(true);
