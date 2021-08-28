@@ -335,6 +335,7 @@ const UwuPage: React.FC = () => {
           setBuying(false);
         }}
         swapPrice={swapPrice}
+        wetBalance={wetBalance}
       />
     </StyledUwuPage>
   );
