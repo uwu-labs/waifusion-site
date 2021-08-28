@@ -1,5 +1,4 @@
 // TODO test sale over
-// TODO add check for Waifu ownership
 // TODO update copy
 // TODO Update learn more link
 
@@ -13,7 +12,7 @@ import countdown from "countdown";
 import { ContractHelper } from "../services/contract";
 import Input from "./Input";
 import Popup from "./Popup";
-import { selectGlobalsData, selectIsEth } from "../state/reducers/globals";
+import { selectGlobalsData } from "../state/reducers/globals";
 import {
   getTicketBalance,
   getUwuMintContract,
@@ -59,7 +58,6 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
   const [wave, setWave] = useState(1);
   const [nextWave, setNextWave] = useState(new Date());
   const owned = useSelector(selectTickets);
-  const isEth = useSelector(selectIsEth);
 
   const updateWetApproved = async () => {
     if (!globals.uwuMintContract) return;

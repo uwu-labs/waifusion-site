@@ -17,7 +17,12 @@ import Head from "../components/Head";
 import ticketSmall from "../assets/uwu_coin.png";
 import ticketAnimated from "../assets/uwu_coin.gif";
 import Button from "../components/Button";
-import { selectTickets, setTickets } from "../state/reducers/user";
+import {
+  loadWaifus,
+  selectTickets,
+  selectUsersWaifus,
+  setTickets,
+} from "../state/reducers/user";
 import {
   getTicketBalance,
   getUwuMintContract,
@@ -171,6 +176,7 @@ const UwuPage: React.FC = () => {
   const uwuMintContract = useSelector(selectUwuMintContract);
   const globals = useSelector(selectGlobalsData);
   const tickets = useSelector(selectTickets);
+  const hasWaifu = useSelector(selectUsersWaifus).length > 0;
 
   const [buying, setBuying] = useState(false);
   const [swapPrice, setSwapPrice] = useState(0);
@@ -218,6 +224,10 @@ const UwuPage: React.FC = () => {
     setWetbalance(Math.round(Number(toEthUnit(new BN(_wetBalance)))));
   };
 
+  const updateWaifus = async () => {
+    dispatch(loadWaifus());
+  };
+
   const updateAll = () => {
     updateSwapPrice();
     updateTicketBalance();
@@ -225,6 +235,7 @@ const UwuPage: React.FC = () => {
     updateStartTime();
     updateRemaining();
     updateWetBalance();
+    updateWaifus();
   };
 
   useEffect(() => {
@@ -277,6 +288,8 @@ const UwuPage: React.FC = () => {
             header={
               soldOut
                 ? "SOLD OUT"
+                : !isEth && !hasWaifu
+                ? "No Waifus Owned"
                 : startTime && new Date() >= startTime
                 ? "Available Now!!"
                 : `Available in: ${countdown(
@@ -290,7 +303,9 @@ const UwuPage: React.FC = () => {
             buttonAction={() => setBuying(true)}
             buttonText={t("uwu.getTicket")}
             buttonDisabled={
-              soldOut || !(!!startTime && new Date() >= startTime)
+              soldOut ||
+              !(!!startTime && new Date() >= startTime) ||
+              (!isEth && !hasWaifu)
             }
             secondButtonText={t("buttons.learnMore")}
             secondButtonAction={() =>
