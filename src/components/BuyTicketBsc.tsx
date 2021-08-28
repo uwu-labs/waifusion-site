@@ -37,6 +37,7 @@ type Props = {
   show: boolean;
   close: () => void;
   swapPrice: number;
+  wetBalance: number;
 };
 
 const BuyTicketBsc: React.FC<Props> = (props) => {
@@ -136,6 +137,10 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
       setError("You have already minted this wave");
       return;
     }
+    if (Number(tickets) * props.swapPrice > props.wetBalance) {
+      setError("Not enough WET");
+      return;
+    }
 
     const mint = await getUwuMintContract(globals.uwuMintContract);
     const address = await getAddress();
@@ -187,6 +192,7 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
           countdown.ALL,
           1
         )}`}
+        body2={`You have ${props.wetBalance} WET`}
         buttonAction={() => {
           if (!wetApproved) approveWet();
           else buyTickets();
