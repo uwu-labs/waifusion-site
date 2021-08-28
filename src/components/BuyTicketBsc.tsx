@@ -1,10 +1,7 @@
-// TODO Set time until next wave to update per second
-// TODO Test with updated contract
 // TODO test sale over
-// TODO Test Mobile
-// TODO Test Countdown on UWU Page
-// TODO set uwu page countdown to update per second
-// TODO update BSC main copy
+// TODO add check for Waifu ownership
+// TODO update copy
+// TODO Update learn more link
 
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
