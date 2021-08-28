@@ -278,7 +278,7 @@ const UwuPage: React.FC = () => {
                     new Date(),
                     startTime,
                     countdown.ALL,
-                    2
+                    1
                   ).toString()}`
             }
             text={dungeonBody}
