@@ -178,6 +178,7 @@ const UwuPage: React.FC = () => {
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [remaining, setRemaining] = useState(0);
   const [wetBalance, setWetbalance] = useState(0);
+  const [random, setRandom] = useState(0);
 
   const updateSwapPrice = async () => {
     if (!uwuMintContract) return;
@@ -225,6 +226,10 @@ const UwuPage: React.FC = () => {
     updateRemaining();
     updateWetBalance();
   };
+
+  useEffect(() => {
+    setInterval(() => setRandom(Math.random()), 1000);
+  }, []);
 
   useEffect(() => {
     updateAll();
@@ -278,15 +283,15 @@ const UwuPage: React.FC = () => {
                     new Date(),
                     startTime,
                     countdown.ALL,
-                    1
+                    2
                   ).toString()}`
             }
             text={dungeonBody}
             buttonAction={() => setBuying(true)}
             buttonText={t("uwu.getTicket")}
-            buttonDisabled={
-              soldOut || !(!!startTime && new Date() >= startTime)
-            }
+            // buttonDisabled={
+            //   soldOut || !(!!startTime && new Date() >= startTime)
+            // }
             secondButtonText={t("buttons.learnMore")}
             secondButtonAction={() =>
               (window as any)
