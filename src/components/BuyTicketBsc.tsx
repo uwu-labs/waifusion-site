@@ -3,14 +3,17 @@ import styled from "styled-components";
 import BN from "bn.js";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import countdown from "countdown";
+
 import { ContractHelper } from "../services/contract";
 import Input from "./Input";
 import Popup from "./Popup";
-import { selectGlobalsData } from "../state/reducers/globals";
+import { selectGlobalsData, selectIsEth } from "../state/reducers/globals";
 import {
   getTicketBalance,
   getUwuMintContract,
   isWetApproved,
+  nextWaveDate,
 } from "../services/uwuHelper";
 import { selectTickets, setTickets } from "../state/reducers/user";
 
@@ -48,9 +51,10 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
   const globals = useSelector(selectGlobalsData);
   const [loading, setLoading] = useState(false);
   const [wetApproved, setWetApproved] = useState(false);
-  const [nextWaveBlock, setNextWaveBlock] = useState(0);
   const [wave, setWave] = useState(1);
+  const [nextWave, setNextWave] = useState(new Date());
   const owned = useSelector(selectTickets);
+  const isEth = useSelector(selectIsEth);
 
   const updateWetApproved = async () => {
     if (!globals.uwuMintContract) return;
@@ -71,18 +75,16 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
     dispatch(setTickets(balance));
   };
 
-  const updateNextWaveBlock = async () => {
-    if (!globals.uwuMintContract) return;
-    const contract = await getUwuMintContract(globals.uwuMintContract);
-    // const _nextWaveBlock = await contract.methods.nextWaveBlock().call();
-    // setNextWaveBlock(Number(_nextWaveBlock));
+  const updateNextWave = async () => {
+    const _nextWave = await nextWaveDate();
+    setNextWave(_nextWave);
   };
 
   const updateEverything = () => {
     updateWetApproved();
     getWave();
     updateTicketBalance();
-    updateNextWaveBlock();
+    updateNextWave();
   };
 
   useEffect(() => {
@@ -167,7 +169,10 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
         header={t("uwu.getTicket")}
         body={`The current wave is ${wave}. You can get ${
           waveMax[wave.toString()] - Number(owned)
-        } more tickets this wave. Next wave is in ${0}`}
+        } more tickets this wave. Next wave is in ${countdown(
+          new Date(),
+          nextWave
+        )}`}
         buttonAction={() => {
           if (!wetApproved) approveWet();
           else buyTickets();

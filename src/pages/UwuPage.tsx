@@ -207,7 +207,6 @@ const UwuPage: React.FC = () => {
     const _startTime = await contract.methods.startTime().call();
     const d = new Date(0);
     d.setUTCSeconds(_startTime);
-    console.log(d);
     setStartTime(d);
   };
 
