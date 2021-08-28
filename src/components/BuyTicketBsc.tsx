@@ -1,5 +1,3 @@
-// TODO test sale over
-// TODO update copy
 // TODO Update learn more link
 
 import React, { useEffect, useState } from "react";
