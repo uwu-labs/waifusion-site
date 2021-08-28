@@ -4,6 +4,7 @@ import styled, { keyframes } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import BN from "bn.js";
 import { useHistory } from "react-router";
+import countdown from "countdown";
 
 import Card from "../components/Card";
 import { PageContentWrapper } from "../components/CommonLayout";
@@ -207,6 +208,7 @@ const UwuPage: React.FC = () => {
     const _startTime = await contract.methods.startTime().call();
     const d = new Date(0);
     d.setUTCSeconds(_startTime);
+    console.log(d);
     setStartTime(d);
   };
 
@@ -272,22 +274,22 @@ const UwuPage: React.FC = () => {
         <CardContainer>
           <Card
             header={
-              soldOut ? "SOLD OUT" : "Available Now!!"
-              // : startTime && new Date() >= startTime
-              // ? "Available Now!!"
-              // : `Available in: ${countdown(
-              //     new Date(),
-              //     startTime,
-              //     countdown.ALL,
-              //     2
-              //   ).toString()}`
+              soldOut
+                ? "SOLD OUT"
+                : startTime && new Date() >= startTime
+                ? "Available Now!!"
+                : `Available in: ${countdown(
+                    new Date(),
+                    startTime,
+                    countdown.ALL,
+                    2
+                  ).toString()}`
             }
             text={dungeonBody}
             buttonAction={() => setBuying(true)}
             buttonText={t("uwu.getTicket")}
             buttonDisabled={
-              soldOut
-              // || !(!!startTime && new Date() >= startTime)
+              soldOut || !(!!startTime && new Date() >= startTime)
             }
             secondButtonText={t("buttons.learnMore")}
             secondButtonAction={() =>
