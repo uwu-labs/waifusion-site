@@ -289,9 +289,9 @@ const UwuPage: React.FC = () => {
             text={dungeonBody}
             buttonAction={() => setBuying(true)}
             buttonText={t("uwu.getTicket")}
-            // buttonDisabled={
-            //   soldOut || !(!!startTime && new Date() >= startTime)
-            // }
+            buttonDisabled={
+              soldOut || !(!!startTime && new Date() >= startTime)
+            }
             secondButtonText={t("buttons.learnMore")}
             secondButtonAction={() =>
               (window as any)
