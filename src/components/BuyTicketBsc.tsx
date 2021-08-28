@@ -1,3 +1,11 @@
+// TODO Set time until next wave to update per second
+// TODO Test with updated contract
+// TODO test sale over
+// TODO Test Mobile
+// TODO Test Countdown on UWU Page
+// TODO set uwu page countdown to update per second
+// TODO update BSC main copy
+
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BN from "bn.js";
