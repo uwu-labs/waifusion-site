@@ -88,7 +88,7 @@ const Footer: React.FC = () => {
         <AbsoluteCenterSection>{t("footer.team")}</AbsoluteCenterSection>
         <Section>
           <ExternalLink
-            href="https://twitter.com/waifusion"
+            href="https://twitter.com/uwucrewnft"
             target="_blank"
             rel="noreferrer"
           >
