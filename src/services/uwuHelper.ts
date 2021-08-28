@@ -107,7 +107,8 @@ export const nextWaveDate = async (): Promise<Date> => {
   const startBlock = await contract.methods.startBlock().call();
   const waveBlockLength = await contract.methods.waveBlockLength().call();
   const blocksSinceStart = blockNumber - startBlock;
-  const blocksRemaining = blocksSinceStart % waveBlockLength;
+  const blocksRemaining =
+    waveBlockLength - (blocksSinceStart % waveBlockLength);
   const secondsRemaining = blocksRemaining * 3;
   const now = new Date();
   now.setSeconds(now.getSeconds() + secondsRemaining);
