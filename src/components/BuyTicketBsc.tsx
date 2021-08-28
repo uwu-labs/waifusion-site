@@ -172,7 +172,7 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
             <Input
               type="number"
               value={tickets}
-              placeholder={maxPerTX.toString()}
+              placeholder={`Ticket Amount (e.g. ${maxPerTX.toString()}`}
               update={(value: string) => setTicketCount(value)}
             />
             {error && <Error>{error}</Error>}
