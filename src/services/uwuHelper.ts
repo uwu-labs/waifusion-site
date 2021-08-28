@@ -95,3 +95,21 @@ export const ticketsRemaining = async (): Promise<number> => {
   const amountSold = await contract.methods.amountSwapped().call();
   return amountForSale - amountSold;
 };
+
+export const getBlockNumber = async (): Promise<number> => {
+  return (window as any).web3.eth.getBlockNumber();
+};
+
+export const nextWaveDate = async (): Promise<Date> => {
+  const blockNumber = await getBlockNumber();
+  const globals = await getGlobals();
+  const contract = await getUwuMintContract(globals.uwuMintContract);
+  const startBlock = await contract.methods.startBlock().call();
+  const waveBlockLength = await contract.methods.waveBlockLength().call();
+  const blocksSinceStart = blockNumber - startBlock;
+  const blocksRemaining = blocksSinceStart % waveBlockLength;
+  const secondsRemaining = blocksRemaining * 3;
+  const now = new Date();
+  now.setSeconds(now.getSeconds() + secondsRemaining);
+  return now;
+};
