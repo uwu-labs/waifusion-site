@@ -179,7 +179,9 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
           waveMax[wave.toString()] - Number(owned)
         } more tickets this wave. Next wave is in ${countdown(
           new Date(),
-          nextWave
+          nextWave,
+          countdown.ALL,
+          1
         )}`}
         buttonAction={() => {
           if (!wetApproved) approveWet();
