@@ -102,14 +102,12 @@ const NavItems: React.FC = () => {
           <label>{t("navigation.dungeon")}</label>
         </LinkableItem>
       </Item>
-      {isEth && (
-        <Item>
-          <LinkableItem to={ROUTES.UWUCREW}>
-            <Icon src={uwuToken} />
-            <label>{t("navigation.uwucrew")}</label>
-          </LinkableItem>
-        </Item>
-      )}
+      <Item>
+        <LinkableItem to={ROUTES.UWUCREW}>
+          <Icon src={uwuToken} />
+          <label>{t("navigation.uwucrew")}</label>
+        </LinkableItem>
+      </Item>
       <Item>
         <Address />
       </Item>
