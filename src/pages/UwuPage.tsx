@@ -131,6 +131,7 @@ const TicketBalance = styled.div`
   font-weight: 500;
   color: var(--text-secondary);
   margin-right: 0.4rem;
+  white-space: nowrap;
 `;
 
 const Content = styled.div`
