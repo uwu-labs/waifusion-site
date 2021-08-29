@@ -172,20 +172,26 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
 
   const buyTickets = async () => {
     setError("");
+    setLoading(true);
+    await getWave();
     if (Number(tickets) > maxPerTX) {
       setError(`Exceeds max of ${maxPerTX} for this wave`);
+      setLoading(false);
       return;
     }
     if (Number(tickets) < 1) {
       setError("Must be a positive number");
+      setLoading(false);
       return;
     }
     if (isLocked) {
       setError("You have already minted this wave");
+      setLoading(false);
       return;
     }
     if (Number(tickets) * props.swapPrice > props.wetBalance) {
       setError("Not enough WET");
+      setLoading(false);
       return;
     }
 
