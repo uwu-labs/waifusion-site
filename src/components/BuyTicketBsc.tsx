@@ -17,7 +17,7 @@ import {
   nextWaveDate,
   shortenAddress,
 } from "../services/uwuHelper";
-import { setTickets } from "../state/reducers/user";
+import { selectTickets, setTickets } from "../state/reducers/user";
 
 const Content = styled.div`
   width: 100%;
@@ -87,6 +87,7 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
   const [ethAddress, setEthAddress] = useState("");
   const [changingAddress, setChangingAddress] = useState(false);
   const [addressError, setAddressError] = useState("");
+  const ticketsOwned = useSelector(selectTickets);
 
   const updateWetApproved = async () => {
     if (!globals.uwuMintContract) return;
@@ -232,7 +233,9 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
                 ethAddress,
                 10
               )}`}</EthAddress>
-              <Change onClick={() => setChangingAddress(true)}>Change</Change>
+              {Number(ticketsOwned) === 0 && (
+                <Change onClick={() => setChangingAddress(true)}>Change</Change>
+              )}
             </EthAddressContainer>
             <Input
               type="number"
