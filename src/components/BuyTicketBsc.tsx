@@ -3,29 +3,59 @@ import styled from "styled-components";
 import BN from "bn.js";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { ContractHelper } from "../services/contract";
+import countdown from "countdown";
+
+import { ContractHelper, getAddress } from "../services/contract";
 import Input from "./Input";
 import Popup from "./Popup";
-import { selectGlobalsData } from "../state/reducers/globals";
+import { selectGlobalsData, selectIsEth } from "../state/reducers/globals";
 import {
+  getBlockNumber,
   getTicketBalance,
   getUwuMintContract,
   isWetApproved,
+  nextWaveDate,
+  shortenAddress,
 } from "../services/uwuHelper";
 import { selectTickets, setTickets } from "../state/reducers/user";
-
-const waveMax: Record<string, number> = {
-  "1": 1,
-  "2": 3,
-  "3": 6,
-  "4": 11,
-};
 
 const Content = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const EthAddressContainer = styled.p`
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+`;
+
+const EthAddress = styled.p`
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--plain-dark);
+`;
+
+const Change = styled.button`
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--plain-dark);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  font-family: "Calibre", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-left: 0.5rem;
 `;
 
 const Error = styled.div`
@@ -38,6 +68,8 @@ type Props = {
   show: boolean;
   close: () => void;
   swapPrice: number;
+  wetBalance: number;
+  remaining: number;
 };
 
 const BuyTicketBsc: React.FC<Props> = (props) => {
@@ -48,9 +80,16 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
   const globals = useSelector(selectGlobalsData);
   const [loading, setLoading] = useState(false);
   const [wetApproved, setWetApproved] = useState(false);
-  const [nextWaveBlock, setNextWaveBlock] = useState(0);
   const [wave, setWave] = useState(1);
-  const owned = useSelector(selectTickets);
+  const [nextWave, setNextWave] = useState(new Date());
+  const [isLocked, setIsLocked] = useState(false);
+  const [maxPerTX, setMaxPerTX] = useState(0);
+  const [ethAddress, setEthAddress] = useState("");
+  const [changingAddress, setChangingAddress] = useState(false);
+  const [addressError, setAddressError] = useState("");
+  const [waveBlockLength, setWaveBlockLength] = useState(0);
+  const ticketsOwned = useSelector(selectTickets);
+  const isEth = useSelector(selectIsEth);
 
   const updateWetApproved = async () => {
     if (!globals.uwuMintContract) return;
@@ -61,8 +100,22 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
   const getWave = async () => {
     if (!globals.uwuMintContract) return;
     const contract = await getUwuMintContract(globals.uwuMintContract);
-    const wave = await contract.methods.wave().call();
+
+    const startBlock = await contract.methods.startBlock().call();
+    let wave = 0;
+    if (startBlock !== 0) {
+      const blockNumber = await getBlockNumber();
+      const waveBlockLength = await contract.methods.waveBlockLength().call();
+      const blocksSinceStart = blockNumber - startBlock;
+      wave = Math.floor(blocksSinceStart / waveBlockLength);
+    }
     setWave(Number(wave) + 1);
+    const address = await getAddress();
+    const _isLocked = await contract.methods.waveLock(wave, address).call();
+    setIsLocked(_isLocked);
+    if (isEth) return;
+    const _maxPerTX = await contract.methods.maxPerTX(wave).call();
+    setMaxPerTX(_maxPerTX);
   };
 
   const updateTicketBalance = async () => {
@@ -71,18 +124,37 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
     dispatch(setTickets(balance));
   };
 
-  const updateNextWaveBlock = async () => {
+  const updateNextWave = async () => {
+    const _nextWave = await nextWaveDate();
+    setNextWave(_nextWave);
+  };
+
+  const updateWaveBlockLength = async () => {
     if (!globals.uwuMintContract) return;
     const contract = await getUwuMintContract(globals.uwuMintContract);
-    // const _nextWaveBlock = await contract.methods.nextWaveBlock().call();
-    // setNextWaveBlock(Number(_nextWaveBlock));
+    const _waveBlockLength = await contract.methods.waveBlockLength().call();
+    setWaveBlockLength(_waveBlockLength);
+  };
+
+  const updateAddress = async () => {
+    if (!globals.uwuMintContract) return;
+    if (isEth) return;
+    const address = await getAddress();
+    const contract = await getUwuMintContract(globals.uwuMintContract);
+    const _ethAddress = await contract.methods.bscToEthAddr(address).call();
+    if (_ethAddress === "0x0000000000000000000000000000000000000000") {
+      setEthAddress(address);
+    } else {
+      setEthAddress(_ethAddress);
+    }
   };
 
   const updateEverything = () => {
     updateWetApproved();
     getWave();
     updateTicketBalance();
-    updateNextWaveBlock();
+    updateNextWave();
+    updateAddress();
   };
 
   useEffect(() => {
@@ -112,19 +184,32 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
 
   const buyTickets = async () => {
     setError("");
-    const max = waveMax[wave.toString()] - Number(owned);
-    if (Number(tickets) > max) {
-      setError(`Exceeds max of ${max} for this wave`);
+    setLoading(true);
+    await getWave();
+    if (Number(tickets) > maxPerTX) {
+      setError(`Exceeds max of ${maxPerTX} for this wave`);
+      setLoading(false);
       return;
     }
     if (Number(tickets) < 1) {
       setError("Must be a positive number");
+      setLoading(false);
+      return;
+    }
+    if (isLocked) {
+      setError("You have already minted this wave");
+      setLoading(false);
+      return;
+    }
+    if (Number(tickets) * props.swapPrice > props.wetBalance) {
+      setError("Not enough WET");
+      setLoading(false);
       return;
     }
 
     const mint = await getUwuMintContract(globals.uwuMintContract);
     mint.methods
-      .buy(tickets)
+      .buy(tickets, ethAddress)
       .send()
       .on("transactionHash", (hash: any) => {
         setLoading(true);
@@ -142,6 +227,14 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
       });
   };
 
+  const getCountdown = (): string => {
+    const nextWaveCopy = new Date(nextWave);
+    if (new Date() < nextWaveCopy) {
+      nextWaveCopy.setSeconds(nextWaveCopy.getSeconds() + waveBlockLength * 3);
+    }
+    return countdown(new Date(), nextWaveCopy, countdown.ALL, 1).toString();
+  };
+
   return (
     <>
       <Popup
@@ -149,16 +242,24 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
         close={() => {
           setTicketCount("");
           setError("");
+          updateEverything();
           props.close();
         }}
         content={
           <Content>
+            <EthAddressContainer>
+              <EthAddress>{`Eth Address: ${shortenAddress(
+                ethAddress,
+                10
+              )}`}</EthAddress>
+              {Number(ticketsOwned) === 0 && (
+                <Change onClick={() => setChangingAddress(true)}>Change</Change>
+              )}
+            </EthAddressContainer>
             <Input
               type="number"
               value={tickets}
-              placeholder={(
-                waveMax[wave.toString()] - Number(owned)
-              ).toString()}
+              placeholder={`Amount (e.g. ${maxPerTX.toString()})`}
               update={(value: string) => setTicketCount(value)}
             />
             {error && <Error>{error}</Error>}
@@ -166,8 +267,11 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
         }
         header={t("uwu.getTicket")}
         body={`The current wave is ${wave}. You can get ${
-          waveMax[wave.toString()] - Number(owned)
-        } more tickets this wave. Next wave is in ${0}`}
+          isLocked ? 0 : maxPerTX
+        } more tickets this wave. Next wave is in ${getCountdown()}. There are ${
+          props.remaining
+        } tickets remaining.`}
+        body2={`You have ${props.wetBalance} WET`}
         buttonAction={() => {
           if (!wetApproved) approveWet();
           else buyTickets();
@@ -179,6 +283,31 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
             ? t("buttons.approveWet")
             : t("uwu.getTicket")
         }
+      />
+      <Popup
+        show={changingAddress}
+        header="Enter ETH Address"
+        body="This is the address for for uwu-tickets to be sent to for redeeming your uwus"
+        close={() => setChangingAddress(false)}
+        content={
+          <Content>
+            <Input
+              type="string"
+              value={ethAddress}
+              placeholder="Enter Address"
+              update={(value: string) => setEthAddress(value)}
+            />
+            {addressError && <Error>{addressError}</Error>}
+          </Content>
+        }
+        buttonText="Done"
+        buttonAction={() => {
+          if (ethAddress.length === 42) {
+            setChangingAddress(false);
+          } else {
+            setAddressError("Not a valid address");
+          }
+        }}
       />
     </>
   );

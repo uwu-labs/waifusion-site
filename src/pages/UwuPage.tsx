@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import styled, { keyframes } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import BN from "bn.js";
-import { useHistory } from "react-router";
+import countdown from "countdown";
 
 import Card from "../components/Card";
 import { PageContentWrapper } from "../components/CommonLayout";
@@ -17,7 +17,12 @@ import Head from "../components/Head";
 import ticketSmall from "../assets/uwu_coin.png";
 import ticketAnimated from "../assets/uwu_coin.gif";
 import Button from "../components/Button";
-import { selectTickets, setTickets } from "../state/reducers/user";
+import {
+  loadWaifus,
+  selectTickets,
+  selectUsersWaifus,
+  setTickets,
+} from "../state/reducers/user";
 import {
   getTicketBalance,
   getUwuMintContract,
@@ -130,6 +135,7 @@ const TicketBalance = styled.div`
   font-weight: 500;
   color: var(--text-secondary);
   margin-right: 0.4rem;
+  white-space: nowrap;
 `;
 
 const Content = styled.div`
@@ -170,7 +176,7 @@ const UwuPage: React.FC = () => {
   const uwuMintContract = useSelector(selectUwuMintContract);
   const globals = useSelector(selectGlobalsData);
   const tickets = useSelector(selectTickets);
-  const history = useHistory();
+  const hasWaifu = useSelector(selectUsersWaifus).length > 0;
 
   const [buying, setBuying] = useState(false);
   const [swapPrice, setSwapPrice] = useState(0);
@@ -178,6 +184,7 @@ const UwuPage: React.FC = () => {
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [remaining, setRemaining] = useState(0);
   const [wetBalance, setWetbalance] = useState(0);
+  const [random, setRandom] = useState(0);
 
   const updateSwapPrice = async () => {
     if (!uwuMintContract) return;
@@ -217,6 +224,10 @@ const UwuPage: React.FC = () => {
     setWetbalance(Math.round(Number(toEthUnit(new BN(_wetBalance)))));
   };
 
+  const updateWaifus = async () => {
+    dispatch(loadWaifus());
+  };
+
   const updateAll = () => {
     updateSwapPrice();
     updateTicketBalance();
@@ -224,7 +235,12 @@ const UwuPage: React.FC = () => {
     updateStartTime();
     updateRemaining();
     updateWetBalance();
+    updateWaifus();
   };
+
+  useEffect(() => {
+    setInterval(() => setRandom(Math.random()), 1000);
+  }, []);
 
   useEffect(() => {
     updateAll();
@@ -234,8 +250,6 @@ const UwuPage: React.FC = () => {
     price: swapPrice.toString(),
     remaining: remaining?.toString(),
   });
-
-  if (!isEth) history.push("/");
 
   return (
     <StyledUwuPage>
@@ -272,28 +286,34 @@ const UwuPage: React.FC = () => {
         <CardContainer>
           <Card
             header={
-              soldOut ? "SOLD OUT" : "Available Now!!"
-              // : startTime && new Date() >= startTime
-              // ? "Available Now!!"
-              // : `Available in: ${countdown(
-              //     new Date(),
-              //     startTime,
-              //     countdown.ALL,
-              //     2
-              //   ).toString()}`
+              soldOut
+                ? "SOLD OUT"
+                : !isEth && !hasWaifu
+                ? "No Waifus Owned"
+                : startTime && new Date() >= startTime
+                ? "Available Now!!"
+                : `Available in: ${countdown(
+                    new Date(),
+                    startTime,
+                    countdown.ALL,
+                    1
+                  ).toString()}`
             }
             text={dungeonBody}
             buttonAction={() => setBuying(true)}
             buttonText={t("uwu.getTicket")}
             buttonDisabled={
-              soldOut
-              // || !(!!startTime && new Date() >= startTime)
+              soldOut ||
+              !(!!startTime && new Date() >= startTime) ||
+              (!isEth && !hasWaifu)
             }
             secondButtonText={t("buttons.learnMore")}
             secondButtonAction={() =>
               (window as any)
                 .open(
-                  "https://medium.com/@uwulabs/public-sale-redemption-announcement-c63636f17dd3",
+                  isEth
+                    ? "https://medium.com/@uwulabs/public-sale-redemption-announcement-c63636f17dd3"
+                    : "https://medium.com/@uwulabs/bsc-uwu-ticket-claim-guide-1443ae04cd8",
                   "_blank"
                 )
                 .focus()
@@ -317,6 +337,8 @@ const UwuPage: React.FC = () => {
           setBuying(false);
         }}
         swapPrice={swapPrice}
+        wetBalance={wetBalance}
+        remaining={remaining}
       />
     </StyledUwuPage>
   );
