@@ -311,7 +311,9 @@ const UwuPage: React.FC = () => {
             secondButtonAction={() =>
               (window as any)
                 .open(
-                  "https://medium.com/@uwulabs/public-sale-redemption-announcement-c63636f17dd3",
+                  isEth
+                    ? "https://medium.com/@uwulabs/public-sale-redemption-announcement-c63636f17dd3"
+                    : "https://medium.com/@uwulabs/bsc-uwu-ticket-claim-guide-1443ae04cd8",
                   "_blank"
                 )
                 .focus()

@@ -1,5 +1,3 @@
-// TODO Update learn more link
-
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BN from "bn.js";
