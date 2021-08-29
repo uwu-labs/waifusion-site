@@ -15,6 +15,7 @@ import {
   getUwuMintContract,
   isWetApproved,
   nextWaveDate,
+  shortenAddress,
 } from "../services/uwuHelper";
 import { setTickets } from "../state/reducers/user";
 
@@ -23,6 +24,38 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const EthAddressContainer = styled.p`
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+`;
+
+const EthAddress = styled.p`
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--plain-dark);
+`;
+
+const Change = styled.button`
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--plain-dark);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  font-family: "Calibre", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-left: 0.5rem;
 `;
 
 const Error = styled.div`
@@ -51,6 +84,9 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
   const [nextWave, setNextWave] = useState(new Date());
   const [isLocked, setIsLocked] = useState(false);
   const [maxPerTX, setMaxPerTX] = useState(0);
+  const [ethAddress, setEthAddress] = useState("");
+  const [changingAddress, setChangingAddress] = useState(false);
+  const [addressError, setAddressError] = useState("");
 
   const updateWetApproved = async () => {
     if (!globals.uwuMintContract) return;
@@ -89,11 +125,24 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
     setNextWave(_nextWave);
   };
 
+  const updateAddress = async () => {
+    if (!globals.uwuMintContract) return;
+    const address = await getAddress();
+    const contract = await getUwuMintContract(globals.uwuMintContract);
+    const _ethAddress = await contract.methods.bscToEthAddr(address).call();
+    if (_ethAddress === "0x0000000000000000000000000000000000000000") {
+      setEthAddress(address);
+    } else {
+      setEthAddress(_ethAddress);
+    }
+  };
+
   const updateEverything = () => {
     updateWetApproved();
     getWave();
     updateTicketBalance();
     updateNextWave();
+    updateAddress();
   };
 
   useEffect(() => {
@@ -141,9 +190,8 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
     }
 
     const mint = await getUwuMintContract(globals.uwuMintContract);
-    const address = await getAddress();
     mint.methods
-      .buy(tickets, address)
+      .buy(tickets, ethAddress)
       .send()
       .on("transactionHash", (hash: any) => {
         setLoading(true);
@@ -168,10 +216,18 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
         close={() => {
           setTicketCount("");
           setError("");
+          updateEverything();
           props.close();
         }}
         content={
           <Content>
+            <EthAddressContainer>
+              <EthAddress>{`Eth Address: ${shortenAddress(
+                ethAddress,
+                10
+              )}`}</EthAddress>
+              <Change onClick={() => setChangingAddress(true)}>Change</Change>
+            </EthAddressContainer>
             <Input
               type="number"
               value={tickets}
@@ -202,6 +258,31 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
             ? t("buttons.approveWet")
             : t("uwu.getTicket")
         }
+      />
+      <Popup
+        show={changingAddress}
+        header="Enter ETH Address"
+        body="This is the address for for uwu-tickets to be sent to for redeeming your uwus"
+        close={() => setChangingAddress(false)}
+        content={
+          <Content>
+            <Input
+              type="string"
+              value={ethAddress}
+              placeholder="Enter Address"
+              update={(value: string) => setEthAddress(value)}
+            />
+            {addressError && <Error>{addressError}</Error>}
+          </Content>
+        }
+        buttonText="Done"
+        buttonAction={() => {
+          if (ethAddress.length === 42) {
+            setChangingAddress(false);
+          } else {
+            setAddressError("Not a valid address");
+          }
+        }}
       />
     </>
   );

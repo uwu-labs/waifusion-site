@@ -114,3 +114,11 @@ export const nextWaveDate = async (): Promise<Date> => {
   now.setSeconds(now.getSeconds() + secondsRemaining);
   return now;
 };
+
+export const shortenAddress = (address: string, length: number): string => {
+  if (address.length <= length) return address;
+  const sideLength = Math.round(length / 2);
+  return `${address.slice(0, sideLength)}...${address.slice(
+    address.length - sideLength
+  )}`;
+};
