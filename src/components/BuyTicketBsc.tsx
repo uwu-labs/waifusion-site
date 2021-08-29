@@ -8,7 +8,7 @@ import countdown from "countdown";
 import { ContractHelper, getAddress } from "../services/contract";
 import Input from "./Input";
 import Popup from "./Popup";
-import { selectGlobalsData } from "../state/reducers/globals";
+import { selectGlobalsData, selectIsEth } from "../state/reducers/globals";
 import {
   getBlockNumber,
   getTicketBalance,
@@ -87,7 +87,9 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
   const [ethAddress, setEthAddress] = useState("");
   const [changingAddress, setChangingAddress] = useState(false);
   const [addressError, setAddressError] = useState("");
+  const [waveBlockLength, setWaveBlockLength] = useState(0);
   const ticketsOwned = useSelector(selectTickets);
+  const isEth = useSelector(selectIsEth);
 
   const updateWetApproved = async () => {
     if (!globals.uwuMintContract) return;
@@ -111,6 +113,7 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
     const address = await getAddress();
     const _isLocked = await contract.methods.waveLock(wave, address).call();
     setIsLocked(_isLocked);
+    if (isEth) return;
     const _maxPerTX = await contract.methods.maxPerTX(wave).call();
     setMaxPerTX(_maxPerTX);
   };
@@ -126,8 +129,16 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
     setNextWave(_nextWave);
   };
 
+  const updateWaveBlockLength = async () => {
+    if (!globals.uwuMintContract) return;
+    const contract = await getUwuMintContract(globals.uwuMintContract);
+    const _waveBlockLength = await contract.methods.waveBlockLength().call();
+    setWaveBlockLength(_waveBlockLength);
+  };
+
   const updateAddress = async () => {
     if (!globals.uwuMintContract) return;
+    if (isEth) return;
     const address = await getAddress();
     const contract = await getUwuMintContract(globals.uwuMintContract);
     const _ethAddress = await contract.methods.bscToEthAddr(address).call();
@@ -216,6 +227,14 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
       });
   };
 
+  const getCountdown = (): string => {
+    const nextWaveCopy = new Date(nextWave);
+    if (new Date() < nextWaveCopy) {
+      nextWaveCopy.setSeconds(nextWaveCopy.getSeconds() + waveBlockLength * 3);
+    }
+    return countdown(new Date(), nextWaveCopy, countdown.ALL, 1).toString();
+  };
+
   return (
     <>
       <Popup
@@ -249,12 +268,9 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
         header={t("uwu.getTicket")}
         body={`The current wave is ${wave}. You can get ${
           isLocked ? 0 : maxPerTX
-        } more tickets this wave. Next wave is in ${countdown(
-          new Date(),
-          nextWave,
-          countdown.ALL,
-          1
-        )}. There are ${props.remaining} tickets remaining.`}
+        } more tickets this wave. Next wave is in ${getCountdown()}. There are ${
+          props.remaining
+        } tickets remaining.`}
         body2={`You have ${props.wetBalance} WET`}
         buttonAction={() => {
           if (!wetApproved) approveWet();
