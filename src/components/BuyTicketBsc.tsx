@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import BN, { max } from "bn.js";
+import BN from "bn.js";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import countdown from "countdown";
@@ -18,7 +18,7 @@ import {
   isWetApproved,
   nextWaveDate,
 } from "../services/uwuHelper";
-import { selectTickets, setTickets } from "../state/reducers/user";
+import { setTickets } from "../state/reducers/user";
 
 const Content = styled.div`
   width: 100%;
@@ -38,6 +38,7 @@ type Props = {
   close: () => void;
   swapPrice: number;
   wetBalance: number;
+  remaining: number;
 };
 
 const BuyTicketBsc: React.FC<Props> = (props) => {
@@ -52,7 +53,6 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
   const [nextWave, setNextWave] = useState(new Date());
   const [isLocked, setIsLocked] = useState(false);
   const [maxPerTX, setMaxPerTX] = useState(0);
-  const owned = useSelector(selectTickets);
 
   const updateWetApproved = async () => {
     if (!globals.uwuMintContract) return;
@@ -191,7 +191,7 @@ const BuyTicketBsc: React.FC<Props> = (props) => {
           nextWave,
           countdown.ALL,
           1
-        )}`}
+        )}. There are ${props.remaining} tickets remaining.`}
         body2={`You have ${props.wetBalance} WET`}
         buttonAction={() => {
           if (!wetApproved) approveWet();
