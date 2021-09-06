@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 import { DungeonIcon, FarmIcon, SearchIcon, WalletIcon } from "./Icons";
-import uwuToken from "../assets/uwu_coin_grey.png";
+// import uwuToken from "../assets/uwu_coin_grey.png";
 import Address from "./Address";
 import NetworkIndicator from "./NetworkIndicator";
 import { selectIsEth } from "../state/reducers/globals";
@@ -62,11 +62,11 @@ const LinkableItem = styled(Link)`
   }
 `;
 
-const Icon = styled.img`
-  height: 1.5rem;
-  margin-right: 0.5rem;
-  transform: translateY(1px);
-`;
+// const Icon = styled.img`
+//   height: 1.5rem;
+//   margin-right: 0.5rem;
+//   transform: translateY(1px);
+// `;
 
 const NavItems: React.FC = () => {
   const [t] = useTranslation();
@@ -102,12 +102,12 @@ const NavItems: React.FC = () => {
           <label>{t("navigation.dungeon")}</label>
         </LinkableItem>
       </Item>
-      <Item>
+      {/* <Item>
         <LinkableItem to={ROUTES.UWUCREW}>
           <Icon src={uwuToken} />
           <label>{t("navigation.uwucrew")}</label>
         </LinkableItem>
-      </Item>
+      </Item> */}
       <Item>
         <Address />
       </Item>
