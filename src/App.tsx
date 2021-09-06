@@ -25,7 +25,6 @@ import { ContractHelper } from "./services/contract";
 import LoadingPurchase from "./components/LoadingPurchase";
 import FarmPage from "./pages/FarmPage";
 import * as ROUTES from "./constants/routes";
-import UwuPage from "./pages/UwuPage";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -92,7 +91,7 @@ const App: React.FC = () => {
               <Route path={ROUTES.PROVENANCE} component={ProvenancePage} />
               <Route path={ROUTES.FARM} component={FarmPage} />
               <Route exact path={ROUTES.HOME} component={HomePage} />
-              <Route exact path={ROUTES.UWUCREW} component={UwuPage} />
+              {/* <Route exact path={ROUTES.UWUCREW} component={UwuPage} /> */}
               <Route path="*" component={NotFoundPage} />
             </Switch>
           </ContentWrapper>
