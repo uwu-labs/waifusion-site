@@ -207,8 +207,8 @@ const BurnWaifu: React.FC<Props> = (props) => {
           </Content>
         }
         header={t("dungeon.headers.burn")}
-        body={t("dungeon.bodys.burn")}
-        body2={t("dungeon.bodys.burn2")}
+        body={t("dungeon.bodys.burn2")}
+        body2={t("dungeon.bodys.burn")}
         buttonAction={() => {
           if (!wetApprovedForDungeon && (isEth || isWetBurn))
             approveWetForDungeon();
