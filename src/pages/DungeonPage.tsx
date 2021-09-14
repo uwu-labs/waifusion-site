@@ -143,9 +143,7 @@ const DungeonPage: React.FC = () => {
   const isEth = useSelector(selectIsEth);
 
   const dungeonBody = isEth
-    ? t("dungeon.description")
-        .replace("[[BUY_PRICE]]", buyPrice)
-        .replace("[[WET_BURN_PRICE]]", wetBurnPrice)
+    ? t("dungeon.description").replace("[[WET_BURN_PRICE]]", wetBurnPrice)
     : t("dungeon.descriptionBsc")
         .replace("[[BUY_PRICE]]", buyPrice)
         .replace("[[WET_BURN_PRICE]]", wetBurnPrice)
@@ -157,13 +155,22 @@ const DungeonPage: React.FC = () => {
       <Header text={t("headers.dungeon")} />
       <Content>
         <CardContainer>
-          <Card
-            text={dungeonBody}
-            buttonAction={() => setBuying(true)}
-            buttonText={t("buttons.buyWaifu")}
-            secondButtonAction={() => setBurning(true)}
-            secondButtonText={t("buttons.burnWaifu")}
-          />
+          {isEth && (
+            <Card
+              text={dungeonBody}
+              buttonAction={() => setBurning(true)}
+              buttonText={t("buttons.burnWaifu")}
+            />
+          )}
+          {!isEth && (
+            <Card
+              text={dungeonBody}
+              buttonAction={() => setBuying(true)}
+              buttonText={t("buttons.buyWaifu")}
+              secondButtonAction={() => setBurning(true)}
+              secondButtonText={t("buttons.burnWaifu")}
+            />
+          )}
         </CardContainer>
         <DropShadow>
           <DungeonCard>
