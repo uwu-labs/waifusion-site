@@ -9,10 +9,8 @@ import Input from "./Input";
 import Popup from "./Popup";
 import LoadingPurchase from "./LoadingPurchase";
 import {
-  selectNftxApprovedForWrapper,
   selectWaifusApprovedForDungeon,
   selectWetApprovedForDungeon,
-  selectWetApprovedForWrapper,
   setWaifusApprovedForDungeon,
   setWetApprovedForDungeon,
   setWetApprovedForWrapper,
@@ -49,19 +47,14 @@ const BurnWaifu: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
   const [t] = useTranslation();
   const [waifuIds, setWaifuIds] = useState("");
-  const [nftxCount, setNftxCount] = useState("1");
   const [error, setError] = useState("");
   const [approving, setApproving] = useState(false);
   const [committed, setCommited] = useState(false);
   const [commitComplete, setCommitComplete] = useState(false);
-  const [isWaifuBurn, setIsWaifuBurn] = useState(false);
-  const [isNftxBurn, setIsNftxBurn] = useState(false);
   const [isBnbBurn, setIsBnbBurn] = useState(false);
   const [isWetBurn, setIsWetBurn] = useState(false);
   const wetApprovedForDungeon = useSelector(selectWetApprovedForDungeon);
   const waifusApprovedForDungeon = useSelector(selectWaifusApprovedForDungeon);
-  const wetApprovedForWrapper = useSelector(selectWetApprovedForWrapper);
-  const nftxApprovedForWrapper = useSelector(selectNftxApprovedForWrapper);
   const globals = useSelector(selectGlobalsData);
   const isEth = useSelector(selectIsEth);
   const bnbBurnPrice = useSelector(selectBnbBurnPrice);
@@ -113,14 +106,6 @@ const BurnWaifu: React.FC<Props> = (props) => {
     await tokenApprove(wetContract, globals.dungeonAddress);
   };
 
-  const approveWetForWrapper = async () => {
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
-    const wetContract = await contractHelper.getWetContract();
-    const userWrapperAddress = await contractHelper.getUserWrapperAddress();
-    await tokenApprove(wetContract, userWrapperAddress);
-  };
-
   const approveWaifusForDungeon = async () => {
     const contractHelper = new ContractHelper();
     await contractHelper.init();
@@ -138,14 +123,6 @@ const BurnWaifu: React.FC<Props> = (props) => {
         console.log(`Error: ${err}`);
         setApproving(false);
       });
-  };
-
-  const approveNftxForWrapper = async () => {
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
-    const nftxContract = await contractHelper.getNftxContract();
-    const userWrapperAddress = await contractHelper.getUserWrapperAddress();
-    await tokenApprove(nftxContract, userWrapperAddress);
   };
 
   const burnWaifu = async () => {
@@ -204,52 +181,8 @@ const BurnWaifu: React.FC<Props> = (props) => {
     }
   };
 
-  const validateNftx = (value: string) => {
-    if (Number(value) <= 0) {
-      setError(t("errors.minimum"));
-      return;
-    }
-    if (Number(value) > 3) {
-      setError(t("errors.maximumNftx"));
-      return;
-    }
-    setError("");
-  };
-
-  const burnNftx = async () => {
-    if (error) return;
-
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
-    const wrapperContract = await contractHelper.getWrapperContract();
-    const estimatedGas = 150_000 + 550_000 * Number(nftxCount);
-    wrapperContract.methods
-      .commitWaifusWithNFTX(nftxCount)
-      .send({ gas: estimatedGas })
-      .on("transactionHash", (hash: any) => {
-        setCommited(true);
-      })
-      .on("receipt", (receipt: any) => {
-        setCommitComplete(true);
-      })
-      .on("error", (err: any) => {
-        console.log("error: ", err.message);
-        setCommited(false);
-      });
-  };
-
   return (
     <>
-      <Popup
-        show={isEth && !isWaifuBurn && !isNftxBurn}
-        close={() => props.close()}
-        header={t("dungeon.headers.burnMethod")}
-        body={t("dungeon.bodys.burnMethod")}
-        buttonText={t("buttons.waifuNft")}
-        buttonAction={() => setIsWaifuBurn(true)}
-        secondButtonText={t("buttons.nftxWaifu")}
-        secondButtonAction={() => setIsNftxBurn(true)}
-      />
       <Popup
         show={!isEth && !isBnbBurn && !isWetBurn}
         close={() => props.close()}
@@ -261,11 +194,7 @@ const BurnWaifu: React.FC<Props> = (props) => {
         secondButtonAction={() => setIsWetBurn(true)}
       />
       <Popup
-        show={
-          !committed &&
-          (!isEth || isWaifuBurn) &&
-          (isEth || isWetBurn || isBnbBurn)
-        }
+        show={!committed && (isEth || isWetBurn || isBnbBurn)}
         close={() => props.close()}
         content={
           <Content>
@@ -295,46 +224,10 @@ const BurnWaifu: React.FC<Props> = (props) => {
             : t("buttons.burnWaifu")
         }
       />
-      <Popup
-        show={!committed && isNftxBurn}
-        close={() => props.close()}
-        content={
-          <Content>
-            <Input
-              value={nftxCount}
-              type="number"
-              update={(value: string) => {
-                setNftxCount(value);
-                validateNftx(value);
-              }}
-            />
-            {error && <Error>{error}</Error>}
-          </Content>
-        }
-        header={t("dungeon.headers.burnNftx")}
-        body={t("dungeon.bodys.burnNftx")}
-        buttonAction={() => {
-          if (!wetApprovedForWrapper) approveWetForWrapper();
-          else if (!nftxApprovedForWrapper) approveNftxForWrapper();
-          else burnNftx();
-        }}
-        buttonText={
-          approving
-            ? t("loading")
-            : !wetApprovedForWrapper
-            ? t("buttons.approveWet")
-            : !nftxApprovedForWrapper
-            ? t("buttons.approveNftx")
-            : t("buttons.burnNftx")
-        }
-      />
-
       <LoadingPurchase
         show={committed}
         close={() => props.close()}
         loading={!commitComplete}
-        isNftx={isNftxBurn}
-        nftxCount={Number(nftxCount)}
       />
     </>
   );

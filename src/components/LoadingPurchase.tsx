@@ -16,8 +16,6 @@ type Props = {
   show: boolean;
   close: () => void;
   loading: boolean;
-  isNftx?: boolean;
-  nftxCount?: number;
 };
 
 const LoadingPurchase: React.FC<Props> = (props) => {
@@ -33,26 +31,6 @@ const LoadingPurchase: React.FC<Props> = (props) => {
     dungeonContract.methods
       .revealWaifus()
       .send()
-      .on("transactionHash", (hash: any) => {
-        setLoading(true);
-      })
-      .on("receipt", (receipt: any) => {
-        setLoading(false);
-        setRevealed(true);
-      })
-      .on("error", (err: any) => {
-        alert(`${t("prefixes.error")}${err.message}`);
-      });
-  };
-
-  const revealWrapper = async () => {
-    const contractHelper = new ContractHelper();
-    await contractHelper.init();
-    const wrapperContract = await contractHelper.getWrapperContract();
-    const estimatedGas = 350_000 * (props.nftxCount || 1);
-    wrapperContract.methods
-      .revealWaifusWithNFTX()
-      .send({ gas: estimatedGas })
       .on("transactionHash", (hash: any) => {
         setLoading(true);
       })
@@ -93,8 +71,7 @@ const LoadingPurchase: React.FC<Props> = (props) => {
         }
         buttonAction={() => {
           if (props.loading || loading) return;
-          if (props.isNftx) revealWrapper();
-          else revealDungeon();
+          revealDungeon();
         }}
         buttonText={
           props.loading || loading ? t("buttons.loading") : t("buttons.reveal")
