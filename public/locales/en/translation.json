@@ -95,7 +95,8 @@
       "burn2": "Using the dungeon involves 2 transactions (not including 2 first-time token approvals for WAIFU and WET): 1 to BURN and 1 to REVEAL which may be expensive. Please only do this when gas is low to save!",
       "burnNftx": "Select the number of WAIFU Tokens you would like to burn",
       "loadingPurchase": "When purchase is complete you must reveal immediately or risk losing your Waifus forever",
-      "revealReady": "Your Waifus have been redeemed! Click Reveal below to see what you got",
+      "revealReady": "Your Waifus have been redeemed! Click Reveal below to see what you got. Reveal within 40 minutes or risk losing your Waifus forever.",
+      "revealReadyBsc": "Your Waifus have been redeemed! Click Reveal below to see what you got. Reveal within 10 minutes or risk losing your Waifus forever.",
       "burnMethod": "You can burn either Waifusion NFTs or NFTX WAIFU Tokens, select your preference",
       "burnMethodBsc": "You can burn Waifus with WET or BNB, select your preference"
     }

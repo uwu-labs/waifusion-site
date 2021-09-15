@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { ContractHelper } from "../services/contract";
+import { selectIsEth } from "../state/reducers/globals";
 import Loading from "./Loading";
 import Popup from "./Popup";
 import RevealComplete from "./RevealComplete";
@@ -23,6 +25,7 @@ const LoadingPurchase: React.FC<Props> = (props) => {
 
   const [loading, setLoading] = useState(false);
   const [revealed, setRevealed] = useState(false);
+  const isEth = useSelector(selectIsEth);
 
   const revealDungeon = async () => {
     const contractHelper = new ContractHelper();
@@ -60,7 +63,9 @@ const LoadingPurchase: React.FC<Props> = (props) => {
             ? t("dungeon.bodys.loadingPurchase")
             : loading
             ? ""
-            : t("dungeon.bodys.revealReady")
+            : isEth
+            ? t("dungeon.bodys.revealReady")
+            : t("dungeon.bodys.revealReadyBsc")
         }
         content={
           props.loading || loading ? (
