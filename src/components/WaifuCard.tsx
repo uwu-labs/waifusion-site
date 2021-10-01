@@ -6,6 +6,7 @@ import { selectImageApi } from "../state/reducers/globals";
 import { Waifu } from "../types/waifusion";
 import { ArrowRightIcon } from "./Icons";
 import WaifuCardImage from "./WaifuCardImage";
+import { selectAddress } from "../state/reducers/user";
 
 const Container = styled(Link)`
   width: 220px;
@@ -40,14 +41,14 @@ const ImageContainer = styled.div`
 const DetailHeader = styled.div`
   padding-bottom: 0.5rem;
   font-size: 15pt;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
 
-  span:first-child {
-    font-weight: 500;
-  }
-
-  span:last-child {
-    color: var(--text-secondary);
-  }
+const Number = styled.div`
+  color: var(--text-secondary);
+  font-weight: 500;
 `;
 
 const ActionRow = styled.div`
@@ -74,11 +75,17 @@ type Props = {
 
 const WaifuCard: React.FC<Props> = ({ waifu }) => {
   const imageApi = useSelector(selectImageApi);
+  const address = useSelector(selectAddress);
 
   return (
     <Container to={`/waifu/${waifu.id}`}>
       <DetailHeader>
-        <span>{waifu.name}</span> <span>#{waifu.id}</span>
+        <Number>{`#${waifu.id}`}</Number>
+        {waifu.accumulatedWet && (
+          <Number>{`${Math.round(
+            waifu.accumulatedWet
+          ).toLocaleString()} WET`}</Number>
+        )}
       </DetailHeader>
       <ImageContainer>
         <WaifuCardImage
