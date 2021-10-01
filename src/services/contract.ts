@@ -140,6 +140,15 @@ export class ContractHelper {
     return rewardContract.methods.symbol().call();
   };
 
+  getDungeonRemaining = async (): Promise<number> => {
+    const dungeonContract = await this.getDungeonContract();
+    console.log("Geting");
+    const remaining = await dungeonContract.methods.waifuCount().call();
+    console.log("got");
+    console.log(remaining);
+    return Number(remaining);
+  };
+
   getUserWrapperAddress = async (): Promise<string> => {
     const wrapperContract = await this.getWrapperContract();
     return wrapperContract.methods.userWrapperAddr(this.address).call();
