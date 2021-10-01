@@ -59,8 +59,6 @@ const App: React.FC = () => {
     const revealPending = await contractHelper.revealPending();
     setHasPendingReveal(revealPending);
     const dungeonRemaining = await contractHelper.getDungeonRemaining();
-    console.log("got in update");
-    console.log(dungeonRemaining);
     dispatch(setDungeonRemaining(dungeonRemaining));
   };
 

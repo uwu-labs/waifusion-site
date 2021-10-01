@@ -142,10 +142,7 @@ export class ContractHelper {
 
   getDungeonRemaining = async (): Promise<number> => {
     const dungeonContract = await this.getDungeonContract();
-    console.log("Geting");
     const remaining = await dungeonContract.methods.waifuCount().call();
-    console.log("got");
-    console.log(remaining);
     return Number(remaining);
   };
 
@@ -362,9 +359,7 @@ export class ContractHelper {
   getApr = async (): Promise<number> => {
     const farmContract = await this.getFarmContract();
     const lpAddress = await farmContract.methods.stakingToken().call();
-    const lpContract = await this.getLpContract();
     const balance = await window.web3.eth.getBalance(lpAddress);
-    console.log(balance);
     return Number(balance);
   };
 }
