@@ -25,6 +25,7 @@ import { ContractHelper } from "./services/contract";
 import LoadingPurchase from "./components/LoadingPurchase";
 import FarmPage from "./pages/FarmPage";
 import * as ROUTES from "./constants/routes";
+import { setDungeonRemaining } from "./state/reducers/waifus";
 // import UwuPage from "./pages/UwuPage";
 
 const Wrapper = styled.div`
@@ -57,6 +58,10 @@ const App: React.FC = () => {
     dispatch(setBnbBurnPrice(bnbBurnPrice));
     const revealPending = await contractHelper.revealPending();
     setHasPendingReveal(revealPending);
+    const dungeonRemaining = await contractHelper.getDungeonRemaining();
+    console.log("got in update");
+    console.log(dungeonRemaining);
+    dispatch(setDungeonRemaining(dungeonRemaining));
   };
 
   const init = async () => {
