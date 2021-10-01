@@ -6,7 +6,6 @@ import { selectImageApi } from "../state/reducers/globals";
 import { Waifu } from "../types/waifusion";
 import { ArrowRightIcon } from "./Icons";
 import WaifuCardImage from "./WaifuCardImage";
-import { selectAddress } from "../state/reducers/user";
 
 const Container = styled(Link)`
   width: 220px;
@@ -75,7 +74,6 @@ type Props = {
 
 const WaifuCard: React.FC<Props> = ({ waifu }) => {
   const imageApi = useSelector(selectImageApi);
-  const address = useSelector(selectAddress);
 
   return (
     <Container to={`/waifu/${waifu.id}`}>
