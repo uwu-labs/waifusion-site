@@ -16,6 +16,7 @@ import {
   selectWetBurnPrice,
 } from "../state/reducers/globals";
 import Head from "../components/Head";
+import { selectDungeonRemaining } from "../state/reducers/waifus";
 
 const StyledDungeonPage = styled(PageContentWrapper)`
   height: 70vh;
@@ -23,6 +24,24 @@ const StyledDungeonPage = styled(PageContentWrapper)`
   @media (max-width: 768px) {
     height: auto;
   }
+`;
+
+const HeaderContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const Remaining = styled.div`
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--plain-dark);
+  text-align: center;
 `;
 
 const Content = styled.div`
@@ -141,6 +160,7 @@ const DungeonPage: React.FC = () => {
   const wetBurnPrice = useSelector(selectWetBurnPrice);
   const bnbBurnPrice = useSelector(selectBnbBurnPrice);
   const isEth = useSelector(selectIsEth);
+  const remaining = useSelector(selectDungeonRemaining);
 
   const dungeonBody = isEth
     ? t("dungeon.description").replace("[[WET_BURN_PRICE]]", wetBurnPrice)
@@ -152,7 +172,12 @@ const DungeonPage: React.FC = () => {
   return (
     <StyledDungeonPage>
       <Head title="Dungeon" />
-      <Header text={t("headers.dungeon")} />
+      <HeaderContainer>
+        <Header text={t("headers.dungeon")} />
+        <Remaining>{`Waifus Remaining: ${
+          remaining === 0 ? "--" : remaining
+        }`}</Remaining>
+      </HeaderContainer>
       <Content>
         <CardContainer>
           {isEth && (
