@@ -115,6 +115,13 @@ const Footer: React.FC = () => {
           >
             {t("contact.contact")}
           </ExternalLink>
+          <ExternalLink
+            href="https://uwucrew.art/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            uwucrew
+          </ExternalLink>
         </Section>
       </Container>
     </StyledFooter>
