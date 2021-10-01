@@ -140,6 +140,12 @@ export class ContractHelper {
     return rewardContract.methods.symbol().call();
   };
 
+  getDungeonRemaining = async (): Promise<number> => {
+    const dungeonContract = await this.getDungeonContract();
+    const remaining = await dungeonContract.methods.waifuCount().call();
+    return Number(remaining);
+  };
+
   getUserWrapperAddress = async (): Promise<string> => {
     const wrapperContract = await this.getWrapperContract();
     return wrapperContract.methods.userWrapperAddr(this.address).call();
@@ -353,9 +359,7 @@ export class ContractHelper {
   getApr = async (): Promise<number> => {
     const farmContract = await this.getFarmContract();
     const lpAddress = await farmContract.methods.stakingToken().call();
-    const lpContract = await this.getLpContract();
     const balance = await window.web3.eth.getBalance(lpAddress);
-    console.log(balance);
     return Number(balance);
   };
 }
