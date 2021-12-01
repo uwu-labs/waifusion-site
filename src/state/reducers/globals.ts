@@ -35,12 +35,8 @@ export const globalsSlice = createSlice({
   },
 });
 
-export const {
-  setGlobals,
-  setBuyPrice,
-  setWetBurnPrice,
-  setBnbBurnPrice,
-} = globalsSlice.actions;
+export const { setGlobals, setBuyPrice, setWetBurnPrice, setBnbBurnPrice } =
+  globalsSlice.actions;
 
 export const selectGlobalsData = (state: RootState): GlobalsData =>
   state.globals.data;

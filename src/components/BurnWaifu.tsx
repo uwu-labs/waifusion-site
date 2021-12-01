@@ -63,14 +63,18 @@ const BurnWaifu: React.FC<Props> = (props) => {
     setApproving(true);
     const contractHelper = new ContractHelper();
     await contractHelper.init();
-    const _wetApprovedForDungeon = await contractHelper.isWetApprovedForDungeon();
+    const _wetApprovedForDungeon =
+      await contractHelper.isWetApprovedForDungeon();
     dispatch(setWetApprovedForDungeon(_wetApprovedForDungeon));
-    const _waifusApprovedForDungeon = await contractHelper.isWaifuApprovedForDungeon();
+    const _waifusApprovedForDungeon =
+      await contractHelper.isWaifuApprovedForDungeon();
     dispatch(setWaifusApprovedForDungeon(_waifusApprovedForDungeon));
     if (isEth) {
-      const _wetApprovedForWrapper = await contractHelper.isWetApprovedForWrapper();
+      const _wetApprovedForWrapper =
+        await contractHelper.isWetApprovedForWrapper();
       dispatch(setWetApprovedForWrapper(_wetApprovedForWrapper));
-      const _nftxApprovedForWrapper = await contractHelper.isNftxApprovedForWrapper();
+      const _nftxApprovedForWrapper =
+        await contractHelper.isNftxApprovedForWrapper();
       dispatch(setNftxApprovedForWrapper(_nftxApprovedForWrapper));
     }
     setApproving(false);
