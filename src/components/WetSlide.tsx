@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import styled, { keyframes } from "styled-components";
 import {
+  selectIsEth,
   selectWetBurnPrice,
   selectWetTradeLink,
 } from "../state/reducers/globals";
@@ -85,8 +86,12 @@ const WetSlide: React.FC = () => {
   const [t] = useTranslation();
   const wetTradeLink = useSelector(selectWetTradeLink);
   const wetBurnPrice = useSelector(selectWetBurnPrice);
+  const isEth = useSelector(selectIsEth);
 
-  const wetDetail = t("wet.detail").replace("[[WET_BURN_PRICE]]", wetBurnPrice);
+  const wetDetail = t(isEth ? "wet.detailEth" : "wet.detailBsc").replace(
+    "[[WET_BURN_PRICE]]",
+    wetBurnPrice
+  );
 
   return (
     <StyledSlide>
@@ -95,11 +100,13 @@ const WetSlide: React.FC = () => {
         <Body>
           {t("wet.overview")}
           <List>
-            {(t("wet.use", { returnObjects: true }) as string[]).map(
-              (use, index: number) => (
-                <Item key={index}>{use}</Item>
-              )
-            )}
+            {(
+              t(isEth ? "wet.useEth" : "wet.useBsc", {
+                returnObjects: true,
+              }) as string[]
+            ).map((use, index: number) => (
+              <Item key={index}>{use}</Item>
+            ))}
           </List>
           {wetDetail}
         </Body>
