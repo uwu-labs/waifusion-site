@@ -7,7 +7,7 @@ import Header from "./Header";
 import landing from "../assets/landing.png";
 import Confetti from "./Confetti";
 import Card from "./Card";
-import { selectGlobalsData } from "../state/reducers/globals";
+import { selectGlobalsData, selectIsEth } from "../state/reducers/globals";
 import * as ROUTES from "../constants/routes";
 
 const StyledLanding = styled.div`
@@ -53,6 +53,7 @@ const Landing: React.FC = () => {
   const [t] = useTranslation();
   const history = useHistory();
   const globals = useSelector(selectGlobalsData);
+  const isEth = useSelector(selectIsEth);
 
   return (
     <StyledLanding>
@@ -62,15 +63,26 @@ const Landing: React.FC = () => {
         <Image src={landing} />
         <Confetti />
         <CardContainer>
-          <Card
-            text={t("description")}
-            buttonText={t("buttons.getWaifus")}
-            buttonAction={() => history.push(ROUTES.DUNGEON)}
-            secondButtonText={t("buttons.tradeWaifus")}
-            secondButtonAction={() => {
-              (window as any).open(globals.waifuTradeLink, "_blank").focus();
-            }}
-          />
+          {isEth && (
+            <Card
+              text={t("description")}
+              buttonText={t("buttons.tradeWaifus")}
+              buttonAction={() =>
+                (window as any).open(globals.waifuTradeLink, "_blank").focus()
+              }
+            />
+          )}
+          {!isEth && (
+            <Card
+              text={t("description")}
+              buttonText={t("buttons.getWaifus")}
+              buttonAction={() => history.push(ROUTES.DUNGEON)}
+              secondButtonText={t("buttons.tradeWaifus")}
+              secondButtonAction={() => {
+                (window as any).open(globals.waifuTradeLink, "_blank").focus();
+              }}
+            />
+          )}
         </CardContainer>
       </Content>
     </StyledLanding>
