@@ -102,7 +102,7 @@ const Footer: React.FC = () => {
             {t("contact.discord")}
           </ExternalLink>
           <ExternalLink
-            href="http://github.com/waifusion"
+            href="https://github.com/uwu-labs"
             target="_blank"
             rel="noreferrer"
           >
