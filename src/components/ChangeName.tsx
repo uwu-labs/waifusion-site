@@ -77,7 +77,7 @@ const ChangeName: React.FC<Props> = (props) => {
     }
 
     waifuContract.methods
-      .changeName(props.waifu.id, name)
+      .changeName(props.waifu.index, name)
       .send()
       .on("transactionHash", (hash: any) => {
         setLoading(true);

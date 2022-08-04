@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { useHistory } from "react-router";
-import ClaimWet from "../components/ClaimWet";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
@@ -104,14 +103,14 @@ const WalletPage: React.FC = () => {
       <Head title="Wallet" />
       <HeaderContainer>
         <Header text={t("headers.wallet")} />
-        <ClaimWet />
+        {/* <ClaimWet /> */}
       </HeaderContainer>
       <Content>
         {loading && <Loading />}
         {!loading && usersWaifus.length > 0 && (
           <WaifuContainer>
             {usersWaifus.map((waifu: Waifu) => (
-              <WaifuCard waifu={waifu} key={waifu.id} />
+              <WaifuCard waifu={waifu} key={waifu.index} />
             ))}
           </WaifuContainer>
         )}

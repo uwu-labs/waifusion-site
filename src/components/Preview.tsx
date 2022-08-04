@@ -58,12 +58,12 @@ const Preview: React.FC = () => {
     );
 
     const promises = Array.from(Array(WAIU_COUNT).keys()).map(async () => {
-      const index = Math.floor(Math.random() * count);
-      const id = await contractHelper.tokenOfAddressByIndex(
-        index,
+      const randIndex = Math.floor(Math.random() * count);
+      const index = await contractHelper.tokenOfAddressByIndex(
+        randIndex,
         globals.dungeonAddress
       );
-      _waifus.push({ id });
+      _waifus.push({ index });
     });
     await Promise.all(promises);
     setWaifus(_waifus);
@@ -78,7 +78,7 @@ const Preview: React.FC = () => {
       <Header>{t("headers.available")}</Header>
       <WaifuWrapper>
         {waifus.map((waifu: Waifu) => (
-          <WaifuCard key={waifu.id} waifu={waifu} />
+          <WaifuCard key={waifu.index} waifu={waifu} />
         ))}
       </WaifuWrapper>
       <ButtonContainer>

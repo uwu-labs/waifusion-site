@@ -38,7 +38,8 @@ export const TEST_GLOBALS: GlobalsData = {
   farmAddress: "0xd8c0e08b3843393a7c698d47b532c9af0086e78f",
   startingIndex: 11595,
   currency: "ETH",
-  imageApi: "https://global-harem.waifusion.sexy/v1/ETH_WAIFU/",
+  imageApi:
+    "https://mvxm2cnmiust5cevgitz644zopjrjvki6cmqind4nnns6kfnqrbq.arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/",
   waifuApi: "waifus/",
   wetTradeLink:
     "https://app.sushi.com/swap?inputCurrency=eth&outputCurrency=0x76280af9d18a868a0af3dca95b57dde816c1aaf2",
@@ -63,7 +64,8 @@ export const ETH_GLOBALS: GlobalsData = {
   farmAddress: "",
   startingIndex: 11595,
   currency: "ETH",
-  imageApi: "https://global-harem.waifusion.sexy/v1/ETH_WAIFU/",
+  imageApi:
+    "https://mvxm2cnmiust5cevgitz644zopjrjvki6cmqind4nnns6kfnqrbq.arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/",
   waifuApi: "waifus/",
   wetTradeLink:
     "https://info.uniswap.org/#/pools/0xbf190af824a0f79838ae79df738e4086a084a057",
@@ -88,7 +90,8 @@ export const BSC_GLOBALS: GlobalsData = {
   farmAddress: "0x95ce780b7cc5329f2b6f52004b688b2dc3b50e91",
   startingIndex: 11936,
   currency: "BNB",
-  imageApi: "https://global-harem.waifusion.sexy/v1/BSC_WAIFU/",
+  imageApi:
+    "https://mvxm2cnmiust5cevgitz644zopjrjvki6cmqind4nnns6kfnqrbq.arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/",
   waifuApi: "waifus/bsc/",
   wetTradeLink:
     "https://exchange.pancakeswap.finance/#/swap?inputCurrency=bnb&outputCurrency=0x76280AF9D18a868a0aF3dcA95b57DDE816c1aaf2",

@@ -328,7 +328,7 @@ export class ContractHelper {
       const accumulated = new BN(token.wetAccumulated);
       const accumulatedWETNumber = Number(toEthUnit(accumulated));
       waifus.push({
-        id: token.tokenId,
+        index: token.tokenId,
         name: token.name,
         accumulatedWet: accumulatedWETNumber,
       });

@@ -89,7 +89,7 @@ const App: React.FC = () => {
                 path={`${ROUTES.WAIFU}/:id`}
                 component={WaifuDetail}
               />
-              <Route path={ROUTES.BROWSE} component={BrowsePage} />
+              {/* <Route path={ROUTES.BROWSE} component={BrowsePage} /> */}
               <Route path={ROUTES.WALLET} component={WalletPage} />
               <Route path={ROUTES.DUNGEON} component={DungeonPage} />
               <Route path={ROUTES.PROVENANCE} component={ProvenancePage} />
