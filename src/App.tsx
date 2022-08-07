@@ -23,6 +23,7 @@ import LoadingPurchase from "./components/LoadingPurchase";
 import FarmPage from "./pages/FarmPage";
 import * as ROUTES from "./constants/routes";
 import { setDungeonRemaining } from "./state/reducers/waifus";
+import DungeonPage from "./pages/DungeonPage";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -84,7 +85,7 @@ const App: React.FC = () => {
               />
               {/* <Route path={ROUTES.BROWSE} component={BrowsePage} /> */}
               <Route path={ROUTES.WALLET} component={WalletPage} />
-              {/* <Route path={ROUTES.DUNGEON} component={DungeonPage} /> */}
+              <Route path={ROUTES.DUNGEON} component={DungeonPage} />
               <Route path={ROUTES.PROVENANCE} component={ProvenancePage} />
               <Route path={ROUTES.FARM} component={FarmPage} />
               <Route exact path={ROUTES.HOME} component={HomePage} />
