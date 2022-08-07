@@ -14,7 +14,6 @@ export interface Waifu {
   name?: string;
   bio?: string;
   owner?: WaifuOwnerType;
-  accumulatedWet?: number;
   attributes?: Attribute[];
   description?: string;
   image?: string;

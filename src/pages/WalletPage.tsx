@@ -103,7 +103,6 @@ const WalletPage: React.FC = () => {
       <Head title="Wallet" />
       <HeaderContainer>
         <Header text={t("headers.wallet")} />
-        {/* <ClaimWet /> */}
       </HeaderContainer>
       <Content>
         {loading && <Loading />}

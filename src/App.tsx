@@ -6,9 +6,7 @@ import Navbar from "./components/Navbar";
 import WaifuDetail from "./pages/WaifuDetail";
 import Footer from "./components/Footer";
 import GlobalStyle from "./GlobalStyles";
-import BrowsePage from "./pages/BrowsePage";
 import WalletPage from "./pages/WalletPage";
-import DungeonPage from "./pages/DungeonPage";
 import ProvenancePage from "./pages/ProvenancePage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -18,7 +16,6 @@ import {
   setBnbBurnPrice,
   setBuyPrice,
   setGlobals,
-  setWetBurnPrice,
 } from "./state/reducers/globals";
 import { getGlobals } from "./services/globals";
 import { ContractHelper } from "./services/contract";
@@ -26,7 +23,6 @@ import LoadingPurchase from "./components/LoadingPurchase";
 import FarmPage from "./pages/FarmPage";
 import * as ROUTES from "./constants/routes";
 import { setDungeonRemaining } from "./state/reducers/waifus";
-// import UwuPage from "./pages/UwuPage";
 
 const Wrapper = styled.div`
   color: #29252a;
@@ -47,13 +43,10 @@ const App: React.FC = () => {
   const updateGlobals = async () => {
     const globals = await getGlobals();
     dispatch(setGlobals(globals));
-
     const contractHelper = new ContractHelper();
     await contractHelper.init();
     const buyPrice = await contractHelper.getBuyPrice();
     dispatch(setBuyPrice(buyPrice));
-    const wetBurnPrice = await contractHelper.getWetBurnPrice();
-    dispatch(setWetBurnPrice(wetBurnPrice));
     const bnbBurnPrice = await contractHelper.getBnbBurnPrice();
     dispatch(setBnbBurnPrice(bnbBurnPrice));
     const revealPending = await contractHelper.revealPending();
@@ -91,11 +84,10 @@ const App: React.FC = () => {
               />
               {/* <Route path={ROUTES.BROWSE} component={BrowsePage} /> */}
               <Route path={ROUTES.WALLET} component={WalletPage} />
-              <Route path={ROUTES.DUNGEON} component={DungeonPage} />
+              {/* <Route path={ROUTES.DUNGEON} component={DungeonPage} /> */}
               <Route path={ROUTES.PROVENANCE} component={ProvenancePage} />
               <Route path={ROUTES.FARM} component={FarmPage} />
               <Route exact path={ROUTES.HOME} component={HomePage} />
-              {/* <Route exact path={ROUTES.UWUCREW} component={UwuPage} /> */}
               <Route path="*" component={NotFoundPage} />
             </Switch>
           </ContentWrapper>

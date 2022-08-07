@@ -5,7 +5,7 @@
   "loading": "Loading",
   "connect": "Connect",
   "footer": {
-    "team": "Made with 💜 by the Waifusion community",
+    "team": "Made with 💜 by the uwulabs community",
     "provenance": "Provenance",
     "opensea": "OpenSea"
   },
@@ -19,7 +19,6 @@
   "buttons": {
     "getWaifus": "Go To Dungeon",
     "tradeWaifus": "Trade Waifus",
-    "getWet": "Get WET",
     "buyWaifu": "Buy Waifu",
     "burnWaifu": "Burn Waifu",
     "burnNftx": "Burn WAIFU",
@@ -28,7 +27,6 @@
     "loading": "Loading",
     "reveal": "Reveal",
     "close": "Close",
-    "approveWet": "Approve WET",
     "approveWaifus": "Approve Waifus",
     "approveNftx": "Approve WAIFU",
     "approveLp": "Approve LP",
@@ -37,7 +35,6 @@
     "waifuNft": "Waifu NFT",
     "nftxWaifu": "NFTX WAIFU",
     "useBnb": "Use BNB",
-    "useWet": "Use WET",
     "getLp": "Get LP Tokens",
     "stakeLp": "Stake LP",
     "unstakeLp": "Unstake LP",
@@ -72,8 +69,7 @@
   "wallet": {
     "claim": "Claim",
     "noWaifusMain": "You don't have any waifus baka",
-    "noWaifusSecondary": " Get your first one now!",
-    "wetOwned": "WET Owned:"
+    "noWaifusSecondary": " Get your first one now!"
   },
   "dungeon": {
     "description": "Oh no... Many of our beloved waifus have been captured and put in the Dungeon! Be a hero and save your beloved Waifus by burning a Waifu and paying [[WET_BURN_PRICE]] WET to free a random one from the Dungeon.",
@@ -105,18 +101,19 @@
     "bscDescription": "uwu-crew tickets are redeemable for uwucrew NFTs! To get an uwu ticket you can burn {{price}} WET. Make sure you click 'Learn More' to understand the full details before you do this! There are {{remaining}} tickets remaining.",
     "getTicket": "Get Tickets"
   },
-  "wet": {
-    "header": "WET Token",
-    "overview": "The Waifu Enhancement Token (WET) is an exclusive token to the Waifusion world wide harem. The WET Token can be used to:",
-    "useEth": [
-      "Renaming your Waifu to a new name permanently stored on the Blockchain"
-    ],
-    "useBsc": [
-      "Renaming your Waifu to a new name permanently stored on the Blockchain",
-      "Burning an undesirable Waifu in exchange for a new Waifu from the Dungeon"
-    ],
-    "detailEth": "Waifus passively generate WET tokens just by holding them! Each Waifu will generate 3,660 WET per year. You can claim your WET tokens in the wallet page. To change the name of a Waifu, you need to burn 1,830 WET.",
-    "detailBsc": "Waifus passively generate WET tokens just by holding them! Each Waifu will generate 3,660 WET per year. You can claim your WET tokens in the wallet page. To change the name of a Waifu, you need to burn 1,830 WET. To get a new Waifu from the Dungeon, you need to burn a Waifu and [[WET_BURN_PRICE]] WET, the burned Waifus will disappear forever!"
+  "waifusion": {
+    "header": "What is Waifusion",
+    "subheader-0": "Released on March 1st, 2021, Waifusion is a generative NFT Collection of 16,384 unique Waifus released by an anonymous team, and sold at a price on a bonding curve from 0.1 - 2 ETH.",
+    "subheader-1": "After sales stagnated at around 10k Waifus sold and at a price of 0.7 ETH, the community created the 'Dungeon' contract - the ~6000 unsold Waifus were bought back and transferred there, and 1 Waifu+5490 WET (or 0.7 ETH) can be used to save a random Waifu from the dungeon.",
+    "subheader-2": "10 Months later and on January 15th earlier this year, the Dungeon was finally cleared with a total of 7300+ Waifusion burns, reducing the effective circulating supply to 9064 Waifus!",
+    "subheader-3": "On March 22nd, 2021, the original anonymous team behind Waifusion announced their departure from the project leaving the project in the hands of a group of passionate community members",
+    "subheader-4": "After the community takeover, we formed the team of uwulabs and created and launched our very own collection on September 5th, 2021 - uwucrew (uwucrew.art)!",
+    "subheader-5": "As of March this year, we've announced a brand-new collection  under uwulabs, designed by the outstanding artist of uwucrew, laur! This new collection will be minted by — you guessed it! — burning Waifusion NFTs.",
+    "subheader-6": " Much of the details are still to be decided but the new collection is designed to be smaller supply, and set to release with original art visually distinctive from uwucrew. We intend for this new collection to be accessible and rewarding to all current and future holders of Waifusion!",
+    "smallheader-0": "First NFT Community Takeover",
+    "smallheader-1": "uwucrew by uwulabs"
+
+
   },
   "waifuDetail": {
     "viewOnMarketplace": "View on Marketplace",

@@ -78,11 +78,6 @@ const WaifuCard: React.FC<Props> = ({ waifu }) => {
     <Container to={`/waifu/${waifu.index}`}>
       <DetailHeader>
         <Number>{`#${waifu.index}`}</Number>
-        {waifu.accumulatedWet && (
-          <Number>{`${Math.round(
-            waifu.accumulatedWet
-          ).toLocaleString()} WET`}</Number>
-        )}
       </DetailHeader>
       <ImageContainer>
         <WaifuCardImage
