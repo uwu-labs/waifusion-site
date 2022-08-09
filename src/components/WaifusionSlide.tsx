@@ -122,7 +122,6 @@ const WaifusionSlide: React.FC = () => {
           <Header>{t("waifusion.header")}</Header>
           <SubHeader>{t("waifusion.subheader-0")}</SubHeader>
           <SubHeader>{t("waifusion.subheader-1")}</SubHeader>
-          <SubHeader>{t("waifusion.subheader-2")}</SubHeader>
           <SmallHeader>{t("waifusion.smallheader-0")}</SmallHeader>
           <SubHeader>
             On March 22nd, 2021, the original anonymous team behind Waifusion
@@ -143,6 +142,7 @@ const WaifusionSlide: React.FC = () => {
             </Link>
             {". "}
           </SubHeader>
+          <SubHeader>{t("waifusion.subheader-2")}</SubHeader>
           <SmallHeader>{t("waifusion.smallheader-1")}</SmallHeader>
           <SubHeader>
             After the community takeover, we formed the team of uwu Labs and
