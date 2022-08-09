@@ -63,19 +63,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "WET_TOKEN",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",

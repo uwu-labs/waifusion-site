@@ -10,10 +10,11 @@ export interface Attribute {
 }
 
 export interface Waifu {
-  id: number;
+  index: number;
   name?: string;
   bio?: string;
   owner?: WaifuOwnerType;
-  accumulatedWet?: number;
   attributes?: Attribute[];
+  description?: string;
+  image?: string;
 }

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Head from "../components/Head";
 import Landing from "../components/Landing";
 import Preview from "../components/Preview";
-import WetSlide from "../components/WetSlide";
+import WaifusionSlide from "../components/WaifusionSlide";
 import { selectIsEth } from "../state/reducers/globals";
 
 const Container = styled.div`
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
     <Container>
       <Head title="Anime Ethereum NFT Collectibles" />
       <Landing />
-      <WetSlide />
+      <WaifusionSlide />
       {!isEth && <Preview />}
     </Container>
   );

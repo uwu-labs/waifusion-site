@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
-import { DungeonIcon, FarmIcon } from "./Icons";
+import { DungeonIcon, FarmIcon, SearchIcon, WalletIcon } from "./Icons";
 // import uwuToken from "../assets/uwu_coin_grey.png";
 import Address from "./Address";
 import NetworkIndicator from "./NetworkIndicator";
@@ -90,12 +90,12 @@ const NavItems: React.FC = () => {
           </LinkableItem>
         </Item>
       )} */}
-      {/* <Item>
+      <Item>
         <LinkableItem to={ROUTES.WALLET}>
           <WalletIcon />
           <label>{t("navigation.wallet")}</label>
         </LinkableItem>
-      </Item> */}
+      </Item>
       {!isEth && (
         <Item>
           <LinkableItem to={ROUTES.DUNGEON}>

@@ -7,3 +7,5 @@ yarn-error.log
 
 # production
 /build
+
+package-lock.json

@@ -81,14 +81,12 @@ const BrowsePage: React.FC = () => {
     const requestString = `${globals.waifuApi}/filter?limit=50&page=${page}${filterString}`;
     const response = await makeRequest(requestString, {
       method: "GET",
-      body: null,
     });
-    if (!response.success) {
-      console.log(response.error?.code);
+    if (!response) {
       return;
     }
-    setPages(response.data.maxPage);
-    const _waifus: Waifu[] = response.data.results;
+    // setPages(response);
+    const _waifus: Waifu[] = [response];
     setWaifus(_waifus);
     setLoading(false);
   }, []);
@@ -112,7 +110,7 @@ const BrowsePage: React.FC = () => {
         {!loading && (
           <Waifus>
             {waifus.map((waifu: Waifu) => (
-              <WaifuCard waifu={waifu} key={waifu.id} />
+              <WaifuCard waifu={waifu} key={waifu.index} />
             ))}
           </Waifus>
         )}

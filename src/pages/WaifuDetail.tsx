@@ -4,8 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import styled from "styled-components";
-import Button from "../components/Button";
-import ChangeName from "../components/ChangeName";
 import { PageContentWrapper } from "../components/CommonLayout";
 import Head from "../components/Head";
 import { HashIcon } from "../components/Icons";
@@ -15,8 +13,6 @@ import TraitTag from "../components/TraitTag";
 import WaifuOwner from "../components/WaifuOwner";
 import ViewOnMarketplace from "../components/ViewOnMarketplace";
 import { makeRequest } from "../services/api";
-import { getGlobals } from "../services/globals";
-import { selectAddress, selectUserWaifuIds } from "../state/reducers/user";
 import { addWaifu, selectWaifus, setWaifus } from "../state/reducers/waifus";
 import { Waifu, Attribute } from "../types/waifusion";
 
@@ -119,31 +115,25 @@ type ParamProps = {
 const WaifuDetail: React.FC = () => {
   const [t] = useTranslation();
   const dispatch = useDispatch();
-  const [changingName, setChangingName] = useState(false);
   const { id } = useParams<ParamProps>();
   const waifus = useSelector(selectWaifus);
-  const waifu = waifus.filter((w: Waifu) => Number(w.id) === Number(id))[0];
-  const userWafuIds = useSelector(selectUserWaifuIds);
-  const address = useSelector(selectAddress);
-
+  const waifu = waifus.filter((w: Waifu) => Number(w.index) === Number(id))[0];
   const getWaifu = async () => {
-    const globals = await getGlobals();
-    const response = await makeRequest(`${globals.waifuApi}/${id}`, {
+    const response = await makeRequest(`${id}`, {
       method: "GET",
-      body: null,
     });
-    if (!response.success) {
-      console.log(response.error?.code);
+    if (!response) {
       return;
     }
-    const _waifu: Waifu = response.data;
-
-    if (waifus.map((w: Waifu) => w.id).indexOf(_waifu.id) === -1) {
+    const _waifu: Waifu = response;
+    if (
+      waifus.map((w: Waifu) => Number(w.index)).indexOf(_waifu.index) === -1
+    ) {
       dispatch(addWaifu(_waifu));
     } else {
       const newWaifus: Waifu[] = [];
       waifus.forEach((w: Waifu) => {
-        if (w.id !== _waifu.id) newWaifus.push(w);
+        if (Number(w.index) !== _waifu.index) newWaifus.push(w);
         else newWaifus.push(_waifu);
       });
       dispatch(setWaifus(newWaifus));
@@ -166,9 +156,9 @@ const WaifuDetail: React.FC = () => {
         <Wrapper>
           <Head
             title="Waifu"
-            subtitle={`${waifu.name && `${waifu.name} - `}${waifu.id}`}
+            subtitle={`${waifu.name && `${waifu.name} - `}${waifu.index}`}
           />
-          <LargeWaifuCard id={Number(waifu.id)} />
+          <LargeWaifuCard id={Number(waifu.index)} />
           <Content>
             <Header>
               <PrimaryInfo>
@@ -176,7 +166,7 @@ const WaifuDetail: React.FC = () => {
                 <MetaRow>
                   <MetaItem>
                     <HashIcon />
-                    <label>{waifu.id}</label>
+                    <label>{waifu.index}</label>
                   </MetaItem>
                 </MetaRow>
               </PrimaryInfo>
@@ -205,7 +195,7 @@ const WaifuDetail: React.FC = () => {
               </>
             )}
 
-            {(userWafuIds.indexOf(waifu.id) > -1 ||
+            {/* {(userWafuIds.indexOf(waifu.index) > -1 ||
               (waifu.owner &&
                 waifu.owner.address.toUpperCase() ===
                   address.toUpperCase())) && (
@@ -215,15 +205,15 @@ const WaifuDetail: React.FC = () => {
                   {t("buttons.changeName")}
                 </Button>
               </>
-            )}
+            )} */}
           </Content>
         </Wrapper>
       )}
-      <ChangeName
+      {/* <ChangeName
         show={changingName}
         close={() => setChangingName(false)}
         waifu={waifu}
-      />
+      /> */}
     </PageContentWrapper>
   );
 };

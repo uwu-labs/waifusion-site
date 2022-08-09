@@ -74,21 +74,15 @@ type Props = {
 
 const WaifuCard: React.FC<Props> = ({ waifu }) => {
   const imageApi = useSelector(selectImageApi);
-
   return (
-    <Container to={`/waifu/${waifu.id}`}>
+    <Container to={`/waifu/${waifu.index}`}>
       <DetailHeader>
-        <Number>{`#${waifu.id}`}</Number>
-        {waifu.accumulatedWet && (
-          <Number>{`${Math.round(
-            waifu.accumulatedWet
-          ).toLocaleString()} WET`}</Number>
-        )}
+        <Number>{`#${waifu.index}`}</Number>
       </DetailHeader>
       <ImageContainer>
         <WaifuCardImage
-          src={`${imageApi}${waifu.id}.png`}
-          alt={`Waifu ${waifu.name} #${waifu.id}`}
+          src={`${imageApi}${waifu.index}.png`}
+          alt={`Waifu ${waifu.name} #${waifu.index}`}
         />
       </ImageContainer>
       <ActionRow>

@@ -62,19 +62,6 @@
   },
   {
     "inputs": [],
-    "name": "WET",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "allContributors",
     "outputs": [
       {

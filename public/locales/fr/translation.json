@@ -5,7 +5,7 @@
   "loading": "Chargement",
   "connect": "Connexion",
   "footer": {
-    "team": "Fabriqué avec 💜 par la communauté Waifusion",
+    "team": "Fabriqué avec 💜 par la communauté uwulabs",
     "provenance": "Provenance"
   },
   "contact": {
@@ -18,7 +18,6 @@
   "buttons": {
     "getWaifus": "Obtenez des Waifus",
     "tradeWaifus": "TODO",
-    "getWet": "Obtenez des WET",
     "buyWaifu": "Acheter une Waifu",
     "burnWaifu": "Bruler une Waifu",
     "burnNftx": "TODO",
@@ -27,7 +26,6 @@
     "loading": "Chargement",
     "reveal": "Révéler",
     "close": "Fermer",
-    "approveWet": "Approuver ce WET",
     "approveWaifus": "Approuver ces Waifus",
     "approveNftx": "TODO",
     "approveLp": "TODO",
@@ -35,7 +33,6 @@
     "waifuNft": "TODO",
     "nftxWaifu": "TODO",
     "useBnb": "TODO",
-    "useWet": "TODO",
     "getLp": "TODO",
     "stakeLp": "TODO",
     "unstakeLp": "TODO"
@@ -93,15 +90,6 @@
       "burnMethod": "TODO",
       "burnMethodBsc": "TODO"
     }
-  },
-  "wet": {
-    "header": "Jeton WET",
-    "overview": "Le jeton d'amélioration de Waifu (WET) est un jeton exclusif du harem mondial de Waifusion. Il existe deux utilisations du jeton WET:",
-    "use": [
-      "Renommer votre Waifu avec un nouveau nom stocké en permanence sur la blockchain",
-      "Brûler une Waifu indésirable en échange d'un nouveau Waifu du donjon"
-    ],
-    "detail": "Les Waifus génère passivement des jetons WET simplement en les tenant! Chaque Waifu générera 3 660 WET par an. Vous pouvez réclamer vos jetons WET sur la page du portefeuille. Pour changer le nom d'une Waifu, vous devez envoyer 1 830 WET. Pour brûler une Waifu, vous devez envoyer une Waifu et [[WET_BURN_PRICE]] WET au contrat Waifusion, et celui ci disparaîtra à jamais..."
   },
   "waifuDetail": {
     "viewOnMarketplace": "Voir sur la place de marché",

@@ -18,7 +18,6 @@ export type AccoomulateWaifu = {
   wetAccumulate: string;
   tokenId: number;
   name: string;
-  accumulatedWETNumber: number;
 };
 
 export const getAddress = async (): Promise<string> => {
@@ -286,19 +285,9 @@ export class ContractHelper {
     return accoomulatorContract.methods.accumulated(index).call();
   };
 
-  claimWET = async (indices: number[]): Promise<void> => {
-    const wetContract = await this.getWetContract();
-    return wetContract.methods.claim(indices).send({ from: this.address });
-  };
-
   changeNFTName = async (index: number, newName: string): Promise<void> => {
     const waifuContract = await this.getWaifuContract();
     return waifuContract.methods.changeName(index, newName).send();
-  };
-
-  getWETName = async (index: number): Promise<string> => {
-    const wetContract = await this.getWetContract();
-    return wetContract.methods.tokenNameByIndex(index).call();
   };
 
   getTokenId = async (index: number): Promise<number> => {
@@ -325,12 +314,9 @@ export class ContractHelper {
 
     const tokens = await this.accoomulateOfAddress(address);
     tokens.forEach((token: any) => {
-      const accumulated = new BN(token.wetAccumulated);
-      const accumulatedWETNumber = Number(toEthUnit(accumulated));
       waifus.push({
-        id: token.tokenId,
+        index: token.tokenId,
         name: token.name,
-        accumulatedWet: accumulatedWETNumber,
       });
     });
 
@@ -341,13 +327,6 @@ export class ContractHelper {
   getBuyPrice = async (): Promise<string> => {
     const dungeonContract = await this.getDungeonContract();
     return toEthUnit(await dungeonContract.methods.buyCost().call());
-  };
-
-  getWetBurnPrice = async (): Promise<string> => {
-    const contract = await this.getDungeonContract();
-    if (this.globals?.network !== Network.BSC)
-      return toEthUnit(await contract.methods.swapCost().call());
-    return toEthUnit(await contract.methods.swapWETCost().call());
   };
 
   getBnbBurnPrice = async (): Promise<string> => {

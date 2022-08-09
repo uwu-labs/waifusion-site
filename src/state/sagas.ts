@@ -20,10 +20,10 @@ function* loadWaifusAction() {
   const contractHelper = new ContractHelper();
   yield contractHelper.init();
   const _ownedWaifus: Waifu[] = yield contractHelper.getWaifus();
-  yield put(setWaifuIndexes(_ownedWaifus.map((waifu: Waifu) => waifu.id)));
+  yield put(setWaifuIndexes(_ownedWaifus.map((waifu: Waifu) => waifu.index)));
   for (let i = 0; i < _ownedWaifus.length; i++) {
-    const waifuIds = waifus.map((waifu: Waifu) => waifu.id);
-    if (waifuIds.indexOf(_ownedWaifus[i].id) === -1)
+    const waifuIds = waifus.map((waifu: Waifu) => waifu.index);
+    if (waifuIds.indexOf(_ownedWaifus[i].index) === -1)
       waifusCopy.push(_ownedWaifus[i]);
     else waifusCopy[i] = _ownedWaifus[i];
   }
