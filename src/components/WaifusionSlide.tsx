@@ -53,7 +53,7 @@ const Header = styled.h1`
   font-size: 3rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: var(--plain-dark);
+  color: var(--text-primary);
 `;
 
 const Content = styled.div`
@@ -65,8 +65,8 @@ const Content = styled.div`
 
 const SmallHeader = styled.h2`
   font-weight: 600;
-  color: var(--plain-dark);
-  line-height: 4rem;
+  color: var(--text-primary);
+  line-height: 1rem;
   text-align: center;
   margin: 2rem 0rem;
 
@@ -84,8 +84,8 @@ const SubHeader = styled.div`
   margin: 1rem;
   font-family: "Roboto", sans-serif;
 
-  font-size: 1.4rem;
-  line-height: 2.3rem;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
   @media (max-width: 768px) {
     font-size: 1.6rem;
     line-height: 2rem;
@@ -95,14 +95,14 @@ const SubHeader = styled.div`
 
 const Link = styled.a`
   font-weight: 500;
-  color: var(--text-primary);
+  color: #bc6d93;
   max-width: 70%;
   margin-top: 2rem;
   font-family: "Roboto", sans-serif;
   text-decoration: underline;
 
-  font-size: 1.4rem;
-  line-height: 2.3rem;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
   @media (max-width: 768px) {
     font-size: 1.6rem;
     line-height: 2rem;
@@ -126,30 +126,40 @@ const WaifusionSlide: React.FC = () => {
           <SmallHeader>{t("waifusion.smallheader-0")}</SmallHeader>
           <SubHeader>
             On March 22nd, 2021, the original anonymous team behind Waifusion
-            announced their departure from the{" "}
+            announced{" "}
             <Link
               href="https://waifusion.medium.com/waifusion-a-postmortem-and-the-way-forward-4973c171b15f"
               target="_blank"
             >
-              project
+              their departure
             </Link>{" "}
-            leaving the project in the hands of a group of passionate community{" "}
+            from the project leaving Waifusion in the hands of a group of
+            passionate{" "}
             <Link
-              href="https://waifusioncommunity.medium.com/the-community-takes-over-waifusion-a2315edf402              "
+              href="https://waifusioncommunity.medium.com/the-community-takes-over-waifusion-a2315edf402"
               target="_blank"
             >
-              members
-            </Link>{" "}
+              community members
+            </Link>
+            {". "}
           </SubHeader>
           <SmallHeader>{t("waifusion.smallheader-1")}</SmallHeader>
-          <SubHeader>{t("waifusion.subheader-4")}</SubHeader>
           <SubHeader>
-            As of March this year, we've announced a brand-new{" "}
+            After the community takeover, we formed the team of uwu Labs and
+            created and launched our very own collection on September 5th, 2021
+            {" - "}
+            <Link href="https://uwucrew.art" target="_blank">
+              uwucrew
+            </Link>
+            !
+          </SubHeader>
+          <SubHeader>
+            As of March 2022, we've announced a{" "}
             <Link
               href="https://mirror.xyz/uwucrew.eth/gMFtuGCE_BIEdk1IJJ_AwWGuYOFBmGbv6Pfu3QCDaHM"
               target="_blank"
             >
-              collection
+              brand-new collection
             </Link>{" "}
             under uwulabs, designed by the outstanding artist of uwucrew, laur!
             This new collection will be minted by — you guessed it! — burning
