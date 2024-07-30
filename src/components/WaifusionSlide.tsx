@@ -165,23 +165,22 @@ const WaifusionSlide: React.FC = () => {
             This new collection will be minted by — you guessed it! — burning
             Waifusion NFTs.{" "}
           </SubHeader>
-          <SubHeader>
-            Waifusion Images:
-            <Link
+          <SubHeader>{t("waifusion.subheader-6")}</SubHeader>
+          <SubHeader>Waifusion Images:
+          <Link
             href="https://arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/WAIFU-ID.png"
             target="_blank"
           >
             https://arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/WAIFU-ID.png
-            </Link>
+          </Link>
           </SubHeader>
-          <SubHeader>
-            Waifusion Metadata:
-            <Link
-              href="https://arweave.net/VvsElMKxzV5rBtWAxMqfbtG39daxKXIe7mnR4iyRtCk/WAIFU-ID"
-              target="_blank"
-            >
-              https://arweave.net/VvsElMKxzV5rBtWAxMqfbtG39daxKXIe7mnR4iyRtCk/WAIFU-ID
-            </Link>
+          <SubHeader>Waifusion Metadata:
+          <Link
+            href="https://arweave.net/VvsElMKxzV5rBtWAxMqfbtG39daxKXIe7mnR4iyRtCk/WAIFU-ID"
+            target="_blank"
+          >
+            https://arweave.net/VvsElMKxzV5rBtWAxMqfbtG39daxKXIe7mnR4iyRtCk/WAIFU-ID
+          </Link>
           </SubHeader>
         </Content>
       </Card>
