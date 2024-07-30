@@ -169,8 +169,8 @@ const WaifusionSlide: React.FC = () => {
           <SubHeader>
             Waifusion Images:
             <Link
-            href="https://arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/WAIFU-ID.png"
-            target="_blank"
+              href="https://arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/WAIFU-ID.png"
+              target="_blank"
             >
               arweave.net
             </Link>
