@@ -172,7 +172,7 @@ const WaifusionSlide: React.FC = () => {
               href="https://arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/WAIFU-ID.png"
               target="_blank"
             >
-              arweave.net
+              https://arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/WAIFU-ID.png
             </Link>
           </SubHeader>
           <SubHeader>
@@ -181,7 +181,7 @@ const WaifusionSlide: React.FC = () => {
               href="https://arweave.net/VvsElMKxzV5rBtWAxMqfbtG39daxKXIe7mnR4iyRtCk/WAIFU-ID"
               target="_blank"
             >
-              arweave.net
+              https://arweave.net/VvsElMKxzV5rBtWAxMqfbtG39daxKXIe7mnR4iyRtCk/WAIFU-ID
             </Link>
           </SubHeader>
         </Content>
