@@ -166,6 +166,24 @@ const WaifusionSlide: React.FC = () => {
             Waifusion NFTs.{" "}
           </SubHeader>
           <SubHeader>{t("waifusion.subheader-6")}</SubHeader>
+          <SubHeader>
+            Waifusion Images:{" "}
+            <Link
+              href="https://arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/WAIFU-ID.png"
+              target="_blank"
+            >
+              arweave.net
+            </Link>
+          </SubHeader>
+          <SubHeader>
+            Waifusion Metadata:{" "}
+            <Link
+              href="https://arweave.net/VvsElMKxzV5rBtWAxMqfbtG39daxKXIe7mnR4iyRtCk/WAIFU-ID"
+              target="_blank"
+            >
+              arweave.net
+            </Link>
+          </SubHeader>
         </Content>
       </Card>
     </StyledSlide>
