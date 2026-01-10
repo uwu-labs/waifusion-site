@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
             {t("contact.twitter")}
           </ExternalLink>
           <ExternalLink
-            href="https://discord.gg/uwucrew"
+            href="https://discord.gg/CaR7RhfDZ6"
             target="_blank"
             rel="noreferrer"
           >
@@ -109,7 +109,7 @@ const Footer: React.FC = () => {
             {t("contact.github")}
           </ExternalLink>
           <ExternalLink
-            href="mailto: waifusiongovernance@gmail.com"
+            href="mailto: team@kusari.org"
             target="_blank"
             rel="noreferrer"
           >
