@@ -115,52 +115,53 @@ export default function LandingPage() {
       <section className="py-16 px-4 relative">
         <div className="max-w-6xl mx-auto">
           {/* Decorative pixel elements */}
-          <img src={PIXEL_STAR_YELLOW} alt="" width={60} height={60} className="absolute top-8 left-[5%]" />
-          <img src={PIXEL_STAR_PURPLE} alt="" width={50} height={50} className="absolute top-[30%] right-[3%]" />
+          <img src={PIXEL_STAR_YELLOW} alt="" width={70} height={70} className="absolute -top-4 left-[8%]" />
+          <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="absolute top-[35%] right-[2%]" />
+          <img src={PIXEL_STARS_MIXED} alt="" width={80} height={80} className="absolute bottom-[20%] left-[2%]" />
           
           <div className="grid md:grid-cols-2 gap-8">
-            {/* What is WaiFusion */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
-              <div className="bg-cyan-400 px-6 py-4">
-                <h3 className="text-white font-bold text-xl">What is WaiFusion?</h3>
-              </div>
-              <div className="p-6 text-gray-700 leading-relaxed relative">
-                <p>WaiFusion is the earliest generative anime collection in Web3, consisting of 16,384 unique NFTs on Ethereum. Created shortly after Hashmasks in March 2021.</p>
-                <p className="mt-4">After the original team stepped away, WaiFusion evolved into a community-governed effort. Today, each WaiFu exists as both a digital artwork and a symbol of decentralization.</p>
-                <img src={PIXEL_STAR_PURPLE} alt="" width={45} height={45} className="absolute bottom-4 left-4 opacity-70" />
+            {/* What is WaiFusion - Purple/Lavender card with left border */}
+            <div className="bg-purple-100/70 rounded-2xl overflow-hidden shadow-md border-l-4 border-purple-400 relative">
+              <div className="p-6">
+                <h3 className="text-cyan-500 font-bold text-2xl mb-4">What is WaiFusion?</h3>
+                <p className="text-gray-700 leading-relaxed underline decoration-gray-400">WaiFusion is the earliest generative anime collection in Web3, consisting of 16,384 unique NFTs on Ethereum. Created shortly after Hashmasks in March 2021. After its original team stepped away, WaiFusion evolved into a community-owned effort. Today, each WaiFu exists as both a digital artwork and a symbol of decentralization.</p>
+                <img src={PIXEL_STAR_PURPLE} alt="" width={50} height={50} className="absolute bottom-4 left-4 opacity-80" />
               </div>
             </div>
 
-            {/* First NFT Community Takeover */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
-              <div className="bg-pink-400 px-6 py-4">
-                <h3 className="text-white font-bold text-xl">The first ever NFT community takeover</h3>
-              </div>
-              <div className="p-6 text-gray-700 leading-relaxed relative">
-                <p>The original team stepped away shortly after launch, leading to a community take over. WaiFusion became one of the earliest NFT projects to be fully carried forward by its holders, redefining what decentralization really means.</p>
-                <img src={PIXEL_STAR_BLUE} alt="" width={40} height={40} className="absolute top-4 right-4 opacity-60" />
-                <img src={PIXEL_HEARTS} alt="" width={50} height={50} className="absolute bottom-4 right-4 opacity-70" />
+            {/* First NFT Community Takeover - Pink card with right border */}
+            <div className="bg-pink-100/70 rounded-2xl overflow-hidden shadow-md border-r-4 border-pink-400 relative">
+              <div className="p-6">
+                <h3 className="text-pink-500 font-bold text-2xl mb-4">The First ever NFT community takeover</h3>
+                <p className="text-gray-700 leading-relaxed">The original team stepped away shortly after launch, leading to a community take over. WaiFusion became one of the earliest NFT projects to be fully carried forward by its holders, redefining what decentralization really means.</p>
+                <img src={PIXEL_STAR_BLUE} alt="" width={45} height={45} className="absolute top-4 right-4 opacity-70" />
+                <img src={PIXEL_HEARTS} alt="" width={50} height={50} className="absolute bottom-4 right-4 opacity-80" />
               </div>
             </div>
 
-            {/* Why WaiFusion */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
-              <div className="bg-cyan-400 px-6 py-4">
-                <h3 className="text-white font-bold text-xl">Why WaiFusion</h3>
-              </div>
-              <div className="p-6 text-gray-700 leading-relaxed">
-                <p>WaiFusion matters because it proves that due to the power of NFTs, communities can preserve, evolve, and own culture without relying on its creators. It{"'"}s not just an NFT collection. It{"'"}s a monumental moment in Web3 and NFT history!</p>
+            {/* Why WaiFusion - Yellow/Cream card with left border */}
+            <div className="bg-yellow-100/70 rounded-2xl overflow-hidden shadow-md border-l-4 border-yellow-400 relative">
+              <div className="p-6">
+                <h3 className="text-cyan-500 font-bold text-2xl mb-4">Why WaiFusion</h3>
+                <p className="text-gray-700 leading-relaxed">WaiFusion matters because it proves that due to the power of NFTs, communities can preserve, evolve, and own culture without relying on its creators. It{"'"}s not just an NFT collection. It{"'"}s a monumental moment in Web3 and NFT history!</p>
+                <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="absolute bottom-4 right-4 opacity-80" />
               </div>
             </div>
 
-            {/* About Kusari */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
-              <div className="bg-pink-400 px-6 py-4">
-                <h3 className="text-white font-bold text-xl">About Kusari</h3>
+            {/* About Kusari - Mint/Green card with right border */}
+            <div className="bg-green-100/70 rounded-2xl overflow-hidden shadow-md border-r-4 border-green-400 relative">
+              <div className="p-6">
+                <h3 className="text-green-600 font-bold text-2xl mb-4">About Kusari</h3>
+                <p className="text-gray-700 leading-relaxed">Kusari is a creative collective and onchain art platform dedicated to building a positive future for decentralized culture. Through collaboration with artists and communities around the world, Kusari creates, curates, and sustains crypto-native art projects that push the boundaries of digital ownership.</p>
+                <p className="text-gray-700 leading-relaxed mt-4">In 2021, the current founders of Kusari took stewardship of WaiFusion, ensuring the collection{"'"}s continuity and evolution. Today, WaiFusion lives under the Kusari family umbrella, shaped by collaboration, community, and a long-term vision for onchain art.</p>
               </div>
-              <div className="p-6 text-gray-700 leading-relaxed">
-                <p>Kusari is a creative collective and onchain platform dedicated to building a positive future for decentralized culture. Through collaboration with artists and communities around the world, Kusari creates, curates, and sustains crypto-native art projects that push the boundaries of digital ownership.</p>
-                <p className="mt-4">In 2021, the current founders of Kusari took stewardship of WaiFusion, ensuring the collection{"'"}s continuity and evolution. Today, WaiFusion lives under the Kusari family umbrella, shaped by collaboration, community, and a long-term vision for onchain art.</p>
+            </div>
+
+            {/* The First ever NFT community takeover - Orange card with left border */}
+            <div className="bg-orange-100/70 rounded-2xl overflow-hidden shadow-md border-l-4 border-orange-400 relative md:col-span-1">
+              <div className="p-6">
+                <h3 className="text-orange-500 font-bold text-2xl mb-4">The First ever NFT community takeover</h3>
+                <p className="text-gray-700 leading-relaxed">Something else you might wanna say idk</p>
               </div>
             </div>
           </div>
