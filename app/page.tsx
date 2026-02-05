@@ -8,18 +8,7 @@ const PIXEL_STAR_BLUE = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com
 const PIXEL_STAR_PURPLE = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-KvhHjrRNihsmyRn70Mmgj5HVvJdOX5.png"
 const PIXEL_STARS_MIXED = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-jD2WjIl7kwI3p7dOw6Ow1NOLwVgd5q.png"
 
-const ARWEAVE_BASE = "https://mvxm2cnmiust5cevgitz644zopjrjvki6cmqind4nnns6kfnqrbq.arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM"
 
-const WAIFUS = [
-  { id: 1, size: "large" },
-  { id: 42, size: "medium" },
-  { id: 100, size: "medium" },
-  { id: 200, size: "large" },
-  { id: 300, size: "medium" },
-  { id: 400, size: "small" },
-  { id: 500, size: "medium" },
-  { id: 600, size: "large" },
-]
 
 export default function LandingPage() {
   return (
@@ -107,23 +96,16 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Gallery Grid */}
+      {/* Gallery Grid - Placeholder */}
       <section className="py-12 px-4 bg-gradient-to-b from-pink-100/50 to-pink-50/30">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
-            {WAIFUS.map((waifu, i) => (
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
               <div
                 key={i}
-                className={`rounded-xl overflow-hidden bg-white shadow-lg border-4 border-white ${waifu.size === "large" ? "row-span-2 col-span-1" : ""
-                  }`}
-                style={{ position: "relative", aspectRatio: waifu.size === "large" ? "1/1.5" : "1/1" }}
+                className="aspect-square rounded-xl overflow-hidden bg-white shadow-lg border-4 border-white flex items-center justify-center"
               >
-                <Image
-                  src={`${ARWEAVE_BASE}/${waifu.id}.png`}
-                  alt={`WaiFusion #${waifu.id}`}
-                  fill
-                  className="object-cover"
-                />
+                <span className="text-pink-300 text-xs">Waifu #{i}</span>
               </div>
             ))}
           </div>
