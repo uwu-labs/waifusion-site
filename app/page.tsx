@@ -8,15 +8,17 @@ const PIXEL_STAR_YELLOW = "https://hebbkx1anhila5yf.public.blob.vercel-storage.c
 const PIXEL_STAR_BLUE = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Eyi3WlghIKvjZGNfBVaMj9qvNQpsWy.png"
 const PIXEL_STAR_PURPLE = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-KvhHjrRNihsmyRn70Mmgj5HVvJdOX5.png"
 
+const ARWEAVE_BASE = "https://mvxm2cnmiust5cevgitz644zopjrjvki6cmqind4nnns6kfnqrbq.arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM"
+
 const WAIFUS = [
-  "https://waifusion.io/api/v1/eth/image/1",
-  "https://waifusion.io/api/v1/eth/image/42",
-  "https://waifusion.io/api/v1/eth/image/100",
-  "https://waifusion.io/api/v1/eth/image/200",
-  "https://waifusion.io/api/v1/eth/image/300",
-  "https://waifusion.io/api/v1/eth/image/400",
-  "https://waifusion.io/api/v1/eth/image/500",
-  "https://waifusion.io/api/v1/eth/image/600",
+  `${ARWEAVE_BASE}/1.PNG`,
+  `${ARWEAVE_BASE}/42.PNG`,
+  `${ARWEAVE_BASE}/100.PNG`,
+  `${ARWEAVE_BASE}/200.PNG`,
+  `${ARWEAVE_BASE}/300.PNG`,
+  `${ARWEAVE_BASE}/400.PNG`,
+  `${ARWEAVE_BASE}/500.PNG`,
+  `${ARWEAVE_BASE}/600.PNG`,
 ]
 
 export default function LandingPage() {
