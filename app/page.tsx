@@ -2,6 +2,12 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
+// Pixel art decorations
+const PIXEL_HEARTS = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ixxGcJLOLjacFU56GRP1PRoqOFchc9.png"
+const PIXEL_STAR_YELLOW = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-VXUbdtdxRLeFM337WPrMRHbUk1TbNF.png"
+const PIXEL_STAR_BLUE = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Eyi3WlghIKvjZGNfBVaMj9qvNQpsWy.png"
+const PIXEL_STAR_PURPLE = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-KvhHjrRNihsmyRn70Mmgj5HVvJdOX5.png"
+
 const WAIFUS = [
   "https://waifusion.io/api/v1/eth/image/1",
   "https://waifusion.io/api/v1/eth/image/42",
@@ -15,14 +21,22 @@ const WAIFUS = [
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background overflow-hidden">
+      {/* Floating Pixel Decorations */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <Image src={PIXEL_HEARTS} alt="" width={80} height={80} className="absolute top-20 right-[10%] opacity-60" />
+        <Image src={PIXEL_STAR_YELLOW} alt="" width={60} height={60} className="absolute top-40 left-[5%] opacity-50" />
+        <Image src={PIXEL_STAR_BLUE} alt="" width={50} height={50} className="absolute top-[60%] right-[8%] opacity-40" />
+        <Image src={PIXEL_STAR_PURPLE} alt="" width={70} height={70} className="absolute bottom-[30%] left-[3%] opacity-50" />
+        <Image src={PIXEL_HEARTS} alt="" width={50} height={50} className="absolute bottom-20 right-[15%] opacity-40" />
+        <Image src={PIXEL_STAR_YELLOW} alt="" width={40} height={40} className="absolute top-[30%] right-[25%] opacity-30" />
+      </div>
+
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">W</span>
-            </div>
+            <Image src={PIXEL_HEARTS} alt="WaiFusion" width={32} height={32} />
             <span className="font-semibold text-lg">WaiFusion</span>
           </Link>
           <nav className="hidden md:flex items-center gap-8">
@@ -52,16 +66,17 @@ export default function LandingPage() {
       </header>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6">
+      <section className="relative pt-32 pb-20 px-6 z-10">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm mb-6">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <Image src={PIXEL_STAR_YELLOW} alt="" width={16} height={16} />
               First NFT Community Takeover
             </div>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-balance mb-6">
               A community-born{" "}
               <span className="text-primary">NFT legacy</span>
+              <Image src={PIXEL_HEARTS} alt="" width={48} height={48} className="inline-block ml-3 align-middle" />
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8 leading-relaxed">
               WaiFusion began as the first generative anime collection on Ethereum. 
@@ -182,8 +197,13 @@ export default function LandingPage() {
       </section>
 
       {/* Community CTA */}
-      <section id="community" className="py-32 px-6">
-        <div className="max-w-3xl mx-auto text-center">
+      <section id="community" className="py-32 px-6 relative">
+        <div className="absolute inset-0 pointer-events-none">
+          <Image src={PIXEL_STAR_BLUE} alt="" width={60} height={60} className="absolute top-10 left-[10%] opacity-60" />
+          <Image src={PIXEL_STAR_PURPLE} alt="" width={50} height={50} className="absolute bottom-10 right-[10%] opacity-60" />
+        </div>
+        <div className="max-w-3xl mx-auto text-center relative z-10">
+          <Image src={PIXEL_HEARTS} alt="" width={80} height={80} className="mx-auto mb-6" />
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance">
             Join the Kusari Community
           </h2>
@@ -203,9 +223,7 @@ export default function LandingPage() {
       <footer className="py-12 px-6 border-t border-border">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xs">W</span>
-            </div>
+            <Image src={PIXEL_HEARTS} alt="WaiFusion" width={24} height={24} />
             <span className="font-medium">WaiFusion</span>
           </div>
           <div className="flex items-center gap-6">
