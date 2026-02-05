@@ -111,7 +111,8 @@ export default function LandingPage() {
             {WAIFUS.map((url, i) => (
               <div
                 key={i}
-                className="aspect-square rounded-xl overflow-hidden bg-muted relative group"
+                className="aspect-square rounded-xl overflow-hidden bg-muted group"
+                style={{ position: "relative" }}
               >
                 <Image
                   src={url}
