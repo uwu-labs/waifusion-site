@@ -12,15 +12,6 @@ const PIXEL_STARS_MIXED = "https://hebbkx1anhila5yf.public.blob.vercel-storage.c
 export default function LandingPage() {
   return (
     <main className="min-h-screen bg-pink-50/30 overflow-x-hidden">
-      {/* Floating Pixel Decorations */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <img src={PIXEL_HEARTS} alt="" width={60} height={60} className="absolute top-24 right-[8%]" />
-        <img src={PIXEL_STAR_YELLOW} alt="" width={50} height={50} className="absolute top-32 left-[5%]" />
-        <img src={PIXEL_STAR_BLUE} alt="" width={40} height={40} className="absolute top-[50%] right-[5%]" />
-        <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="absolute top-[70%] left-[3%]" />
-        <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute bottom-[25%] right-[12%]" />
-      </div>
-
       {/* Header */}
       <header className="sticky top-0 z-50 bg-gradient-to-r from-pink-400 via-pink-300 to-pink-400 shadow-md">
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
