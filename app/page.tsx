@@ -26,7 +26,7 @@ export default function LandingPage() {
     <main className="min-h-screen bg-background overflow-x-hidden">
       {/* Floating Pixel Decorations */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <Image src={PIXEL_HEARTS} alt="" width={60} height={60} className="absolute top-24 right-[8%]" />
+        <Image src={PIXEL_HEARTS} alt="" width={60} height={60} className="absolute top-24 right-[8%]" loading="eager" priority />
         <Image src={PIXEL_STAR_YELLOW} alt="" width={50} height={50} className="absolute top-32 left-[5%]" />
         <Image src={PIXEL_STAR_BLUE} alt="" width={40} height={40} className="absolute top-[50%] right-[5%]" />
         <Image src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="absolute top-[70%] left-[3%]" />
@@ -63,7 +63,7 @@ export default function LandingPage() {
               <div className="inline-block px-4 py-1.5 bg-gradient-to-r from-pink-400 to-pink-500 text-white text-xs font-bold uppercase tracking-wider rounded mb-6">
                 First NFT Community Takeover
               </div>
-              
+
               <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-4">
                 WaiFusion
                 <Image src={PIXEL_HEARTS} alt="" width={40} height={40} className="inline-block ml-2 align-middle" />
@@ -73,22 +73,22 @@ export default function LandingPage() {
                 <br />
                 <span className="text-pink-400">born NFT legacy</span>
               </h1>
-              
+
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                WaiFusion began as the <span className="font-semibold text-foreground">first generative anime collection</span> on Ethereum. 
+                WaiFusion began as the <span className="font-semibold text-foreground">first generative anime collection</span> on Ethereum.
                 When the original team stepped away, the community took over!
               </p>
-              
+
               <div className="flex flex-wrap gap-3">
-                <Link 
-                  href="https://discord.gg/kusari" 
+                <Link
+                  href="https://discord.gg/kusari"
                   target="_blank"
                   className="px-6 py-2.5 bg-gradient-to-r from-pink-400 to-pink-500 text-white font-medium rounded-full hover:opacity-90 transition-opacity text-sm"
                 >
                   Visit our Discord
                 </Link>
-                <Link 
-                  href="https://opensea.io/collection/waifusion" 
+                <Link
+                  href="https://opensea.io/collection/waifusion"
                   target="_blank"
                   className="px-6 py-2.5 bg-gradient-to-r from-green-400 to-green-500 text-white font-medium rounded-full hover:opacity-90 transition-opacity text-sm"
                 >
@@ -114,13 +114,12 @@ export default function LandingPage() {
             {WAIFUS.map((waifu, i) => (
               <div
                 key={i}
-                className={`rounded-xl overflow-hidden bg-white shadow-lg border-4 border-white ${
-                  waifu.size === "large" ? "row-span-2 col-span-1" : ""
-                }`}
+                className={`rounded-xl overflow-hidden bg-white shadow-lg border-4 border-white ${waifu.size === "large" ? "row-span-2 col-span-1" : ""
+                  }`}
                 style={{ position: "relative", aspectRatio: waifu.size === "large" ? "1/1.5" : "1/1" }}
               >
                 <Image
-                  src={`${ARWEAVE_BASE}/${waifu.id}.PNG`}
+                  src={`${ARWEAVE_BASE}/${waifu.id}.png`}
                   alt={`WaiFusion #${waifu.id}`}
                   fill
                   className="object-cover"
@@ -186,12 +185,12 @@ export default function LandingPage() {
           <h2 className="text-2xl font-bold text-center mb-2 text-cyan-500">The First ever NFT</h2>
           <h3 className="text-xl font-bold text-center mb-12 text-cyan-500">community takeover</h3>
           <p className="text-center text-muted-foreground mb-12">Something else you might wanna say idk</p>
-          
+
           {/* Timeline */}
           <div className="relative">
             {/* Vertical line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-pink-300 to-cyan-300 h-full rounded-full" />
-            
+
             {/* Timeline items */}
             <div className="space-y-8">
               {[
@@ -228,19 +227,19 @@ export default function LandingPage() {
           <Image src={PIXEL_STAR_BLUE} alt="" width={40} height={40} className="absolute bottom-20 left-[20%]" />
           <Image src={PIXEL_STAR_PURPLE} alt="" width={50} height={50} className="absolute bottom-10 right-[25%]" />
         </div>
-        
+
         <div className="max-w-3xl mx-auto text-center relative z-10">
           {/* Large pixel art logo */}
           <div className="mb-8">
             <Image src={PIXEL_HEARTS} alt="" width={120} height={120} className="mx-auto" />
           </div>
-          
+
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8 leading-tight">
             discover the kusari<br />community
           </h2>
-          
-          <Link 
-            href="https://discord.gg/kusari" 
+
+          <Link
+            href="https://discord.gg/kusari"
             target="_blank"
             className="inline-flex items-center gap-2 px-8 py-3 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors"
           >
