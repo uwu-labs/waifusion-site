@@ -10,16 +10,16 @@ importers:
     dependencies:
       '@radix-ui/react-slot':
         specifier: ^1.2.4
-        version: 1.2.4(@types/react@17.0.90)(react@17.0.2)
+        version: 1.2.4(@types/react@17.0.90)(react@19.2.4)
       '@reduxjs/toolkit':
         specifier: ^1.4.0
-        version: 1.9.7(react-redux@7.2.9(react-dom@17.0.2(react@17.0.2))(react@17.0.2))(react@17.0.2)
+        version: 1.9.7(react-redux@7.2.9(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
       '@testing-library/jest-dom':
         specifier: ^5.11.4
         version: 5.17.0
       '@testing-library/react':
         specifier: ^11.1.0
-        version: 11.2.7(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+        version: 11.2.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@testing-library/user-event':
         specifier: ^13.1.3
         version: 13.5.0(@testing-library/dom@7.31.2)
@@ -43,31 +43,31 @@ importers:
         version: 1.4.5
       lucide-react:
         specifier: ^0.563.0
-        version: 0.563.0(react@17.0.2)
+        version: 0.563.0(react@19.2.4)
       next:
         specifier: ^16.1.6
-        version: 16.1.6(@babel/core@7.29.0)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+        version: 16.1.6(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react:
-        specifier: ^17.0.2
-        version: 17.0.2
+        specifier: ^19.0.0
+        version: 19.2.4
       react-dom:
-        specifier: ^17.0.2
-        version: 17.0.2(react@17.0.2)
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
       react-helmet:
         specifier: ^6.1.0
-        version: 6.1.0(react@17.0.2)
+        version: 6.1.0(react@19.2.4)
       react-i18next:
         specifier: ^11.8.13
-        version: 11.18.6(i18next@20.6.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+        version: 11.18.6(i18next@20.6.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-redux:
         specifier: ^7.2.3
-        version: 7.2.9(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+        version: 7.2.9(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-router:
         specifier: ^5.2.0
-        version: 5.3.4(react@17.0.2)
+        version: 5.3.4(react@19.2.4)
       react-router-dom:
         specifier: ^5.2.0
-        version: 5.3.4(react@17.0.2)
+        version: 5.3.4(react@19.2.4)
       redux-devtools-extension:
         specifier: ^2.13.9
         version: 2.13.9(redux@4.2.1)
@@ -76,7 +76,7 @@ importers:
         version: 1.4.2
       styled-components:
         specifier: ^5.2.1
-        version: 5.3.11(@babel/core@7.29.0)(react-dom@17.0.2(react@17.0.2))(react-is@17.0.2)(react@17.0.2)
+        version: 5.3.11(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react-is@17.0.2)(react@19.2.4)
       tailwind-merge:
         specifier: ^3.4.0
         version: 3.4.0
@@ -116,7 +116,7 @@ importers:
         version: 6.1.11
       '@types/react-i18next':
         specifier: ^8.1.0
-        version: 8.1.0(i18next@20.6.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+        version: 8.1.0(i18next@20.6.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@types/react-redux':
         specifier: ^7.1.16
         version: 7.1.34
@@ -161,7 +161,7 @@ importers:
         version: 2.8.8
       react-scripts:
         specifier: 4.0.3
-        version: 4.0.3(@types/webpack@4.41.40)(bufferutil@4.1.0)(eslint@7.32.0)(react@17.0.2)(sockjs-client@1.6.1)(typescript@4.9.5)(utf-8-validate@5.0.10)
+        version: 4.0.3(@types/webpack@4.41.40)(bufferutil@4.1.0)(eslint@7.32.0)(react@19.2.4)(sockjs-client@1.6.1)(typescript@4.9.5)(utf-8-validate@5.0.10)
       typescript:
         specifier: ^4.2.4
         version: 4.9.5
@@ -6012,10 +6012,10 @@ packages:
       typescript:
         optional: true
 
-  react-dom@17.0.2:
-    resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
+  react-dom@19.2.4:
+    resolution: {integrity: sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==}
     peerDependencies:
-      react: 17.0.2
+      react: ^19.2.4
 
   react-error-overlay@6.1.0:
     resolution: {integrity: sha512-SN/U6Ytxf1QGkw/9ve5Y+NxBbZM6Ht95tuXNMKs8EJyFa/Vy/+Co3stop3KBHARfn/giv+Lj1uUnTfOJ3moFEQ==}
@@ -6090,8 +6090,8 @@ packages:
     peerDependencies:
       react: ^16.3.0 || ^17.0.0 || ^18.0.0
 
-  react@17.0.2:
-    resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}
+  react@19.2.4:
+    resolution: {integrity: sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ==}
     engines: {node: '>=0.10.0'}
 
   read-pkg-up@7.0.1:
@@ -6402,8 +6402,8 @@ packages:
     resolution: {integrity: sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==}
     engines: {node: '>=10'}
 
-  scheduler@0.20.2:
-    resolution: {integrity: sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==}
+  scheduler@0.27.0:
+    resolution: {integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==}
 
   schema-utils@1.0.0:
     resolution: {integrity: sha512-i27Mic4KovM/lnGsy8whRCHhc7VicJajAjTrYg11K9zfZXnYIt4k5F+kZkwjnrhKzLic/HLU4j11mjsz2G/75g==}
@@ -9675,7 +9675,7 @@ snapshots:
       '@types/istanbul-lib-coverage': 2.0.6
       collect-v8-coverage: 1.0.3
 
-  '@jest/test-sequencer@26.6.3(bufferutil@4.1.0)(utf-8-validate@5.0.10)':
+  '@jest/test-sequencer@26.6.3':
     dependencies:
       '@jest/test-result': 26.6.2
       graceful-fs: 4.2.11
@@ -9683,11 +9683,7 @@ snapshots:
       jest-runner: 26.6.3(bufferutil@4.1.0)(utf-8-validate@5.0.10)
       jest-runtime: 26.6.3(bufferutil@4.1.0)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
-      - bufferutil
-      - canvas
       - supports-color
-      - ts-node
-      - utf-8-validate
 
   '@jest/transform@26.6.2':
     dependencies:
@@ -9812,16 +9808,16 @@ snapshots:
       sockjs-client: 1.6.1(supports-color@6.1.0)
       webpack-dev-server: 3.11.1(bufferutil@4.1.0)(utf-8-validate@5.0.10)(webpack@4.44.2)
 
-  '@radix-ui/react-compose-refs@1.1.2(@types/react@17.0.90)(react@17.0.2)':
+  '@radix-ui/react-compose-refs@1.1.2(@types/react@17.0.90)(react@19.2.4)':
     dependencies:
-      react: 17.0.2
+      react: 19.2.4
     optionalDependencies:
       '@types/react': 17.0.90
 
-  '@radix-ui/react-slot@1.2.4(@types/react@17.0.90)(react@17.0.2)':
+  '@radix-ui/react-slot@1.2.4(@types/react@17.0.90)(react@19.2.4)':
     dependencies:
-      '@radix-ui/react-compose-refs': 1.1.2(@types/react@17.0.90)(react@17.0.2)
-      react: 17.0.2
+      '@radix-ui/react-compose-refs': 1.1.2(@types/react@17.0.90)(react@19.2.4)
+      react: 19.2.4
     optionalDependencies:
       '@types/react': 17.0.90
 
@@ -9850,15 +9846,15 @@ snapshots:
 
   '@redux-saga/types@1.3.1': {}
 
-  '@reduxjs/toolkit@1.9.7(react-redux@7.2.9(react-dom@17.0.2(react@17.0.2))(react@17.0.2))(react@17.0.2)':
+  '@reduxjs/toolkit@1.9.7(react-redux@7.2.9(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)':
     dependencies:
       immer: 9.0.21
       redux: 4.2.1
       redux-thunk: 2.4.2(redux@4.2.1)
       reselect: 4.1.8
     optionalDependencies:
-      react: 17.0.2
-      react-redux: 7.2.9(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      react: 19.2.4
+      react-redux: 7.2.9(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
 
   '@rollup/plugin-node-resolve@7.1.3(rollup@1.32.1)':
     dependencies:
@@ -10014,12 +10010,12 @@ snapshots:
       lodash: 4.17.23
       redent: 3.0.0
 
-  '@testing-library/react@11.2.7(react-dom@17.0.2(react@17.0.2))(react@17.0.2)':
+  '@testing-library/react@11.2.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       '@babel/runtime': 7.28.6
       '@testing-library/dom': 7.31.2
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
 
   '@testing-library/user-event@13.5.0(@testing-library/dom@7.31.2)':
     dependencies:
@@ -10146,9 +10142,9 @@ snapshots:
     dependencies:
       '@types/react': 17.0.90
 
-  '@types/react-i18next@8.1.0(i18next@20.6.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)':
+  '@types/react-i18next@8.1.0(i18next@20.6.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
-      react-i18next: 11.18.6(i18next@20.6.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      react-i18next: 11.18.6(i18next@20.6.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
     transitivePeerDependencies:
       - i18next
       - react
@@ -10833,14 +10829,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-plugin-styled-components@2.1.4(@babel/core@7.29.0)(styled-components@5.3.11(@babel/core@7.29.0)(react-dom@17.0.2(react@17.0.2))(react-is@17.0.2)(react@17.0.2))(supports-color@5.5.0):
+  babel-plugin-styled-components@2.1.4(@babel/core@7.29.0)(styled-components@5.3.11(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react-is@17.0.2)(react@19.2.4))(supports-color@5.5.0):
     dependencies:
       '@babel/helper-annotate-as-pure': 7.27.3
       '@babel/helper-module-imports': 7.28.6(supports-color@5.5.0)
       '@babel/plugin-syntax-jsx': 7.28.6(@babel/core@7.29.0)
       lodash: 4.17.23
       picomatch: 2.3.1
-      styled-components: 5.3.11(@babel/core@7.29.0)(react-dom@17.0.2(react@17.0.2))(react-is@17.0.2)(react@17.0.2)
+      styled-components: 5.3.11(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react-is@17.0.2)(react@19.2.4)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -13719,7 +13715,7 @@ snapshots:
       execa: 4.1.0
       throat: 5.0.0
 
-  jest-circus@26.6.0(bufferutil@4.1.0)(utf-8-validate@5.0.10):
+  jest-circus@26.6.0:
     dependencies:
       '@babel/traverse': 7.29.0
       '@jest/environment': 26.6.2
@@ -13743,11 +13739,7 @@ snapshots:
       stack-utils: 2.0.6
       throat: 5.0.0
     transitivePeerDependencies:
-      - bufferutil
-      - canvas
       - supports-color
-      - ts-node
-      - utf-8-validate
 
   jest-cli@26.6.3(bufferutil@4.1.0)(utf-8-validate@5.0.10):
     dependencies:
@@ -13774,7 +13766,7 @@ snapshots:
   jest-config@26.6.3(bufferutil@4.1.0)(utf-8-validate@5.0.10):
     dependencies:
       '@babel/core': 7.12.3
-      '@jest/test-sequencer': 26.6.3(bufferutil@4.1.0)(utf-8-validate@5.0.10)
+      '@jest/test-sequencer': 26.6.3
       '@jest/types': 26.6.2
       babel-jest: 26.6.3(@babel/core@7.12.3)
       chalk: 4.1.2
@@ -14334,9 +14326,9 @@ snapshots:
     dependencies:
       yallist: 4.0.0
 
-  lucide-react@0.563.0(react@17.0.2):
+  lucide-react@0.563.0(react@19.2.4):
     dependencies:
-      react: 17.0.2
+      react: 19.2.4
 
   lz-string@1.5.0: {}
 
@@ -14627,16 +14619,16 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  next@16.1.6(@babel/core@7.29.0)(react-dom@17.0.2(react@17.0.2))(react@17.0.2):
+  next@16.1.6(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
       '@next/env': 16.1.6
       '@swc/helpers': 0.5.15
       baseline-browser-mapping: 2.9.19
       caniuse-lite: 1.0.30001767
       postcss: 8.4.31
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      styled-jsx: 5.1.6(@babel/core@7.29.0)(react@17.0.2)
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
+      styled-jsx: 5.1.6(@babel/core@7.29.0)(react@19.2.4)
     optionalDependencies:
       '@next/swc-darwin-arm64': 16.1.6
       '@next/swc-darwin-x64': 16.1.6
@@ -15692,64 +15684,62 @@ snapshots:
       - supports-color
       - vue-template-compiler
 
-  react-dom@17.0.2(react@17.0.2):
+  react-dom@19.2.4(react@19.2.4):
     dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react: 17.0.2
-      scheduler: 0.20.2
+      react: 19.2.4
+      scheduler: 0.27.0
 
   react-error-overlay@6.1.0: {}
 
   react-fast-compare@3.2.2: {}
 
-  react-helmet@6.1.0(react@17.0.2):
+  react-helmet@6.1.0(react@19.2.4):
     dependencies:
       object-assign: 4.1.1
       prop-types: 15.8.1
-      react: 17.0.2
+      react: 19.2.4
       react-fast-compare: 3.2.2
-      react-side-effect: 2.1.2(react@17.0.2)
+      react-side-effect: 2.1.2(react@19.2.4)
 
-  react-i18next@11.18.6(i18next@20.6.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2):
+  react-i18next@11.18.6(i18next@20.6.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
       '@babel/runtime': 7.28.6
       html-parse-stringify: 3.0.1
       i18next: 20.6.1
-      react: 17.0.2
+      react: 19.2.4
     optionalDependencies:
-      react-dom: 17.0.2(react@17.0.2)
+      react-dom: 19.2.4(react@19.2.4)
 
   react-is@16.13.1: {}
 
   react-is@17.0.2: {}
 
-  react-redux@7.2.9(react-dom@17.0.2(react@17.0.2))(react@17.0.2):
+  react-redux@7.2.9(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
       '@babel/runtime': 7.28.6
       '@types/react-redux': 7.1.34
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0
       prop-types: 15.8.1
-      react: 17.0.2
+      react: 19.2.4
       react-is: 17.0.2
     optionalDependencies:
-      react-dom: 17.0.2(react@17.0.2)
+      react-dom: 19.2.4(react@19.2.4)
 
   react-refresh@0.8.3: {}
 
-  react-router-dom@5.3.4(react@17.0.2):
+  react-router-dom@5.3.4(react@19.2.4):
     dependencies:
       '@babel/runtime': 7.28.6
       history: 4.10.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
-      react: 17.0.2
-      react-router: 5.3.4(react@17.0.2)
+      react: 19.2.4
+      react-router: 5.3.4(react@19.2.4)
       tiny-invariant: 1.3.3
       tiny-warning: 1.0.3
 
-  react-router@5.3.4(react@17.0.2):
+  react-router@5.3.4(react@19.2.4):
     dependencies:
       '@babel/runtime': 7.28.6
       history: 4.10.1
@@ -15757,12 +15747,12 @@ snapshots:
       loose-envify: 1.4.0
       path-to-regexp: 1.9.0
       prop-types: 15.8.1
-      react: 17.0.2
+      react: 19.2.4
       react-is: 16.13.1
       tiny-invariant: 1.3.3
       tiny-warning: 1.0.3
 
-  react-scripts@4.0.3(@types/webpack@4.41.40)(bufferutil@4.1.0)(eslint@7.32.0)(react@17.0.2)(sockjs-client@1.6.1)(typescript@4.9.5)(utf-8-validate@5.0.10):
+  react-scripts@4.0.3(@types/webpack@4.41.40)(bufferutil@4.1.0)(eslint@7.32.0)(react@19.2.4)(sockjs-client@1.6.1)(typescript@4.9.5)(utf-8-validate@5.0.10):
     dependencies:
       '@babel/core': 7.12.3
       '@pmmmwh/react-refresh-webpack-plugin': 0.4.3(@types/webpack@4.41.40)(react-refresh@0.8.3)(sockjs-client@1.6.1)(webpack-dev-server@3.11.1(bufferutil@4.1.0)(utf-8-validate@5.0.10)(webpack@4.44.2))(webpack@4.44.2)
@@ -15795,7 +15785,7 @@ snapshots:
       html-webpack-plugin: 4.5.0(webpack@4.44.2)
       identity-obj-proxy: 3.0.0
       jest: 26.6.0(bufferutil@4.1.0)(utf-8-validate@5.0.10)
-      jest-circus: 26.6.0(bufferutil@4.1.0)(utf-8-validate@5.0.10)
+      jest-circus: 26.6.0
       jest-resolve: 26.6.0
       jest-watch-typeahead: 0.6.1(jest@26.6.0(bufferutil@4.1.0)(utf-8-validate@5.0.10))
       mini-css-extract-plugin: 0.11.3(webpack@4.44.2)
@@ -15807,7 +15797,7 @@ snapshots:
       postcss-preset-env: 6.7.0
       postcss-safe-parser: 5.0.2
       prompts: 2.4.0
-      react: 17.0.2
+      react: 19.2.4
       react-app-polyfill: 2.0.0
       react-dev-utils: 11.0.4(eslint@7.32.0)(typescript@4.9.5)(webpack@4.44.2)
       react-refresh: 0.8.3
@@ -15847,14 +15837,11 @@ snapshots:
       - webpack-hot-middleware
       - webpack-plugin-serve
 
-  react-side-effect@2.1.2(react@17.0.2):
+  react-side-effect@2.1.2(react@19.2.4):
     dependencies:
-      react: 17.0.2
+      react: 19.2.4
 
-  react@17.0.2:
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
+  react@19.2.4: {}
 
   read-pkg-up@7.0.1:
     dependencies:
@@ -16212,10 +16199,7 @@ snapshots:
     dependencies:
       xmlchars: 2.2.0
 
-  scheduler@0.20.2:
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
+  scheduler@0.27.0: {}
 
   schema-utils@1.0.0:
     dependencies:
@@ -16765,28 +16749,28 @@ snapshots:
       schema-utils: 2.7.1
       webpack: 4.44.2
 
-  styled-components@5.3.11(@babel/core@7.29.0)(react-dom@17.0.2(react@17.0.2))(react-is@17.0.2)(react@17.0.2):
+  styled-components@5.3.11(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react-is@17.0.2)(react@19.2.4):
     dependencies:
       '@babel/helper-module-imports': 7.28.6(supports-color@5.5.0)
       '@babel/traverse': 7.29.0(supports-color@5.5.0)
       '@emotion/is-prop-valid': 1.4.0
       '@emotion/stylis': 0.8.5
       '@emotion/unitless': 0.7.5
-      babel-plugin-styled-components: 2.1.4(@babel/core@7.29.0)(styled-components@5.3.11(@babel/core@7.29.0)(react-dom@17.0.2(react@17.0.2))(react-is@17.0.2)(react@17.0.2))(supports-color@5.5.0)
+      babel-plugin-styled-components: 2.1.4(@babel/core@7.29.0)(styled-components@5.3.11(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react-is@17.0.2)(react@19.2.4))(supports-color@5.5.0)
       css-to-react-native: 3.2.0
       hoist-non-react-statics: 3.3.2
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
       react-is: 17.0.2
       shallowequal: 1.1.0
       supports-color: 5.5.0
     transitivePeerDependencies:
       - '@babel/core'
 
-  styled-jsx@5.1.6(@babel/core@7.29.0)(react@17.0.2):
+  styled-jsx@5.1.6(@babel/core@7.29.0)(react@19.2.4):
     dependencies:
       client-only: 0.0.1
-      react: 17.0.2
+      react: 19.2.4
     optionalDependencies:
       '@babel/core': 7.29.0
 
