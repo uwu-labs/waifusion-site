@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Pixelify_Sans } from "next/font/google"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+const pixelify = Pixelify_Sans({ subsets: ["latin"], variable: "--font-pixelify", weight: ["400", "500", "600", "700"] })
 
 export const metadata: Metadata = {
   title: "WaiFusion | Community-Born NFT Legacy",
@@ -17,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.variable} ${pixelify.variable} font-sans antialiased`}>{children}</body>
     </html>
   )
 }

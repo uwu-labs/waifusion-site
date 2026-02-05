@@ -25,7 +25,7 @@ export default function LandingPage() {
       <header className="sticky top-0 z-50 bg-gradient-to-r from-pink-400 via-pink-300 to-pink-400 shadow-md">
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="font-bold text-white text-lg tracking-wide">Waifusion</span>
+            <span className="font-pixel font-bold text-white text-xl">Waifusion</span>
             <span className="text-white/70 text-xs">by Kusari</span>
           </Link>
           <div className="flex items-center gap-4">
@@ -52,7 +52,7 @@ export default function LandingPage() {
                 First NFT Community Takeover
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+              <h1 className="font-pixel text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
                 WaiFusion
                 <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="inline-block ml-2 align-middle" />
                 <br />
@@ -118,7 +118,7 @@ export default function LandingPage() {
             {/* What is WaiFusion */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-pink-200">
               <div className="bg-gradient-to-r from-cyan-300 to-cyan-400 px-6 py-3">
-                <h3 className="text-white font-bold text-lg">What is WaiFusion?</h3>
+                <h3 className="font-pixel text-white font-bold text-lg">What is WaiFusion?</h3>
               </div>
               <div className="p-6 text-sm text-gray-600 leading-relaxed">
                 <p>WaiFusion is the earliest generative anime collection in Web3, consisting of 16,384 unique NFTs on Ethereum. Created shortly after Hashmasks in March 2021.</p>
@@ -129,7 +129,7 @@ export default function LandingPage() {
             {/* First NFT Community Takeover */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-pink-200">
               <div className="bg-gradient-to-r from-pink-300 to-pink-400 px-6 py-3">
-                <h3 className="text-white font-bold text-lg">The first ever NFT community takeover</h3>
+                <h3 className="font-pixel text-white font-bold text-lg">The first ever NFT community takeover</h3>
               </div>
               <div className="p-6 text-sm text-gray-600 leading-relaxed">
                 <p>The original team stepped away shortly after launch, leading to a community take over. WaiFusion became one of the earliest NFT projects to be fully carried forward by its holders, redefining what decentralization really means.</p>
@@ -139,7 +139,7 @@ export default function LandingPage() {
             {/* Why WaiFusion */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-pink-200">
               <div className="bg-gradient-to-r from-cyan-300 to-cyan-400 px-6 py-3">
-                <h3 className="text-white font-bold text-lg">Why WaiFusion</h3>
+                <h3 className="font-pixel text-white font-bold text-lg">Why WaiFusion</h3>
               </div>
               <div className="p-6 text-sm text-gray-600 leading-relaxed">
                 <p>WaiFusion matters because it proves that due to the power of NFTs, communities can preserve, evolve, and own culture without relying on its creators. It{"'"}s not just an NFT collection. It{"'"}s a monumental moment in Web3 and NFT history!</p>
@@ -149,7 +149,7 @@ export default function LandingPage() {
             {/* About Kusari */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-pink-200">
               <div className="bg-gradient-to-r from-pink-300 to-pink-400 px-6 py-3">
-                <h3 className="text-white font-bold text-lg">About Kusari</h3>
+                <h3 className="font-pixel text-white font-bold text-lg">About Kusari</h3>
               </div>
               <div className="p-6 text-sm text-gray-600 leading-relaxed">
                 <p>Kusari is a creative collective and onchain platform dedicated to building a positive future for decentralized culture. Through collaboration with artists and communities around the world, Kusari creates, curates, and sustains crypto-native art projects that push the boundaries of digital ownership.</p>
@@ -163,8 +163,8 @@ export default function LandingPage() {
       {/* Timeline Section */}
       <section className="py-16 px-4 bg-gradient-to-b from-pink-50/30 to-pink-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-2 text-cyan-500">The First ever NFT</h2>
-          <h3 className="text-xl font-bold text-center mb-12 text-cyan-500">community takeover</h3>
+          <h2 className="font-pixel text-2xl font-bold text-center mb-2 text-cyan-500">The First ever NFT</h2>
+          <h3 className="font-pixel text-xl font-bold text-center mb-12 text-cyan-500">community takeover</h3>
           <p className="text-center text-gray-600 mb-12">Something else you might wanna say idk</p>
 
           {/* Timeline */}
@@ -215,7 +215,7 @@ export default function LandingPage() {
             <img src={PIXEL_HEARTS} alt="" width={120} height={120} className="mx-auto" />
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+          <h2 className="font-pixel text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">
             discover the kusari<br />community
           </h2>
 
