@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image from "next/image"
 
 // Pixel art decorations
 const PIXEL_HEARTS = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ixxGcJLOLjacFU56GRP1PRoqOFchc9.png"
@@ -15,11 +14,11 @@ export default function LandingPage() {
     <main className="min-h-screen bg-pink-50/30 overflow-x-hidden">
       {/* Floating Pixel Decorations */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <Image src={PIXEL_HEARTS} alt="" width={60} height={60} className="absolute top-24 right-[8%]" loading="eager" priority />
-        <Image src={PIXEL_STAR_YELLOW} alt="" width={50} height={50} className="absolute top-32 left-[5%]" />
-        <Image src={PIXEL_STAR_BLUE} alt="" width={40} height={40} className="absolute top-[50%] right-[5%]" />
-        <Image src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="absolute top-[70%] left-[3%]" />
-        <Image src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute bottom-[25%] right-[12%]" />
+        <img src={PIXEL_HEARTS} alt="" width={60} height={60} className="absolute top-24 right-[8%]" />
+        <img src={PIXEL_STAR_YELLOW} alt="" width={50} height={50} className="absolute top-32 left-[5%]" />
+        <img src={PIXEL_STAR_BLUE} alt="" width={40} height={40} className="absolute top-[50%] right-[5%]" />
+        <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="absolute top-[70%] left-[3%]" />
+        <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute bottom-[25%] right-[12%]" />
       </div>
 
       {/* Header */}
@@ -55,10 +54,10 @@ export default function LandingPage() {
 
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
                 WaiFusion
-                <Image src={PIXEL_HEARTS} alt="" width={40} height={40} className="inline-block ml-2 align-middle" />
+                <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="inline-block ml-2 align-middle" />
                 <br />
                 <span className="text-pink-400">a community-</span>
-                <Image src={PIXEL_HEARTS} alt="" width={32} height={32} className="inline-block mx-1 align-middle" />
+                <img src={PIXEL_HEARTS} alt="" width={32} height={32} className="inline-block mx-1 align-middle" />
                 <br />
                 <span className="text-pink-400">born NFT legacy</span>
               </h1>
@@ -204,16 +203,16 @@ export default function LandingPage() {
       {/* Community CTA */}
       <section className="py-24 px-4 bg-gradient-to-b from-pink-200 via-pink-100 to-cyan-100 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <Image src={PIXEL_STARS_MIXED} alt="" width={200} height={200} className="absolute top-10 left-[10%] opacity-80" />
-          <Image src={PIXEL_HEARTS} alt="" width={60} height={60} className="absolute top-20 right-[15%]" />
-          <Image src={PIXEL_STAR_BLUE} alt="" width={40} height={40} className="absolute bottom-20 left-[20%]" />
-          <Image src={PIXEL_STAR_PURPLE} alt="" width={50} height={50} className="absolute bottom-10 right-[25%]" />
+          <img src={PIXEL_STARS_MIXED} alt="" width={200} height={200} className="absolute top-10 left-[10%] opacity-80" />
+          <img src={PIXEL_HEARTS} alt="" width={60} height={60} className="absolute top-20 right-[15%]" />
+          <img src={PIXEL_STAR_BLUE} alt="" width={40} height={40} className="absolute bottom-20 left-[20%]" />
+          <img src={PIXEL_STAR_PURPLE} alt="" width={50} height={50} className="absolute bottom-10 right-[25%]" />
         </div>
 
         <div className="max-w-3xl mx-auto text-center relative z-10">
           {/* Large pixel art logo */}
           <div className="mb-8">
-            <Image src={PIXEL_HEARTS} alt="" width={120} height={120} className="mx-auto" />
+            <img src={PIXEL_HEARTS} alt="" width={120} height={120} className="mx-auto" />
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">
