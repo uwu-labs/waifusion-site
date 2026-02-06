@@ -45,7 +45,7 @@ export default function LandingPage() {
 
               <h1
                 className="font-pixel text-4xl md:text-5xl font-bold leading-tight mb-4 bg-clip-text text-transparent inline-block"
-                style={{ backgroundImage: 'linear-gradient(to right, #FF008C 0%, #DFA7FF 37%, #0894FF 100%)' }}
+                style={{ backgroundImage: 'linear-gradient(to bottom, #FF008C 0%, #DFA7FF 37%, #0894FF 100%)' }}
               >
                 WaiFusion
                 <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="inline-block ml-2 align-middle" />
