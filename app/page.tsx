@@ -112,7 +112,7 @@ export default function LandingPage() {
           
           <div className="grid md:grid-cols-2 gap-8">
             {/* What is WaiFusion - Purple card */}
-            <div className="rounded-2xl overflow-hidden shadow-md relative" style={{ backgroundColor: '#E7C8FF', border: '2px solid #AB5BFF' }}>
+            <div className="overflow-hidden shadow-md relative" style={{ backgroundColor: '#E7C8FF', border: '2px solid #AB5BFF' }}>
               <div className="p-6">
                 <h3 className="font-bold text-2xl mb-4" style={{ color: '#B010FA' }}>What is WaiFusion?</h3>
                 <p className="text-gray-700 leading-relaxed">WaiFusion is the earliest generative anime collection in Web3, consisting of 16,384 unique NFTs on Ethereum. Created shortly after Hashmasks in March 2021. After its original team stepped away, WaiFusion evolved into a community-owned effort. Today, each WaiFu exists as both a digital artwork and a symbol of decentralization.</p>
@@ -121,7 +121,7 @@ export default function LandingPage() {
             </div>
 
             {/* First NFT Community Takeover - Pink card */}
-            <div className="rounded-2xl overflow-hidden shadow-md relative" style={{ backgroundColor: '#FFE0FE', border: '2px solid #F453EF' }}>
+            <div className="overflow-hidden shadow-md relative" style={{ backgroundColor: '#FFE0FE', border: '2px solid #F453EF' }}>
               <div className="p-6">
                 <h3 className="font-bold text-2xl mb-4" style={{ color: '#F453EF' }}>The First ever NFT community takeover</h3>
                 <p className="text-gray-700 leading-relaxed">The original team stepped away shortly after launch, leading to a community take over. WaiFusion became one of the earliest NFT projects to be fully carried forward by its holders, redefining what decentralization really means.</p>
@@ -131,7 +131,7 @@ export default function LandingPage() {
             </div>
 
             {/* Why WaiFusion - Cream card */}
-            <div className="rounded-2xl overflow-hidden shadow-md relative" style={{ backgroundColor: '#FFF5D8', border: '2px solid #FFC078' }}>
+            <div className="overflow-hidden shadow-md relative" style={{ backgroundColor: '#FFF5D8', border: '2px solid #FFC078' }}>
               <div className="p-6">
                 <h3 className="font-bold text-2xl mb-4" style={{ color: '#F2A310' }}>Why WaiFusion</h3>
                 <p className="text-gray-700 leading-relaxed">WaiFusion matters because it proves that due to the power of NFTs, communities can preserve, evolve, and own culture without relying on its creators. It{"'"}s not just an NFT collection. It{"'"}s a monumental moment in Web3 and NFT history!</p>
@@ -140,7 +140,7 @@ export default function LandingPage() {
             </div>
 
             {/* About Kusari - Green card */}
-            <div className="rounded-2xl overflow-hidden shadow-md relative" style={{ backgroundColor: '#DBFFE0', border: '2px solid #21D510' }}>
+            <div className="overflow-hidden shadow-md relative" style={{ backgroundColor: '#DBFFE0', border: '2px solid #21D510' }}>
               <div className="p-6">
                 <h3 className="font-bold text-2xl mb-4" style={{ color: '#00C48C' }}>About Kusari</h3>
                 <p className="text-gray-700 leading-relaxed">Kusari is a creative collective and onchain art platform dedicated to building a positive future for decentralized culture. Through collaboration with artists and communities around the world, Kusari creates, curates, and sustains crypto-native art projects that push the boundaries of digital ownership.</p>
@@ -149,7 +149,7 @@ export default function LandingPage() {
             </div>
 
             {/* The First ever NFT community takeover - extra card */}
-            <div className="rounded-2xl overflow-hidden shadow-md relative" style={{ backgroundColor: '#FFE0FE', border: '2px solid #F453EF' }}>
+            <div className="overflow-hidden shadow-md relative" style={{ backgroundColor: '#FFE0FE', border: '2px solid #F453EF' }}>
               <div className="p-6">
                 <h3 className="font-bold text-2xl mb-4" style={{ color: '#F453EF' }}>The First ever NFT community takeover</h3>
                 <p className="text-gray-700 leading-relaxed">Something else you might wanna say idk</p>
