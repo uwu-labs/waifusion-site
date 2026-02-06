@@ -62,14 +62,16 @@ export default function LandingPage() {
                 <Link
                   href="https://discord.gg/kusari"
                   target="_blank"
-                  className="px-6 py-2.5 bg-gradient-to-r from-pink-400 to-pink-500 text-white font-medium rounded-full hover:opacity-90 transition-opacity text-sm"
+                  className="px-6 py-2.5 text-white font-medium hover:opacity-90 transition-opacity text-sm"
+                  style={{ backgroundColor: '#FE4EAF', border: '1px solid #BF0F29' }}
                 >
                   Visit our Discord
                 </Link>
                 <Link
                   href="https://opensea.io/collection/waifusion"
                   target="_blank"
-                  className="px-6 py-2.5 bg-gradient-to-r from-green-400 to-green-500 text-white font-medium rounded-full hover:opacity-90 transition-opacity text-sm"
+                  className="px-6 py-2.5 text-white font-medium hover:opacity-90 transition-opacity text-sm"
+                  style={{ backgroundColor: '#FE4EAF', border: '1px solid #BF0F29' }}
                 >
                   Buy on Opensea
                 </Link>
