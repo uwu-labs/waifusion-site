@@ -36,8 +36,13 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative pt-6 pb-12 px-5 sm:px-8 md:px-10">
+      {/* Hero Section - same gradient as body for consistent look */}
+      <section
+        className="relative pt-6 pb-12 px-5 sm:px-8 md:px-10"
+        style={{
+          background: "linear-gradient(to right, #FAF5FF 0%, #FDF2F8 50%, #EFF6FF 100%)",
+        }}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row gap-4 md:gap-5 items-start w-full">
             {/* Text + image on same row from md up (tablet and larger); stack only on phone */}
@@ -52,7 +57,7 @@ export default function LandingPage() {
                   className="order-2 font-pixel text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-3 bg-clip-text text-transparent inline-block text-center md:text-left"
                   style={{ backgroundImage: 'linear-gradient(to bottom, #FF008C 0%, #DFA7FF 37%, #0894FF 100%)' }}
                 >
-                  WaiFusion
+                  Waifusion
                   <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="inline-block ml-2 align-middle" />
                   <br />
                   a community-
@@ -87,11 +92,11 @@ export default function LandingPage() {
 
               {/* Hero image - right of text from md up */}
               <div className="w-full md:flex-1 md:min-w-0 flex items-center justify-center mt-4 md:mt-0 md:justify-end">
-                <div className="w-full max-w-xs sm:max-w-sm md:max-w-full md:min-w-0 aspect-video rounded-2xl overflow-hidden shadow-lg border-4 border-white/80 bg-white/30">
+                <div className="w-full max-w-xs sm:max-w-sm md:max-w-full md:min-w-0 aspect-video max-h-80 md:max-w-[569px] rounded-2xl overflow-hidden shadow-lg border-4 border-white/80 bg-white/30">
                   <img
                     src={`${WAIFU_IMAGE_BASE}6.png`}
                     alt="Waifusion hero artwork"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
               </div>
@@ -100,12 +105,12 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Gallery Grid - Placeholder */}
-      <section className="py-4 sm:py-5 px-2 sm:px-4 bg-gradient-to-b from-pink-100/50 to-pink-50/30 overflow-visible">
+      {/* Gallery Grid - 4 Waifus */}
+      <section className="pt-6 pb-4 sm:pt-8 sm:pb-6 px-2 sm:px-4 bg-gradient-to-b from-pink-100/50 to-pink-50/30 overflow-visible">
         <div className="max-w-4xl mx-auto overflow-visible">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 items-end overflow-visible">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 items-center overflow-visible py-2">
             {[8345, 4334, 12421, 11085].map((id, i) => {
-              const translate = i % 2 === 0 ? '-translate-y-4' : 'translate-y-4';
+              const translate = i % 2 === 0 ? '-translate-y-2' : 'translate-y-2';
               return (
                 <div
                   key={id}
@@ -132,12 +137,12 @@ export default function LandingPage() {
           <img src={PIXEL_STARS_MIXED} alt="" width={80} height={80} className="hidden md:block absolute bottom-[20%] -left-2 z-20 pointer-events-none" />
           
           <div className="grid md:grid-cols-2 gap-y-6 md:gap-y-8 gap-x-2 md:gap-x-4 max-w-4xl mx-auto items-center">
-            {/* Row 1: What is WaiFusion | First NFT takeover — no images */}
+            {/* Row 1: What is Waifusion | First NFT takeover — no images */}
             <div className="shadow-md relative rounded-lg overflow-visible" style={{ backgroundColor: '#E7C8FF', border: '2px solid #AB5BFF' }}>
               <img src={PIXEL_STAR_PURPLE} alt="" width={44} height={44} className="absolute -top-4 -left-4 opacity-90 pointer-events-none z-20" />
               <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-4 -left-4 opacity-90 pointer-events-none z-20" />
               <div className="p-6 relative">
-                <h3 className="font-bold text-2xl mb-4" style={{ color: '#B010FA' }}>What is WaiFusion?</h3>
+                <h3 className="font-bold text-2xl mb-4" style={{ color: '#B010FA' }}>What is Waifusion?</h3>
                 <p className="text-gray-700 leading-relaxed">The earliest generative anime NFT collection — minted in March 2021, before all the ecosystem we know now was established.</p>
                 <p className="text-gray-700 leading-relaxed mt-4">16,384 Waifusions were for sale, but the mint didn&apos;t finish, so the community invented a solution. Waifusions could be burned and swapped for new unsold ones, this resulted in only 8,918 surviving.</p>
               </div>
@@ -152,7 +157,7 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Row 2: Waifu image -> Why WaiFusion */}
+            {/* Row 2: Waifu image -> Why Waifusion */}
             <div className="hidden md:flex items-center justify-center h-full min-h-[200px] w-full">
               <img src={`${WAIFU_IMAGE_BASE}16243.png`} alt="Waifu #16243" className="object-contain rounded-lg w-full h-full max-h-[320px]" />
             </div>

@@ -6,9 +6,9 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const pixelify = Pixelify_Sans({ subsets: ["latin"], variable: "--font-pixelify", weight: ["400", "500", "600", "700"] })
 
 export const metadata: Metadata = {
-  title: "WaiFusion | Community-Born NFT Legacy",
+  title: "Waifusion | Community-Born NFT Legacy",
   description:
-    "WaiFusion is the first generative anime collection on Ethereum. Created March 2021, now community-owned under Kusari.",
+    "Waifusion is the first generative anime collection on Ethereum. Created March 2021, now community-owned under Kusari.",
 }
 
 export default function RootLayout({
