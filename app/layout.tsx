@@ -18,7 +18,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${pixelify.variable} font-sans antialiased`}>{children}</body>
+      <body
+        className={`${inter.variable} ${pixelify.variable} font-sans antialiased min-h-screen`}
+        style={{
+          background: "linear-gradient(to right, #FAF5FF 0%, #FDF2F8 50%, #EFF6FF 100%)",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        {children}
+      </body>
     </html>
   )
 }

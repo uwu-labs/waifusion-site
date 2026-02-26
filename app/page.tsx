@@ -1,5 +1,8 @@
 import Link from "next/link"
 
+// Waifusion images from Arweave (tokenId 1–16384)
+const WAIFU_IMAGE_BASE = "https://arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/"
+
 // Pixel art decorations
 const PIXEL_HEARTS = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ixxGcJLOLjacFU56GRP1PRoqOFchc9.png"
 const PIXEL_STAR_YELLOW = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-VXUbdtdxRLeFM337WPrMRHbUk1TbNF.png"
@@ -11,7 +14,7 @@ const PIXEL_STARS_MIXED = "https://hebbkx1anhila5yf.public.blob.vercel-storage.c
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-pink-50/30 overflow-x-hidden">
+    <main className="min-h-screen overflow-x-hidden">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-gradient-to-r from-pink-400 via-pink-300 to-pink-400 shadow-md">
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
@@ -23,7 +26,7 @@ export default function LandingPage() {
             <Link href="https://twitter.com/waaboratory" target="_blank" className="text-white hover:text-white/80">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
             </Link>
-            <Link href="https://discord.gg/kusari" target="_blank" className="text-white hover:text-white/80">
+            <Link href="https://discord.gg/cKWpT7HGam" target="_blank" className="text-white hover:text-white/80">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" /></svg>
             </Link>
             <Link href="https://opensea.io/collection/waifusion" target="_blank" className="text-white hover:text-white/80">
@@ -34,36 +37,35 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative pt-8 pb-16 px-4">
+      <section className="relative pt-6 pb-12 px-5 sm:px-8 md:px-10">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-8 items-start">
-            {/* Left content */}
-            <div className="flex-1 max-w-xl">
-              <div className="inline-block px-4 py-1.5 bg-gradient-to-r from-pink-400 to-pink-500 text-white text-xs font-bold uppercase tracking-wider rounded mb-6">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
+            {/* Left content - 60% on desktop, strict top-to-bottom order */}
+            <div className="w-full lg:w-[60%] lg:flex-shrink-0 lg:min-w-0 flex flex-col">
+              <div className="order-1 inline-block px-4 py-1.5 bg-gradient-to-r from-pink-400 to-pink-500 text-white text-xs font-bold uppercase tracking-wider rounded mb-4 w-fit">
                 First NFT Community Takeover
               </div>
 
               <h1
-                className="font-pixel text-4xl md:text-5xl font-bold leading-tight mb-4 bg-clip-text text-transparent inline-block"
+                className="order-2 font-pixel text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-3 bg-clip-text text-transparent inline-block text-center md:text-left"
                 style={{ backgroundImage: 'linear-gradient(to bottom, #FF008C 0%, #DFA7FF 37%, #0894FF 100%)' }}
               >
                 WaiFusion
                 <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="inline-block ml-2 align-middle" />
                 <br />
                 a community-
-                <img src={PIXEL_HEARTS} alt="" width={32} height={32} className="inline-block mx-1 align-middle" />
                 <br />
                 born NFT legacy
               </h1>
 
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="order-3 text-gray-600 mb-4 leading-relaxed text-sm sm:text-base text-center md:text-left max-w-xl">
                 WaiFusion began as the <span className="font-semibold text-gray-900">first generative anime collection</span> on Ethereum.
                 When the original team stepped away, the community took over!
               </p>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="order-4 flex flex-col sm:flex-row flex-wrap gap-3 justify-center md:justify-start">
                 <Link
-                  href="https://discord.gg/kusari"
+                  href="https://discord.gg/cKWpT7HGam"
                   target="_blank"
                   className="px-6 py-2.5 text-white font-medium hover:opacity-90 transition-opacity text-sm"
                   style={{ backgroundColor: '#FE4EAF', border: '1px solid #BF0F29' }}
@@ -81,10 +83,14 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Right - placeholder for 3D/image viewer */}
-            <div className="flex-1 flex items-center justify-center">
-              <div className="text-center text-gray-600 text-sm p-8 border-2 border-dashed border-pink-200 rounded-xl bg-white/50">
-                SHOW MORE BODY<br />HERE, or zoom in
+            {/* Right - hero artwork (16:9), 40% on desktop */}
+            <div className="w-full lg:w-[40%] lg:flex-shrink-0 flex items-center justify-center mt-6 lg:mt-0 lg:justify-end">
+              <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full aspect-video rounded-2xl overflow-hidden shadow-lg border-4 border-white/80 bg-white/30">
+                <img
+                  src={`${WAIFU_IMAGE_BASE}6.png`}
+                  alt="Waifusion hero artwork"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -92,15 +98,19 @@ export default function LandingPage() {
       </section>
 
       {/* Gallery Grid - Placeholder */}
-      <section className="py-12 px-4 bg-gradient-to-b from-pink-100/50 to-pink-50/30">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+      <section className="py-2 sm:py-3 px-2 sm:px-4 bg-gradient-to-b from-pink-100/50 to-pink-50/30">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
+            {[1, 2, 3, 4].map((i) => (
               <div
                 key={i}
-                className="aspect-square rounded-xl overflow-hidden bg-white shadow-lg border-4 border-white flex items-center justify-center"
+                className="aspect-square rounded-xl overflow-hidden flex items-center justify-center"
               >
-                <span className="text-pink-300 text-xs">Waifu #{i}</span>
+                <img
+                  src={`${WAIFU_IMAGE_BASE}${i}.png`}
+                  alt={`Waifu #${i}`}
+                  className="w-full h-full object-contain rounded-xl"
+                />
               </div>
             ))}
           </div>
@@ -111,53 +121,68 @@ export default function LandingPage() {
       <section className="py-16 px-4 relative">
         <div className="max-w-6xl mx-auto">
           {/* Decorative pixel elements */}
-          <img src={PIXEL_STAR_YELLOW} alt="" width={70} height={70} className="absolute -top-4 left-[8%]" />
-          <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="absolute top-[35%] right-[2%]" />
-          <img src={PIXEL_STARS_MIXED} alt="" width={80} height={80} className="absolute bottom-[20%] left-[2%]" />
+          <img src={PIXEL_STAR_YELLOW} alt="" width={70} height={70} className="hidden md:block absolute -top-4 left-[8%]" />
+          <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="hidden md:block absolute top-[35%] right-[2%]" />
+          <img src={PIXEL_STARS_MIXED} alt="" width={80} height={80} className="hidden md:block absolute bottom-[20%] left-[2%]" />
           
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* What is WaiFusion - Purple card */}
-            <div className="overflow-hidden shadow-md relative" style={{ backgroundColor: '#E7C8FF', border: '2px solid #AB5BFF' }}>
-              <div className="p-6">
+          <div className="grid md:grid-cols-2 gap-y-6 md:gap-y-8 gap-x-2 md:gap-x-4 max-w-4xl mx-auto items-center">
+            {/* Row 1: What is WaiFusion | First NFT takeover — no images */}
+            <div className="shadow-md relative rounded-lg overflow-visible" style={{ backgroundColor: '#E7C8FF', border: '2px solid #AB5BFF' }}>
+              <img src={PIXEL_STAR_PURPLE} alt="" width={44} height={44} className="absolute -top-2 -left-2 opacity-90 pointer-events-none z-10" />
+              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-2 -left-2 opacity-90 pointer-events-none z-10" />
+              <div className="p-6 relative">
                 <h3 className="font-bold text-2xl mb-4" style={{ color: '#B010FA' }}>What is WaiFusion?</h3>
-                <p className="text-gray-700 leading-relaxed">WaiFusion is the earliest generative anime collection in Web3, consisting of 16,384 unique NFTs on Ethereum. Created shortly after Hashmasks in March 2021. After its original team stepped away, WaiFusion evolved into a community-owned effort. Today, each WaiFu exists as both a digital artwork and a symbol of decentralization.</p>
-                <img src={PIXEL_STAR_PURPLE} alt="" width={50} height={50} className="absolute bottom-4 left-4 opacity-80" />
+                <p className="text-gray-700 leading-relaxed">The earliest generative anime NFT collection — minted in March 2021, before all the ecosystem we know now was established.</p>
+                <p className="text-gray-700 leading-relaxed mt-4">16,384 Waifusions were for sale, but the mint didn&apos;t finish, so the community invented a solution. Waifusions could be burned and swapped for new unsold ones, this resulted in only 8,918 surviving.</p>
+              </div>
+            </div>
+            <div className="shadow-md relative rounded-lg overflow-visible" style={{ backgroundColor: '#FFE0FE', border: '2px solid #F453EF' }}>
+              <img src={PIXEL_STAR_BLUE} alt="" width={44} height={44} className="absolute -top-2 -right-2 opacity-80 pointer-events-none z-10" />
+              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-2 -right-2 opacity-90 pointer-events-none z-10" />
+              <div className="p-6 relative">
+                <h3 className="font-bold text-2xl mb-4" style={{ color: '#F453EF' }}>The First NFT Takeover</h3>
+                <p className="text-gray-700 leading-relaxed">Decentralization by necessity has carried Waifusion for over 4 years. When the original team walked away, Waifusion didn&apos;t die. The holders stepped up to make Waifusion the first NFT project fully carried forward by its community.</p>
+                <p className="text-gray-700 leading-relaxed mt-4">The first leap was the &quot;Waifusion Dungeon&quot; for the holders to burn and swap Waifus.</p>
               </div>
             </div>
 
-            {/* First NFT Community Takeover - Pink card */}
-            <div className="overflow-hidden shadow-md relative" style={{ backgroundColor: '#FFE0FE', border: '2px solid #F453EF' }}>
-              <div className="p-6">
-                <h3 className="font-bold text-2xl mb-4" style={{ color: '#F453EF' }}>The First ever NFT community takeover</h3>
-                <p className="text-gray-700 leading-relaxed">The original team stepped away shortly after launch, leading to a community take over. WaiFusion became one of the earliest NFT projects to be fully carried forward by its holders, redefining what decentralization really means.</p>
-                <img src={PIXEL_STAR_BLUE} alt="" width={45} height={45} className="absolute top-4 right-4 opacity-70" />
-                <img src={PIXEL_HEARTS} alt="" width={50} height={50} className="absolute bottom-4 right-4 opacity-80" />
+            {/* Row 2: Waifu image -> Why WaiFusion */}
+            <div className="hidden md:flex items-center justify-center h-full min-h-[200px] w-full">
+              <img src={`${WAIFU_IMAGE_BASE}1.png`} alt="Waifu #1" className="object-contain rounded-lg w-full h-full max-h-[320px]" />
+            </div>
+            <div className="shadow-md relative rounded-lg overflow-visible" style={{ backgroundColor: '#FFF5D8', border: '2px solid #FFC078' }}>
+              <img src={PIXEL_STAR_YELLOW} alt="" width={44} height={44} className="absolute -top-2 -right-2 opacity-90 pointer-events-none z-10" />
+              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-2 -right-2 opacity-90 pointer-events-none z-10" />
+              <div className="p-6 relative">
+                <h3 className="font-bold text-2xl mb-4" style={{ color: '#F2A310' }}>Why does Waifusion matter?</h3>
+                <p className="text-gray-700 leading-relaxed">Waifusion matters because it proves that NFTs enable culture to survive. The first NFT CTO, the first burn-to-swap NFT collection, the beginning of Kusari and many other firsts.</p>
+                <p className="text-gray-700 leading-relaxed mt-4">Thanks to being onchain, the community was able to maintain ownership and evolve after the project was abandoned, and remain a part of NFT history.</p>
               </div>
             </div>
 
-            {/* Why WaiFusion - Cream card */}
-            <div className="overflow-hidden shadow-md relative" style={{ backgroundColor: '#FFF5D8', border: '2px solid #FFC078' }}>
-              <div className="p-6">
-                <h3 className="font-bold text-2xl mb-4" style={{ color: '#F2A310' }}>Why WaiFusion</h3>
-                <p className="text-gray-700 leading-relaxed">WaiFusion matters because it proves that due to the power of NFTs, communities can preserve, evolve, and own culture without relying on its creators. It{"'"}s not just an NFT collection. It{"'"}s a monumental moment in Web3 and NFT history!</p>
-                <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="absolute bottom-4 right-4 opacity-80" />
+            {/* Row 3: From CTO to Kusari | About Kusari — no images */}
+            <div className="shadow-md relative rounded-lg overflow-visible" style={{ backgroundColor: '#DAF1FF', border: '2px solid #32AAFF' }}>
+              <img src={PIXEL_STAR_BLUE} alt="" width={44} height={44} className="absolute -top-2 -left-2 opacity-90 pointer-events-none z-10" />
+              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-2 -left-2 opacity-90 pointer-events-none z-10" />
+              <div className="p-6 relative">
+                <h3 className="font-bold text-2xl mb-4" style={{ color: '#32AAFF' }}>From CTO to Kusari</h3>
+                <p className="text-gray-700 leading-relaxed">In March 2021, the current Kusari founders took stewardship of Waifusion to ensure it wasn&apos;t forgotten. This eventually led to where we are now.</p>
+                <p className="text-gray-700 leading-relaxed mt-4">Today, Waifusion exists as part of the Kusari Family, alongside uwucrew, Killer GF, and more, connected by a community with a passion for creativity.</p>
               </div>
             </div>
-
-            {/* About Kusari - Green card */}
-            <div className="overflow-hidden shadow-md relative" style={{ backgroundColor: '#DBFFE0', border: '2px solid #21D510' }}>
-              <div className="p-6">
+            <div className="shadow-md relative rounded-lg overflow-visible" style={{ backgroundColor: '#DBFFE0', border: '2px solid #21D510' }}>
+              <img src={PIXEL_STAR_PURPLE} alt="" width={44} height={44} className="absolute -top-2 -right-2 opacity-90 pointer-events-none z-10" />
+              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-2 -right-2 opacity-90 pointer-events-none z-10" />
+              <div className="p-6 relative">
                 <h3 className="font-bold text-2xl mb-4" style={{ color: '#00C48C' }}>About Kusari</h3>
-                <p className="text-gray-700 leading-relaxed">Kusari is a creative collective and onchain art platform dedicated to building a positive future for decentralized culture. Through collaboration with artists and communities around the world, Kusari creates, curates, and sustains crypto-native art projects that push the boundaries of digital ownership.</p>
-                <p className="text-gray-700 leading-relaxed mt-4">In 2021, the current founders of Kusari took stewardship of WaiFusion, ensuring the collection{"'"}s continuity and evolution. Today, WaiFusion lives under the Kusari family umbrella, shaped by collaboration, community, and a long-term vision for onchain art.</p>
-              </div>
-            </div>
-
-            {/* The First ever NFT community takeover - extra card */}
-            <div className="overflow-hidden shadow-md relative" style={{ backgroundColor: '#FFE0FE', border: '2px solid #F453EF' }}>
-              <div className="p-6">
-                <h3 className="font-bold text-2xl mb-4" style={{ color: '#F453EF' }}>The First ever NFT community takeover</h3>
-                <p className="text-gray-700 leading-relaxed">Something else you might wanna say idk</p>
+                <p className="text-gray-700 leading-relaxed">Kusari is a creative collective building durable culture onchain.</p>
+                <p className="text-gray-700 leading-relaxed mt-4">We collaborate with artists and communities to create projects that aren&apos;t just part of a trend. At Kusari we create art that is meant to last.</p>
+                <p className="text-gray-700 leading-relaxed mt-4">
+                  Discover more about Kusari at{" "}
+                  <Link href="https://kusari.org" target="_blank" rel="noopener noreferrer" className="text-[#00C48C] font-medium hover:underline">
+                    kusari.org
+                  </Link>
+                </p>
               </div>
             </div>
           </div>
@@ -165,47 +190,101 @@ export default function LandingPage() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-16 px-4 bg-gradient-to-b from-pink-50/30 to-pink-50">
+      <section className="py-6 md:py-10 px-4 bg-gradient-to-b from-pink-50/30 to-pink-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-pixel text-2xl font-bold text-center mb-2 text-cyan-500">The First ever NFT</h2>
-          <h3 className="font-pixel text-xl font-bold text-center mb-12 text-cyan-500">community takeover</h3>
-          <p className="text-center text-gray-600 mb-12">Something else you might wanna say idk</p>
+          <h2 className="font-pixel text-2xl font-bold text-center mb-1 text-cyan-500">The First ever NFT</h2>
+          <h3 className="font-pixel text-xl font-bold text-center mb-2 text-cyan-500">community takeover</h3>
+          <p className="text-center text-gray-600 mb-8">Something else you might wanna say idk</p>
 
           {/* Timeline */}
           <div className="relative">
             {/* Vertical line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-pink-300 to-cyan-300 h-full rounded-full" />
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-pink-300 to-cyan-300 rounded-full top-[-20px] bottom-[-20px]" />
 
             {/* Timeline items */}
-            <div className="space-y-8">
+            <div className="space-y-1 md:space-y-2">
               {[
-                { date: "March 3rd 2021", title: "WaiFusion minted out", side: "left", color: "pink" },
-                { date: "March 24th 2021", title: "community takeover", side: "right", color: "pink" },
-                { date: "March 22nd 2021", title: "WaiFusion rug lol", side: "left", color: "cyan" },
-                { date: "September 2021", title: "uwucrew", side: "right", color: "cyan" },
-              ].map((event, i) => (
-                <div key={i} className={`flex items-center ${event.side === "left" ? "flex-row" : "flex-row-reverse"}`}>
-                  <div className={`w-5/12 ${event.side === "left" ? "text-right pr-8" : "text-left pl-8"}`}>
-                    <div className={`inline-block bg-white rounded-xl p-4 shadow-lg border-2 ${event.color === "pink" ? "border-pink-300" : "border-cyan-300"}`}>
-                      <span className={`text-xs font-bold ${event.color === "pink" ? "text-pink-500" : "text-cyan-500"}`}>{event.date}</span>
-                      <h4 className="font-bold text-gray-900 mt-1">{event.title}</h4>
-                      <p className="text-xs text-gray-600 mt-1">Apollo 11 successfully lands on the Moon</p>
-                      <Link href="#" className={`text-xs ${event.color === "pink" ? "text-pink-500" : "text-cyan-500"} hover:underline`}>Click to read more</Link>
+                { date: "March 3rd 2021", title: "WaiFusion minted out", side: "left", accent: "pink" },
+                { date: "March 24th 2021", title: "community takeover", side: "right", accent: "purple" },
+                { date: "March 22nd 2021", title: "WaiFusion rug lol", side: "left", accent: "cyan-dark" },
+                { date: "September 2021", title: "uwucrew", side: "right", accent: "cyan" },
+              ].map((event, i) => {
+                const borderClass =
+                  event.accent === "pink"
+                    ? "border-pink-300"
+                    : event.accent === "purple"
+                    ? "border-fuchsia-300"
+                    : event.accent === "cyan-dark"
+                    ? "border-cyan-500"
+                    : "border-cyan-300"
+
+                const textClass =
+                  event.accent === "pink"
+                    ? "text-pink-500"
+                    : event.accent === "purple"
+                    ? "text-fuchsia-500"
+                    : "text-cyan-500"
+
+                const connectorClass =
+                  event.accent === "pink"
+                    ? "bg-pink-300"
+                    : event.accent === "purple"
+                    ? "bg-fuchsia-300"
+                    : event.accent === "cyan-dark"
+                    ? "bg-cyan-500"
+                    : "bg-cyan-300"
+
+                const dotClass =
+                  event.accent === "pink"
+                    ? "bg-pink-400"
+                    : event.accent === "purple"
+                    ? "bg-fuchsia-400"
+                    : event.accent === "cyan-dark"
+                    ? "bg-cyan-500"
+                    : "bg-cyan-400"
+
+                return (
+                  <div
+                    key={i}
+                    className={`flex flex-col md:flex-row md:items-center ${
+                      event.side === "right" ? "md:flex-row-reverse" : ""
+                    }`}
+                  >
+                    <div
+                      className={`w-full md:w-5/12 flex md:items-center ${
+                        event.side === "left" ? "md:text-right md:justify-end" : "md:text-left md:justify-start"
+                      } mb-1 md:mb-0`}
+                    >
+                      <div className={`inline-block bg-white rounded-xl p-4 shadow-lg border-2 ${borderClass}`}>
+                        <span className={`text-xs font-bold ${textClass}`}>{event.date}</span>
+                        <h4 className="font-bold text-gray-900 mt-1">{event.title}</h4>
+                        <p className="text-xs text-gray-600 mt-1">Apollo 11 successfully lands on the Moon</p>
+                        <Link href="#" className={`text-xs ${textClass} hover:underline`}>Click to read more</Link>
+                      </div>
                     </div>
+                    <div className="w-full md:w-2/12 flex justify-center items-center mb-1 md:mb-0 relative">
+                      {/* Connector line: center vertically (top-1/2 -translate-y-1/2) so it aligns with box center and dot */}
+                      <div
+                        className={`hidden md:block absolute top-1/2 h-1 -translate-y-1/2 ${connectorClass} ${
+                          event.side === "left" ? "left-0 right-1/2" : "left-1/2 right-0"
+                        }`}
+                        aria-hidden="true"
+                      />
+                      <div
+                        className={`w-4 h-4 rounded-full shrink-0 ${dotClass} border-4 border-white shadow relative z-10`}
+                      />
+                    </div>
+                    <div className="hidden md:block md:w-5/12" />
                   </div>
-                  <div className="w-2/12 flex justify-center">
-                    <div className={`w-4 h-4 rounded-full ${event.color === "pink" ? "bg-pink-400" : "bg-cyan-400"} border-4 border-white shadow`} />
-                  </div>
-                  <div className="w-5/12" />
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         </div>
       </section>
 
       {/* Community CTA */}
-      <section className="py-24 px-4 bg-gradient-to-b from-pink-200 via-pink-100 to-cyan-100 relative overflow-hidden">
+      <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-pink-200 via-pink-100 to-cyan-100 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <img src={PIXEL_STARS_MIXED} alt="" width={200} height={200} className="absolute top-10 left-[10%] opacity-80" />
           <img src={PIXEL_HEARTS} alt="" width={60} height={60} className="absolute top-20 right-[15%]" />
@@ -224,7 +303,7 @@ export default function LandingPage() {
           </h2>
 
           <Link
-            href="https://discord.gg/kusari"
+            href="https://discord.gg/cKWpT7HGam"
             target="_blank"
             className="inline-flex items-center gap-2 px-8 py-3 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors"
           >
@@ -247,7 +326,7 @@ export default function LandingPage() {
             <Link href="https://opensea.io/collection/waifusion" target="_blank" className="text-gray-600 hover:text-gray-900">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12 12-5.374 12-12S18.629 0 12 0ZM5.92 12.403l.051-.081 3.123-4.884a.107.107 0 0 1 .187.014c.52 1.169.972 2.623.76 3.528-.088.372-.335.876-.614 1.342a2.405 2.405 0 0 1-.117.199.106.106 0 0 1-.09.045H6.013a.106.106 0 0 1-.091-.163Z" /></svg>
             </Link>
-            <Link href="https://discord.gg/kusari" target="_blank" className="text-gray-600 hover:text-gray-900">
+            <Link href="https://discord.gg/cKWpT7HGam" target="_blank" className="text-gray-600 hover:text-gray-900">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" /></svg>
             </Link>
           </div>
