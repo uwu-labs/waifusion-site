@@ -1,3 +1,98 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom pixel cursors (light set) - paths from /public */
+:root {
+  --cursor-default: url("/cursors/light/pointer.png") 0 0, default;
+  --cursor-pointer: url("/cursors/light/pointer.png") 0 0, pointer;
+  --cursor-link: url("/cursors/light/link.png") 0 0, pointer;
+  --cursor-text: url("/cursors/light/beam.png") 0 0, text;
+  --cursor-grab: url("/cursors/light/grab.png") 0 0, grab;
+  --cursor-grabbing: url("/cursors/light/grab_hover.png") 0 0, grabbing;
+  --cursor-wait: url("/cursors/light/busy.gif") 0 0, wait;
+  --cursor-not-allowed: url("/cursors/light/unavailable.png") 0 0, not-allowed;
+  --cursor-help: url("/cursors/light/help.png") 0 0, help;
+  --cursor-move: url("/cursors/light/move.png") 0 0, move;
+}
+
+* {
+  cursor: var(--cursor-default);
+}
+
+a,
+[role="button"],
+button,
+[type="button"],
+[type="submit"],
+[type="reset"],
+input[type="checkbox"],
+input[type="radio"],
+select,
+label[for] {
+  cursor: var(--cursor-pointer);
+}
+
+a[href]:hover {
+  cursor: var(--cursor-link);
+}
+
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+[contenteditable="true"] {
+  cursor: var(--cursor-text);
+}
+
+[style*="cursor: grab"],
+.cursor-grab {
+  cursor: var(--cursor-grab) !important;
+}
+
+[style*="cursor: grabbing"],
+.cursor-grabbing {
+  cursor: var(--cursor-grabbing) !important;
+}
+
+.cursor-wait,
+[aria-busy="true"] {
+  cursor: var(--cursor-wait) !important;
+}
+
+.cursor-not-allowed,
+[aria-disabled="true"]:not(button):not(a) {
+  cursor: var(--cursor-not-allowed) !important;
+}
+
+[title],
+[aria-describedby] {
+  cursor: var(--cursor-help);
+}
+
+/* Override Tailwind cursor utilities to use custom cursors */
+.cursor-pointer {
+  cursor: var(--cursor-pointer) !important;
+}
+.cursor-default {
+  cursor: var(--cursor-default) !important;
+}
+.cursor-text {
+  cursor: var(--cursor-text) !important;
+}
+.cursor-wait {
+  cursor: var(--cursor-wait) !important;
+}
+.cursor-not-allowed {
+  cursor: var(--cursor-not-allowed) !important;
+}
+.cursor-grab {
+  cursor: var(--cursor-grab) !important;
+}
+.cursor-grabbing {
+  cursor: var(--cursor-grabbing) !important;
+}
+.cursor-move {
+  cursor: var(--cursor-move) !important;
+}
+.cursor-help {
+  cursor: var(--cursor-help) !important;
+}
