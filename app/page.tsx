@@ -1,14 +1,17 @@
 import Link from "next/link"
 
-// Waifusion images from Arweave (tokenId 1–16384)
+// Waifusion images - hero stays on Arweave; gallery + info card use local waifus (waifu1–5 in usage order)
 const WAIFU_IMAGE_BASE = "https://arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/"
+const WAIFUS_LOCAL = ["/waifus/waifu1.jpg", "/waifus/waifu2.jpg", "/waifus/waifu3.jpg", "/waifus/waifu4.jpg", "/waifus/waifu5.jpg"] as const
 
 // Pixel art decorations
-const PIXEL_HEARTS = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ixxGcJLOLjacFU56GRP1PRoqOFchc9.png"
-const PIXEL_STAR_YELLOW = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-VXUbdtdxRLeFM337WPrMRHbUk1TbNF.png"
-const PIXEL_STAR_BLUE = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Eyi3WlghIKvjZGNfBVaMj9qvNQpsWy.png"
-const PIXEL_STAR_PURPLE = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-KvhHjrRNihsmyRn70Mmgj5HVvJdOX5.png"
-const PIXEL_STARS_MIXED = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-jD2WjIl7kwI3p7dOw6Ow1NOLwVgd5q.png"
+const PIXEL_HEARTS = "/pixel-assets/pixel-hearts.gif"
+const PIXEL_STARS_MIXED = "/pixel-assets/pixel-stars-mixed.gif"
+const PIXEL_STAR_PURPLE = "/pixel-assets/pixel-star-purple.gif"
+const PIXEL_STAR_BLUE = "/pixel-assets/pixel-star-blue.gif"
+const PIXEL_STAR_YELLOW = "/pixel-assets/pixel-star-yellow.gif"
+const PIXEL_STAR_ORANGE = "/pixel-assets/pixel-star-orange.gif"
+const PIXEL_STAR_GREEN = "/pixel-assets/pixel-stars-green.gif"
 
 
 
@@ -43,10 +46,10 @@ export default function LandingPage() {
           background: "linear-gradient(to right, #FAF5FF 0%, #FDF2F8 50%, #EFF6FF 100%)",
         }}
       >
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row gap-4 md:gap-5 items-start w-full">
-            {/* Text + image on same row from md up (tablet and larger); stack only on phone */}
-            <div className="w-full flex flex-col md:flex-row md:gap-5 md:items-center">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-center w-full">
+            {/* Text + image grouped in center from md up */}
+            <div className="w-full flex flex-col md:flex-row md:gap-8 md:items-center md:justify-center">
               {/* Text block */}
               <div className="w-full md:max-w-md md:flex-shrink-0 flex flex-col">
                 <div className="order-1 inline-block px-4 py-1.5 bg-gradient-to-r from-pink-400 to-pink-500 text-white text-xs font-bold uppercase tracking-wider rounded mb-4 w-fit">
@@ -90,13 +93,13 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/* Hero image - right of text from md up */}
-              <div className="w-full md:flex-1 md:min-w-0 flex items-center justify-center mt-4 md:mt-0 md:justify-end">
-                <div className="w-full max-w-xs sm:max-w-sm md:max-w-full md:min-w-0 aspect-video max-h-80 md:max-w-[569px] rounded-2xl overflow-hidden shadow-lg border-4 border-white/80 bg-white/30">
+              {/* Hero image - sized to image, grouped in center with text */}
+              <div className="w-full md:w-auto md:flex-shrink-0 flex items-center justify-center mt-4 md:mt-0">
+                <div className="w-full max-w-xs sm:max-w-sm md:max-w-[340px] aspect-video max-h-80 rounded-2xl overflow-hidden shadow-lg border-4 border-white/80 bg-white/30" style={{ aspectRatio: '16/9' }}>
                   <img
                     src={`${WAIFU_IMAGE_BASE}6.png`}
                     alt="Waifusion hero artwork"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               </div>
@@ -107,18 +110,18 @@ export default function LandingPage() {
 
       {/* Gallery Grid - 4 Waifus */}
       <section className="pt-6 pb-4 sm:pt-8 sm:pb-6 px-2 sm:px-4 bg-gradient-to-b from-pink-100/50 to-pink-50/30 overflow-visible">
-        <div className="max-w-4xl mx-auto overflow-visible">
+        <div className="max-w-[calc(56rem*1.35)] mx-auto overflow-visible">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 items-center overflow-visible py-2">
-            {[8345, 4334, 12421, 11085].map((id, i) => {
+            {WAIFUS_LOCAL.slice(0, 4).map((src, i) => {
               const translate = i % 2 === 0 ? '-translate-y-2' : 'translate-y-2';
               return (
                 <div
-                  key={id}
+                  key={src}
                   className={`aspect-square rounded-xl overflow-hidden flex items-center justify-center ${translate}`}
                 >
                   <img
-                    src={`${WAIFU_IMAGE_BASE}${id}.png`}
-                    alt={`Waifu #${id}`}
+                    src={src}
+                    alt={`Waifu ${i + 1}`}
                     className="w-full h-full object-contain rounded-xl"
                   />
                 </div>
@@ -129,62 +132,59 @@ export default function LandingPage() {
       </section>
 
       {/* Info Cards Section */}
-      <section className="py-16 px-4 relative">
+      <section className="py-8 md:py-10 px-4 relative">
         <div className="max-w-6xl mx-auto">
-          {/* Decorative pixel elements - above cards, pushed outward */}
-          <img src={PIXEL_STAR_YELLOW} alt="" width={70} height={70} className="hidden md:block absolute -top-4 -left-2 z-20 pointer-events-none" />
-          <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="hidden md:block absolute top-[35%] -right-2 z-20 pointer-events-none" />
-          <img src={PIXEL_STARS_MIXED} alt="" width={80} height={80} className="hidden md:block absolute bottom-[20%] -left-2 z-20 pointer-events-none" />
+          {/* Decorative pixel elements - scattered erratically at edges, away from text */}
+          <img src={PIXEL_STARS_MIXED} alt="" width={70} height={70} className="hidden md:block absolute top-[12%] left-[2%] z-20 pointer-events-none opacity-90" />
+          <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="hidden md:block absolute top-[58%] right-[1%] z-20 pointer-events-none opacity-85" />
+          <img src={PIXEL_STAR_ORANGE} alt="" width={65} height={65} className="hidden md:block absolute bottom-[42%] left-[0%] z-20 pointer-events-none opacity-80" />
           
           <div className="grid md:grid-cols-2 gap-y-6 md:gap-y-8 gap-x-2 md:gap-x-4 max-w-4xl mx-auto items-center">
             {/* Row 1: What is Waifusion | First NFT takeover — no images */}
             <div className="shadow-md relative rounded-lg overflow-visible" style={{ backgroundColor: '#E7C8FF', border: '2px solid #AB5BFF' }}>
-              <img src={PIXEL_STAR_PURPLE} alt="" width={44} height={44} className="absolute -top-4 -left-4 opacity-90 pointer-events-none z-20" />
-              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-4 -left-4 opacity-90 pointer-events-none z-20" />
-              <div className="p-6 relative">
+              <img src={PIXEL_STAR_PURPLE} alt="" width={44} height={44} className="absolute -top-3 -left-3 opacity-90 pointer-events-none z-20" />
+              <div className="p-4 md:p-5 relative">
                 <h3 className="font-bold text-2xl mb-4" style={{ color: '#B010FA' }}>What is Waifusion?</h3>
                 <p className="text-gray-700 leading-relaxed">The earliest generative anime NFT collection — minted in March 2021, before all the ecosystem we know now was established.</p>
                 <p className="text-gray-700 leading-relaxed mt-4">16,384 Waifusions were for sale, but the mint didn&apos;t finish, so the community invented a solution. Waifusions could be burned and swapped for new unsold ones, this resulted in only 8,918 surviving.</p>
               </div>
             </div>
             <div className="shadow-md relative rounded-lg overflow-visible" style={{ backgroundColor: '#FFE0FE', border: '2px solid #F453EF' }}>
-              <img src={PIXEL_STAR_BLUE} alt="" width={44} height={44} className="absolute -top-4 -right-4 opacity-80 pointer-events-none z-20" />
-              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-4 -right-4 opacity-90 pointer-events-none z-20" />
-              <div className="p-6 relative">
+              <img src={PIXEL_STAR_BLUE} alt="" width={44} height={44} className="absolute -top-3 right-[15%] opacity-80 pointer-events-none z-20" />
+              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-3 -right-2 opacity-90 pointer-events-none z-20" />
+              <div className="p-4 md:p-5 relative">
                 <h3 className="font-bold text-2xl mb-4" style={{ color: '#F453EF' }}>The First NFT Takeover</h3>
                 <p className="text-gray-700 leading-relaxed">Decentralization by necessity has carried Waifusion for over 4 years. When the original team walked away, Waifusion didn&apos;t die. The holders stepped up to make Waifusion the first NFT project fully carried forward by its community.</p>
                 <p className="text-gray-700 leading-relaxed mt-4">The first leap was the &quot;Waifusion Dungeon&quot; for the holders to burn and swap Waifus.</p>
               </div>
             </div>
 
-            {/* Row 2: Waifu image -> Why Waifusion */}
-            <div className="hidden md:flex items-center justify-center h-full min-h-[200px] w-full">
-              <img src={`${WAIFU_IMAGE_BASE}16243.png`} alt="Waifu #16243" className="object-contain rounded-lg w-full h-full max-h-[320px]" />
-            </div>
+            {/* Row 2: Why Waifusion matter (left) | From CTO to Kusari (right, 4th box) */}
             <div className="shadow-md relative rounded-lg overflow-visible" style={{ backgroundColor: '#FFF5D8', border: '2px solid #FFC078' }}>
-              <img src={PIXEL_STAR_YELLOW} alt="" width={44} height={44} className="absolute -top-4 -right-4 opacity-90 pointer-events-none z-20" />
-              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-4 -right-4 opacity-90 pointer-events-none z-20" />
-              <div className="p-6 relative">
+              <img src={PIXEL_STAR_ORANGE} alt="" width={44} height={44} className="absolute -top-3 -right-2 opacity-90 pointer-events-none z-20" />
+              <div className="p-4 md:p-5 relative">
                 <h3 className="font-bold text-2xl mb-4" style={{ color: '#F2A310' }}>Why does Waifusion matter?</h3>
                 <p className="text-gray-700 leading-relaxed">Waifusion matters because it proves that NFTs enable culture to survive. The first NFT CTO, the first burn-to-swap NFT collection, the beginning of Kusari and many other firsts.</p>
                 <p className="text-gray-700 leading-relaxed mt-4">Thanks to being onchain, the community was able to maintain ownership and evolve after the project was abandoned, and remain a part of NFT history.</p>
               </div>
             </div>
-
-            {/* Row 3: From CTO to Kusari | About Kusari — no images */}
             <div className="shadow-md relative rounded-lg overflow-visible" style={{ backgroundColor: '#DAF1FF', border: '2px solid #32AAFF' }}>
-              <img src={PIXEL_STAR_BLUE} alt="" width={44} height={44} className="absolute -top-4 -left-4 opacity-90 pointer-events-none z-20" />
-              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-4 -left-4 opacity-90 pointer-events-none z-20" />
-              <div className="p-6 relative">
+              <img src={PIXEL_STAR_BLUE} alt="" width={44} height={44} className="absolute top-[4%] right-[10%] opacity-90 pointer-events-none z-20" />
+              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-3 -left-2 opacity-90 pointer-events-none z-20" />
+              <div className="p-4 md:p-5 relative">
                 <h3 className="font-bold text-2xl mb-4" style={{ color: '#32AAFF' }}>From CTO to Kusari</h3>
                 <p className="text-gray-700 leading-relaxed">In March 2021, the current Kusari founders took stewardship of Waifusion to ensure it wasn&apos;t forgotten. This eventually led to where we are now.</p>
                 <p className="text-gray-700 leading-relaxed mt-4">Today, Waifusion exists as part of the Kusari Family, alongside uwucrew, Killer GF, and more, connected by a community with a passion for creativity.</p>
               </div>
             </div>
+
+            {/* Row 3: Waifu image (left) | About Kusari (right) */}
+            <div className="hidden md:flex items-center justify-center h-full min-h-[200px] w-full">
+              <img src={WAIFUS_LOCAL[4]} alt="Waifu" className="object-contain rounded-lg w-full h-full max-h-[320px]" />
+            </div>
             <div className="shadow-md relative rounded-lg overflow-visible" style={{ backgroundColor: '#DBFFE0', border: '2px solid #21D510' }}>
-              <img src={PIXEL_STAR_PURPLE} alt="" width={44} height={44} className="absolute -top-4 -right-4 opacity-90 pointer-events-none z-20" />
-              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-4 -right-4 opacity-90 pointer-events-none z-20" />
-              <div className="p-6 relative">
+              <img src={PIXEL_STAR_GREEN} alt="" width={44} height={44} className="absolute -bottom-3 right-[8%] opacity-90 pointer-events-none z-20" />
+              <div className="p-4 md:p-5 relative">
                 <h3 className="font-bold text-2xl mb-4" style={{ color: '#00C48C' }}>About Kusari</h3>
                 <p className="text-gray-700 leading-relaxed">Kusari is a creative collective building durable culture onchain.</p>
                 <p className="text-gray-700 leading-relaxed mt-4">We collaborate with artists and communities to create projects that aren&apos;t just part of a trend. At Kusari we create art that is meant to last.</p>
@@ -203,23 +203,29 @@ export default function LandingPage() {
       {/* Timeline Section */}
       <section className="py-6 md:py-10 px-4 bg-gradient-to-b from-pink-50/30 to-pink-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-pixel text-2xl font-bold text-center mb-1 text-cyan-500">The First ever NFT</h2>
-          <h3 className="font-pixel text-xl font-bold text-center mb-2 text-cyan-500">community takeover</h3>
-          <p className="text-center text-gray-600 mb-8">Something else you might wanna say idk</p>
+          <h2 className="font-pixel text-2xl font-bold text-center mb-1 text-cyan-500">A timeline of Waifusion</h2>
+          <p className="text-center text-gray-600 mb-8">From being neglected to passion for art</p>
 
           {/* Timeline */}
           <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-pink-300 to-cyan-300 rounded-full top-[-20px] bottom-[-20px]" />
+            {/* Vertical line - fades in/out at top and bottom */}
+            <div
+              className="absolute left-1/2 transform -translate-x-1/2 w-1 rounded-full top-[-20px] bottom-[-20px]"
+              style={{
+                background: "linear-gradient(to bottom, #f9a8d4 0%, #67e8f9 100%)",
+                maskImage: "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
+              }}
+            />
 
             {/* Timeline items */}
             <div className="space-y-0 md:space-y-1">
               {[
-                { date: "March 3rd 2021", title: "Waifusion Mint Begins", side: "left", accent: "pink" },
-                { date: "March 9th 2021", title: "Waifusion Dungeon is built", side: "right", accent: "purple" },
-                { date: "March 22nd 2021", title: "Waifusion run", side: "left", accent: "cyan-dark" },
-                { date: "March 24th 2021", title: "community takeover", side: "right", accent: "cyan" },
-                { date: "September 2021", title: "uwucrew", side: "left", accent: "cyan" },
+                { date: "March 3rd 2021", title: "Waifusion Mint Begins", subline: "15,384 Waifus are available to mint on a price curve", side: "left", accent: "pink" },
+                { date: "March 9th 2021", title: "Waifusion Dungeon is built", subline: "The community innovates together after the mint stalls halfway", side: "right", accent: "purple" },
+                { date: "March 22nd 2021", title: "Waifusion Rug", subline: "The creators decide for their own reasons to neglect the project", side: "left", accent: "cyan-dark" },
+                { date: "March 24th 2021", title: "Community Takeover", subline: "Kiwi, Laur and Morello work together to maintain the project", side: "right", accent: "cyan" },
+                { date: "September 5th 2021", title: "uwucrew Launch", subline: "The start of Kusari and more, after the incidents of Waifusion.", side: "left", accent: "cyan" },
               ].map((event, i) => {
                 const accentColor = event.accent === "pink"
                   ? { border: "border-pink-400", text: "text-pink-600", line: "bg-pink-400", dot: "bg-pink-400" }
@@ -249,8 +255,8 @@ export default function LandingPage() {
                       <div className={`inline-block bg-white rounded-xl p-4 shadow-lg border-2 ${borderClass}`}>
                         <span className={`text-xs font-bold ${textClass}`}>{event.date}</span>
                         <h4 className="font-bold text-gray-900 mt-1">{event.title}</h4>
-                        <p className="text-xs text-gray-600 mt-1">Apollo 11 successfully lands on the Moon</p>
-                        <Link href="#" className={`text-xs ${textClass} hover:underline`}>Click to read more</Link>
+                        <p className="text-xs text-gray-600 mt-1">{event.subline}</p>
+                        {i === 4 && <Link href="#" className={`text-xs ${textClass} hover:underline mt-2 block`}>Click to learn more</Link>}
                       </div>
                     </div>
                     <div className="w-full md:w-2/12 flex justify-center items-center mb-1 md:mb-0 relative">
@@ -274,55 +280,64 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Community CTA */}
-      <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-pink-200 via-pink-100 to-cyan-100 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <img src={PIXEL_STARS_MIXED} alt="" width={200} height={200} className="absolute top-10 left-[10%] opacity-80" />
-          <img src={PIXEL_HEARTS} alt="" width={60} height={60} className="absolute top-20 right-[15%]" />
-          <img src={PIXEL_STAR_BLUE} alt="" width={40} height={40} className="absolute bottom-20 left-[20%]" />
-          <img src={PIXEL_STAR_PURPLE} alt="" width={50} height={50} className="absolute bottom-10 right-[25%]" />
+      {/* Community CTA - Kusari-style with pastel green, pixel font, logo */}
+      <section
+        className="py-16 md:py-24 px-4 relative overflow-hidden"
+        style={{ backgroundColor: "#b8e0c8" }}
+      >
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <img src={PIXEL_STARS_MIXED} alt="" width={80} height={80} className="absolute top-[8%] left-[6%] opacity-60" />
+          <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="absolute top-[25%] right-[5%] opacity-65" />
+          <img src={PIXEL_STAR_BLUE} alt="" width={48} height={48} className="absolute top-[55%] left-[3%] opacity-55" />
+          <img src={PIXEL_STAR_ORANGE} alt="" width={70} height={70} className="absolute top-[75%] right-[8%] opacity-60" />
+          <img src={PIXEL_STAR_PURPLE} alt="" width={44} height={44} className="absolute bottom-[15%] left-[12%] opacity-65" />
+          <img src={PIXEL_STAR_BLUE} alt="" width={52} height={52} className="absolute top-[40%] right-[15%] opacity-55" />
         </div>
 
         <div className="max-w-3xl mx-auto text-center relative z-10">
-          {/* Large pixel art logo */}
-          <div className="mb-8">
-            <img src={PIXEL_HEARTS} alt="" width={120} height={120} className="mx-auto" />
+          {/* Kusari logo */}
+          <div className="mb-6 flex justify-center">
+            <img
+              src="/kusari-logo.png"
+              alt="Kusari"
+              width={80}
+              height={80}
+              className="h-16 w-16 md:h-20 md:w-20 object-contain opacity-90"
+            />
           </div>
 
-          <h2 className="font-pixel text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">
-            discover the kusari<br />community
+          <h2 className="font-pixel text-3xl md:text-4xl font-bold text-gray-800 mb-6 leading-tight">
+            discover the kusari<br />
+            <span className="text-gray-900">community</span>
           </h2>
 
           <Link
             href="https://discord.gg/cKWpT7HGam"
             target="_blank"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-3 bg-gray-800 text-white font-medium rounded-full hover:bg-gray-700 transition-colors font-pixel text-sm"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" /></svg>
             join our discord!
           </Link>
-        </div>
-      </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-4 bg-pink-50">
-        <div className="max-w-7xl mx-auto flex flex-col items-center gap-4">
-          <div className="flex items-center gap-6">
-            <Link href="https://instagram.com" target="_blank" className="text-gray-600 hover:text-gray-900">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+          {/* Social icons row - like reference */}
+          <div className="flex items-center justify-center gap-5 mt-6">
+            <Link href="https://kusari.org" target="_blank" className="text-gray-700 hover:text-gray-900" aria-label="Kusari website">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
             </Link>
-            <Link href="https://twitter.com/waaboratory" target="_blank" className="text-gray-600 hover:text-gray-900">
+            <Link href="https://twitter.com/waaboratory" target="_blank" className="text-gray-700 hover:text-gray-900" aria-label="Twitter">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
             </Link>
-            <Link href="https://opensea.io/collection/waifusion" target="_blank" className="text-gray-600 hover:text-gray-900">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12 12-5.374 12-12S18.629 0 12 0ZM5.92 12.403l.051-.081 3.123-4.884a.107.107 0 0 1 .187.014c.52 1.169.972 2.623.76 3.528-.088.372-.335.876-.614 1.342a2.405 2.405 0 0 1-.117.199.106.106 0 0 1-.09.045H6.013a.106.106 0 0 1-.091-.163Z" /></svg>
+            <Link href="https://t.me/kusari" target="_blank" className="text-gray-700 hover:text-gray-900" aria-label="Telegram">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" /></svg>
             </Link>
-            <Link href="https://discord.gg/cKWpT7HGam" target="_blank" className="text-gray-600 hover:text-gray-900">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" /></svg>
+            <Link href="https://instagram.com" target="_blank" className="text-gray-700 hover:text-gray-900" aria-label="Instagram">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
             </Link>
           </div>
         </div>
-      </footer>
+      </section>
+
     </main>
   )
 }
