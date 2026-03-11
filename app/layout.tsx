@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Inter, Pixelify_Sans } from "next/font/google"
+import { CursorEffect } from "./components/CursorEffect"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -25,6 +26,7 @@ export default function RootLayout({
           backgroundAttachment: "fixed",
         }}
       >
+        <CursorEffect />
         {children}
       </body>
     </html>
