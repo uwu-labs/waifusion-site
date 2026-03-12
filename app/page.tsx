@@ -52,7 +52,7 @@ export default function LandingPage() {
             <div className="w-full flex flex-col md:flex-row md:gap-8 md:items-center md:justify-center">
               {/* Text block */}
               <div className="w-full md:max-w-md md:flex-shrink-0 flex flex-col">
-                <div className="order-1 inline-block px-4 py-1.5 bg-gradient-to-r from-pink-400 to-pink-500 text-white text-xs font-bold uppercase tracking-wider rounded mb-4 w-fit">
+                <div className="order-1 inline-block px-4 py-1.5 bg-gradient-to-r from-pink-400 to-pink-500 text-white text-xs font-bold uppercase tracking-wider w-fit">
                   First NFT Community Takeover
                 </div>
 
@@ -95,7 +95,7 @@ export default function LandingPage() {
 
               {/* Hero image - sized to image, grouped in center with text */}
               <div className="w-full md:w-auto md:flex-shrink-0 flex items-center justify-center mt-4 md:mt-0">
-                <div className="w-full max-w-xs sm:max-w-sm md:max-w-[340px] aspect-video max-h-80 rounded-2xl overflow-hidden shadow-lg border-4 border-white/80 bg-white/30" style={{ aspectRatio: '16/9' }}>
+                <div className="w-full max-w-xs sm:max-w-sm md:max-w-[500px] aspect-video max-h-120  overflow-hidden shadow-lg border-4 border-white/80 bg-white/30" style={{ aspectRatio: '16/9' }}>
                   <img
                     src={`${WAIFU_IMAGE_BASE}6.png`}
                     alt="Waifusion hero artwork"
@@ -135,10 +135,11 @@ export default function LandingPage() {
       <section className="py-8 md:py-10 px-4 relative">
         <div className="max-w-6xl mx-auto">
           {/* Decorative pixel elements - scattered erratically at edges, away from text */}
-          <img src={PIXEL_STARS_MIXED} alt="" width={70} height={70} className="hidden md:block absolute top-[12%] left-[2%] z-20 pointer-events-none opacity-90" />
-          <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="hidden md:block absolute top-[58%] right-[1%] z-20 pointer-events-none opacity-85" />
-          <img src={PIXEL_STAR_ORANGE} alt="" width={65} height={65} className="hidden md:block absolute bottom-[42%] left-[0%] z-20 pointer-events-none opacity-80" />
-          
+          <img src={PIXEL_STARS_MIXED} alt="" width={180} height={180} className="hidden md:block absolute top-[12%] left-[-5%] z-20 pointer-events-none opacity-90" />
+          <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="hidden md:block absolute top-[58%] right-[10%] z-20 pointer-events-none opacity-85" />
+          <img src={PIXEL_STAR_ORANGE} alt="" width={65} height={65} className="hidden md:block absolute bottom-[42%] left-[9%] z-20 pointer-events-none opacity-85" />
+          <img src={PIXEL_STARS_MIXED} alt="" width={180} height={180} className="hidden md:block absolute top-[80%] left-[95%] z-20 pointer-events-none opacity-95" />
+
           <div className="grid md:grid-cols-2 gap-y-6 md:gap-y-8 gap-x-2 md:gap-x-4 max-w-4xl mx-auto items-center">
             {/* Row 1: What is Waifusion | First NFT takeover — no images */}
             <div className="shadow-md relative rounded-lg overflow-visible" style={{ backgroundColor: '#E7C8FF', border: '2px solid #AB5BFF' }}>
@@ -201,7 +202,7 @@ export default function LandingPage() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-6 md:py-10 px-4 bg-gradient-to-b from-pink-50/30 to-pink-50">
+      <section className="py-12 md:py-20 px-4 bg-gradient-to-b from-pink-50/30 to-pink-80 relative overflow-visible">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-pixel text-2xl font-bold text-center mb-1 text-cyan-500">A timeline of Waifusion</h2>
           <p className="text-center text-gray-600 mb-8">From being neglected to passion for art</p>
@@ -210,7 +211,7 @@ export default function LandingPage() {
           <div className="relative">
             {/* Vertical line - fades in/out at top and bottom */}
             <div
-              className="absolute left-1/2 transform -translate-x-1/2 w-1 rounded-full top-[-20px] bottom-[-20px]"
+              className="absolute left-[35%] transform -translate-x-1/2 w-1 rounded-full top-[-20px] bottom-[-20px]"
               style={{
                 background: "linear-gradient(to bottom, #f9a8d4 0%, #67e8f9 100%)",
                 maskImage: "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
@@ -230,10 +231,10 @@ export default function LandingPage() {
                 const accentColor = event.accent === "pink"
                   ? { border: "border-pink-400", text: "text-pink-600", line: "bg-pink-400", dot: "bg-pink-400" }
                   : event.accent === "purple"
-                  ? { border: "border-fuchsia-400", text: "text-fuchsia-600", line: "bg-fuchsia-400", dot: "bg-fuchsia-400" }
-                  : event.accent === "cyan-dark"
-                  ? { border: "border-cyan-500", text: "text-cyan-600", line: "bg-cyan-500", dot: "bg-cyan-500" }
-                  : { border: "border-cyan-400", text: "text-cyan-600", line: "bg-cyan-400", dot: "bg-cyan-400" }
+                    ? { border: "border-fuchsia-400", text: "text-fuchsia-600", line: "bg-fuchsia-400", dot: "bg-fuchsia-400" }
+                    : event.accent === "cyan-dark"
+                      ? { border: "border-cyan-500", text: "text-cyan-600", line: "bg-cyan-500", dot: "bg-cyan-500" }
+                      : { border: "border-cyan-400", text: "text-cyan-600", line: "bg-cyan-400", dot: "bg-cyan-400" }
 
                 const borderClass = accentColor.border
                 const textClass = accentColor.text
@@ -243,40 +244,59 @@ export default function LandingPage() {
                 return (
                   <div
                     key={i}
-                    className={`flex flex-col md:flex-row md:items-center ${
-                      event.side === "right" ? "md:flex-row-reverse" : ""
-                    }`}
+                    className="flex flex-col md:flex-row md:items-center"
                   >
+                    {/* Left Column (30%) - Box for left side events */}
                     <div
-                      className={`w-full md:w-5/12 flex md:items-center ${
-                        event.side === "left" ? "md:text-right md:justify-end" : "md:text-left md:justify-start"
-                      } mb-1 md:mb-0`}
+                      className={`w-full md:w-[30%] flex md:items-center md:text-right md:justify-end mb-1 md:mb-0`}
                     >
-                      <div className={`inline-block bg-white rounded-xl p-4 shadow-lg border-2 ${borderClass}`}>
-                        <span className={`text-xs font-bold ${textClass}`}>{event.date}</span>
-                        <h4 className="font-bold text-gray-900 mt-1">{event.title}</h4>
-                        <p className="text-xs text-gray-600 mt-1">{event.subline}</p>
-                        {i === 4 && <Link href="#" className={`text-xs ${textClass} hover:underline mt-2 block`}>Click to learn more</Link>}
-                      </div>
+                      {event.side === "left" && (
+                        <div className={`inline-block bg-white rounded-xl p-4 shadow-lg border-2 ${borderClass}`}>
+                          <span className={`text-xs font-bold ${textClass}`}>{event.date}</span>
+                          <h4 className="font-bold text-gray-900 mt-1">{event.title}</h4>
+                          <p className="text-xs text-gray-600 mt-1">{event.subline}</p>
+                          {i === 4 && <Link href="#" className={`text-xs ${textClass} hover:underline mt-2 block`}>Click to learn more</Link>}
+                        </div>
+                      )}
                     </div>
-                    <div className="w-full md:w-2/12 flex justify-center items-center mb-1 md:mb-0 relative">
-                      {/* Connector line: center vertically (top-1/2 -translate-y-1/2) so it aligns with box center and dot */}
+
+                    {/* Center Column (10%) - The dot (centered at 35%) */}
+                    <div className="w-full md:w-[10%] flex justify-center items-center mb-1 md:mb-0 relative">
+                      {/* Connector line: center vertically (top-1/2 -translate-y-1/2) */}
                       <div
-                        className={`hidden md:block absolute top-1/2 h-1 -translate-y-1/2 ${connectorClass} ${
-                          event.side === "left" ? "left-0 right-1/2" : "left-1/2 right-0"
-                        }`}
+                        className={`hidden md:block absolute top-1/2 h-1 -translate-y-1/2 ${connectorClass} ${event.side === "left" ? "left-0 right-1/2" : "left-1/2 right-0"
+                          }`}
                         aria-hidden="true"
                       />
                       <div
                         className={`w-4 h-4 rounded-full shrink-0 ${dotClass} border-4 border-white shadow relative z-10`}
                       />
                     </div>
-                    <div className="hidden md:block md:w-5/12" />
+
+                    {/* Right Column (60%) - Box for right side events */}
+                    <div className="w-full md:w-[60%] flex md:items-center md:text-left md:justify-start">
+                      {event.side === "right" && (
+                        <div className={`inline-block bg-white rounded-xl p-4 shadow-lg border-2 ${borderClass} w-full md:max-w-[50%]`}>
+                          <span className={`text-xs font-bold ${textClass}`}>{event.date}</span>
+                          <h4 className="font-bold text-gray-900 mt-1">{event.title}</h4>
+                          <p className="text-xs text-gray-600 mt-1">{event.subline}</p>
+                          {i === 4 && <Link href="#" className={`text-xs ${textClass} hover:underline mt-2 block`}>Click to learn more</Link>}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )
               })}
             </div>
           </div>
+        </div>
+
+        <div className="absolute bottom-0 right-0 z-20 pointer-events-none">
+          <img
+            src="/wf.png"
+            alt="Waifusion Mascot"
+            className="w-64 md:w-[450px] h-auto object-contain pointer-events-auto hover:scale-105 transition-transform cursor-pointer"
+          />
         </div>
       </section>
 
@@ -286,12 +306,12 @@ export default function LandingPage() {
         style={{ backgroundColor: "#b8e0c8" }}
       >
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <img src={PIXEL_STARS_MIXED} alt="" width={80} height={80} className="absolute top-[8%] left-[6%] opacity-60" />
-          <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="absolute top-[25%] right-[5%] opacity-65" />
-          <img src={PIXEL_STAR_BLUE} alt="" width={48} height={48} className="absolute top-[55%] left-[3%] opacity-55" />
-          <img src={PIXEL_STAR_ORANGE} alt="" width={70} height={70} className="absolute top-[75%] right-[8%] opacity-60" />
-          <img src={PIXEL_STAR_PURPLE} alt="" width={44} height={44} className="absolute bottom-[15%] left-[12%] opacity-65" />
-          <img src={PIXEL_STAR_BLUE} alt="" width={52} height={52} className="absolute top-[40%] right-[15%] opacity-55" />
+          <img src={PIXEL_STARS_MIXED} alt="" width={180} height={180} className="absolute top-[8%] left-[6%] opacity-80" />
+          <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="absolute top-[25%] right-[5%] opacity-90" />
+          <img src={PIXEL_STAR_BLUE} alt="" width={48} height={48} className="absolute top-[55%] left-[3%] opacity-80" />
+          <img src={PIXEL_STAR_ORANGE} alt="" width={70} height={70} className="absolute top-[75%] right-[8%] opacity-80" />
+          <img src={PIXEL_STAR_PURPLE} alt="" width={44} height={44} className="absolute bottom-[15%] left-[12%] opacity-80" />
+          <img src={PIXEL_STAR_BLUE} alt="" width={52} height={52} className="absolute top-[40%] right-[15%] opacity-80" />
         </div>
 
         <div className="max-w-3xl mx-auto text-center relative z-10">
