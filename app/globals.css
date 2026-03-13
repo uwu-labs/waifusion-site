@@ -135,8 +135,28 @@ textarea,
   }
 }
 
+@keyframes waifu-jump-short {
+  0% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  50% {
+    transform: translateY(-18px);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .animate-waifu-jump {
   animation: waifu-jump 1s infinite;
+}
+
+@media (max-width: 639px) {
+  .animate-waifu-jump {
+    animation: waifu-jump-short 0.8s infinite;
+  }
 }
 
 @keyframes slide {

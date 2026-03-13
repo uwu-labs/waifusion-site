@@ -1,10 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import Link from "next/link"
-import MagneticStars from "./MagneticStars"
-import JumpingWaifu from "./JumpingWaifu"
-import MobileLanding from "./components/MobileLanding"
+import MagneticStars from "../MagneticStars"
+import JumpingWaifu from "../JumpingWaifu"
+
 // Waifusion images - hero stays on Arweave; gallery + info card use local waifus (waifu1–5 in usage order)
 const WAIFU_IMAGE_BASE = "https://arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/"
 const WAIFUS_LOCAL = [
@@ -26,15 +25,16 @@ const PIXEL_STAR_YELLOW = "/pixel-assets/pixel-star-yellow.gif"
 const PIXEL_STAR_ORANGE = "/pixel-assets/pixel-star-orange.gif"
 const PIXEL_STAR_GREEN = "/pixel-assets/pixel-stars-green.gif"
 
-
-
-function DesktopLanding() {
+// ─────────────────────────────────────────────────────────────────────────────
+// This is the MOBILE version. Edit freely — it won't affect the desktop site.
+// ─────────────────────────────────────────────────────────────────────────────
+export default function MobileLanding() {
   return (
     <main className="min-h-screen overflow-x-hidden">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-gradient-to-r from-pink-300 to-pink-400 shadow-md">
-        <div className="max-w-7xl mx-auto px-4 h-14 flex items-center relative">
-          <Link href="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 no-hover">
+        <div className="max-w-7xl mx-auto px-4 h-10 flex items-center relative">
+          <Link href="/" className="flex items-center gap-2 no-hover">
             <span className="font-pixel font-bold text-white text-2xl">Waifusion</span>
             <span className="text-white/70 text-m">by Kusari</span>
           </Link>
@@ -52,6 +52,15 @@ function DesktopLanding() {
         </div>
       </header>
 
+      {/* Scrolling ticker — flush under header, full width */}
+      <div className="w-full overflow-hidden bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-400 h-7 flex items-center md:hidden">
+        <div className="flex whitespace-nowrap animate-slide w-max">
+          <span className="px-6 text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+          <span className="px-6 text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+          <span className="px-6 text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+        </div>
+      </div>
+
       {/* Hero Section - same gradient as body for consistent look */}
       <section
         className="relative pt-6 pb-12 px-5 sm:px-8 md:px-10"
@@ -65,15 +74,31 @@ function DesktopLanding() {
             <div className="w-full flex flex-col md:flex-row md:gap-8 md:items-center md:justify-center">
               {/* Text block */}
               <div className="w-full md:max-w-md md:flex-shrink-0 flex flex-col">
-                <div className="order-1 overflow-hidden inline-flex items-center bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-400 text-white text-xs font-bold uppercase tracking-wider mb-2 w-64 h-[28px] animate-gradient self-center md:self-start">
-                  <div className="flex whitespace-nowrap animate-slide w-max">
-                    <span className="px-4">First NFT Community Takeover!</span>
-                    <span className="px-4">First NFT Community Takeover!</span>
-                  </div>
+
+                {/* Title block with image behind it on mobile */}
+                <div className="order-2 relative mb-3 md:hidden">
+                  {/* Image sits in the top-right, behind title text */}
+                  <img
+                    src="/placeholder.png"
+                    alt="Waifusion hero artwork"
+                    className="absolute right-0 top-0 w-36 h-36 object-contain z-0 opacity-90"
+                  />
+                  <h1
+                    className="relative z-10 font-pixel text-3xl font-bold leading-tight bg-clip-text text-transparent inline-block text-left"
+                    style={{ backgroundImage: 'linear-gradient(to bottom, #FF008C 0%, #DFA7FF 37%, #0894FF 100%)' }}
+                  >
+                    Waifusion
+                    <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="inline-block ml-2 align-middle" />
+                    <br />
+                    a community-
+                    <br />
+                    born NFT legacy
+                  </h1>
                 </div>
 
+                {/* Desktop h1 (hidden on mobile) */}
                 <h1
-                  className="order-2 font-pixel text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-3 bg-clip-text text-transparent inline-block text-center md:text-left"
+                  className="order-2 hidden md:inline-block font-pixel text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-3 bg-clip-text text-transparent text-left md:text-left"
                   style={{ backgroundImage: 'linear-gradient(to bottom, #FF008C 0%, #DFA7FF 37%, #0894FF 100%)' }}
                 >
                   Waifusion
@@ -84,20 +109,22 @@ function DesktopLanding() {
                   born NFT legacy
                 </h1>
 
-                <p className="order-3 text-gray-600 mb-4 leading-relaxed text-sm sm:text-base text-center md:text-left max-w-md">
-                  Waifusion is the <span className="font-semibold text-gray-900">first generative anime collection</span> born on Ethereum.
-                  Although the original team neglected it, the community refused to end its story.
-                </p>
+                <div className="order-3 mb-4">
+                  <p className="text-gray-600 leading-relaxed text-sm text-left">
+                    Waifusion is the <span className="font-semibold text-gray-900">first generative anime collection</span> born on Ethereum.
+                    Although the original team neglected it, the community refused to end its story.
+                  </p>
+                </div>
 
-                <div className="order-4 w-fit flex flex-col sm:flex-row flex-wrap gap-4 justify-center md:justify-start">
+                <div className="order-4 flex flex-row gap-3 justify-start">
                   <div className="pixel-border-outer" style={{ color: '#fa4cbdff' }}>
                     <Link
                       href="https://discord.gg/cKWpT7HGam"
                       target="_blank"
-                      className="h-[40px] px-5 flex items-center justify-center text-white font-medium hover:opacity-90 transition-opacity text-base pixel-box-sm"
+                      className="h-[26px] px-3 flex items-center justify-center text-white font-medium hover:opacity-90 transition-opacity text-xs pixel-box-sm"
                       style={{ backgroundColor: '#fa4cbdff' }}
                     >
-                      Join our Discord
+                      Join Discord
                     </Link>
                   </div>
 
@@ -105,7 +132,7 @@ function DesktopLanding() {
                     <Link
                       href="https://opensea.io/collection/waifusion"
                       target="_blank"
-                      className="h-[40px] px-5 flex items-center justify-center text-white font-medium hover:opacity-90 transition-opacity text-base pixel-box-sm"
+                      className="h-[26px] px-3 flex items-center justify-center text-white font-medium hover:opacity-90 transition-opacity text-xs pixel-box-sm"
                       style={{ backgroundColor: '#fa4cbdff' }}
                     >
                       Buy on Opensea
@@ -114,8 +141,8 @@ function DesktopLanding() {
                 </div>
               </div>
 
-              {/* Hero image - sized to image, grouped in center with text */}
-              <div className="w-full md:w-auto md:flex-shrink-0 flex items-center justify-center mt-4 md:mt-0">
+              {/* Hero image - shown on md+ only; on mobile it appears inline next to text above */}
+              <div className="hidden md:flex w-full md:w-auto md:flex-shrink-0 items-center justify-center mt-4 md:mt-0">
                 <img
                   src="/placeholder.png"
                   alt="Waifusion hero artwork"
@@ -127,19 +154,44 @@ function DesktopLanding() {
         </div>
       </section>
 
-      {/* Gallery Grid - 4 Waifus */}
-      <section className="pt-10 pb-0 sm:pt-12 sm:pb-0 px-2 sm:px-4 bg-gradient-to-b from-pink-100/50 to-pink-50/30 overflow-visible relative z-10">
-        <div className="max-w-[calc(56rem*1.35)] mx-auto overflow-visible">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 items-center overflow-visible translate-y-6 sm:translate-y-8 pb-2">
-            {WAIFUS_LOCAL.slice(0, 4).map((_, i) => {
-              // Rotate array by i*2 to ensure different starting points and sequences
+      {/* Gallery Grid - 3 on mobile, 4 on sm+ */}
+      <section className="pt-4 pb-0 sm:pt-12 sm:pb-0 bg-gradient-to-b from-pink-100/50 to-pink-50/30 overflow-visible relative z-10">
+        {/* Mobile: full-width, 3 cols, no gap */}
+        <div className="sm:hidden w-full overflow-visible">
+          <div className="grid grid-cols-3 gap-0 items-center overflow-visible translate-y-2 pb-2">
+            {WAIFUS_LOCAL.slice(0, 3).map((_, i) => {
               const slotImages = [
                 ...WAIFUS_LOCAL.slice(i * 2),
                 ...WAIFUS_LOCAL.slice(0, i * 2)
               ];
               return (
                 <div
-                  key={`jumping-waifu-${i}`}
+                  key={`jumping-waifu-m-${i}`}
+                  className="aspect-square relative flex items-center justify-center overflow-visible"
+                >
+                  <JumpingWaifu
+                    images={slotImages}
+                    initialIndex={0}
+                    delay={`${i * -0.25}s`}
+                    className="w-full h-full object-contain relative z-10"
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* sm+: original layout, 4 cols */}
+        <div className="hidden sm:block max-w-[calc(56rem*1.35)] mx-auto px-4 overflow-visible">
+          <div className="grid grid-cols-4 gap-0 items-center overflow-visible translate-y-8 pb-2">
+            {WAIFUS_LOCAL.slice(0, 4).map((_, i) => {
+              const slotImages = [
+                ...WAIFUS_LOCAL.slice(i * 2),
+                ...WAIFUS_LOCAL.slice(0, i * 2)
+              ];
+              return (
+                <div
+                  key={`jumping-waifu-d-${i}`}
                   className="aspect-square relative flex items-center justify-center overflow-visible"
                 >
                   <JumpingWaifu
@@ -156,7 +208,7 @@ function DesktopLanding() {
       </section>
 
       {/* Info Cards Section */}
-      <section className="py-8 md:py-10 px-4 relative">
+      <section className="py-4 md:py-10 px-4 relative">
         <div className="max-w-6xl mx-auto">
           {/* Decorative pixel elements - scattered erratically at edges, away from text */}
           <MagneticStars>
@@ -166,15 +218,15 @@ function DesktopLanding() {
             <img src={PIXEL_STARS_MIXED} alt="" width={180} height={180} className="hidden md:block absolute top-[80%] left-[95%] z-20 pointer-events-none opacity-95" />
           </MagneticStars>
 
-          <div className="grid md:grid-cols-2 gap-y-6 md:gap-y-8 gap-x-2 md:gap-x-4 max-w-4xl mx-auto items-center">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-y-3 md:gap-y-8 gap-x-2 md:gap-x-4 max-w-4xl mx-auto items-start">
             {/* Row 1: What is Waifusion | First NFT takeover — no images */}
             <div className="relative">
               <div className="pixel-border-outer" style={{ color: '#AB5BFF' }}>
                 <div className="shadow-md relative pixel-box overflow-visible" style={{ backgroundColor: '#E7C8FF' }}>
-                  <div className="p-4 md:p-5 relative">
-                    <h3 className="font-bold text-2xl mb-4" style={{ color: '#B010FA' }}>What is Waifusion?</h3>
-                    <p className="text-gray-700 leading-relaxed">The earliest generative anime NFT collection — minted in March 2021, before all the ecosystem we know now was established.</p>
-                    <p className="text-gray-700 leading-relaxed mt-4">16,384 Waifusions were for sale, but the mint didn&apos;t finish, so the community invented a solution. Waifusions could be burned and swapped for new unsold ones, this resulted in only 8,918 surviving.</p>
+                  <div className="p-2 md:p-5 relative">
+                    <h3 className="font-bold text-[10px] leading-tight mb-1" style={{ color: '#B010FA' }}>What is Waifusion?</h3>
+                    <p className="text-gray-700 leading-[1.2] text-[10px]">The earliest generative anime NFT collection — minted in March 2021, before all the ecosystem we know now was established.</p>
+                    <p className="text-gray-700 leading-[1.2] mt-1 text-[10px]">16,384 Waifusions were for sale, but the mint didn&apos;t finish, so the community invented a solution. Waifusions could be burned and swapped for new unsold ones, this resulted in only 8,918 surviving.</p>
                   </div>
                 </div>
               </div>
@@ -183,10 +235,10 @@ function DesktopLanding() {
             <div className="relative">
               <div className="pixel-border-outer" style={{ color: '#F453EF' }}>
                 <div className="shadow-md relative pixel-box overflow-visible" style={{ backgroundColor: '#FFE0FE' }}>
-                  <div className="p-4 md:p-5 relative">
-                    <h3 className="font-bold text-2xl mb-4" style={{ color: '#F453EF' }}>The First NFT Takeover</h3>
-                    <p className="text-gray-700 leading-relaxed">Decentralization by necessity has carried Waifusion for over 4 years. When the original team walked away, Waifusion didn&apos;t die. The holders stepped up to make Waifusion the first NFT project fully carried forward by its community.</p>
-                    <p className="text-gray-700 leading-relaxed mt-4">The first leap was the &quot;Waifusion Dungeon&quot; for the holders to burn and swap Waifus.</p>
+                  <div className="p-2 md:p-5 relative">
+                    <h3 className="font-bold text-[10px] leading-tight mb-1" style={{ color: '#F453EF' }}>The First NFT Takeover</h3>
+                    <p className="text-gray-700 leading-[1.2] text-[10px]">Decentralization by necessity has carried Waifusion for over 4 years. When the original team walked away, Waifusion didn&apos;t die. The holders stepped up to make Waifusion the first NFT project fully carried forward by its community.</p>
+                    <p className="text-gray-700 leading-[1.2] mt-1 text-[10px]">The first leap was the &quot;Waifusion Dungeon&quot; for the holders to burn and swap Waifus.</p>
                   </div>
                 </div>
               </div>
@@ -198,10 +250,10 @@ function DesktopLanding() {
             <div className="relative">
               <div className="pixel-border-outer" style={{ color: '#FFC078' }}>
                 <div className="shadow-md relative pixel-box overflow-visible" style={{ backgroundColor: '#FFF5D8' }}>
-                  <div className="p-4 md:p-5 relative">
-                    <h3 className="font-bold text-2xl mb-4" style={{ color: '#F2A310' }}>Why does Waifusion matter?</h3>
-                    <p className="text-gray-700 leading-relaxed">Waifusion matters because it proves that NFTs enable culture to survive. The first NFT CTO, the first burn-to-swap NFT collection, the beginning of Kusari and many other firsts.</p>
-                    <p className="text-gray-700 leading-relaxed mt-4">Thanks to being onchain, the community was able to maintain ownership and evolve after the project was abandoned, and remain a part of NFT history.</p>
+                  <div className="p-2 md:p-5 relative">
+                    <h3 className="font-bold text-[10px] leading-tight mb-1" style={{ color: '#F2A310' }}>Why does Waifusion matter?</h3>
+                    <p className="text-gray-700 leading-[1.2] text-[10px]">Waifusion matters because it proves that NFTs enable culture to survive. The first NFT CTO, the first burn-to-swap NFT collection, the beginning of Kusari and many other firsts.</p>
+                    <p className="text-gray-700 leading-[1.2] mt-1 text-[10px]">Thanks to being onchain, the community was able to maintain ownership and evolve after the project was abandoned, and remain a part of NFT history.</p>
                   </div>
                 </div>
               </div>
@@ -210,10 +262,10 @@ function DesktopLanding() {
             <div className="relative">
               <div className="pixel-border-outer" style={{ color: '#32AAFF' }}>
                 <div className="shadow-md relative pixel-box overflow-visible" style={{ backgroundColor: '#DAF1FF' }}>
-                  <div className="p-4 md:p-5 relative">
-                    <h3 className="font-bold text-2xl mb-4" style={{ color: '#32AAFF' }}>From CTO to Kusari</h3>
-                    <p className="text-gray-700 leading-relaxed">In March 2021, the current Kusari founders took stewardship of Waifusion to ensure it wasn&apos;t forgotten. This eventually led to where we are now.</p>
-                    <p className="text-gray-700 leading-relaxed mt-4">Today, Waifusion exists as part of the Kusari Family, alongside uwucrew, Killer GF, and more, connected by a community with a passion for creativity.</p>
+                  <div className="p-2 md:p-5 relative">
+                    <h3 className="font-bold text-[10px] leading-tight mb-1" style={{ color: '#32AAFF' }}>From CTO to Kusari</h3>
+                    <p className="text-gray-700 leading-[1.2] text-[10px]">In March 2021, the current Kusari founders took stewardship of Waifusion to ensure it wasn&apos;t forgotten. This eventually led to where we are now.</p>
+                    <p className="text-gray-700 leading-[1.2] mt-1 text-[10px]">Today, Waifusion exists as part of the Kusari Family, alongside uwucrew, Killer GF, and more, connected by a community with a passion for creativity.</p>
                   </div>
                 </div>
               </div>
@@ -228,11 +280,11 @@ function DesktopLanding() {
             <div className="relative">
               <div className="pixel-border-outer" style={{ color: '#21D510' }}>
                 <div className="shadow-md relative pixel-box overflow-visible" style={{ backgroundColor: '#DBFFE0' }}>
-                  <div className="p-4 md:p-5 relative">
-                    <h3 className="font-bold text-2xl mb-4" style={{ color: '#00C48C' }}>About Kusari</h3>
-                    <p className="text-gray-700 leading-relaxed">Kusari is a creative collective building durable culture onchain.</p>
-                    <p className="text-gray-700 leading-relaxed mt-4">We collaborate with artists and communities to create projects that aren&apos;t just part of a trend. At Kusari we create art that is meant to last.</p>
-                    <p className="text-gray-700 leading-relaxed mt-4">
+                  <div className="p-2 md:p-5 relative">
+                    <h3 className="font-bold text-[10px] leading-tight mb-1" style={{ color: '#00C48C' }}>About Kusari</h3>
+                    <p className="text-gray-700 leading-[1.2] text-[10px]">Kusari is a creative collective building durable culture onchain.</p>
+                    <p className="text-gray-700 leading-[1.2] mt-1 text-[10px]">We collaborate with artists and communities to create projects that aren&apos;t just part of a trend. At Kusari we create art that is meant to last.</p>
+                    <p className="text-gray-700 leading-[1.2] mt-1 text-[10px]">
                       Discover more about Kusari at{" "}
                       <Link href="https://kusari.org" target="_blank" rel="noopener noreferrer" className="text-[#00C48C] font-medium hover:underline">
                         kusari.org
@@ -259,7 +311,7 @@ function DesktopLanding() {
           <div className="relative">
             {/* Vertical line - fades in/out at top and bottom */}
             <div
-              className="absolute left-[35%] transform -translate-x-1/2 w-1 rounded-full top-[-20px] bottom-[-20px]"
+              className="absolute left-[20px] md:left-[35%] transform -translate-x-1/2 w-1 rounded-full top-[-20px] bottom-[-20px]"
               style={{
                 background: "linear-gradient(to bottom, #f9a8d4 0%, #67e8f9 100%)",
                 maskImage: "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
@@ -268,7 +320,7 @@ function DesktopLanding() {
             />
 
             {/* Timeline items */}
-            <div className="space-y-0 md:space-y-1">
+            <div className="space-y-6 md:space-y-1 relative">
               {[
                 { date: "March 3rd 2021", title: "Waifusion Mint Begins", subline: <>15,384 Waifus are available to <br />  mint on a price curve</>, side: "left", accent: "pink" },
                 { date: "March 9th 2021", title: "Waifusion Dungeon is built", subline: "The community innovates together after the mint stalls halfway", side: "right", accent: "fucsia" },
@@ -286,43 +338,52 @@ function DesktopLanding() {
                         ? { border: "border-cyan-500", text: "text-cyan-600", bg: "bg-cyan-600", line: "bg-cyan-500", dot: "bg-cyan-500" }
                         : { border: "border-cyan-400", text: "text-cyan-600", bg: "bg-cyan-600", line: "bg-cyan-400", dot: "bg-cyan-400" }
 
-                const borderClass = accentColor.border
                 const textClass = accentColor.text
                 const dateBgClass = accentColor.bg
                 const connectorClass = accentColor.line
                 const dotClass = accentColor.dot
 
+                const EventCard = () => (
+                  <div className="pixel-border-outer h-fit relative z-20 w-full md:w-auto" style={{ color: accentColor.line.replace('bg-', '') === 'pink-400' ? '#f472b6' : accentColor.line.replace('bg-', '') === 'violet-400' ? '#a78bfa' : accentColor.line.replace('bg-', '') === 'fuchsia-400' ? '#e879f9' : '#22d3ee' }}>
+                    <div className={`bg-white pixel-box p-4 shadow-lg w-full md:w-[250px]`}>
+                      <span className={`inline-block px-2 py-0.5 text-xs md:text-sm font-bold text-white mb-2 md:mb-2 ${dateBgClass} pixel-box-sm`}>
+                        {event.date}
+                      </span>
+                      <h4 className="font-bold text-base md:text-lg text-gray-900 mt-1">{event.title}</h4>
+                      <p className="text-xs md:text-sm text-gray-600 mt-1">
+                        {event.subline}
+                        {i === 4 && <Link href="#" className={`text-xs md:text-sm ${textClass} hover:underline ml-1 no-hover inline`}>Learn more</Link>}
+                      </p>
+                    </div>
+                  </div>
+                );
+
                 return (
                   <div
                     key={i}
-                    className="flex flex-col md:flex-row md:items-center"
+                    className="relative flex flex-row items-start md:items-center pl-10 md:pl-0"
                   >
-                    {/* Left Column (30%) - Box for left side events */}
+                    {/* MOBILE DOT (Hidden on md+) - absolute centered on the line left-[20px] */}
                     <div
-                      className={`w-full md:w-[30%] flex md:items-center md:text-right md:justify-end mb-1 md:mb-0`}
-                    >
-                      {event.side === "left" && (
-                        <div className="pixel-border-outer h-fit relative z-20" style={{ color: accentColor.line.replace('bg-', '') === 'pink-400' ? '#f472b6' : accentColor.line.replace('bg-', '') === 'violet-400' ? '#a78bfa' : accentColor.line.replace('bg-', '') === 'fuchsia-400' ? '#e879f9' : '#22d3ee' }}>
-                          <div className={`bg-white pixel-box p-4 shadow-lg w-full md:w-[250px]`}>
-                            <span className={`inline-block px-2 py-0.5 text-sm font-bold text-white mb-2 ${dateBgClass} pixel-box-sm`}>
-                              {event.date}
-                            </span>
-                            <h4 className="font-bold text-lg text-gray-900 mt-1">{event.title}</h4>
-                            <p className="text-sm text-gray-600 mt-1">
-                              {event.subline}
-                              {i === 4 && <Link href="#" className={`text-sm ${textClass} hover:underline ml-1 no-hover inline`}>Learn more</Link>}
-                            </p>
-                          </div>
-                        </div>
-                      )}
+                      className={`md:hidden absolute left-[20px] mt-2 top-2 transform -translate-x-1/2 w-4 h-4 rounded-full shrink-0 ${dotClass} border-4 border-white shadow z-10`}
+                    />
+
+                    {/* MOBILE CARD (Hidden on md+) */}
+                    <div className="md:hidden w-full relative z-20 flex-1 pl-2">
+                       <EventCard />
                     </div>
 
-                    {/* Center Column (10%) - The dot (centered at 35%) */}
-                    <div className="w-full md:w-[10%] flex justify-center items-center mb-1 md:mb-0 relative">
-                      {/* Connector line: center vertically (top-1/2 -translate-y-1/2) */}
+                    {/* DESKTOP LAYOUT (Hidden on mobile) */}
+                    
+                    {/* Desktop Left Column (30%) */}
+                    <div className={`hidden md:flex flex-col md:w-[30%] items-center md:items-end text-center md:text-right`}>
+                      {event.side === "left" && <EventCard />}
+                    </div>
+
+                    {/* Desktop Center Column (10%) - The dot and horizontal connector */}
+                    <div className="hidden md:flex md:w-[10%] justify-center items-center relative">
                       <div
-                        className={`hidden md:block absolute top-1/2 h-1 -translate-y-1/2 ${connectorClass} ${event.side === "left" ? "left-0 right-1/2" : "left-1/2 right-0"
-                          }`}
+                        className={`absolute top-1/2 h-1 -translate-y-1/2 ${connectorClass} ${event.side === "left" ? "left-0 right-1/2" : "left-1/2 right-0"}`}
                         aria-hidden="true"
                       />
                       <div
@@ -330,23 +391,11 @@ function DesktopLanding() {
                       />
                     </div>
 
-                    {/* Right Column (60%) - Box for right side events */}
-                    <div className="w-full md:w-[60%] flex md:items-center md:text-left md:justify-start">
-                      {event.side === "right" && (
-                        <div className="pixel-border-outer h-fit relative z-20" style={{ color: accentColor.line.replace('bg-', '') === 'pink-400' ? '#f472b6' : accentColor.line.replace('bg-', '') === 'violet-400' ? '#a78bfa' : accentColor.line.replace('bg-', '') === 'fuchsia-400' ? '#e879f9' : '#22d3ee' }}>
-                          <div className={`bg-white pixel-box p-4 shadow-lg w-full md:w-[250px]`}>
-                            <span className={`inline-block px-2 py-0.5 text-sm font-bold text-white mb-2 ${dateBgClass} pixel-box-sm`}>
-                              {event.date}
-                            </span>
-                            <h4 className="font-bold text-lg text-gray-900 mt-1">{event.title}</h4>
-                            <p className="text-sm text-gray-600 mt-1">
-                              {event.subline}
-                              {i === 4 && <Link href="#" className={`text-sm ${textClass} hover:underline ml-1 no-hover inline`}>Learn more.</Link>}
-                            </p>
-                          </div>
-                        </div>
-                      )}
+                    {/* Desktop Right Column (60%) */}
+                    <div className="hidden md:flex flex-col md:w-[60%] items-center md:items-start text-center md:text-left">
+                      {event.side === "right" && <EventCard />}
                     </div>
+
                   </div>
                 )
               })}
@@ -369,20 +418,19 @@ function DesktopLanding() {
         style={{ background: "linear-gradient(to bottom right, #b8e0c8, #7acba1ff)" }}
       >
         <MagneticStars>
-          <img src={PIXEL_STAR_GREEN} alt="" width={80} height={80} className="absolute top-[8%] left-[6%] opacity-90" />
-          <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="absolute top-[25%] right-[5%] opacity-90" />
-          <img src={PIXEL_STAR_BLUE} alt="" width={48} height={48} className="absolute top-[55%] left-[3%] opacity-80" />
-          <img src={PIXEL_STAR_ORANGE} alt="" width={70} height={70} className="absolute top-[75%] right-[8%] opacity-80" />
-          <img src={PIXEL_STAR_PURPLE} alt="" width={44} height={44} className="absolute bottom-[15%] left-[12%] opacity-80" />
-          <img src={PIXEL_STAR_BLUE} alt="" width={52} height={52} className="absolute top-[40%] right-[15%] opacity-80" />
-          <img src={PIXEL_STAR_YELLOW} alt="" width={60} height={60} className="absolute top-[12%] right-[22%] opacity-80" />
-          <img src={PIXEL_STAR_GREEN} alt="" width={50} height={50} className="absolute bottom-[25%] left-[25%] opacity-90" />
-          <img src={PIXEL_STAR_GREEN} alt="" width={40} height={40} className="absolute top-[65%] right-[30%] opacity-90" />
-          <img src={PIXEL_STAR_ORANGE} alt="" width={50} height={50} className="absolute top-[30%] left-[20%] opacity-70" />
-          <img src={PIXEL_STAR_BLUE} alt="" width={65} height={65} className="absolute bottom-[5%] right-[35%] opacity-90" />
-          <img src={PIXEL_STAR_YELLOW} alt="" width={55} height={55} className="absolute top-[15%] left-[35%] opacity-70" />
-          <img src={PIXEL_STAR_ORANGE} alt="" width={40} height={40} className="absolute bottom-[10%] left-[35%] opacity-70" />
-
+          <img src={PIXEL_STAR_GREEN} alt="" className="absolute top-[8%] left-[6%] opacity-90 w-12 md:w-[80px] z-0 pointer-events-none" />
+          <img src={PIXEL_STAR_PURPLE} alt="" className="absolute top-[25%] right-[5%] opacity-90 w-8 md:w-[55px] z-0 pointer-events-none" />
+          <img src={PIXEL_STAR_BLUE} alt="" className="absolute top-[55%] left-[3%] opacity-80 w-7 md:w-[48px] z-0 pointer-events-none" />
+          <img src={PIXEL_STAR_ORANGE} alt="" className="absolute top-[75%] right-[8%] opacity-80 w-10 md:w-[70px] z-0 pointer-events-none" />
+          <img src={PIXEL_STAR_PURPLE} alt="" className="absolute bottom-[15%] left-[12%] opacity-80 w-6 md:w-[44px] z-0 pointer-events-none" />
+          <img src={PIXEL_STAR_BLUE} alt="" className="absolute top-[40%] right-[15%] opacity-80 w-8 md:w-[52px] z-0 pointer-events-none" />
+          <img src={PIXEL_STAR_YELLOW} alt="" className="absolute top-[12%] right-[22%] opacity-80 w-8 md:w-[60px] z-0 pointer-events-none" />
+          <img src={PIXEL_STAR_GREEN} alt="" className="absolute bottom-[25%] left-[25%] opacity-90 w-7 md:w-[50px] z-0 pointer-events-none" />
+          <img src={PIXEL_STAR_GREEN} alt="" className="absolute top-[65%] right-[30%] opacity-90 w-6 md:w-[40px] z-0 pointer-events-none" />
+          <img src={PIXEL_STAR_ORANGE} alt="" className="absolute top-[30%] left-[20%] opacity-70 w-7 md:w-[50px] z-0 pointer-events-none" />
+          <img src={PIXEL_STAR_BLUE} alt="" className="absolute bottom-[5%] right-[35%] opacity-90 w-10 md:w-[65px] z-0 pointer-events-none" />
+          <img src={PIXEL_STAR_YELLOW} alt="" className="absolute top-[15%] left-[35%] opacity-70 w-8 md:w-[55px] z-0 pointer-events-none" />
+          <img src={PIXEL_STAR_ORANGE} alt="" className="absolute bottom-[10%] left-[35%] opacity-70 w-6 md:w-[40px] z-0 pointer-events-none" />
         </MagneticStars>
 
         <div className="max-w-3xl mx-auto text-center relative z-10">
@@ -431,18 +479,4 @@ function DesktopLanding() {
 
     </main>
   )
-}
-
-export default function LandingPage() {
-  const [isMobile, setIsMobile] = useState<boolean | null>(null)
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
-    check()
-    window.addEventListener("resize", check)
-    return () => window.removeEventListener("resize", check)
-  }, [])
-
-  if (isMobile === null) return <div className="min-h-screen bg-white" />
-  return isMobile ? <MobileLanding /> : <DesktopLanding />
 }
