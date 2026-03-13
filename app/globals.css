@@ -5,7 +5,7 @@
 /* Custom pixel cursors (light set) - paths from /public */
 :root {
   --cursor-default: url("/cursors/light/pointer.png") 0 0, default;
-  --cursor-pointer: url("/cursors/light/pointer.png") 0 0, pointer;
+  --cursor-pointer: url("/cursors/light/link.png") 0 0, pointer;
   --cursor-link: url("/cursors/light/link.png") 0 0, pointer;
   --cursor-text: url("/cursors/light/beam.png") 0 0, text;
   --cursor-grab: url("/cursors/light/grab.png") 0 0, grab;
@@ -16,7 +16,7 @@
   --cursor-move: url("/cursors/light/move.png") 0 0, move;
 }
 
-* {
+html, body {
   cursor: var(--cursor-default);
 }
 
@@ -72,35 +72,46 @@ textarea,
 .cursor-pointer {
   cursor: var(--cursor-pointer) !important;
 }
+
 .cursor-default {
   cursor: var(--cursor-default) !important;
 }
+
 .cursor-text {
   cursor: var(--cursor-text) !important;
 }
+
 .cursor-wait {
   cursor: var(--cursor-wait) !important;
 }
+
 .cursor-not-allowed {
   cursor: var(--cursor-not-allowed) !important;
 }
+
 .cursor-grab {
   cursor: var(--cursor-grab) !important;
 }
+
 .cursor-grabbing {
   cursor: var(--cursor-grabbing) !important;
 }
+
 .cursor-move {
   cursor: var(--cursor-move) !important;
 }
+
 .cursor-help {
   cursor: var(--cursor-help) !important;
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -108,4 +119,117 @@ textarea,
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+@keyframes waifu-jump {
+  0% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  50% {
+    transform: translateY(-50px);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-waifu-jump {
+  animation: waifu-jump 1s infinite;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide {
+  animation: slide 8s linear infinite;
+}
+
+@keyframes gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient-x 3s ease infinite;
+  background-size: 200% auto;
+}
+
+/* Fun hover animations for interactive and content elements */
+a:not(.no-hover),
+button,
+img:not(.pointer-events-none),
+.shadow-md:not(header),
+.shadow-lg,
+.rounded-xl {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+a:not(.no-hover):hover,
+button:hover,
+img:not(.pointer-events-none):hover,
+.shadow-md:not(header):hover,
+.shadow-lg:hover,
+.rounded-xl:hover {
+  transform: scale(1.03) translateY(-2px);
+  z-index: 10;
+}
+
+/* Ensure timeline connector lines and pixel deco don't get the hover */
+.pointer-events-none,
+.pointer-events-none:hover {
+  transform: none !important;
+}
+
+/* Ensure mouse trails and cursor canvas effects are drawn over all other components */
+canvas {
+  z-index: 999999 !important;
+  pointer-events: none;
+}
+
+/* Pixel-art chiseled corners utility - uses clip-path and drop-shadow to restore "invisible" borders */
+.pixel-box {
+  background-clip: padding-box;
+  clip-path: polygon(
+    0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0,
+    calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px,
+    100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%,
+    8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px)
+  );
+}
+
+/* For smaller items like buttons and badges */
+.pixel-box-sm {
+  clip-path: polygon(
+    0 4px, 2px 4px, 2px 2px, 4px 2px, 4px 0,
+    calc(100% - 4px) 0, calc(100% - 4px) 2px, calc(100% - 2px) 2px, calc(100% - 2px) 4px, 100% 4px,
+    100% calc(100% - 4px), calc(100% - 2px) calc(100% - 4px), calc(100% - 2px) calc(100% - 2px), calc(100% - 4px) calc(100% - 2px), calc(100% - 4px) 100%,
+    4px 100%, 4px calc(100% - 2px), 2px calc(100% - 2px), 2px calc(100% - 4px), 0 calc(100% - 4px)
+  );
+}
+
+/* Special class to apply a "fake" pixel border that follows the clip-path */
+.pixel-border-outer {
+    filter: 
+      drop-shadow(2px 0 0 currentColor) 
+      drop-shadow(-2px 0 0 currentColor) 
+      drop-shadow(0 2px 0 currentColor) 
+      drop-shadow(0 -2px 0 currentColor);
 }

@@ -1,10 +1,15 @@
 import type { Metadata } from "next"
-import { Inter, Pixelify_Sans } from "next/font/google"
+import localFont from "next/font/local"
+import { Inter } from "next/font/google"
 import { CursorEffect } from "./components/CursorEffect"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
-const pixelify = Pixelify_Sans({ subsets: ["latin"], variable: "--font-pixelify", weight: ["400", "500", "600", "700"] })
+
+const boldPixels = localFont({
+  src: "../public/BoldPixels.ttf",
+  variable: "--font-pixelify",
+})
 
 export const metadata: Metadata = {
   title: "Waifusion | Community-Born NFT Legacy",
@@ -20,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${pixelify.variable} font-sans antialiased min-h-screen`}
+        className={`${inter.variable} ${boldPixels.variable} font-sans antialiased min-h-screen`}
         style={{
           background: "linear-gradient(to right, #FAF5FF 0%, #FDF2F8 50%, #EFF6FF 100%)",
           backgroundAttachment: "fixed",

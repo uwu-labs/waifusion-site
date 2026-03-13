@@ -12,7 +12,7 @@ export function CursorEffect() {
     if (prefersReducedMotion) return
 
     const cursor = fairyDustCursor({
-      colors: ["#FF008C", "#DFA7FF", "#0894FF", "#FE4EAF", "#B010FA"],
+      colors: ["#ffe3feff", "#ffddf9ff", "#ffade9ff", "#ff8df9ff", "#fdb9ffff"],
     })
 
     return () => cursor.destroy()
