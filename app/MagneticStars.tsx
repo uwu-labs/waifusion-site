@@ -2,7 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
-export default function MagneticStars({ children }: { children: React.ReactNode }) {
+export default function MagneticStars({ 
+  children,
+  className = "" 
+}: { 
+  children: React.ReactNode;
+  className?: string;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -86,7 +92,7 @@ export default function MagneticStars({ children }: { children: React.ReactNode 
           animation: star-float-anim 8s ease-in-out infinite;
         }
       `}</style>
-      <div ref={containerRef} className="absolute inset-0 pointer-events-none z-20">
+      <div ref={containerRef} className={`absolute inset-0 pointer-events-none ${className}`}>
         {children}
       </div>
     </>

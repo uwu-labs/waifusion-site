@@ -61,9 +61,8 @@ export default function MobileLanding() {
         </div>
       </div>
 
-      {/* Hero Section - same gradient as body for consistent look */}
       <section
-        className="relative pt-6 pb-12 px-5 sm:px-8 md:px-10"
+        className="relative pt-6 pb-4 md:pb-12 px-5 sm:px-8 md:px-10"
         style={{
           background: "linear-gradient(to right, #FAF5FF 0%, #FDF2F8 50%, #EFF6FF 100%)",
         }}
@@ -81,19 +80,26 @@ export default function MobileLanding() {
                   <img
                     src="/placeholder.png"
                     alt="Waifusion hero artwork"
-                    className="absolute right-0 top-0 w-36 h-36 object-contain z-0 opacity-90"
+                    className="absolute right-0 top-0 w-36 h-36 object-contain z-0 opacity-90 pointer-events-none"
                   />
-                  <h1
-                    className="relative z-10 font-pixel text-3xl font-bold leading-tight bg-clip-text text-transparent inline-block text-left"
-                    style={{ backgroundImage: 'linear-gradient(to bottom, #FF008C 0%, #DFA7FF 37%, #0894FF 100%)' }}
-                  >
-                    Waifusion
-                    <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="inline-block ml-2 align-middle" />
-                    <br />
-                    a community-
-                    <br />
-                    born NFT legacy
-                  </h1>
+                  <div className="relative inline-block z-10">
+                    <h1
+                      className="font-pixel text-3xl font-bold bg-clip-text text-transparent inline-block text-left relative"
+                      style={{
+                        backgroundImage: 'linear-gradient(to bottom, #FF008C 0%, #DFA7FF 37%, #0894FF 100%)',
+                        lineHeight: '0.8'
+                      }}
+                    >
+                      <span className="text-[40px] block leading-[0.7]">Waifusion</span>
+                      <span style={{ wordSpacing: '-6px' }}>
+                        <span className="inline-block">a community-</span>
+                        <br />
+                        born NFT legacy
+                      </span>
+                    </h1>
+                    {/* Positioned relative to the wrapper div, completely outside the clipped text h1 */}
+                    <img src={PIXEL_HEARTS} alt="" className="absolute right-[0px] top-[5px] w-9 h-9 pointer-events-none" />
+                  </div>
                 </div>
 
                 {/* Desktop h1 (hidden on mobile) */}
@@ -211,80 +217,71 @@ export default function MobileLanding() {
       <section className="py-4 md:py-10 px-4 relative">
         <div className="max-w-6xl mx-auto">
           {/* Decorative pixel elements - scattered erratically at edges, away from text */}
-          <MagneticStars>
-            <img src={PIXEL_STARS_MIXED} alt="" width={180} height={180} className="hidden md:block absolute top-[12%] left-[-5%] z-20 pointer-events-none opacity-90" />
-            <img src={PIXEL_STAR_PURPLE} alt="" width={55} height={55} className="hidden md:block absolute top-[58%] right-[10%] z-20 pointer-events-none opacity-85" />
-            <img src={PIXEL_STAR_ORANGE} alt="" width={65} height={65} className="hidden md:block absolute bottom-[42%] left-[9%] z-20 pointer-events-none opacity-85" />
-            <img src={PIXEL_STARS_MIXED} alt="" width={180} height={180} className="hidden md:block absolute top-[80%] left-[95%] z-20 pointer-events-none opacity-95" />
-          </MagneticStars>
-
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-y-3 md:gap-y-8 gap-x-2 md:gap-x-4 max-w-4xl mx-auto items-start">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-y-3 md:gap-y-8 gap-x-2 md:gap-x-4 max-w-4xl mx-auto items-stretch">
             {/* Row 1: What is Waifusion | First NFT takeover — no images */}
-            <div className="relative">
-              <div className="pixel-border-outer" style={{ color: '#AB5BFF' }}>
-                <div className="shadow-md relative pixel-box overflow-visible" style={{ backgroundColor: '#E7C8FF' }}>
-                  <div className="p-2 md:p-5 relative">
-                    <h3 className="font-bold text-[10px] leading-tight mb-1" style={{ color: '#B010FA' }}>What is Waifusion?</h3>
-                    <p className="text-gray-700 leading-[1.2] text-[10px]">The earliest generative anime NFT collection — minted in March 2021, before all the ecosystem we know now was established.</p>
-                    <p className="text-gray-700 leading-[1.2] mt-1 text-[10px]">16,384 Waifusions were for sale, but the mint didn&apos;t finish, so the community invented a solution. Waifusions could be burned and swapped for new unsold ones, this resulted in only 8,918 surviving.</p>
+            <div className="relative h-full">
+              <div className="pixel-border-outer h-full" style={{ color: '#AB5BFF' }}>
+                <div className="shadow-md relative pixel-box overflow-visible h-full" style={{ backgroundColor: '#E7C8FF' }}>
+                  <div className="p-2 md:p-5 relative h-full">
+                    <h3 className="font-bold text-sm md:text-lg leading-tight mb-1 tracking-tight [word-spacing:-1px]" style={{ color: '#B010FA' }}>What is Waifusion?</h3>
+                    <p className="text-gray-700 leading-[1.2] text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">The earliest generative anime NFT collection — minted in March 2021, before all the ecosystem we know now was established.</p>
+                    <p className="text-gray-700 leading-[1.2] mt-1 text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">16,384 Waifusions were for sale, but the mint didn&apos;t finish, so the community invented a solution. Waifusions could be burned and swapped for new unsold ones, this resulted in only 8,918 surviving.</p>
                   </div>
                 </div>
               </div>
-              <img src={PIXEL_STAR_PURPLE} alt="" width={44} height={44} className="absolute -top-3 -left-3 opacity-90 pointer-events-none z-30" />
+              <img src={PIXEL_STAR_PURPLE} alt="" className="absolute w-8 h-8 md:w-[44px] md:h-[44px] -bottom-3 -right-3 md:-bottom-4 md:-right-4 opacity-90 pointer-events-none z-30" />
             </div>
-            <div className="relative">
-              <div className="pixel-border-outer" style={{ color: '#F453EF' }}>
-                <div className="shadow-md relative pixel-box overflow-visible" style={{ backgroundColor: '#FFE0FE' }}>
-                  <div className="p-2 md:p-5 relative">
-                    <h3 className="font-bold text-[10px] leading-tight mb-1" style={{ color: '#F453EF' }}>The First NFT Takeover</h3>
-                    <p className="text-gray-700 leading-[1.2] text-[10px]">Decentralization by necessity has carried Waifusion for over 4 years. When the original team walked away, Waifusion didn&apos;t die. The holders stepped up to make Waifusion the first NFT project fully carried forward by its community.</p>
-                    <p className="text-gray-700 leading-[1.2] mt-1 text-[10px]">The first leap was the &quot;Waifusion Dungeon&quot; for the holders to burn and swap Waifus.</p>
+            <div className="relative h-full">
+              <div className="pixel-border-outer h-full" style={{ color: '#F453EF' }}>
+                <div className="shadow-md relative pixel-box overflow-visible h-full" style={{ backgroundColor: '#FFE0FE' }}>
+                  <div className="p-2 md:p-5 relative h-full">
+                    <h3 className="font-bold text-sm md:text-lg leading-tight mb-1 tracking-tight [word-spacing:-1px]" style={{ color: '#F453EF' }}>The First NFT Takeover</h3>
+                    <p className="text-gray-700 leading-[1.2] text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">Decentralization by necessity has carried Waifusion for over 4 years. When the original team walked away, Waifusion didn&apos;t die. The holders stepped up to make Waifusion the first NFT project fully carried forward by its community. The first leap was the &quot;Waifusion Dungeon&quot; for the holders to burn and swap Waifus.</p>
                   </div>
                 </div>
               </div>
-              <img src={PIXEL_STAR_BLUE} alt="" width={44} height={44} className="absolute -top-3 right-[15%] opacity-95 pointer-events-none z-30" />
-              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-3 -right-2 opacity-90 pointer-events-none z-30" />
+              <img src={PIXEL_STAR_BLUE} alt="" className="absolute w-8 h-8 md:w-[44px] md:h-[44px] -top-4 right-4 md:-top-5 md:right-8 opacity-95 pointer-events-none z-30" />
+              <img src={PIXEL_HEARTS} alt="" className="absolute w-8 h-8 md:w-[40px] md:h-[40px] bottom-2 -right-4 md:bottom-2 md:-right-5 opacity-90 pointer-events-none z-30" />
             </div>
 
             {/* Row 2: Why Waifusion matter (left) | From CTO to Kusari (right, 4th box) */}
-            <div className="relative">
-              <div className="pixel-border-outer" style={{ color: '#FFC078' }}>
-                <div className="shadow-md relative pixel-box overflow-visible" style={{ backgroundColor: '#FFF5D8' }}>
-                  <div className="p-2 md:p-5 relative">
-                    <h3 className="font-bold text-[10px] leading-tight mb-1" style={{ color: '#F2A310' }}>Why does Waifusion matter?</h3>
-                    <p className="text-gray-700 leading-[1.2] text-[10px]">Waifusion matters because it proves that NFTs enable culture to survive. The first NFT CTO, the first burn-to-swap NFT collection, the beginning of Kusari and many other firsts.</p>
-                    <p className="text-gray-700 leading-[1.2] mt-1 text-[10px]">Thanks to being onchain, the community was able to maintain ownership and evolve after the project was abandoned, and remain a part of NFT history.</p>
+            <div className="relative h-full">
+              <div className="pixel-border-outer h-full" style={{ color: '#FFC078' }}>
+                <div className="shadow-md relative pixel-box overflow-visible h-full" style={{ backgroundColor: '#FFF5D8' }}>
+                  <div className="p-2 md:p-5 relative h-full">
+                    <h3 className="font-bold text-sm md:text-lg leading-tight mb-1 tracking-tight [word-spacing:-1px]" style={{ color: '#F2A310' }}>Why does Waifusion matter?</h3>
+                    <p className="text-gray-700 leading-[1.2] text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">Waifusion matters because it proves that NFTs enable culture to survive. The first NFT CTO, the first burn-to-swap NFT collection, the beginning of Kusari and many other firsts. Thanks to being onchain, the community was able to maintain ownership and evolve after the project was abandoned, and remain a part of NFT history.</p>
                   </div>
                 </div>
               </div>
-              <img src={PIXEL_STAR_ORANGE} alt="" width={44} height={44} className="absolute -top-3 -right-2 opacity-90 pointer-events-none z-30" />
+              <img src={PIXEL_STAR_ORANGE} alt="" className="absolute w-8 h-8 md:w-[44px] md:h-[44px] -bottom-3 -left-2 md:-bottom-4 md:-left-3 opacity-90 pointer-events-none z-30" />
             </div>
-            <div className="relative">
-              <div className="pixel-border-outer" style={{ color: '#32AAFF' }}>
-                <div className="shadow-md relative pixel-box overflow-visible" style={{ backgroundColor: '#DAF1FF' }}>
-                  <div className="p-2 md:p-5 relative">
-                    <h3 className="font-bold text-[10px] leading-tight mb-1" style={{ color: '#32AAFF' }}>From CTO to Kusari</h3>
-                    <p className="text-gray-700 leading-[1.2] text-[10px]">In March 2021, the current Kusari founders took stewardship of Waifusion to ensure it wasn&apos;t forgotten. This eventually led to where we are now.</p>
-                    <p className="text-gray-700 leading-[1.2] mt-1 text-[10px]">Today, Waifusion exists as part of the Kusari Family, alongside uwucrew, Killer GF, and more, connected by a community with a passion for creativity.</p>
+            <div className="relative h-full">
+              <div className="pixel-border-outer h-full" style={{ color: '#32AAFF' }}>
+                <div className="shadow-md relative pixel-box overflow-visible h-full" style={{ backgroundColor: '#DAF1FF' }}>
+                  <div className="p-2 md:p-5 relative h-full">
+                    <h3 className="font-bold text-sm md:text-lg leading-tight mb-1 tracking-tight [word-spacing:-1px]" style={{ color: '#32AAFF' }}>From CTO to Kusari</h3>
+                    <p className="text-gray-700 leading-[1.2] text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">In March 2021, the current Kusari founders took stewardship of Waifusion to ensure it wasn&apos;t forgotten. This eventually led to where we are now.</p>
+                    <p className="text-gray-700 leading-[1.2] mt-1 text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">Today, Waifusion exists as part of the Kusari Family, alongside uwucrew, Killer GF, and more, connected by a community with a passion for creativity.</p>
                   </div>
                 </div>
               </div>
-              <img src={PIXEL_STAR_BLUE} alt="" width={44} height={44} className="absolute top-[4%] right-[10%] opacity-90 pointer-events-none z-30" />
-              <img src={PIXEL_HEARTS} alt="" width={40} height={40} className="absolute -bottom-3 -left-2 opacity-90 pointer-events-none z-30" />
+              <img src={PIXEL_STAR_BLUE} alt="" className="absolute w-8 h-8 md:w-[44px] md:h-[44px] top-[40%] -right-4 md:top-[40%] md:-right-5 opacity-90 pointer-events-none z-30" />
+              <img src={PIXEL_HEARTS} alt="" className="absolute w-8 h-8 md:w-[40px] md:h-[40px] -bottom-4 left-[30%] md:-bottom-5 md:left-[30%] opacity-90 pointer-events-none z-30" />
             </div>
 
             {/* Row 3: Waifu image (left) | About Kusari (right) */}
             <div className="hidden md:flex items-end justify-center h-full min-h-[200px] w-full">
               <img src="/placeholder2.png" alt="Waifu Placeholder" className="object-contain w-full h-auto max-h-[320px]" />
             </div>
-            <div className="relative">
-              <div className="pixel-border-outer" style={{ color: '#21D510' }}>
-                <div className="shadow-md relative pixel-box overflow-visible" style={{ backgroundColor: '#DBFFE0' }}>
-                  <div className="p-2 md:p-5 relative">
-                    <h3 className="font-bold text-[10px] leading-tight mb-1" style={{ color: '#00C48C' }}>About Kusari</h3>
-                    <p className="text-gray-700 leading-[1.2] text-[10px]">Kusari is a creative collective building durable culture onchain.</p>
-                    <p className="text-gray-700 leading-[1.2] mt-1 text-[10px]">We collaborate with artists and communities to create projects that aren&apos;t just part of a trend. At Kusari we create art that is meant to last.</p>
-                    <p className="text-gray-700 leading-[1.2] mt-1 text-[10px]">
+            <div className="relative h-full">
+              <div className="pixel-border-outer h-full" style={{ color: '#21D510' }}>
+                <div className="shadow-md relative pixel-box overflow-visible h-full" style={{ backgroundColor: '#DBFFE0' }}>
+                  <div className="p-2 md:p-5 relative h-full">
+                    <h3 className="font-bold text-sm md:text-lg leading-tight mb-1 tracking-tight [word-spacing:-1px]" style={{ color: '#00C48C' }}>About Kusari</h3>
+                    <p className="text-gray-700 leading-[1.2] text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">Kusari is a creative collective building durable culture onchain.</p>
+                    <p className="text-gray-700 leading-[1.2] mt-1 text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">We collaborate with artists and communities to create projects that aren&apos;t just part of a trend. At Kusari we create art that is meant to last.</p>
+                    <p className="text-gray-700 leading-[1.2] mt-1 text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">
                       Discover more about Kusari at{" "}
                       <Link href="https://kusari.org" target="_blank" rel="noopener noreferrer" className="text-[#00C48C] font-medium hover:underline">
                         kusari.org
@@ -370,11 +367,11 @@ export default function MobileLanding() {
 
                     {/* MOBILE CARD (Hidden on md+) */}
                     <div className="md:hidden w-full relative z-20 flex-1 pl-2">
-                       <EventCard />
+                      <EventCard />
                     </div>
 
                     {/* DESKTOP LAYOUT (Hidden on mobile) */}
-                    
+
                     {/* Desktop Left Column (30%) */}
                     <div className={`hidden md:flex flex-col md:w-[30%] items-center md:items-end text-center md:text-right`}>
                       {event.side === "left" && <EventCard />}
@@ -417,23 +414,23 @@ export default function MobileLanding() {
         className="py-16 md:py-24 px-4 relative overflow-visible z-30"
         style={{ background: "linear-gradient(to bottom right, #b8e0c8, #7acba1ff)" }}
       >
-        <MagneticStars>
-          <img src={PIXEL_STAR_GREEN} alt="" className="absolute top-[8%] left-[6%] opacity-90 w-12 md:w-[80px] z-0 pointer-events-none" />
-          <img src={PIXEL_STAR_PURPLE} alt="" className="absolute top-[25%] right-[5%] opacity-90 w-8 md:w-[55px] z-0 pointer-events-none" />
-          <img src={PIXEL_STAR_BLUE} alt="" className="absolute top-[55%] left-[3%] opacity-80 w-7 md:w-[48px] z-0 pointer-events-none" />
-          <img src={PIXEL_STAR_ORANGE} alt="" className="absolute top-[75%] right-[8%] opacity-80 w-10 md:w-[70px] z-0 pointer-events-none" />
-          <img src={PIXEL_STAR_PURPLE} alt="" className="absolute bottom-[15%] left-[12%] opacity-80 w-6 md:w-[44px] z-0 pointer-events-none" />
-          <img src={PIXEL_STAR_BLUE} alt="" className="absolute top-[40%] right-[15%] opacity-80 w-8 md:w-[52px] z-0 pointer-events-none" />
-          <img src={PIXEL_STAR_YELLOW} alt="" className="absolute top-[12%] right-[22%] opacity-80 w-8 md:w-[60px] z-0 pointer-events-none" />
-          <img src={PIXEL_STAR_GREEN} alt="" className="absolute bottom-[25%] left-[25%] opacity-90 w-7 md:w-[50px] z-0 pointer-events-none" />
-          <img src={PIXEL_STAR_GREEN} alt="" className="absolute top-[65%] right-[30%] opacity-90 w-6 md:w-[40px] z-0 pointer-events-none" />
-          <img src={PIXEL_STAR_ORANGE} alt="" className="absolute top-[30%] left-[20%] opacity-70 w-7 md:w-[50px] z-0 pointer-events-none" />
-          <img src={PIXEL_STAR_BLUE} alt="" className="absolute bottom-[5%] right-[35%] opacity-90 w-10 md:w-[65px] z-0 pointer-events-none" />
-          <img src={PIXEL_STAR_YELLOW} alt="" className="absolute top-[15%] left-[35%] opacity-70 w-8 md:w-[55px] z-0 pointer-events-none" />
-          <img src={PIXEL_STAR_ORANGE} alt="" className="absolute bottom-[10%] left-[35%] opacity-70 w-6 md:w-[40px] z-0 pointer-events-none" />
+        <MagneticStars className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <img src={PIXEL_STAR_GREEN} alt="" className="absolute top-[8%] left-[6%] opacity-90 w-12 md:w-[80px]" />
+          <img src={PIXEL_STAR_PURPLE} alt="" className="absolute top-[25%] right-[5%] opacity-90 w-8 md:w-[55px]" />
+          <img src={PIXEL_STAR_BLUE} alt="" className="absolute top-[55%] left-[3%] opacity-80 w-7 md:w-[48px]" />
+          <img src={PIXEL_STAR_ORANGE} alt="" className="absolute top-[75%] right-[8%] opacity-80 w-10 md:w-[70px]" />
+          <img src={PIXEL_STAR_PURPLE} alt="" className="absolute bottom-[15%] left-[12%] opacity-80 w-6 md:w-[44px]" />
+          <img src={PIXEL_STAR_BLUE} alt="" className="absolute top-[40%] right-[8%] opacity-80 w-8 md:w-[52px]" />
+          <img src={PIXEL_STAR_YELLOW} alt="" className="absolute top-[12%] right-[22%] opacity-80 w-8 md:w-[60px]" />
+          <img src={PIXEL_STAR_GREEN} alt="" className="absolute bottom-[25%] left-[25%] opacity-90 w-7 md:w-[50px]" />
+          <img src={PIXEL_STAR_GREEN} alt="" className="absolute top-[65%] right-[30%] opacity-90 w-6 md:w-[40px]" />
+          <img src={PIXEL_STAR_ORANGE} alt="" className="absolute top-[30%] left-[20%] opacity-70 w-7 md:w-[50px]" />
+          <img src={PIXEL_STAR_BLUE} alt="" className="absolute bottom-[5%] right-[35%] opacity-90 w-10 md:w-[65px]" />
+          <img src={PIXEL_STAR_YELLOW} alt="" className="absolute top-[15%] left-[30%] opacity-70 w-8 md:w-[55px]" />
+          <img src={PIXEL_STAR_ORANGE} alt="" className="absolute bottom-[10%] left-[35%] opacity-70 w-6 md:w-[40px]" />
         </MagneticStars>
 
-        <div className="max-w-3xl mx-auto text-center relative z-10">
+        <div className="max-w-3xl mx-auto text-center relative z-20 pointer-events-auto">
           {/* Kusari logo */}
           <div className="mb-6 flex justify-center">
             <img
