@@ -7,24 +7,34 @@ export default function JumpingWaifu({
   initialIndex,
   delay = "0s",
   className = "",
+  currentIndex: controlledIndex,
+  onBounce,
 }: {
   images: string[] | readonly string[];
   initialIndex: number;
   delay?: string;
   className?: string;
+  /** When set with onBounce, parent controls which image is shown (no duplicates across slots). */
+  currentIndex?: number;
+  onBounce?: () => void;
 }) {
-  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [internalIndex, setInternalIndex] = useState(initialIndex);
+  const index = controlledIndex !== undefined ? controlledIndex % images.length : internalIndex % images.length;
 
   const handleAnimationIteration = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    if (onBounce) {
+      onBounce();
+      return;
+    }
+    setInternalIndex((prev) => (prev + 1) % images.length);
   };
 
   return (
     <img
-      src={images[currentIndex % images.length]}
+      src={images[index]}
       alt="Jumping Waifu"
       onAnimationIteration={handleAnimationIteration}
-      className={`animate-waifu-jump ${className}`}
+      className={`animate-waifu-jump no-hover ${className}`}
       style={{ animationDelay: delay }}
     />
   );

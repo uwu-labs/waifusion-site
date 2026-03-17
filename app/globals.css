@@ -20,6 +20,13 @@ html, body {
   cursor: var(--cursor-default);
 }
 
+/* Prevent horizontal overflow on mobile */
+html, body {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure all clickable elements show pointer cursor */
 a,
 [role="button"],
 button,
@@ -30,11 +37,11 @@ input[type="checkbox"],
 input[type="radio"],
 select,
 label[for] {
-  cursor: var(--cursor-pointer);
+  cursor: var(--cursor-pointer) !important;
 }
 
 a[href]:hover {
-  cursor: var(--cursor-link);
+  cursor: var(--cursor-link) !important;
 }
 
 input:not([type="checkbox"]):not([type="radio"]),
@@ -123,15 +130,16 @@ textarea,
 
 @keyframes waifu-jump {
   0% {
-    transform: translateY(0);
-    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: translateY(-50px) translateZ(0);
+    animation-timing-function: linear(0, -0.036 11.1%, -0.034 19.2%, 0.004 26%, 0.084 32.1%, 0.208 37.8%, 0.385 43.5%, 0.998 85%, 1);
   }
   50% {
-    transform: translateY(-50px);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    transform: translateY(0) translateZ(0);
+    /* Elastic overshoot: springs past the top then settles back */
+    animation-timing-function: cubic-bezier(0.22, 1.65, 0.5, 1);
   }
   100% {
-    transform: translateY(0);
+    transform: translateY(-50px) translateZ(0);
   }
 }
 
@@ -150,7 +158,9 @@ textarea,
 }
 
 .animate-waifu-jump {
-  animation: waifu-jump 1s infinite;
+  animation: waifu-jump 1.5s infinite;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 @media (max-width: 639px) {
@@ -195,7 +205,7 @@ textarea,
 /* Fun hover animations for interactive and content elements */
 a:not(.no-hover),
 button,
-img:not(.pointer-events-none),
+img:not(.pointer-events-none):not(.no-hover),
 .shadow-md:not(header),
 .shadow-lg,
 .rounded-xl {
@@ -204,7 +214,7 @@ img:not(.pointer-events-none),
 
 a:not(.no-hover):hover,
 button:hover,
-img:not(.pointer-events-none):hover,
+img:not(.pointer-events-none):not(.no-hover):hover,
 .shadow-md:not(header):hover,
 .shadow-lg:hover,
 .rounded-xl:hover {

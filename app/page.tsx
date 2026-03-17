@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import MagneticStars from "./MagneticStars"
-import JumpingWaifu from "./JumpingWaifu"
 import MobileLanding from "./components/MobileLanding"
+import GalleryWaifus from "./GalleryWaifus"
 // Waifusion images - hero stays on Arweave; gallery + info card use local waifus (waifu1–5 in usage order)
 const WAIFU_IMAGE_BASE = "https://arweave.net/ZW7NCaxFJT6IlTInn3OZc9MU1UjwmQQ0fGtbLyithEM/"
 const WAIFUS_LOCAL = [
@@ -14,7 +14,8 @@ const WAIFUS_LOCAL = [
   "/waifus/waifu4.png",
   "/waifus/waifu5.png",
   "/waifus/waifu6.jpg",
-  "/waifus/waifu7.jpg"
+  "/waifus/waifu7.jpg",
+  "/waifus/waifu8.jpg",
 ] as const;
 
 // Pixel art decorations
@@ -131,26 +132,7 @@ function DesktopLanding() {
       <section className="pt-10 pb-0 sm:pt-12 sm:pb-0 px-2 sm:px-4 bg-gradient-to-b from-pink-100/50 to-pink-50/30 overflow-visible relative z-10">
         <div className="max-w-[calc(56rem*1.35)] mx-auto overflow-visible">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 items-center overflow-visible translate-y-6 sm:translate-y-8 pb-2">
-            {WAIFUS_LOCAL.slice(0, 4).map((_, i) => {
-              // Rotate array by i*2 to ensure different starting points and sequences
-              const slotImages = [
-                ...WAIFUS_LOCAL.slice(i * 2),
-                ...WAIFUS_LOCAL.slice(0, i * 2)
-              ];
-              return (
-                <div
-                  key={`jumping-waifu-${i}`}
-                  className="aspect-square relative flex items-center justify-center overflow-visible"
-                >
-                  <JumpingWaifu
-                    images={slotImages}
-                    initialIndex={0}
-                    delay={`${i * -0.25}s`}
-                    className="w-full h-full object-contain relative z-10"
-                  />
-                </div>
-              );
-            })}
+            <GalleryWaifus images={WAIFUS_LOCAL} />
           </div>
         </div>
       </section>
@@ -166,7 +148,7 @@ function DesktopLanding() {
             <img src={PIXEL_STARS_MIXED} alt="" width={180} height={180} className="hidden md:block absolute top-[80%] left-[95%] z-20 pointer-events-none opacity-95" />
           </MagneticStars>
 
-          <div className="grid md:grid-cols-2 gap-y-6 md:gap-y-8 gap-x-2 md:gap-x-4 max-w-4xl mx-auto items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 md:gap-y-8 gap-x-2 md:gap-x-4 max-w-full md:max-w-4xl md:mx-auto items-center">
             {/* Row 1: What is Waifusion | First NFT takeover — no images */}
             <div className="relative">
               <div className="pixel-border-outer" style={{ color: '#AB5BFF' }}>
@@ -185,7 +167,7 @@ function DesktopLanding() {
                 <div className="shadow-md relative pixel-box overflow-visible" style={{ backgroundColor: '#FFE0FE' }}>
                   <div className="p-4 md:p-5 relative">
                     <h3 className="font-bold text-2xl mb-4" style={{ color: '#F453EF' }}>The First NFT Takeover</h3>
-                    <p className="text-gray-700 leading-relaxed">Decentralization by necessity has carried Waifusion for over 4 years. When the original team walked away, Waifusion didn&apos;t die. The holders stepped up to make Waifusion the first NFT project fully carried forward by its community.</p>
+                    <p className="text-gray-700 leading-relaxed">Decentralization by necessity has carried Waifusion for over 4 years. When the original team decided to neglect it, Waifusion didn&apos;t die. The holders stepped up to make Waifusion the first NFT project fully carried forward by its community.</p>
                     <p className="text-gray-700 leading-relaxed mt-4">The first leap was the &quot;Waifusion Dungeon&quot; for the holders to burn and swap Waifus.</p>
                   </div>
                 </div>
@@ -248,63 +230,114 @@ function DesktopLanding() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-12 md:py-20 px-4 bg-gradient-to-b from-pink-50/30 to-pink-80 relative overflow-visible">
+      <section className="py-12 md:py-20 px-4 bg-gradient-to-b from-pink-50/30 to-pink-80 overflow-visible">
         <div className="max-w-4xl mx-auto">
-          <div className="w-full md:w-[70%]">
+          <div className="w-full md:w-[70%] mx-auto">
             <h2 className="font-pixel text-3xl font-bold text-center mb-1 text-pink-500">A timeline of Waifusion</h2>
             <p className="text-center text-gray-600 mb-8">From being neglected to becoming a community passionate for art</p>
           </div>
 
           {/* Timeline */}
           <div className="relative">
-            {/* Vertical line - fades in/out at top and bottom */}
+            {/* Vertical line - base Waifusion gradient, then turns Kusari green near the bottom */}
             <div
               className="absolute left-[35%] transform -translate-x-1/2 w-1 rounded-full top-[-20px] bottom-[-20px]"
               style={{
-                background: "linear-gradient(to bottom, #f9a8d4 0%, #67e8f9 100%)",
+                background: "linear-gradient(to bottom, #f9a8d4 0%, #67e8f9 80%, #67e8f9 100%)",
                 maskImage: "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
                 WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
               }}
             />
+            {/* Kusari segment overlay – subtle shift into Kusari green near the bottom, with its own fade */}
+            <div
+              className="absolute left-[35%] transform -translate-x-1/2 w-1 rounded-full bottom-[-20px]"
+              style={{
+                top: "60%",
+                background:
+                  "linear-gradient(to bottom, rgba(103,232,249,0) 0%, rgba(79,209,197,0.7) 30%, rgba(34,197,94,0.8) 70%, rgba(34,197,94,0) 100%)",
+                opacity: 0.85,
+              }}
+            />
 
-            {/* Timeline items */}
-            <div className="space-y-0 md:space-y-1">
+            {/* Timeline items - spacing between events increases with time distance */}
+            <div className="space-y-0">
               {[
                 { date: "March 3rd 2021", title: "Waifusion Mint Begins", subline: <>15,384 Waifus are available to <br />  mint on a price curve</>, side: "left", accent: "pink" },
                 { date: "March 9th 2021", title: "Waifusion Dungeon is built", subline: "The community innovates together after the mint stalls halfway", side: "right", accent: "fucsia" },
-                { date: "March 22nd 2021", title: "Waifusion Rug", subline: "The creators decide for their own reasons to neglect the project", side: "left", accent: "purple" },
-                { date: "March 24th 2021", title: "Community Takeover", subline: "Kiwi, Laur and Morello work together to maintain the project", side: "right", accent: "cyan" },
-                { date: "September 5th 2021", title: "uwucrew Launch", subline: "The start of Kusari, after Waifusion takeover.", side: "left", accent: "cyan" },
+                {
+                  date: "March 22nd 2021",
+                  title: "Waifusion Rug",
+                  subline:
+                    "The original devs, fed up with the community, neglect the project, washing all the 3,300 ETH",
+                  side: "left",
+                  accent: "purple",
+                },
+                {
+                  date: "March 24th 2021",
+                  title: "Community Takeover",
+                  subline: "Kiwi, Laur and Morello work together to maintain the project",
+                  side: "right",
+                  accent: "cyan",
+                  accentHex: "#0ea5e9", // slightly darker cyan to match the connector knob
+                },
+                { date: "September 5th 2021", title: "uwucrew Launch", subline: "A big leap taken by the community team, to carve their own path towards onchain art.", side: "left", accent: "cyan" },
+                {
+                  date: "April 9th 2025",
+                  title: "Kusari is established",
+                  subline: (
+                    <>
+                      Waifusion joins the Family alongside uwucrew, Killer&nbsp;GF, and Collectr.{" "}
+                      <Link href="https://kusari.org" target="_blank" rel="noopener noreferrer" className="no-hover underline">
+                        Read more
+                      </Link>
+                      .
+                    </>
+                  ),
+                  side: "right",
+                  accent: "cyan",
+                  accentHex: "#22c55e", // Kusari green on the spine and chip
+                },
               ].map((event, i) => {
-                const accentColor = event.accent === "pink"
-                  ? { border: "border-pink-400", text: "text-pink-600", bg: "bg-pink-600", line: "bg-pink-400", dot: "bg-pink-400" }
+                // Single source of truth for each event's accent color.
+                const accent = event.accent === "pink"
+                  ? { border: "border-pink-400", text: "text-pink-600", hex: "#f472b6" }
                   : event.accent === "purple"
-                    ? { border: "border-violet-400", text: "text-violet-600", bg: "bg-violet-600", line: "bg-violet-400", dot: "bg-violet-400" }
+                    ? { border: "border-violet-400", text: "text-violet-600", hex: "#a78bfa" }
                     : event.accent === "fucsia"
-                      ? { border: "border-fuchsia-400", text: "text-fuchsia-600", bg: "bg-fuchsia-600", line: "bg-fuchsia-400", dot: "bg-fuchsia-400" }
+                      ? { border: "border-fuchsia-400", text: "text-fuchsia-600", hex: "#e879f9" }
                       : event.accent === "cyan-dark"
-                        ? { border: "border-cyan-500", text: "text-cyan-600", bg: "bg-cyan-600", line: "bg-cyan-500", dot: "bg-cyan-500" }
-                        : { border: "border-cyan-400", text: "text-cyan-600", bg: "bg-cyan-600", line: "bg-cyan-400", dot: "bg-cyan-400" }
+                        ? { border: "border-cyan-500", text: "text-cyan-600", hex: "#06b6d4" }
+                        : { border: "border-cyan-400", text: "text-cyan-600", hex: "#22d3ee" }
 
-                const borderClass = accentColor.border
-                const textClass = accentColor.text
-                const dateBgClass = accentColor.bg
-                const connectorClass = accentColor.line
-                const dotClass = accentColor.dot
+                const borderClass = accent.border
+                const textClass = accent.text
+                const accentHex = (event as any).accentHex ?? accent.hex
+
+                // Visually encode time gaps: first four (all in March) are very tight,
+                // uwucrew (September) is clearly separated.
+                // Custom per-event vertical offsets (in px) to reflect time gaps:
+                // March events form a very tight cluster, uwucrew is slightly below,
+                // and the Kusari establishment event sits a bit further down.
+                const marginTopByIndex = [0, -55, -35, -55, 25, 25]
+                const marginTop = marginTopByIndex[i] ?? 32
 
                 return (
                   <div
                     key={i}
                     className="flex flex-col md:flex-row md:items-center"
+                    style={{ marginTop }}
                   >
                     {/* Left Column (30%) - Box for left side events */}
                     <div
                       className={`w-full md:w-[30%] flex md:items-center md:text-right md:justify-end mb-1 md:mb-0`}
                     >
                       {event.side === "left" && (
-                        <div className="pixel-border-outer h-fit relative z-20" style={{ color: accentColor.line.replace('bg-', '') === 'pink-400' ? '#f472b6' : accentColor.line.replace('bg-', '') === 'violet-400' ? '#a78bfa' : accentColor.line.replace('bg-', '') === 'fuchsia-400' ? '#e879f9' : '#22d3ee' }}>
+                        <div className="pixel-border-outer h-fit relative z-20" style={{ color: accentHex }}>
                           <div className={`bg-white pixel-box p-4 shadow-lg w-full md:w-[250px]`}>
-                            <span className={`inline-block px-2 py-0.5 text-sm font-bold text-white mb-2 ${dateBgClass} pixel-box-sm`}>
+                            <span
+                              className={`inline-block px-2 py-0.5 text-sm font-bold text-white mb-2 pixel-box-sm`}
+                              style={{ backgroundColor: accentHex }}
+                            >
                               {event.date}
                             </span>
                             <h4 className="font-bold text-lg text-gray-900 mt-1">{event.title}</h4>
@@ -321,21 +354,26 @@ function DesktopLanding() {
                     <div className="w-full md:w-[10%] flex justify-center items-center mb-1 md:mb-0 relative">
                       {/* Connector line: center vertically (top-1/2 -translate-y-1/2) */}
                       <div
-                        className={`hidden md:block absolute top-1/2 h-1 -translate-y-1/2 ${connectorClass} ${event.side === "left" ? "left-0 right-1/2" : "left-1/2 right-0"
+                        className={`hidden md:block absolute top-1/2 h-1 -translate-y-1/2 ${event.side === "left" ? "left-0 right-1/2" : "left-1/2 right-0"
                           }`}
+                        style={{ backgroundColor: accentHex, opacity: 0.5 }}
                         aria-hidden="true"
                       />
                       <div
-                        className={`w-4 h-4 rounded-full shrink-0 ${dotClass} border-4 border-white shadow relative z-10`}
+                        className="w-4 h-4 rounded-full shrink-0 border-4 border-white shadow relative z-10"
+                        style={{ backgroundColor: accentHex }}
                       />
                     </div>
 
                     {/* Right Column (60%) - Box for right side events */}
                     <div className="w-full md:w-[60%] flex md:items-center md:text-left md:justify-start">
                       {event.side === "right" && (
-                        <div className="pixel-border-outer h-fit relative z-20" style={{ color: accentColor.line.replace('bg-', '') === 'pink-400' ? '#f472b6' : accentColor.line.replace('bg-', '') === 'violet-400' ? '#a78bfa' : accentColor.line.replace('bg-', '') === 'fuchsia-400' ? '#e879f9' : '#22d3ee' }}>
+                        <div className="pixel-border-outer h-fit relative z-20" style={{ color: accentHex }}>
                           <div className={`bg-white pixel-box p-4 shadow-lg w-full md:w-[250px]`}>
-                            <span className={`inline-block px-2 py-0.5 text-sm font-bold text-white mb-2 ${dateBgClass} pixel-box-sm`}>
+                            <span
+                              className={`inline-block px-2 py-0.5 text-sm font-bold text-white mb-2 pixel-box-sm`}
+                              style={{ backgroundColor: accentHex }}
+                            >
                               {event.date}
                             </span>
                             <h4 className="font-bold text-lg text-gray-900 mt-1">{event.title}</h4>
@@ -354,7 +392,7 @@ function DesktopLanding() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 right-0 z-20 pointer-events-none">
+        <div className="mt-10 md:mt-16 flex justify-center md:justify-end z-20 pointer-events-none">
           <img
             src="/wf.png"
             alt="Waifusion Mascot"

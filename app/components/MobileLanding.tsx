@@ -74,17 +74,11 @@ export default function MobileLanding() {
               {/* Text block */}
               <div className="w-full md:max-w-md md:flex-shrink-0 flex flex-col">
 
-                {/* Title block with image behind it on mobile */}
-                <div className="order-2 relative mb-3 md:hidden">
-                  {/* Image sits in the top-right, behind title text */}
-                  <img
-                    src="/placeholder.png"
-                    alt="Waifusion hero artwork"
-                    className="absolute right-0 top-0 w-36 h-36 object-contain z-0 opacity-90 pointer-events-none"
-                  />
-                  <div className="relative inline-block z-10">
+                {/* Mobile title (image below, not overlaid) */}
+                <div className="order-2 mb-3 md:hidden">
+                  <div className="relative inline-block">
                     <h1
-                      className="font-pixel text-3xl font-bold bg-clip-text text-transparent inline-block text-left relative"
+                      className="font-pixel text-3xl font-bold bg-clip-text text-transparent inline-block text-left"
                       style={{
                         backgroundImage: 'linear-gradient(to bottom, #FF008C 0%, #DFA7FF 37%, #0894FF 100%)',
                         lineHeight: '0.8'
@@ -97,7 +91,6 @@ export default function MobileLanding() {
                         born NFT legacy
                       </span>
                     </h1>
-                    {/* Positioned relative to the wrapper div, completely outside the clipped text h1 */}
                     <img src={PIXEL_HEARTS} alt="" className="absolute right-[0px] top-[5px] w-9 h-9 pointer-events-none" />
                   </div>
                 </div>
@@ -147,12 +140,12 @@ export default function MobileLanding() {
                 </div>
               </div>
 
-              {/* Hero image - shown on md+ only; on mobile it appears inline next to text above */}
-              <div className="hidden md:flex w-full md:w-auto md:flex-shrink-0 items-center justify-center mt-4 md:mt-0">
+              {/* Hero image: below text on mobile, alongside on desktop */}
+              <div className="mt-4 flex w-full md:w-auto md:flex-shrink-0 items-center justify-center md:mt-0">
                 <img
                   src="/placeholder.png"
                   alt="Waifusion hero artwork"
-                  className="w-full max-w-xs sm:max-w-sm md:max-w-[500px] h-auto object-contain"
+                  className="w-44 sm:w-56 md:w-full md:max-w-[500px] h-auto object-contain"
                 />
               </div>
             </div>
@@ -216,16 +209,16 @@ export default function MobileLanding() {
       {/* Info Cards Section */}
       <section className="py-4 md:py-10 px-4 relative">
         <div className="max-w-6xl mx-auto">
-          {/* Decorative pixel elements - scattered erratically at edges, away from text */}
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-y-3 md:gap-y-8 gap-x-2 md:gap-x-4 max-w-4xl mx-auto items-stretch">
+          {/* Info cards grid – full width on mobile, 2 cols on md+ */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 md:gap-y-8 gap-x-2 md:gap-x-4 max-w-full md:max-w-4xl md:mx-auto items-stretch">
             {/* Row 1: What is Waifusion | First NFT takeover — no images */}
             <div className="relative h-full">
               <div className="pixel-border-outer h-full" style={{ color: '#AB5BFF' }}>
                 <div className="shadow-md relative pixel-box overflow-visible h-full" style={{ backgroundColor: '#E7C8FF' }}>
-                  <div className="p-2 md:p-5 relative h-full">
-                    <h3 className="font-bold text-sm md:text-lg leading-tight mb-1 tracking-tight [word-spacing:-1px]" style={{ color: '#B010FA' }}>What is Waifusion?</h3>
-                    <p className="text-gray-700 leading-[1.2] text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">The earliest generative anime NFT collection — minted in March 2021, before all the ecosystem we know now was established.</p>
-                    <p className="text-gray-700 leading-[1.2] mt-1 text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">16,384 Waifusions were for sale, but the mint didn&apos;t finish, so the community invented a solution. Waifusions could be burned and swapped for new unsold ones, this resulted in only 8,918 surviving.</p>
+                  <div className="p-3 md:p-5 relative h-full">
+                    <h3 className="font-bold text-xl md:text-2xl leading-tight mb-2 tracking-tight [word-spacing:-1px]" style={{ color: '#B010FA' }}>What is Waifusion?</h3>
+                    <p className="text-gray-700 leading-snug text-base md:text-lg font-normal tracking-tight [word-spacing:-1px]">The earliest generative anime NFT collection — minted in March 2021, before all the ecosystem we know now was established.</p>
+                    <p className="text-gray-700 leading-snug mt-2 text-base md:text-lg font-normal tracking-tight [word-spacing:-1px]">16,384 Waifusions were for sale, but the mint didn&apos;t finish, so the community invented a solution. Waifusions could be burned and swapped for new unsold ones, this resulted in only 8,918 surviving.</p>
                   </div>
                 </div>
               </div>
@@ -234,9 +227,9 @@ export default function MobileLanding() {
             <div className="relative h-full">
               <div className="pixel-border-outer h-full" style={{ color: '#F453EF' }}>
                 <div className="shadow-md relative pixel-box overflow-visible h-full" style={{ backgroundColor: '#FFE0FE' }}>
-                  <div className="p-2 md:p-5 relative h-full">
-                    <h3 className="font-bold text-sm md:text-lg leading-tight mb-1 tracking-tight [word-spacing:-1px]" style={{ color: '#F453EF' }}>The First NFT Takeover</h3>
-                    <p className="text-gray-700 leading-[1.2] text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">Decentralization by necessity has carried Waifusion for over 4 years. When the original team walked away, Waifusion didn&apos;t die. The holders stepped up to make Waifusion the first NFT project fully carried forward by its community. The first leap was the &quot;Waifusion Dungeon&quot; for the holders to burn and swap Waifus.</p>
+                  <div className="p-3 md:p-5 relative h-full">
+                    <h3 className="font-bold text-xl md:text-2xl leading-tight mb-2 tracking-tight [word-spacing:-1px]" style={{ color: '#F453EF' }}>The First NFT Takeover</h3>
+                    <p className="text-gray-700 leading-snug text-base md:text-lg font-normal tracking-tight [word-spacing:-1px]">Decentralization by necessity has carried Waifusion for over 4 years. When the original team walked away, Waifusion didn&apos;t die. The holders stepped up to make Waifusion the first NFT project fully carried forward by its community. The first leap was the &quot;Waifusion Dungeon&quot; for the holders to burn and swap Waifus.</p>
                   </div>
                 </div>
               </div>
@@ -248,9 +241,9 @@ export default function MobileLanding() {
             <div className="relative h-full">
               <div className="pixel-border-outer h-full" style={{ color: '#FFC078' }}>
                 <div className="shadow-md relative pixel-box overflow-visible h-full" style={{ backgroundColor: '#FFF5D8' }}>
-                  <div className="p-2 md:p-5 relative h-full">
-                    <h3 className="font-bold text-sm md:text-lg leading-tight mb-1 tracking-tight [word-spacing:-1px]" style={{ color: '#F2A310' }}>Why does Waifusion matter?</h3>
-                    <p className="text-gray-700 leading-[1.2] text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">Waifusion matters because it proves that NFTs enable culture to survive. The first NFT CTO, the first burn-to-swap NFT collection, the beginning of Kusari and many other firsts. Thanks to being onchain, the community was able to maintain ownership and evolve after the project was abandoned, and remain a part of NFT history.</p>
+                  <div className="p-3 md:p-5 relative h-full">
+                    <h3 className="font-bold text-xl md:text-2xl leading-tight mb-2 tracking-tight [word-spacing:-1px]" style={{ color: '#F2A310' }}>Why does Waifusion matter?</h3>
+                    <p className="text-gray-700 leading-snug text-base md:text-lg font-normal tracking-tight [word-spacing:-1px]">Waifusion matters because it proves that NFTs enable culture to survive. The first NFT CTO, the first burn-to-swap NFT collection, the beginning of Kusari and many other firsts. Thanks to being onchain, the community was able to maintain ownership and evolve after the project was abandoned, and remain a part of NFT history.</p>
                   </div>
                 </div>
               </div>
@@ -259,10 +252,10 @@ export default function MobileLanding() {
             <div className="relative h-full">
               <div className="pixel-border-outer h-full" style={{ color: '#32AAFF' }}>
                 <div className="shadow-md relative pixel-box overflow-visible h-full" style={{ backgroundColor: '#DAF1FF' }}>
-                  <div className="p-2 md:p-5 relative h-full">
-                    <h3 className="font-bold text-sm md:text-lg leading-tight mb-1 tracking-tight [word-spacing:-1px]" style={{ color: '#32AAFF' }}>From CTO to Kusari</h3>
-                    <p className="text-gray-700 leading-[1.2] text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">In March 2021, the current Kusari founders took stewardship of Waifusion to ensure it wasn&apos;t forgotten. This eventually led to where we are now.</p>
-                    <p className="text-gray-700 leading-[1.2] mt-1 text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">Today, Waifusion exists as part of the Kusari Family, alongside uwucrew, Killer GF, and more, connected by a community with a passion for creativity.</p>
+                  <div className="p-3 md:p-5 relative h-full">
+                    <h3 className="font-bold text-xl md:text-2xl leading-tight mb-2 tracking-tight [word-spacing:-1px]" style={{ color: '#32AAFF' }}>From CTO to Kusari</h3>
+                    <p className="text-gray-700 leading-snug text-base md:text-lg font-normal tracking-tight [word-spacing:-1px]">In March 2021, the current Kusari founders took stewardship of Waifusion to ensure it wasn&apos;t forgotten. This eventually led to where we are now.</p>
+                    <p className="text-gray-700 leading-snug mt-2 text-base md:text-lg font-normal tracking-tight [word-spacing:-1px]">Today, Waifusion exists as part of the Kusari Family, alongside uwucrew, Killer GF, and more, connected by a community with a passion for creativity.</p>
                   </div>
                 </div>
               </div>
@@ -277,11 +270,11 @@ export default function MobileLanding() {
             <div className="relative h-full">
               <div className="pixel-border-outer h-full" style={{ color: '#21D510' }}>
                 <div className="shadow-md relative pixel-box overflow-visible h-full" style={{ backgroundColor: '#DBFFE0' }}>
-                  <div className="p-2 md:p-5 relative h-full">
-                    <h3 className="font-bold text-sm md:text-lg leading-tight mb-1 tracking-tight [word-spacing:-1px]" style={{ color: '#00C48C' }}>About Kusari</h3>
-                    <p className="text-gray-700 leading-[1.2] text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">Kusari is a creative collective building durable culture onchain.</p>
-                    <p className="text-gray-700 leading-[1.2] mt-1 text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">We collaborate with artists and communities to create projects that aren&apos;t just part of a trend. At Kusari we create art that is meant to last.</p>
-                    <p className="text-gray-700 leading-[1.2] mt-1 text-[11px] md:text-sm tracking-tight [word-spacing:-1px]">
+                  <div className="p-3 md:p-5 relative h-full">
+                    <h3 className="font-bold text-xl md:text-2xl leading-tight mb-2 tracking-tight [word-spacing:-1px]" style={{ color: '#00C48C' }}>About Kusari</h3>
+                    <p className="text-gray-700 leading-snug text-base md:text-lg font-normal tracking-tight [word-spacing:-1px]">Kusari is a creative collective building durable culture onchain.</p>
+                    <p className="text-gray-700 leading-snug mt-2 text-base md:text-lg font-normal tracking-tight [word-spacing:-1px]">We collaborate with artists and communities to create projects that aren&apos;t just part of a trend. At Kusari we create art that is meant to last.</p>
+                    <p className="text-gray-700 leading-snug mt-2 text-base md:text-lg font-normal tracking-tight [word-spacing:-1px]">
                       Discover more about Kusari at{" "}
                       <Link href="https://kusari.org" target="_blank" rel="noopener noreferrer" className="text-[#00C48C] font-medium hover:underline">
                         kusari.org
@@ -297,7 +290,7 @@ export default function MobileLanding() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-12 md:py-20 px-4 bg-gradient-to-b from-pink-50/30 to-pink-80 relative overflow-visible">
+      <section className="pt-12 pb-0 md:py-20 px-4 bg-gradient-to-b from-pink-50/30 to-pink-80 overflow-visible">
         <div className="max-w-4xl mx-auto">
           <div className="w-full md:w-[70%]">
             <h2 className="font-pixel text-3xl font-bold text-center mb-1 text-pink-500">A timeline of Waifusion</h2>
@@ -400,7 +393,8 @@ export default function MobileLanding() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 right-0 z-20 pointer-events-none">
+        {/* Waifu illustration – sits after the timeline with breathing room, not overlapping it */}
+        <div className="mt-10 md:mt-16 flex justify-center md:justify-end z-20 pointer-events-none">
           <img
             src="/wf.png"
             alt="Waifusion Mascot"

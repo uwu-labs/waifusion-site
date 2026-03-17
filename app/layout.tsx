@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import localFont from "next/font/local"
 import { Inter } from "next/font/google"
 import { CursorEffect } from "./components/CursorEffect"
@@ -15,6 +15,12 @@ export const metadata: Metadata = {
   title: "Waifusion | Community-Born NFT Legacy",
   description:
     "Waifusion is the first generative anime collection on Ethereum. Created March 2021, now community-owned under Kusari.",
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 }
 
 export default function RootLayout({
