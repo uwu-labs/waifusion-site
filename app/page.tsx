@@ -318,6 +318,7 @@ function DesktopLanding() {
                   ),
                   side: "right",
                   accent: "cyan",
+                  accentHex: "#4fd1c5", // blend between timeline cyan and Kusari green
                 },
                 {
                   date: "April 9th 2025",
