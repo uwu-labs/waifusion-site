@@ -183,6 +183,35 @@ textarea,
   animation: slide 8s linear infinite;
 }
 
+/* Continuous marquee ticker (desktop header banner) */
+.ticker-marquee {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  min-width: 100%;
+  animation: ticker-scroll 24s linear infinite;
+}
+
+.ticker-item {
+  display: inline-block;
+  padding: 0 2.75rem;
+}
+
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
 @keyframes gradient-x {
   0% {
     background-position: 0% 50%;

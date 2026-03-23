@@ -62,6 +62,28 @@ function DesktopLanding() {
         </div>
       </header>
 
+      {/* Full-width ticker under header */}
+      <div className="w-full overflow-hidden bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-400 h-8 flex items-center">
+        <div className="ticker-marquee">
+          <div className="ticker-marquee-track">
+            <span className="ticker-item text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+            <span className="ticker-item text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+            <span className="ticker-item text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+            <span className="ticker-item text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+            <span className="ticker-item text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+            <span className="ticker-item text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+          </div>
+          <div className="ticker-marquee-track" aria-hidden="true">
+            <span className="ticker-item text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+            <span className="ticker-item text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+            <span className="ticker-item text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+            <span className="ticker-item text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+            <span className="ticker-item text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+            <span className="ticker-item text-white text-xs font-bold uppercase tracking-wider">First NFT Community Takeover!</span>
+          </div>
+        </div>
+      </div>
+
       {/* Hero Section - same gradient as body for consistent look */}
       <section
         className="relative pt-6 pb-12 px-5 sm:px-8 md:px-10"
@@ -75,15 +97,8 @@ function DesktopLanding() {
             <div className="w-full flex flex-col md:flex-row md:gap-8 md:items-center md:justify-center">
               {/* Text block */}
               <div className="w-full md:max-w-md md:flex-shrink-0 flex flex-col">
-                <div className="order-1 overflow-hidden inline-flex items-center bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-400 text-white text-xs font-bold uppercase tracking-wider mb-2 w-64 h-[28px] animate-gradient self-center md:self-start">
-                  <div className="flex whitespace-nowrap animate-slide w-max">
-                    <span className="px-4">First NFT Community Takeover!</span>
-                    <span className="px-4">First NFT Community Takeover!</span>
-                  </div>
-                </div>
-
                 <h1
-                  className="order-2 font-pixel text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-3 bg-clip-text text-transparent inline-block text-center md:text-left"
+                  className="order-1 font-pixel text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-3 bg-clip-text text-transparent inline-block text-center md:text-left"
                   style={{ backgroundImage: 'linear-gradient(to bottom, #FF008C 0%, #DFA7FF 37%, #0894FF 100%)' }}
                 >
                   Waifusion
@@ -94,12 +109,12 @@ function DesktopLanding() {
                   born NFT legacy
                 </h1>
 
-                <p className="order-3 text-gray-600 mb-4 leading-relaxed text-sm sm:text-base text-center md:text-left max-w-md">
+                <p className="order-2 text-gray-600 mb-4 leading-relaxed text-sm sm:text-base text-center md:text-left max-w-md">
                   Waifusion is the <span className="font-semibold text-gray-900">first generative anime collection</span> born on Ethereum.
                   Although the original team neglected it, the community refused to end its story.
                 </p>
 
-                <div className="order-4 w-fit flex flex-col sm:flex-row flex-wrap gap-4 justify-center md:justify-start">
+                <div className="order-3 w-fit flex flex-col sm:flex-row flex-wrap gap-4 justify-center md:justify-start">
                   <div className="pixel-border-outer" style={{ color: '#fa4cbdff' }}>
                     <Link
                       href="https://discord.gg/cKWpT7HGam"
