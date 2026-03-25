@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "site": "waifusion-25b04",
+      "site": "waifusion-temp",
       "public": "dist",
       "ignore": [
         "firebase.json",
