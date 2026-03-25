@@ -7,3 +7,6 @@ coverage/
 
 # Next.js (if used); never commit — cache packs exceed GitHub's 100MB limit
 .next/
+
+# Firebase local emulator / deploy cache
+.firebase/

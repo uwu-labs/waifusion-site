@@ -1,36 +1,65 @@
 name: Deploy to Firebase Hosting on merge
+
 "on":
   push:
     branches:
       - v1
+
+# Must match .firebaserc "default" (GCP project id). Hosting *site* id lives in firebase.json "site".
+env:
+  FIREBASE_PROJECT_ID: waifusion-temp
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
+
       - name: Installing Dependencies
         run: npm ci
+
       - name: Building
         run: npm run build
         env:
           CI: true
+
       - name: Verify build output
         run: test -f dist/index.html && test -d dist/assets
+
       - name: Install Firebase Tools
         run: npm install -g firebase-tools
-      - name: Deploying to Firebase Hosting
+
+      - name: Validate service account (no secret printed)
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
           if [ -z "$FIREBASE_SERVICE_ACCOUNT" ]; then
-            echo "Missing GitHub secret FIREBASE_SERVICE_ACCOUNT (full service account JSON). See Firebase console → Project settings → Service accounts."
+            echo "Missing secret FIREBASE_SERVICE_ACCOUNT. Firebase console → Project settings → Service accounts → Generate new private key."
             exit 1
           fi
           printf '%s\n' "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/firebase-sa.json"
           chmod 600 "$RUNNER_TEMP/firebase-sa.json"
+          if ! jq -e . "$RUNNER_TEMP/firebase-sa.json" >/dev/null 2>&1; then
+            echo "FIREBASE_SERVICE_ACCOUNT is not valid JSON."
+            exit 1
+          fi
+          SA_PROJECT=$(jq -r '.project_id // empty' "$RUNNER_TEMP/firebase-sa.json")
+          if [ "$SA_PROJECT" != "$FIREBASE_PROJECT_ID" ]; then
+            echo "Key project_id is '$SA_PROJECT' but this repo expects '$FIREBASE_PROJECT_ID' (see .firebaserc)."
+            exit 1
+          fi
+
+      - name: Deploying to Firebase Hosting
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          GOOGLE_CLOUD_PROJECT: ${{ env.FIREBASE_PROJECT_ID }}
+        run: |
+          printf '%s\n' "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/firebase-sa.json"
+          chmod 600 "$RUNNER_TEMP/firebase-sa.json"
           export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/firebase-sa.json"
-          firebase deploy --only hosting --non-interactive
+          firebase deploy --only hosting --project "$FIREBASE_PROJECT_ID" --non-interactive
