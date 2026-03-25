@@ -13,7 +13,7 @@ const boldPixels = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://waifusion.io"),
-  title: "The First NFT Community Takeover",
+  title: "Waifusion - The First NFT Community Takeover",
   description:
     "Waifusion is the first generative anime NFT collection on Ethereum and the first NFT community takeover, stewarded by holders and now part of Kusari.",
   alternates: {
@@ -23,18 +23,27 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://waifusion.io",
     siteName: "Waifusion",
-    title: "The First NFT Community Takeover",
+    title: "Waifusion - The First NFT Community Takeover",
     description:
       "Waifusion is the first generative anime NFT collection on Ethereum and the first NFT community takeover, stewarded by holders and now part of Kusari.",
     locale: "en_US",
+    images: [
+      {
+        url: "/og-waifusion.png",
+        width: 1024,
+        height: 342,
+        alt: "Waifusion banner art",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
-    title: "The First NFT Community Takeover",
+    card: "summary_large_image",
+    title: "Waifusion - The First NFT Community Takeover",
     description:
       "Waifusion is the first generative anime NFT collection on Ethereum and the first NFT community takeover, stewarded by holders and now part of Kusari.",
     creator: "@uwucrewnft",
     site: "@uwucrewnft",
+    images: ["/og-waifusion.png"],
   },
   robots: {
     index: true,

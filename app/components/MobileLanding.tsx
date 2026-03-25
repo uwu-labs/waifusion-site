@@ -38,7 +38,7 @@ export default function MobileLanding() {
             <span className="font-pixel font-bold text-white text-2xl">Waifusion</span>
           </Link>
           <div className="ml-auto flex items-center gap-4">
-            <Link href="https://twitter.com/waaboratory" target="_blank" className="text-white hover:text-white/80">
+            <Link href="https://x.com/uwucrewnft" target="_blank" className="text-white hover:text-white/80">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
             </Link>
             <Link href="https://discord.gg/cKWpT7HGam" target="_blank" className="text-white hover:text-white/80">
@@ -350,7 +350,7 @@ export default function MobileLanding() {
                       <h4 className="font-bold text-xl md:text-lg text-gray-900 mt-1">{event.title}</h4>
                       <p className="text-base md:text-sm text-gray-600 mt-1">
                         {event.subline}
-                        {i === 4 && <Link href="#" className={`text-base md:text-sm ${textClass} hover:underline ml-1 no-hover inline`}>Learn more</Link>}
+                        {i === 4 && <Link href="https://uwucrew.art" target="_blank" rel="noopener noreferrer" className={`text-base md:text-sm ${textClass} hover:underline ml-1 no-hover inline`}>Learn more</Link>}
                       </p>
                     </div>
                   </div>
