@@ -2,10 +2,24 @@
 /node_modules
 .cache
 
+# Next.js
+.next
+out
+
+# env files (keep .env.example if you use one)
+.env
+.env*.local
+
 # yarn
 yarn-error.log
+*.log
+npm-debug.log*
 
 # production
 /build
 
+# misc
+.DS_Store
+.vercel
+*.tsbuildinfo
 package-lock.json
