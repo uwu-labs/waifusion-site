@@ -142,8 +142,8 @@ function DesktopLanding() {
               {/* Hero image - sized to image, grouped in center with text */}
               <div className="w-full md:w-auto md:flex-shrink-0 flex items-center justify-center mt-4 md:mt-0">
                 <img
-                  src="/placeholder.png"
-                  alt="Waifusion hero artwork"
+                  src="/wf_sticker_together.png"
+                  alt="Waifusion and uwucrew characters"
                   className="w-full max-w-xs sm:max-w-sm md:max-w-[500px] h-auto object-contain"
                 />
               </div>
@@ -228,8 +228,8 @@ function DesktopLanding() {
             </div>
 
             {/* Row 3: Waifu image (left) | About Kusari (right) */}
-            <div className="hidden md:flex items-end justify-center h-full min-h-[200px] w-full">
-              <img src="/placeholder2.png" alt="Waifu Placeholder" className="object-contain w-full h-auto max-h-[320px]" />
+            <div className="hidden md:flex md:self-stretch items-center justify-center w-full min-h-[200px]">
+              <img src="/wf_sticker_kissu.png" alt="Waifusion and uwucrew sticker" className="object-contain w-full h-auto max-h-[320px]" />
             </div>
             <div className="relative">
               <div className="pixel-border-outer" style={{ color: '#21D510' }}>
