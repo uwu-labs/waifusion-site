@@ -1,8 +1,9 @@
 node_modules
-
-# Gatsby Build
-public
+dist
 .cache
 coverage/
+.idea/
+.DS_Store
 
-**.idea/**
+# Next.js (if used); never commit — cache packs exceed GitHub's 100MB limit
+.next/

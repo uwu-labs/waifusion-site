@@ -1,7 +1,7 @@
 module.exports = {
     siteTitle: 'Waifusion',
     siteDesc: 'Waifusion is a digital anime inspired waifu collection of 16,384 unique waifu NFTs on the Ethereum blockchain',
-    siteAuthor: 'Waifusion Team',
+    siteAuthor: '@uwucrewnft',
     siteLogoUrl: 'src/images/logo_icon.png',
 
     manifestName: 'Waifusion',
@@ -19,7 +19,7 @@ module.exports = {
         {
             icon: 'fa-twitter',
             name: 'Twitter',
-            url: 'https://twitter.com/waifusion',
+            url: 'https://twitter.com/uwucrewnft',
         },
         {
             icon: 'fa-envelope-o',

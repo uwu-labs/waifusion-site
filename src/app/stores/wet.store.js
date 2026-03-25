@@ -1,21 +1,24 @@
 import { decorate, observable } from "mobx";
-import BN from "bn.js";
-
-import {
-  tokenOfOwnerByIndex,
-  balanceOf,
-  accumulatedForIndex,
-  toEthUnit,
-  getWETName,
-  getTokenId,
-} from "../utils/contracthelper";
 
 class WETStore {
   isClaiming = false;
   items = [];
-  ownedItems = [];
-  wetBalance = 0;
-  totalAccumulated = 0;
+  ownedItems = [
+    {
+      index: 42,
+      name: "Demo Sakura",
+      id: 42,
+      accumulatedWETNumber: "12.34",
+    },
+    {
+      index: 7,
+      name: "Demo Mika",
+      id: 7,
+      accumulatedWETNumber: "56.78",
+    },
+  ];
+  wetBalance = "1337.00";
+  totalAccumulated = "99.99";
   totalAccumulatedLoading = false;
   isLoading = false;
 
@@ -45,18 +48,7 @@ class WETStore {
   }
 
   async syncOwnedItems() {
-    this.ownedItems = [];
-    const balance = await balanceOf();
-
-    for (let i = 0; i < balance; i++) {
-      const index = await tokenOfOwnerByIndex(i);
-      const name = await getWETName(index);
-      const id = await getTokenId(index);
-      const accumulated = new BN(await accumulatedForIndex(index));
-      const accumulatedWETNumber =  Number(await toEthUnit(accumulated)).toFixed(2);
-
-      this.addOwnedItem({ index, name, id, accumulatedWETNumber });
-    }
+    return undefined;
   }
 }
 

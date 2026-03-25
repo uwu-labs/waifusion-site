@@ -1,48 +1,50 @@
-import { decorate, observable, action } from "mobx";
+import { decorate, action, extendObservable } from "mobx";
 import { GLOBALS } from "../utils/globals.js";
 
-const revealedWaifuIndex = (waifuIndex) => {
-  return (
-    (((Number(waifuIndex) + GLOBALS.STARTING_INDEX) % 16384) + 16384) % 16384
-  );
-};
+const TOTAL = GLOBALS.TOTAL_WAIFUS;
+
+/** Map any integer input to gallery image id in 1..TOTAL (wraps). */
+function normalizeImageId(n) {
+  const x = Math.floor(Number(n));
+  if (!Number.isFinite(x)) return 1;
+  const m = ((x - 1) % TOTAL + TOTAL) % TOTAL;
+  return m + 1;
+}
 
 class GalleryStore {
-  currentViewIndex = 0;
-  goToIndex = 0;
-
   constructor(rootStore) {
     this.rootStore = rootStore;
+    // Class fields would shadow prototype `decorate` observables (MobX 5 + Vite);
+    // instance observables must live on `this` via extendObservable.
+    extendObservable(this, {
+      currentImageId: 1,
+      goToImageId: 1,
+    });
   }
 
   incrementViewIndex() {
-    this.currentViewIndex = revealedWaifuIndex(
-      Number(this.currentViewIndex) + 1
-    );
-    this.goToIndex = this.currentViewIndex;
+    this.currentImageId = normalizeImageId(Number(this.currentImageId) + 1);
+    this.goToImageId = this.currentImageId;
   }
   decrementViewIndex() {
-    this.currentViewIndex = revealedWaifuIndex(
-      Number(this.currentViewIndex) - 1
-    );
-    this.goToIndex = this.currentViewIndex;
+    this.currentImageId = normalizeImageId(Number(this.currentImageId) - 1);
+    this.goToImageId = this.currentImageId;
   }
   updateGoToIndex(val) {
-    this.goToIndex = val;
+    this.goToImageId = val;
   }
 
   updateCurrentViewIndex(val) {
-    this.currentViewIndex = val;
-    this.goToIndex = val;
+    const id = normalizeImageId(val);
+    this.currentImageId = id;
+    this.goToImageId = id;
   }
 }
 decorate(GalleryStore, {
-  currentViewIndex: observable,
   incrementViewIndex: action,
   decrementViewIndex: action,
   updateGoToIndex: action,
   updateCurrentViewIndex: action,
-  goToIndex: observable,
 });
 
 export default GalleryStore;
