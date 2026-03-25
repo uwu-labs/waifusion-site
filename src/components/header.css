@@ -103,3 +103,51 @@
 .nav-bar-button-container {
 margin-top: -24px;
 }
+
+/* Mobile: trim side padding, wrap nav buttons, keep within viewport */
+@media (max-width: 768px) {
+	.nav-waifu-card-box-sub {
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+	}
+
+	.nav-bar-buttons-row {
+		flex-wrap: wrap;
+		justify-content: center;
+		row-gap: 8px;
+		column-gap: 8px;
+		overflow-x: visible;
+		width: 100%;
+		max-width: 100%;
+		box-sizing: border-box;
+	}
+
+	.nav-bar-buttons-row .nav-menu-buttons {
+		flex-shrink: 1;
+	}
+
+	.nav-bar-buttons-row .nav-menu-buttons,
+	.nav-menu-buttons {
+		width: auto !important;
+		min-width: 0;
+		flex: 0 1 auto;
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+		font-size: 20px !important;
+	}
+}
+
+@media (max-width: 380px) {
+	.nav-menu-buttons {
+		font-size: 18px !important;
+		flex: 1 1 calc(50% - 6px);
+		max-width: calc(50% - 6px);
+	}
+}
+
+@media (max-width: 990px) {
+	header img[alt="Ethereum"] {
+		max-width: min(260px, 82vw);
+		height: auto;
+	}
+}

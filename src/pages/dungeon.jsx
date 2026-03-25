@@ -25,11 +25,34 @@ const PageContainer = styled.div`
 const PurchaseOptionsContainer = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
   margin-top: 28px;
-  padding-top: 32px;
-  justify-content: space-evenly;
+  padding: 32px 12px 0;
   max-width: 1435px;
   box-sizing: border-box;
+
+  & > * {
+    width: 100%;
+    max-width: min(560px, 100%);
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 900px) {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-evenly;
+    gap: 24px;
+    padding-left: 0;
+    padding-right: 0;
+
+    & > * {
+      width: auto;
+      flex: 0 1 48%;
+      max-width: 560px;
+    }
+  }
 `;
 
 const ButtonContainer = styled.div`

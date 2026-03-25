@@ -21,6 +21,10 @@ const Content = styled.div`
   align-items: center;
   justify-content: space-evenly;
   padding: 1rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  gap: 12px;
 
   @media (max-width: 990px) {
     flex-direction: column;
@@ -36,14 +40,23 @@ const Logo = styled.img.attrs({
   vertical-align: top;
 `;
 
-const ButtonsWrapper = styled.div``;
+const ButtonsWrapper = styled.div`
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+`;
 
 const Header = ({ siteTitle, menuLinks }) => {
   const navigate = useNavigate();
 
   return (
     <Container>
-      <Box className="waifu-card-box" maxWidth={1435}>
+      <Box
+        className="waifu-card-box nav-header-outer"
+        maxWidth={1435}
+        style={{ width: "100%", maxWidth: "min(1435px, 100%)", boxSizing: "border-box" }}
+      >
         <div style={{ marginLeft: 4, marginTop: 4 }}>
           <img
             src={NavPinkBar}
