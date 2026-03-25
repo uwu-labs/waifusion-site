@@ -36,7 +36,6 @@ export default function MobileLanding() {
         <div className="max-w-7xl mx-auto px-4 h-10 flex items-center relative">
           <Link href="/" className="flex items-center gap-2 no-hover">
             <span className="font-pixel font-bold text-white text-2xl">Waifusion</span>
-            <span className="text-white/70 text-m">by Kusari</span>
           </Link>
           <div className="ml-auto flex items-center gap-4">
             <Link href="https://twitter.com/waaboratory" target="_blank" className="text-white hover:text-white/80">

@@ -37,7 +37,6 @@ function DesktopLanding() {
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-center relative">
           <Link href="/" className="flex items-center gap-2 no-hover">
             <span className="font-pixel font-bold text-white text-2xl">Waifusion</span>
-            <span className="text-white/70 text-m">by Kusari</span>
           </Link>
           <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-4">
             <Link href="https://twitter.com/waaboratory" target="_blank" className="text-white hover:text-white/80">
