@@ -39,11 +39,25 @@ function LayoutShell() {
         <meta name="description" content={siteConfig.siteDesc} />
         <meta itemProp="name" content={siteConfig.siteTitle} />
         <meta property="og:site_name" content={siteConfig.siteTitle} />
+        <meta property="og:title" content={siteConfig.siteTitle} />
+        <meta property="og:description" content={siteConfig.siteDesc} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${siteConfig.siteUrl}/`} />
+        <meta
+          property="og:image"
+          content={`${siteConfig.siteUrl}/icons/icon-512x512.png`}
+        />
         <meta
           name="keywords"
           content="Waifus, NFT, NFT waifu, opensea, waifu harem, non fungible token"
         />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={siteConfig.siteTitle} />
         <meta property="twitter:description" content={siteConfig.siteDesc} />
+        <meta
+          name="twitter:image"
+          content={`${siteConfig.siteUrl}/icons/icon-512x512.png`}
+        />
       </Helmet>
       <Outlet />
     </Layout>

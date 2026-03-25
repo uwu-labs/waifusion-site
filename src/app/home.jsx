@@ -7,6 +7,7 @@ import { Button, Box } from "../components/ui";
 import { GLOBALS } from "./utils/globals.js";
 import OverviewGreenBar from "../images/overview_green_bar.png";
 import PresaleShowcase from "../components/PresaleShowcase";
+import SEO from "../components/seo";
 
 import "../components/home.css";
 
@@ -14,6 +15,7 @@ import "../components/home.css";
 const Home = () => {
   return (
     <>
+      <SEO title="Home" />
       <Box className="waifu-card-container home-landing-overview-only">
         <Box className="green-sub-container waifu-home-green-box waifu-home-green-box-container">
           <Box className="waifu-card-box">

@@ -2,7 +2,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Input, Flex, Button, Box, Text, Loader } from "../components/ui";
 import { observer } from "mobx-react-lite";
-import { Helmet } from "react-helmet";
 
 // Data Store
 import { RootStoreContext } from "../app/stores/root.store";
@@ -14,6 +13,7 @@ import FocusText from "../images/focus_waifu_card_text.png";
 import BlurredText from "../images/blurred_text_crop.png";
 import OverviewGreenBar from "../images/overview_green_bar.png";
 import Layout from "../components/layout";
+import SEO from "../components/seo";
 import "../components/home.css";
 
 // Main Route
@@ -82,9 +82,7 @@ const Gallery = observer((props) => {
   return (
     <Layout>
       {/*Need to add key to box when do full gallery */}
-      <Helmet>
-        <title>Gallery</title>
-      </Helmet>
+      <SEO title="Gallery" />
       <Box className="waifu-card-container">
         <Flex
           className="gallery-waifu-traits-row"

@@ -10,6 +10,8 @@ const StyledPopup = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 20000;
+  isolation: isolate;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   display: flex;

@@ -1,10 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 import * as siteConfig from "../siteConfig";
 
 function SEO({ description, lang, meta, title }) {
+  const { pathname, search } = useLocation();
   const metaDescription = description || siteConfig.siteDesc;
+  const pageTitle = `${title} | ${siteConfig.siteTitle}`;
+  const pageUrl = `${siteConfig.siteUrl}${pathname}${search}`;
 
   return (
     <Helmet
@@ -20,7 +24,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: pageTitle,
         },
         {
           property: `og:description`,
@@ -29,6 +33,14 @@ function SEO({ description, lang, meta, title }) {
         {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          property: `og:url`,
+          content: pageUrl,
+        },
+        {
+          property: `og:image`,
+          content: `${siteConfig.siteUrl}/icons/icon-512x512.png`,
         },
         {
           name: `twitter:card`,
@@ -40,13 +52,18 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: pageTitle,
         },
         {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `twitter:image`,
+          content: `${siteConfig.siteUrl}/icons/icon-512x512.png`,
+        },
       ].concat(meta)}
+      link={[{ rel: "canonical", href: pageUrl }]}
     />
   );
 }
