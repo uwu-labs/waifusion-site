@@ -4,6 +4,7 @@ class DetailStore {
   isPendingNameChange = false;
   nameValidation = "";
   currentName = "";
+  name = "";
   changedName = "";
   changeNamePending = false;
   isinsufficientBalance = false;
@@ -26,6 +27,7 @@ decorate(DetailStore, {
   isPendingNameChange: observable,
   nameValidation: observable,
   currentName: observable,
+  name: observable,
   changedName: observable,
   changeNamePending: observable,
   isinsufficientBalance: observable,

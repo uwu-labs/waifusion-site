@@ -7,24 +7,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 12.x
-      - name: Gatsby Cache
-        id: gatsby-cache-build
-        uses: actions/cache@v2
-        with:
-          path: |
-            public
-            .cache
-          key: ${{ runner.os }}-gatsby-build-${{ github.run_id }}
-          restore-keys: |
-            ${{ runner.os }}-gatsby-build-
+          node-version: "20"
+          cache: "npm"
       - name: Installing Dependencies
-        run: npm ci --production
+        run: npm ci
       - name: Building
         run: npm run build
         env:
-          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
           CI: true
+      - name: Verify build output
+        run: test -f dist/index.html && test -d dist/assets

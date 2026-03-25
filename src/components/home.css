@@ -22,6 +22,157 @@
 	color: #FCFEF4;
 }
 
+.waifu-card-box-sub .waifu-card-text a {
+	color: rgba(252, 116, 198, 0.95);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+.waifu-card-box-sub .waifu-card-text a:hover {
+	color: #fcf4c6;
+}
+
+/* Historical presale tier bars (landing showcase) */
+.colored-completed {
+	fill: #61d55f;
+	z-index: 1000;
+	color: #61d55f;
+}
+
+.colored-pending {
+	fill: #fbe55f;
+	color: #fbe55f;
+}
+
+.colored-unavailable {
+	fill: #fcfef4;
+	color: #fcfef4;
+}
+
+.eth-sale-text {
+	font-family: VT323;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 30px;
+	line-height: 30px;
+	color: #fc74c6;
+}
+
+.presale-progress {
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+/* Showcase only: negative margin was for stitched bars but overlapped text when misapplied */
+.presale-showcase-container .presale-svg {
+	margin-left: 0;
+	display: block;
+	flex-shrink: 0;
+}
+
+.presale-bar-wrap {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: 8px 0 10px;
+	overflow: hidden;
+}
+
+.presale-tier-column {
+	flex: 1 1 130px;
+	max-width: 190px;
+	min-width: 110px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.presale-tier-label {
+	display: block;
+}
+
+.presale-tier-counts {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+}
+
+.presale-tier-count {
+	display: block;
+	line-height: 1.15;
+}
+
+.presale-progress-row {
+	width: 100%;
+	max-width: 980px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 36px;
+	gap: 10px 14px;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.presale-final-tier {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 36px;
+	padding-bottom: 48px;
+	width: 100%;
+	max-width: 280px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Landing: single overview column (no side-by-side waifu card) */
+.home-landing-overview-only .waifu-home-green-box {
+	margin-bottom: 40px;
+}
+
+.home-landing-overview-only .waifu-home-green-box-container {
+	margin-top: 0;
+}
+
+/* Presale + Dungeon windows: same chrome rhythm as “What is Waifusion?” */
+.home-landing-presale-window {
+	margin-top: 48px;
+}
+
+.home-landing-presale-window .waifu-home-green-box,
+.home-landing-dungeon-window .waifu-home-green-box {
+	margin-bottom: 40px;
+}
+
+.home-landing-presale-window .waifu-home-green-box-container,
+.home-landing-dungeon-window .waifu-home-green-box-container {
+	margin-top: 0;
+}
+
+.home-landing-presale-window .waifu-card-box-center,
+.home-landing-dungeon-window .waifu-card-box-center {
+	padding-bottom: 0px;
+}
+
+/* Match #e0_338 “WHAT IS WAIFUSION?” title (shared, no duplicate ids) */
+.home-landing-window-title {
+	color: rgba(252, 116, 198, 0.92);
+	opacity: 1;
+	margin-top: 10px;
+	font-family: VT323, monospace;
+	text-align: left;
+	font-size: 42px;
+	letter-spacing: 0;
+	line-height: 1.05;
+	padding-bottom: 10px;
+}
+
+.presale-svg {
+	margin-left: -33px;
+}
+
 .transactions-none-text {
 	padding-top: 30px;
 	padding-bottom: 30px;
@@ -61,19 +212,527 @@
 	max-width: 1435px;
 	margin-top: 67px;
 }
-.waifu-dungeon-peek-container{
-	position: relative;
-	padding-bottom: -5px;
+
+/* Gallery: image card + metadata traits side by side (detail / wallet style) */
+.gallery-waifu-traits-row {
+	gap: 16px 24px;
 }
-.waifu-dungeon-chain-overlay{
-	height: 100%;
-	width: 200%;
+
+/* Tighten vertical rhythm in pink card (line boxes + br gaps) without changing assets much */
+.gallery-image-column {
+	line-height: 0;
+}
+
+.gallery-image-column .card-box-center-pink-text,
+.gallery-image-column .waifu-input,
+.gallery-image-column .gallery-button-container,
+.gallery-image-column .wallet-buttons {
+	line-height: normal;
+}
+
+.gallery-image-column img {
+	vertical-align: top;
+}
+
+.gallery-pink-stack.waifu-card-pink-center {
+	padding-top: 10px !important;
+	padding-bottom: 14px !important;
+}
+
+/* Let deco layers extend past the 375px column without clipping */
+.gallery-pink-stack .waifu-card-box-pink-sub {
+	overflow: visible;
+}
+
+/*
+ * Gallery portrait: one 375×500 flow box; clear + blur decos are absolutely
+ * layered behind the waifu (no negative-margin flow hacks).
+ */
+.gallery-portrait-stage {
+	position: relative;
+	width: 375px;
+	height: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	flex-shrink: 0;
+	isolation: isolate;
+	z-index: 0;
+	box-sizing: border-box;
+}
+
+.gallery-pink-stack .gallery-deco-blur,
+.gallery-pink-stack .gallery-deco-focus {
 	position: absolute;
+	pointer-events: none;
+	user-select: none;
+	margin: 0 !important;
+	vertical-align: top;
+}
+
+/* Behind portrait; bottom-left vaporwave accent (tweak inset here only) */
+.gallery-pink-stack .gallery-deco-blur {
+	z-index: 0;
+	left: -60px;
+	bottom: 18px;
+	max-width: min(200px, 52vw);
+	width: auto;
+	height: auto;
+}
+
+/* Behind portrait; right-edge clear graphic */
+.gallery-pink-stack .gallery-deco-focus {
+	z-index: 0;
+	right: -68px;
+	top: 5%;
+	max-height: 90%;
+	width: auto;
+	height: auto;
+	object-fit: contain;
+}
+
+/* Gallery controls: 32px below the portrait stage */
+.gallery-footer {
+	margin-top: 32px;
+	position: relative;
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	padding-bottom: 6px;
+	line-height: normal;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+/* Override .card-box-center-pink-text { text-align: left } so # field centers */
+.gallery-footer-id.card-box-center-pink-text {
+	margin-top: 0 !important;
+	padding-bottom: 0 !important;
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	text-align: center !important;
+	box-sizing: border-box;
+}
+
+.gallery-footer .waifu-input {
+	margin-top: 0 !important;
+	margin-bottom: 2px !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.gallery-footer .gallery-button-container {
+	display: flex !important;
+	flex-direction: row !important;
+	flex-wrap: nowrap !important;
+	justify-content: center !important;
+	align-items: center !important;
+	gap: 10px !important;
+	padding: 0 !important;
+	margin: 0 auto !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	min-width: 0;
+	box-sizing: border-box;
+}
+
+/* Gallery only: wallet/detail .waifu-pic-box min-height fights the -300px image overlap and changes with decode */
+.gallery-pink-stack.waifu-pic-box,
+.gallery-pink-stack .waifu-pic-box {
+	min-height: 0 !important;
+}
+
+/* Portrait + loader sit above deco layers inside .gallery-portrait-stage */
+.gallery-portrait-stack {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 375px;
+	height: 500px;
+	margin: 0;
+	box-sizing: border-box;
+	z-index: 1;
+}
+
+/* Full portrait slot for spinner; positioned against .gallery-portrait-stack, not the short flow shell */
+.gallery-image-loading-overlay {
+	box-sizing: border-box;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	min-height: 500px;
+	max-height: 500px;
+	margin: 0;
+	padding: 0;
 	overflow: hidden;
-	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANkAAAAaCAYAAAA6wvlsAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF92lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDggNzkuMTY0MDM2LCAyMDE5LzA4LzEzLTAxOjA2OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjEtMDMtMDdUMTU6NDQ6MTkrMTM6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIxLTAzLTA3VDE1OjQ5OjM5KzEzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIxLTAzLTA3VDE1OjQ5OjM5KzEzOjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgcGhvdG9zaG9wOklDQ1Byb2ZpbGU9InNSR0IgSUVDNjE5NjYtMi4xIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjFlNTQ2NmQ1LTFlMzMtNGRmYi04ZWU1LTUyNWZiNGJkYjllNCIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOmE0NWYzMzAyLTAwNTktNDc0NS1iOGM2LTdiYmQ2ZGJkYzg2MCIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjFhYTRmMzdkLTkxYzAtNDIwNi1hMWQ2LWY2YTA2NDZlMTg2ZiI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6MWFhNGYzN2QtOTFjMC00MjA2LWExZDYtZjZhMDY0NmUxODZmIiBzdEV2dDp3aGVuPSIyMDIxLTAzLTA3VDE1OjQ0OjE5KzEzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoTWFjaW50b3NoKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6MWU1NDY2ZDUtMWUzMy00ZGZiLThlZTUtNTI1ZmI0YmRiOWU0IiBzdEV2dDp3aGVuPSIyMDIxLTAzLTA3VDE1OjQ5OjM5KzEzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoTWFjaW50b3NoKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6+ma0IAAAF6UlEQVR42u2cMUgkWRCGxwM9OA0u9TAzEDYw8DIjA4WLxTMS1Fz0NFE5VDQ20MhIIwMDT8VENJXFZAMT4S4wEw7cTQ1kD97t59pzb9696vdm7H5dCxP8iDM93f9UV9Wr+uv11IwxtTbaaKM8eF+8vr7+dXx83AwMDJjBwcGkGBkZMRcXF7/HfoHHx8cf1tbW/qmCK9fc3t7+BIdYvkdHR3/wHavgOjk5aW5ubn6J5Xp3d/dudna2Ej8YGhoy+/v7H2K5Pj09fbe3t/dXap6ZbZeXl839/f1PwSCDKDei9uXlqjE8PGxCzovDauAKQonh4eHhR26GBq4ETshpSVwauHZ3dxuCPY8riUOLH+zs7Pzt8m0gS4a1v1yVhuVvb2+vIfB9hj08PLzUYthQoJEstHGlUpGcdmlpyWjjK60SmgIsw9bWVgPfOlkiUBtZKeuyKmjkCnyr79jYmEquvnLs6urqN41cKR+9pZhSP7CTWL1M1EoWEFS2Yal/tXKlR7O5ktE029Z1WpxZK1e0Aq3tgi/I4FurfbVy7pLLwfRpKSBxwJi2caXehiY0FVeu5ePQ19fX4LhShUBJnIpr3kp6e3v7c0yFQCuRii9tgo/D/Px8g20ln+nv70/GFe1AstnCwgLHdL6QpWyIycplg57Gx2Nzc/PZFmdis3LZkPrWmP6Gsiwl1/X19c+h1YGGvVWhpEhIPEgWkoZgQ+rjy4LEY2JiwtTLRaTP2Jq9TJBVQzdZCjJWltRBJmWxmCCzV5AUkEorO8ikiiZ1spVWVDfIpNI2tR9MT0+HgwxDI9myYmSg72lmplKUcbmuzQNebrnoHkOWpixLbVyuybVtHvaqC05OTvZ9tnX7zBQJzMfDVsEk+6dedUmkLlds6yZ91/4Z39R+gNLt8H2Zmx0cHLzwrVHn8gJkXfA6mTgPnDTkMJDgOqFzuTwgnv21P+/jyjGh84OQw1CqxHxvkPHz8cj4+o6JsS2fx4nySp9sANuKbW0e2eff4gcgNM/C9jHn4Xp5to2xf8i2+GQo4ePbLfqBWVlZMYuLi2Z1dbU4CVQKNGkprXpg+K3MXBABJEdAZNHGV6p+NI6IpF6zyBFRZ2dncUHmq9s1DmEB6qTPuBhdI1+f42pMCICk6rOtlt0uMXNNfLmVc/X09EjvlTfY1Dp/k0QSygiNfH0iiSQSVQ1XZs8gjTw0BpmktlcaZHnbnyTlskpIfZnGnSTMYppVtTRtHNC8kwTflHpdaVYXQldXV8P/HR0dX9UvwIzKRfZeHtwpvCQmxJ7PxwOgMIaOiTl3SKTBwDjEW7jyXsa3Va4gRt3lmKK4voUvNgvNp7D9W/2gCNtyjLQX0n0apRWul5eX78/Pz/88PT39eHZ29lgvPWhMiewM/J96lsNNcHkAd+Ot75iQWlSWdOvycLMjzue+D/9mHo8pSsL33WPb2eDkOyYmkRYt4fvusTvK8dm/ilEOgebweN7d3f18fHx8Vp+TScpP6mF0zI4Dqc+TxIwyETMMlfq89jC6+WH06OjotzuMlh4bYQaQkqzUv9k3OU9MSbk65G38jdnxkXrllRzBDjLpO7k7LaraXuc+niNtZwrN64peddkr6eMxMzPzX5BJK0gmarBKpIDEgeU4xriZclglV7ZaxT73xs1JwTWviXfLxbxn/Kr2A3c3Td7IpWquYGNj4/nLMd/XCbeqplQhs2p99s23QmmdFWZB7mZmVgutfN0S+/VREqN1lPE6Zqk1NG8ayfoaWa3zN2mUofX5N5+gkVfVaBxl5FU1VWJqauplPtYQZBofO8/rBTQOY/N6AW1PR7ull+afdqAsk8YDVApV/lSGD3Nzc+Z1Ifh/kGkqxWJ2U+PUUtOZ+tH4mLmLlh0lMaKLJD5UsYKF5m8EmoYkRrCj0Lp8RdLI99TnOFCqn9bCUO7sJgbZ7u6UXLlWzK5+X2JALaXMScWX6+Cs3NNmFFicBekfZTKlbbENu9mbHXPg4JTmiE8p/QABhnZLSgbtH59so42S8S8VyOQ06qwEzwAAAABJRU5ErkJggg==");
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	z-index: 2;
+	pointer-events: none;
+}
+
+/* layout.css global img { max-width:100%; margin-bottom:1.45rem } skews size / adds height */
+.gallery-portrait-stack .gallery-waifu-main-image.waifu-card-image {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	max-width: none !important;
+	width: 375px !important;
+	height: 500px !important;
+}
+
+.gallery-waifu-main-image {
+	position: relative;
+	z-index: 1;
+	display: block;
+}
+
+.gallery-traits-loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px 16px 24px;
+	min-height: 140px;
+	box-sizing: border-box;
+}
+
+.gallery-traits-loading-label {
+	font-family: VT323, monospace !important;
+	font-size: 22px !important;
+	color: #fc74c6 !important;
+}
+
+.waifu-card-container .gallery-traits-panel.waifu-detail-box-sub-container {
+	margin-top: 20px !important;
+}
+
+/* Same max width as gallery waifu pic card (.waifu-pic-box / .gallery-pink-stack = 500px) */
+.waifu-card-box.waifu-card.gallery-traits-panel.waifu-detail-box-sub {
+	max-width: min(500px, 100%) !important;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+/* Gallery traits: narrow side padding so two logical columns can fit; still inside sub box */
+.gallery-traits-panel-inner.waifu-card-box-sub {
+	padding-left: 14px !important;
+	padding-right: 14px !important;
+}
+
+/*
+ * layout.css .waifu-detail-box-sub { max-width: 596px } applies to this inner Box too,
+ * so the dark panel stayed narrow inside the wider white card → white strip on the right.
+ */
+.gallery-traits-panel-inner.waifu-detail-box-sub {
+	max-width: none !important;
+	width: 100% !important;
+	margin-right: 0 !important;
+	box-sizing: border-box;
+}
+
+.gallery-traits-panel .box-upper {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+/* Don’t grow past the pic column; align with gallery-pink-stack (500px cap) */
+.gallery-waifu-traits-row .gallery-traits-panel.waifu-detail-box-sub-container {
+	flex: 0 1 500px;
+	min-width: 0;
+	max-width: min(500px, 100%);
+	width: 100%;
+	box-sizing: border-box;
+}
+
+/* Do not inherit styled-system color="white" — was washing out pink labels */
+.gallery-traits-panel-inner {
+	color: rgba(252, 116, 198, 0.92);
+	overflow-x: hidden;
+}
+
+/* Traits panel: match waifu card typography (VT323), not layout.css body serif */
+.gallery-traits-panel-body {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	padding: 6px 0 14px;
+	overflow-x: hidden;
+}
+
+.gallery-metadata-name {
+	font-family: VT323, monospace !important;
+	font-style: normal !important;
+	font-weight: normal !important;
+	font-size: 38px !important;
+	line-height: 1.05 !important;
+	color: #fc74c6 !important;
+	text-align: center !important;
+	padding: 8px 8px 10px !important;
+	margin: 0 !important;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Two columns of trait rows; inner panel now fills card width */
+.gallery-traits-list {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 6px 12px;
+	width: 100%;
+	max-width: 100%;
+	margin: 0 auto;
+	min-height: 160px;
+	box-sizing: border-box;
+	padding-bottom: 12px !important;
+	align-items: start;
+}
+
+.gallery-traits-list > .gallery-traits-loading,
+.gallery-traits-list > .gallery-metadata-empty {
+	grid-column: 1 / -1;
+	justify-self: center;
+}
+
+/* Label column ~22ch for long categories; value chip sizes to text (cap 18ch), not full row */
+.gallery-trait-row {
+	display: grid;
+	grid-template-columns: minmax(0, 22ch) max-content;
+	gap: 6px 8px;
+	align-items: center;
+	margin-bottom: 0;
+	min-width: 0;
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+/* Same pink + VT323 as .card-box-center-pink-text (beat body Georgia + inherited color) */
+.gallery-trait-type-col {
+	font-family: VT323, monospace !important;
+	font-size: 20px !important;
+	line-height: 1.2 !important;
+	color: #fc74c6 !important;
+	text-align: right !important;
+	padding-right: 4px;
+	min-width: 0;
+	max-width: 22ch;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* layout.css .trait-buttons: no stretch — hug content up to 18ch */
+.gallery-trait-row .gallery-trait-value.trait-buttons {
+	width: max-content !important;
+	min-width: 0 !important;
+	max-width: min(18ch, 100%) !important;
+	height: auto !important;
+	min-height: 34px !important;
+	margin: 0 !important;
+	margin-left: 0 !important;
+	margin-top: 0 !important;
+	padding: 4px 10px !important;
+	font-size: 19px !important;
+	line-height: 1.2 !important;
+	text-align: left !important;
+	justify-self: start;
+	box-sizing: border-box !important;
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	word-break: normal !important;
+}
+
+.gallery-metadata-empty {
+	font-family: VT323 !important;
+	font-size: 22px !important;
+	line-height: 1.2 !important;
+	color: #fc74c6 !important;
+	padding: 16px !important;
+	text-align: center !important;
+}
+
+/* Narrow phones: one trait column; stack label / value per row */
+@media (max-width: 520px) {
+	.gallery-traits-list {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+@media (max-width: 380px) {
+	.gallery-trait-row {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 4px 0;
+	}
+	.gallery-trait-type-col {
+		text-align: left !important;
+		max-width: 100%;
+	}
+	.gallery-trait-row .gallery-trait-value.trait-buttons {
+		justify-self: stretch;
+		max-width: 100% !important;
+		width: 100% !important;
+	}
+}
+/* Dungeon peek: waifu thumbs with chain texture overlaid on top (matches original layout) */
+.dungeon-intro-card {
+	margin-bottom: 56px;
+}
+
+.waifu-dungeon-peek-container {
+	position: relative;
+	width: 100%;
+	max-width: 920px;
+	margin: 0 auto;
+	padding: 0;
+	overflow: visible;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	--waifu-dungeon-chain-tile: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANkAAAAaCAYAAAA6wvlsAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF92lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDggNzkuMTY0MDM2LCAyMDE5LzA4LzEzLTAxOjA2OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjEtMDMtMDdUMTU6NDQ6MTkrMTM6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIxLTAzLTA3VDE1OjQ5OjM5KzEzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIxLTAzLTA3VDE1OjQ5OjM5KzEzOjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgcGhvdG9zaG9wOklDQ1Byb2ZpbGU9InNSR0IgSUVDNjE5NjYtMi4xIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjFlNTQ2NmQ1LTFlMzMtNGRmYi04ZWU1LTUyNWZiNGJkYjllNCIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOmE0NWYzMzAyLTAwNTktNDc0NS1iOGM2LTdiYmQ2ZGJkYzg2MCIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjFhYTRmMzdkLTkxYzAtNDIwNi1hMWQ2LWY2YTA2NDZlMTg2ZiI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6MWFhNGYzN2QtOTFjMC00MjA2LWExZDYtZjZhMDY0NmUxODZmIiBzdEV2dDp3aGVuPSIyMDIxLTAzLTA3VDE1OjQ0OjE5KzEzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoTWFjaW50b3NoKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6MWU1NDY2ZDUtMWUzMy00ZGZiLThlZTUtNTI1ZmI0YmRiOWU0IiBzdEV2dDp3aGVuPSIyMDIxLTAzLTA3VDE1OjQ5OjM5KzEzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoTWFjaW50b3NoKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6+ma0IAAAF6UlEQVR42u2cMUgkWRCGxwM9OA0u9TAzEDYw8DIjA4WLxTMS1Fz0NFE5VDQ20MhIIwMDT8VENJXFZAMT4S4wEw7cTQ1kD97t59pzb9696vdm7H5dCxP8iDM93f9UV9Wr+uv11IwxtTbaaKM8eF+8vr7+dXx83AwMDJjBwcGkGBkZMRcXF7/HfoHHx8cf1tbW/qmCK9fc3t7+BIdYvkdHR3/wHavgOjk5aW5ubn6J5Xp3d/dudna2Ej8YGhoy+/v7H2K5Pj09fbe3t/dXap6ZbZeXl839/f1PwSCDKDei9uXlqjE8PGxCzovDauAKQonh4eHhR26GBq4ETshpSVwauHZ3dxuCPY8riUOLH+zs7Pzt8m0gS4a1v1yVhuVvb2+vIfB9hj08PLzUYthQoJEstHGlUpGcdmlpyWjjK60SmgIsw9bWVgPfOlkiUBtZKeuyKmjkCnyr79jYmEquvnLs6urqN41cKR+9pZhSP7CTWL1M1EoWEFS2Yal/tXKlR7O5ktE029Z1WpxZK1e0Aq3tgi/I4FurfbVy7pLLwfRpKSBxwJi2caXehiY0FVeu5ePQ19fX4LhShUBJnIpr3kp6e3v7c0yFQCuRii9tgo/D/Px8g20ln+nv70/GFe1AstnCwgLHdL6QpWyIycplg57Gx2Nzc/PZFmdis3LZkPrWmP6Gsiwl1/X19c+h1YGGvVWhpEhIPEgWkoZgQ+rjy4LEY2JiwtTLRaTP2Jq9TJBVQzdZCjJWltRBJmWxmCCzV5AUkEorO8ikiiZ1spVWVDfIpNI2tR9MT0+HgwxDI9myYmSg72lmplKUcbmuzQNebrnoHkOWpixLbVyuybVtHvaqC05OTvZ9tnX7zBQJzMfDVsEk+6dedUmkLlds6yZ91/4Z39R+gNLt8H2Zmx0cHLzwrVHn8gJkXfA6mTgPnDTkMJDgOqFzuTwgnv21P+/jyjGh84OQw1CqxHxvkPHz8cj4+o6JsS2fx4nySp9sANuKbW0e2eff4gcgNM/C9jHn4Xp5to2xf8i2+GQo4ePbLfqBWVlZMYuLi2Z1dbU4CVQKNGkprXpg+K3MXBABJEdAZNHGV6p+NI6IpF6zyBFRZ2dncUHmq9s1DmEB6qTPuBhdI1+f42pMCICk6rOtlt0uMXNNfLmVc/X09EjvlTfY1Dp/k0QSygiNfH0iiSQSVQ1XZs8gjTw0BpmktlcaZHnbnyTlskpIfZnGnSTMYppVtTRtHNC8kwTflHpdaVYXQldXV8P/HR0dX9UvwIzKRfZeHtwpvCQmxJ7PxwOgMIaOiTl3SKTBwDjEW7jyXsa3Va4gRt3lmKK4voUvNgvNp7D9W/2gCNtyjLQX0n0apRWul5eX78/Pz/88PT39eHZ29lgvPWhMiewM/J96lsNNcHkAd+Ot75iQWlSWdOvycLMjzue+D/9mHo8pSsL33WPb2eDkOyYmkRYt4fvusTvK8dm/ilEOgebweN7d3f18fHx8Vp+TScpP6mF0zI4Dqc+TxIwyETMMlfq89jC6+WH06OjotzuMlh4bYQaQkqzUv9k3OU9MSbk65G38jdnxkXrllRzBDjLpO7k7LaraXuc+niNtZwrN64peddkr6eMxMzPzX5BJK0gmarBKpIDEgeU4xriZclglV7ZaxT73xs1JwTWviXfLxbxn/Kr2A3c3Td7IpWquYGNj4/nLMd/XCbeqplQhs2p99s23QmmdFWZB7mZmVgutfN0S+/VREqN1lPE6Zqk1NG8ayfoaWa3zN2mUofX5N5+gkVfVaBxl5FU1VWJqauplPtYQZBofO8/rBTQOY/N6AW1PR7ull+afdqAsk8YDVApV/lSGD3Nzc+Z1Ifh/kGkqxWJ2U+PUUtOZ+tH4mLmLlh0lMaKLJD5UsYKF5m8EmoYkRrCj0Lp8RdLI99TnOFCqn9bCUO7sJgbZ7u6UXLlWzK5+X2JALaXMScWX6+Cs3NNmFFicBekfZTKlbbENu9mbHXPg4JTmiE8p/QABhnZLSgbtH59so42S8S8VyOQ06qwEzwAAAABJRU5ErkJggg==");
+}
+
+/* Outer: border + shadow (overflow visible so shadow isn’t clipped). */
+.waifu-dungeon-image-frame {
+	display: inline-block;
+	max-width: 100%;
+	vertical-align: middle;
+	line-height: 0;
+	border: 2px solid rgba(24, 20, 37, 0.85);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+/* Inner: fixed slot for peek image; placeholder + img both fill this box */
+.waifu-dungeon-image-clip {
+	position: relative;
+	overflow: hidden;
+	line-height: 0;
+	background-color: #181525;
+	width: min(300px, 100%);
+	max-width: 100%;
+	/* Explicit min size so the slot never collapses to 0×0 if aspect-ratio is ignored */
+	min-width: 200px;
+	min-height: 266px;
+	aspect-ratio: 3 / 4;
+	max-height: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@keyframes dungeon-peek-img-skel {
+	0% {
+		background-position: 100% 0;
+	}
+	100% {
+		background-position: -100% 0;
+	}
+}
+
+/* Image is always painted; placeholder stacks on top until load (avoids opacity:0 + missed onLoad). */
+.waifu-dungeon-image-clip .dungeon-waifu-card-image {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	max-height: none;
+	object-fit: contain;
+	display: block;
+	margin: 0;
+	border: none;
+	box-shadow: none;
+	vertical-align: top;
+	opacity: 1;
+}
+
+/* Above chain overlays so spinner + shimmer stay visible while loading */
+.dungeon-waifu-img-placeholder {
+	position: absolute;
+	inset: 0;
+	z-index: 10;
+	pointer-events: none;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid rgba(24, 20, 37, 0.45);
+	background: linear-gradient(
+		110deg,
+		#2a2638 0%,
+		#2a2638 40%,
+		#3f3a52 50%,
+		#2a2638 60%,
+		#2a2638 100%
+	);
+	background-size: 200% 100%;
+	animation: dungeon-peek-img-skel 1.15s ease-in-out infinite;
+}
+
+/* No overflow:hidden here — it clips rotated strips wrong; clipping is only on .waifu-dungeon-image-clip */
+.waifu-dungeon-chain-layer {
+	position: absolute;
+	inset: 0;
+	z-index: 3;
+	pointer-events: none;
+	overflow: visible;
+}
+
+/* Shared: horizontal chain texture (repeat along the bar’s long axis before transform) */
+.waifu-dungeon-chain-strip {
+	display: block;
+	position: absolute;
+	margin: 0;
+	background-image: var(--waifu-dungeon-chain-tile);
 	background-repeat: repeat-x;
-	background-size: 8rem;
-	opacity: 0.75;
+	background-position: center center;
+	background-size: clamp(3.25rem, 11vw, 4.75rem) auto;
+	opacity: 1;
+	pointer-events: none;
+	transform-origin: center center;
+}
+
+/* Two parallel-ish verticals: long horizontal bar rotated 90°, anchored left/right thirds */
+.waifu-dungeon-chain-strip--v1 {
+	left: 24%;
+	top: 50%;
+	width: 260%;
+	height: 4.75rem;
+	transform: translate(-50%, -50%) rotate(88deg);
+	z-index: 2;
+}
+
+.waifu-dungeon-chain-strip--v2 {
+	left: 76%;
+	top: 50%;
+	width: 260%;
+	height: 4.75rem;
+	transform: translate(-50%, -50%) rotate(92deg);
+	z-index: 2;
+}
+
+/* Horizontal band, full width of clip, slightly tilted; under the verticals */
+.waifu-dungeon-chain-strip--h {
+	left: 50%;
+	top: 54%;
+	width: 280%;
+	height: 4.75rem;
+	transform: translate(-50%, -50%) rotate(-5deg);
+	z-index: 1;
+}
+
+.waifu-dungeon-waifu-row {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
 }
 .waifu-detail-box-sub {
 	max-width: 596px !important;
@@ -83,10 +742,6 @@
  .waifu-detail-box-sub-container{
 	margin-top:250px !important;
 } 
-.dungeon-waifu-card-image{
-	width: 20%;
-	margin-bottom: 0px;
-}
 .waifu-presale-container {
 	margin: 0 auto;
 	max-width: 1000px;
@@ -200,7 +855,7 @@
 }
 
 .waifu-card-box-center {
-    padding: 72px 1px 1px 1px;
+    padding: 36px 1px 1px 1px;
 }
 
 .waifu-card-box-greenbar {
@@ -224,9 +879,16 @@
 }
 
 .waifu-pic-box {
-    max-width: 596px;
-    min-height: 735px;
+    max-width: 500px;
+    min-height: 635px;
 	margin-right:4px;
+}
+
+/* waifu-card sets min-width:590px; allow pic column to actually use 500px max */
+.waifu-card-box.waifu-pic-box.waifu-card,
+.waifu-pic-box.waifu-card.wallet-waifu-card {
+	min-width: 0 !important;
+	max-width: 500px;
 }
 
 .waifu-pic-box-container
@@ -300,6 +962,14 @@ span.button-text:hover {
 	border:2px solid rgba(250.00000029802322, 72.00000330805779, 155.00000596046448, 1) !important;
 	color:rgba(249.00000035762787, 28.000000230968, 113.00000086426735, 1) !important;
 }
+
+.waifu-popup-overlay .waifu-card-buttons {
+	width: min(300px, 90vw) !important;
+	min-width: 220px !important;
+	padding-left: 16px !important;
+	padding-right: 16px !important;
+}
+
 .waifu-card-buttons.large {
 	width: 217px !important;
 }
@@ -351,12 +1021,21 @@ span.button-text:hover {
 	line-height:undefined;
     padding-bottom: 10px;
 }
+/* Positioned for ~500px pic column: peek past portrait edges without 596px-era sprawl */
 .waifu-blurred-text {
-	margin-top:-332px;
-	margin-left:-416px;
+	margin-top: -268px;
+	margin-left: -248px;
+	max-width: min(260px, 52vw);
+	width: auto;
+	height: auto;
+	vertical-align: top;
 }
 .waifu-focus-text {
-	margin-left:470px;
+	margin-left: 390px;
+	max-height: 400px;
+	width: auto;
+	height: auto;
+	vertical-align: top;
 }
 
 .waifu-card {

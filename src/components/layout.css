@@ -1,8 +1,16 @@
-@import "~@fontsource/vt323/index.css";
+@keyframes ui-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 html {
   font-family: 'VT323';
-   background-image:url("../components/CIKa.gif") ;
+  background-image: url("../components/CIKa.gif");
+  background-image: image-set(
+    url("../components/CIKa.webp") type("image/webp"),
+    url("../components/CIKa.gif") type("image/gif")
+  );
 
   /* Center and scale the image nicely */
   background-position: center;
@@ -684,7 +692,11 @@ del {
 }
 
 .backgroundGif{
-  background-image:url("../components/CIKa.gif") ;
+  background-image: url("../components/CIKa.gif");
+  background-image: image-set(
+    url("../components/CIKa.webp") type("image/webp"),
+    url("../components/CIKa.gif") type("image/gif")
+  );
 
   /* Center and scale the image nicely */
   background-position: center;
@@ -831,8 +843,24 @@ BELOW IS HOME CSS
 	padding-left:155px;
 }
 
-.gallery-button-container{ 
+.gallery-button-container {
 	padding-left: 139px;
+}
+
+/* Gallery page imports home.css; keep sane defaults if only layout.css loads */
+.gallery-footer .gallery-button-container {
+	padding-left: 0 !important;
+	justify-content: center !important;
+	width: 100% !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.gallery-footer-id.card-box-center-pink-text {
+	text-align: center !important;
+	display: flex !important;
+	justify-content: center !important;
+	width: 100% !important;
 }
 
 .menu-logo {
@@ -897,7 +925,7 @@ BELOW IS HOME CSS
 }
 
 .waifu-card-box-center {
-    padding: 72px 1px 1px 1px;
+    padding: 36px 1px 1px 1px;
 }
 
 .waifu-card-box-greenbar {
@@ -921,9 +949,15 @@ BELOW IS HOME CSS
 }
 
 .waifu-pic-box {
-    max-width: 596px;
-    min-height: 735px;
+    max-width: 500px;
+    min-height: 635px;
 	margin-right:4px;
+}
+
+.waifu-card-box.waifu-pic-box.waifu-card,
+.waifu-pic-box.waifu-card.wallet-waifu-card {
+	min-width: 0 !important;
+	max-width: 500px;
 }
 
 .waifu-pic-box-container
@@ -991,6 +1025,14 @@ span.button-text:hover {
 	color:rgba(249.00000035762787, 28.000000230968, 113.00000086426735, 1) !important;
 }
 
+/* Buy / burn / reveal / view modals (see popup.jsx .waifu-popup-overlay) */
+.waifu-popup-overlay .waifu-card-buttons {
+	width: min(300px, 90vw) !important;
+	min-width: 220px !important;
+	padding-left: 16px !important;
+	padding-right: 16px !important;
+}
+
 .waifu-card-image {
 	margin-top:-300px;
 	width: 375px;
@@ -1035,11 +1077,19 @@ span.button-text:hover {
     padding-bottom: 10px;
 }
 .waifu-blurred-text {
-	margin-top:-332px;
-	margin-left :-416px;
+	margin-top: -400px;
+	margin-left: -340px;
+	max-width: min(260px, 52vw);
+	width: auto;
+	height: auto;
+	vertical-align: top;
 }
 .waifu-focus-text {
-	margin-left :470px;
+	margin-left: 390px;
+	max-height: 400px;
+	width: auto;
+	height: auto;
+	vertical-align: top;
 }
 
 .waifu-card {
@@ -1459,7 +1509,7 @@ HEADER CSS
 }
 
 .waifu-card-box-center {
-  padding: 72px 1px 1px 1px;
+  padding: 36px 1px 1px 1px;
 }
 
 .nav-logo {

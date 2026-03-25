@@ -51,6 +51,27 @@
     max-height: 176px;
 }
 
+/* Keeps HOME / OVERVIEW / GALLERY / DUNGEON on one row; gap replaces per-button margin-left */
+.nav-bar-buttons-row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	flex: 1 1 auto;
+	min-width: 0;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	box-sizing: border-box;
+}
+
+.nav-bar-buttons-row .nav-menu-buttons {
+	margin-left: 0 !important;
+	margin-top: 0 !important;
+	flex-shrink: 0;
+}
+
 .nav-menu-buttons { 
 	box-shadow:1px 1px 7px rgba(0, 0, 0, 0.30000001192092896) !important;
 	background-color:rgba(251.90600842237473, 253.93750101327896, 243.78002285957336, 1) !important;
