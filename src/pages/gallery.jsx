@@ -72,11 +72,11 @@ const Gallery = observer((props) => {
   const attrs = metadata?.attributes || [];
 
   const nextWaifu = () => {
-    galleryStore.incrementViewIndex();
+    galleryStore.goNext();
   };
 
   const prevWaifu = () => {
-    galleryStore.decrementViewIndex();
+    galleryStore.goPrev();
   };
 
   return (
@@ -165,13 +165,11 @@ const Gallery = observer((props) => {
                         max={GLOBALS.TOTAL_WAIFUS}
                         value={galleryStore.goToImageId}
                         onChange={(event) => {
-                          galleryStore.updateGoToIndex(event.target.value);
+                          galleryStore.setGoToInput(event.target.value);
                         }}
                         onKeyDown={(event) => {
                           if (event.key === "Enter") {
-                            galleryStore.updateCurrentViewIndex(
-                              galleryStore.goToImageId
-                            );
+                            galleryStore.applyGoToId(galleryStore.goToImageId);
                           }
                         }}
                       ></Input>

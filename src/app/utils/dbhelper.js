@@ -1,11 +1,9 @@
 import { GLOBALS } from "./globals.js";
 
-const revealedImageIndex = (tokenId) => {
-  return (Number(tokenId) + GLOBALS.STARTING_INDEX) % 16384;
-};
-
+/** Fetch metadata JSON at manifest index `id` (1:1 with gallery image `{id}.png`). */
 export const getWaifuTraitsById = async (id) => {
-  const idx = revealedImageIndex(id);
+  const n = Math.floor(Number(id));
+  const idx = Number.isFinite(n) ? n : 1;
   const url = `${GLOBALS.ARWEAVE_TOKEN_METADATA_BASE}/${idx}`;
   try {
     const r = await fetch(url);

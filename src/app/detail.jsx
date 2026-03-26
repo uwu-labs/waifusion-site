@@ -5,6 +5,7 @@ import { Flex, Button, Text, Box, Modal, Input } from "../components/ui";
 import { observer } from "mobx-react-lite";
 
 import { getWaifuTraitsById } from "./utils/dbhelper";
+import { revealedWaifuIndex } from "./utils/waifuDisplay";
 
 import { GLOBALS } from "./utils/globals.js";
 
@@ -24,7 +25,9 @@ const Detail = observer(() => {
 
   useEffect(() => {
     async function load() {
-      detailStore.currentWaifu = await getWaifuTraitsById(detailId);
+      detailStore.currentWaifu = await getWaifuTraitsById(
+        revealedWaifuIndex(detailId)
+      );
       detailStore.owner = walletStore.defaultAddress;
       detailStore.name =
         detailStore.currentWaifu?.name || "Demo Waifu";
@@ -37,10 +40,6 @@ const Detail = observer(() => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [detailId]);
-
-  const revealedWaifuIndex = (waifuIndex) => {
-    return (Number(waifuIndex) + GLOBALS.STARTING_INDEX) % 16384;
-  };
 
   const closeNCModal = () => {
     detailStore.isPendingNameChange = false;
