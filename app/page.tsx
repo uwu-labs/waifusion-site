@@ -180,6 +180,11 @@ function DesktopLanding() {
                     <h3 className="font-bold text-2xl mb-4" style={{ color: '#B010FA' }}>What is Waifusion?</h3>
                     <p className="text-gray-700 leading-relaxed">The earliest generative anime NFT collection — minted in March 2021, before all the ecosystem we know now was established.</p>
                     <p className="text-gray-700 leading-relaxed mt-4">16,384 Waifusions were for sale, but the mint didn&apos;t finish, so the community invented a solution. Waifusions could be burned and swapped for new unsold ones, this resulted in only 8,918 surviving.</p>
+                    <p className="text-gray-700 leading-relaxed mt-4">
+                      <Link href="https://archive.waifusion.io" target="_blank" rel="noopener noreferrer" className="text-[#B010FA] font-medium hover:underline">
+                        View archive
+                      </Link>
+                    </p>
                   </div>
                 </div>
               </div>

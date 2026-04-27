@@ -151,9 +151,9 @@ export default function MobileLanding() {
               {/* Hero image: below text on mobile, alongside on desktop */}
               <div className="mt-4 flex w-full md:w-auto md:flex-shrink-0 items-center justify-center md:mt-0">
                 <img
-                  src="/placeholder.png"
-                  alt="Waifusion hero artwork"
-                  className="w-44 sm:w-56 md:w-full md:max-w-[500px] h-auto object-contain"
+                  src="/wf_sticker_together.png"
+                  alt="Waifusion and uwucrew characters"
+                  className="w-[calc(100vw-64px)] max-w-[500px] md:w-full md:max-w-[500px] h-auto object-contain"
                 />
               </div>
             </div>
@@ -163,31 +163,6 @@ export default function MobileLanding() {
 
       {/* Gallery Grid - 3 on mobile, 4 on sm+ */}
       <section className="pt-4 pb-0 sm:pt-12 sm:pb-0 bg-gradient-to-b from-pink-100/50 to-pink-50/30 overflow-visible relative z-10">
-        {/* Mobile: full-width, 3 cols, no gap */}
-        <div className="sm:hidden w-full overflow-visible">
-          <div className="grid grid-cols-3 gap-0 items-center overflow-visible translate-y-2 pb-2">
-            {WAIFUS_LOCAL.slice(0, 3).map((_, i) => {
-              const slotImages = [
-                ...WAIFUS_LOCAL.slice(i * 2),
-                ...WAIFUS_LOCAL.slice(0, i * 2)
-              ];
-              return (
-                <div
-                  key={`jumping-waifu-m-${i}`}
-                  className="aspect-square relative flex items-center justify-center overflow-visible"
-                >
-                  <JumpingWaifu
-                    images={slotImages}
-                    initialIndex={0}
-                    delay={`${i * -0.25}s`}
-                    className="w-full h-full object-contain relative z-10"
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
         {/* sm+: original layout, 4 cols */}
         <div className="hidden sm:block max-w-[calc(56rem*1.35)] mx-auto px-4 overflow-visible">
           <div className="grid grid-cols-4 gap-0 items-center overflow-visible translate-y-8 pb-2">
@@ -227,10 +202,38 @@ export default function MobileLanding() {
                     <h3 className="font-bold text-2xl md:text-2xl leading-snug mb-3" style={{ color: '#B010FA' }}>What is Waifusion?</h3>
                     <p className="text-gray-700 leading-relaxed text-[15px] md:text-lg font-normal">The earliest generative anime NFT collection — minted in March 2021, before all the ecosystem we know now was established.</p>
                     <p className="text-gray-700 leading-relaxed mt-2 text-[15px] md:text-lg font-normal">16,384 Waifusions were for sale, but the mint didn&apos;t finish, so the community invented a solution. Waifusions could be burned and swapped for new unsold ones, this resulted in only 8,918 surviving.</p>
+                    <p className="text-gray-700 leading-relaxed mt-2 text-[15px] md:text-lg font-normal">
+                      <Link href="https://archive.waifusion.io" target="_blank" rel="noopener noreferrer" className="text-[#B010FA] font-medium hover:underline">
+                        View archive
+                      </Link>
+                    </p>
                   </div>
                 </div>
               </div>
               <img src={PIXEL_STAR_PURPLE} alt="" className="absolute w-8 h-8 md:w-[44px] md:h-[44px] -bottom-3 -right-3 md:-bottom-4 md:-right-4 opacity-90 pointer-events-none z-30" />
+            </div>
+            <div className="md:hidden -mt-1 w-full overflow-visible pt-3">
+              <div className="grid grid-cols-3 gap-0 items-center overflow-visible pt-2">
+                {WAIFUS_LOCAL.slice(0, 3).map((_, i) => {
+                  const slotImages = [
+                    ...WAIFUS_LOCAL.slice(i * 2),
+                    ...WAIFUS_LOCAL.slice(0, i * 2)
+                  ];
+                  return (
+                    <div
+                      key={`jumping-waifu-m-${i}`}
+                      className="aspect-square relative flex items-center justify-center overflow-visible"
+                    >
+                      <JumpingWaifu
+                        images={slotImages}
+                        initialIndex={0}
+                        delay={`${i * -0.25}s`}
+                        className="w-full h-full object-contain relative z-10 scale-125"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
             <div className="relative h-full">
               <div className="pixel-border-outer h-full" style={{ color: '#F453EF' }}>
@@ -273,7 +276,14 @@ export default function MobileLanding() {
 
             {/* Row 3: Waifu image (left) | About Kusari (right) */}
             <div className="hidden md:flex items-end justify-center h-full min-h-[200px] w-full">
-              <img src="/placeholder2.png" alt="Waifu Placeholder" className="object-contain w-full h-auto max-h-[320px]" />
+              <img src="/wf_sticker_kissu.png" alt="Waifusion and uwucrew sticker" className="object-contain w-full h-auto max-h-[320px]" />
+            </div>
+            <div className="md:hidden flex items-center justify-center w-full py-2">
+              <img
+                src="/wf_sticker_kissu.png"
+                alt="Waifusion and uwucrew sticker"
+                className="object-contain w-[calc(100vw-64px)] max-w-[500px] h-auto"
+              />
             </div>
             <div className="relative h-full">
               <div className="pixel-border-outer h-full" style={{ color: '#21D510' }}>
