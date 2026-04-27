@@ -36,6 +36,12 @@ const Home = () => {
                   <span id="e0_338">WHAT IS WAIFUSION?</span>
                   <br />
                   <div className="waifu-card-text waifu-about-text">
+                    DISCLAIMER: This website is maintained by the Kusari team as
+                    an inherited archive. It was originally built by the team 
+                    that later rugged the project and has been preserved to document the history and
+                    culture of Waifusion.
+                    <br />
+                    <br />
                     Waifusion is a digital Waifu collection. There are 16,384
                     guaranteed-unique Waifusion NFTs. They’re just like you; a
                     beautiful work of art, but 2-D and therefore, superior,
